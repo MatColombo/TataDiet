@@ -1,0 +1,223 @@
+{
+  "format": "tatadiet-v5-phase1-audit",
+  "schema_version": 1,
+  "phase_version": "5.0.0-alpha.1-phase1",
+  "dataset_version": "tatadiet-base-v1",
+  "generated_at": "2026-08-26T15:39:00+00:00",
+  "status": "pass_with_documented_gaps",
+  "source": {
+    "xlsx": {
+      "file": "Piano_alimentare_revisionato_6_mesi_fibra_moderata.xlsx",
+      "sha256": "63fa26b530d0b2f26cc8a25abc51147af92f71f96900f62f2f383862602e0450"
+    },
+    "pdf": {
+      "file": "Piano_alimentare_revisionato_6_mesi_fibra_moderata.pdf",
+      "sha256": "1f11622a0506f6190494b0806378a253ab946181b8953bf7d0929c48bca907b7"
+    },
+    "workbook": {
+      "sheet_count": 15,
+      "sheets": [
+        "Guida",
+        "Sintesi",
+        "M1 Settembre",
+        "M2 Ottobre",
+        "M3 Novembre",
+        "M4 Dicembre",
+        "M5 Gennaio",
+        "M6 Febbraio",
+        "Sostituzioni",
+        "Pasti flessibili",
+        "Ingredienti",
+        "Dettaglio ingredienti",
+        "Spesa per variante",
+        "Spesa per ciclo",
+        "Fonti e metodo"
+      ],
+      "source_timestamp": "2026-08-24T17:01:56+00:00"
+    }
+  },
+  "counts": {
+    "ingredient_catalog": 130,
+    "used_ingredients": 100,
+    "unused_ingredients": 30,
+    "ingredient_detail_rows": 3189,
+    "ingredient_day_records": 2735,
+    "days": 180,
+    "meals": 864,
+    "structured_meals": 846,
+    "estimated_flexible_meals": 18,
+    "meal_ingredient_lines": 3189,
+    "recipe_families": 306,
+    "recipe_versions": 547,
+    "families_with_multiple_versions": 90,
+    "flexible_recipe_versions": 18,
+    "explicit_or_inferred_state": 26,
+    "state_unspecified": 104
+  },
+  "validation": {
+    "catalog_missing_core_values": 0,
+    "used_codes_missing_from_catalog": [],
+    "catalog_codes_unused_in_plan": [
+      "barbabietola",
+      "burro_arachidi",
+      "calamaro",
+      "castagna",
+      "cavoletti",
+      "cavolo_cappuccio",
+      "cavolo_nero",
+      "cicoria",
+      "cipolla",
+      "cozze",
+      "crackers_integrali",
+      "farro",
+      "fave",
+      "fesa_affettata",
+      "frutti_bosco",
+      "gnocchi",
+      "grano_saraceno",
+      "indivia",
+      "orzo",
+      "passata",
+      "patata_dolce",
+      "pistacchi",
+      "polpo",
+      "porro",
+      "prosciutto_crudo",
+      "rapa",
+      "sardine",
+      "sedano",
+      "semi_zucca",
+      "verza"
+    ],
+    "meal_parse_errors": 0,
+    "daily_reconciliation_differences": 0,
+    "structured_nutrient_matches_at_0_1": 846,
+    "structured_nutrient_mismatches_at_0_1": 0,
+    "duplicate_ingredient_codes": [],
+    "duplicate_ingredient_names": [],
+    "nutrient_max_absolute_difference": {
+      "kcal": 0.05,
+      "protein": 0.05,
+      "carbs": 0.05,
+      "fat": 0.05,
+      "fiber": 0.05
+    },
+    "workbook_formulas": {
+      "formula_count": 5308,
+      "missing_cached_values": 0,
+      "cached_errors": [],
+      "per_sheet": {
+        "Guida": {
+          "formula_count": 5,
+          "missing_cached_values": 0,
+          "cached_errors": []
+        },
+        "Sintesi": {
+          "formula_count": 259,
+          "missing_cached_values": 0,
+          "cached_errors": []
+        },
+        "M1 Settembre": {
+          "formula_count": 150,
+          "missing_cached_values": 0,
+          "cached_errors": []
+        },
+        "M2 Ottobre": {
+          "formula_count": 150,
+          "missing_cached_values": 0,
+          "cached_errors": []
+        },
+        "M3 Novembre": {
+          "formula_count": 150,
+          "missing_cached_values": 0,
+          "cached_errors": []
+        },
+        "M4 Dicembre": {
+          "formula_count": 150,
+          "missing_cached_values": 0,
+          "cached_errors": []
+        },
+        "M5 Gennaio": {
+          "formula_count": 150,
+          "missing_cached_values": 0,
+          "cached_errors": []
+        },
+        "M6 Febbraio": {
+          "formula_count": 150,
+          "missing_cached_values": 0,
+          "cached_errors": []
+        },
+        "Spesa per variante": {
+          "formula_count": 3212,
+          "missing_cached_values": 0,
+          "cached_errors": []
+        },
+        "Spesa per ciclo": {
+          "formula_count": 932,
+          "missing_cached_values": 0,
+          "cached_errors": []
+        }
+      }
+    }
+  },
+  "state_breakdown": {
+    "cooked": 6,
+    "drained": 6,
+    "dry": 11,
+    "prepared": 2,
+    "raw": 1,
+    "unspecified": 104
+  },
+  "known_gaps": [
+    {
+      "id": "ingredient-state",
+      "severity": "medium",
+      "count": 104,
+      "description": "Lo stato crudo/cotto/secco/sgocciolato non è dichiarato esplicitamente per tutti gli ingredienti.",
+      "phase_action": "Conservare 'unspecified' nel base dataset; richiederlo per i nuovi ingredienti personali quando rilevante."
+    },
+    {
+      "id": "item-provenance",
+      "severity": "medium",
+      "count": 130,
+      "description": "La fonte nutrizionale è documentata a livello di dataset, non per singolo ingrediente.",
+      "phase_action": "Per gli ingredienti personali registrare fonte, etichetta o nota manuale a livello record."
+    },
+    {
+      "id": "optional-nutrients",
+      "severity": "low",
+      "count": 130,
+      "description": "Zuccheri, saturi, sale e sodio non sono presenti nel workbook.",
+      "phase_action": "Campi previsti ma facoltativi nello schema V5; non bloccano il calcolo core."
+    },
+    {
+      "id": "recipe-instructions",
+      "severity": "medium",
+      "count": 306,
+      "description": "Le ricette base non contengono passaggi di preparazione strutturati.",
+      "phase_action": "Mantenere instructions_status='missing'; consentire istruzioni nelle ricette personali."
+    },
+    {
+      "id": "implicit-servings",
+      "severity": "low",
+      "count": 547,
+      "description": "Il numero di porzioni non è esplicito; ogni voce è trattata come una porzione individuale.",
+      "phase_action": "Base servings=1 con provenienza 'inferred'; obbligatorio nelle nuove ricette."
+    },
+    {
+      "id": "flexible-unstructured",
+      "severity": "medium",
+      "count": 18,
+      "description": "I pasti flessibili hanno nutrienti stimati ma non una composizione ingredienti strutturata.",
+      "phase_action": "Non ricalcolarli automaticamente; per modificarli occorre duplicare e specificare ingredienti oppure usare stima manuale."
+    }
+  ],
+  "release_gate": {
+    "phase_1_complete": true,
+    "phase_2_prerequisites": [
+      "Implementare IndexedDB usando gli schemi congelati.",
+      "Importare la data iniziale e le checklist V4 secondo la mappa di migrazione.",
+      "Non rendere mutabili i record base."
+    ]
+  }
+}

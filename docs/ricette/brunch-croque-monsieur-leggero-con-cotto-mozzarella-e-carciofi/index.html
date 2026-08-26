@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Piano alimentare di sei mesi, navigabile per calendario, cicli, varianti, giorni, ricette, preparazioni e liste della spesa.">
+  <meta name="theme-color" content="#7E4D70">
+  <meta name="color-scheme" content="light">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Piano turni">
+  <title>Brunch: Croque monsieur leggero con cotto, mozzarella e carciofi · Piano alimentare</title>
+  <link rel="manifest" href="../../manifest.webmanifest">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script defer src="../../assets/js/calendar-core.js"></script>
+  <script defer src="../../assets/js/site-state.js"></script>
+  <script defer src="../../assets/js/operations-core.js"></script>
+  <script defer src="../../assets/js/v5-db.js"></script>
+  <script defer src="../../assets/js/v5-backup.js"></script>
+  <script defer src="../../assets/js/v5-ingredients-core.js"></script>
+  <script defer src="../../assets/js/v5-ingredient-store.js"></script>
+  <script defer src="../../assets/js/v5-ingredients.js"></script>
+  <script defer src="../../assets/js/v5-recipes-core.js"></script>
+  <script defer src="../../assets/js/v5-recipe-store.js"></script>
+  <script defer src="../../assets/js/v5-recipes.js"></script>
+  <script defer src="../../assets/js/v5-plan-core.js"></script>
+  <script defer src="../../assets/js/v5-plan-store.js"></script>
+  <script defer src="../../assets/js/v5-plan.js"></script>
+  <script defer src="../../assets/js/v5-plan-calendar.js"></script>
+  <script defer src="../../assets/js/v5-composer-core.js"></script>
+  <script defer src="../../assets/js/v5-composer-store.js"></script>
+  <script defer src="../../assets/js/v5-composer.js"></script>
+  <script defer src="../../assets/js/v5-effective-core.js"></script>
+  <script defer src="../../assets/js/v5-effective-store.js"></script>
+  <script defer src="../../assets/js/v5-effective-pages.js"></script>
+  <script defer src="../../assets/js/app.js"></script>
+  <script defer src="../../assets/js/calendar.js"></script>
+  <script defer src="../../assets/js/prep.js"></script>
+  <script defer src="../../assets/js/shopping-range.js"></script>
+  <script defer src="../../assets/js/search.js"></script>
+  <script defer src="../../assets/js/tools.js"></script>
+  <script defer src="../../assets/js/v5-tools.js"></script>
+  <script defer src="../../assets/js/pwa.js"></script>
+</head>
+<body data-page="recipe" data-root="../../" data-version="5.0.0">
+  <a class="skip-link" href="#contenuto">Vai al contenuto</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../../index.html" aria-label="Piano alimentare, pagina iniziale">
+        <img class="brand-mark" src="../../assets/brand/brand-mark.svg" width="48" height="48" alt="">
+        <span class="brand-copy">
+          <strong>Piano alimentare</strong>
+          <small>turni, pasti e spesa · V5</small>
+        </span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Navigazione principale">
+        <a class="" href="../../oggi/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-today"></use></svg><span>Oggi</span></a>
+        <a class="" href="../../calendario/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-calendar"></use></svg><span>Calendario</span></a>
+        <a class="" href="../../piano/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-plan"></use></svg><span>Piano</span></a>
+        <a class="is-active" href="../../ricette/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-recipes"></use></svg><span>Ricette</span></a>
+        <a class="" href="../../ingredienti/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-leaf"></use></svg><span>Ingredienti</span></a>
+        <a class="" href="../../spesa/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-shopping"></use></svg><span>Spesa</span></a>
+        <a class="" href="../../strumenti/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-tools"></use></svg><span>Utilità</span></a>
+      </nav>
+
+      <div class="header-utilities">
+        <span class="network-chip" data-network-status aria-live="polite"><svg class="ui-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-wifi"></use></svg><span>Online</span></span>
+        <button class="header-icon-button install-header-button" type="button" data-pwa-install hidden aria-label="Installa il sito come app"><svg class="ui-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-install"></use></svg></button>
+        <a class="header-icon-button" href="../../cerca/index.html" aria-label="Cerca in tutto il piano"><svg class="ui-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-search"></use></svg></a>
+      </div>
+    </div>
+  </header>
+
+  <aside class="offline-banner" data-offline-banner hidden role="status">
+    <svg class="ui-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-wifi-off"></use></svg>
+    <span>Sei offline. Il piano già memorizzato resta disponibile.</span>
+    <a href="../../strumenti/index.html#offline">Gestisci offline</a>
+  </aside>
+
+  <aside class="update-banner" data-update-banner hidden role="status">
+    <div><svg class="ui-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-update"></use></svg><span><strong>Nuova versione pronta.</strong> Aggiorna senza perdere le preferenze locali.</span></div>
+    <div><button class="button primary compact" type="button" data-update-now>Aggiorna</button><button class="button ghost compact" type="button" data-update-dismiss>Più tardi</button></div>
+  </aside>
+
+  <main id="contenuto" class="page-shell">
+    <nav class="breadcrumbs" aria-label="Percorso">
+      <a class="breadcrumb-home" href="../../index.html" aria-label="Home"><svg class="ui-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-home"></use></svg></a>
+          <span class="crumb-sep" aria-hidden="true">›</span>
+<a href="../../ricette/index.html">Ricette</a>          <span class="crumb-sep" aria-hidden="true">›</span>
+<span aria-current="page">Brunch: Croque monsieur leggero con cotto, mozzarella e carciofi</span>    </nav>
+<header class="page-header recipe-header">
+  <p class="eyebrow">Ricetta · 1 occorrenze nel piano</p>
+  <h1>Brunch: Croque monsieur leggero con cotto, mozzarella e carciofi</h1>
+  <div class="meal-tags large">
+<span>Brunch</span><span>Francese delicata</span>  </div>
+  <div class="header-actions recipe-personalize-actions">
+    <a class="button primary" href="../studio/index.html?recipe=base:recipe:brunch-croque-monsieur-leggero-con-cotto-mozzarella-e-carciofi">Duplica nello Studio ricette</a>
+    <a class="button ghost" href="../studio/index.html">Studio ricette</a>
+  </div>
+</header>
+<div class="nutrition-grid cycle-summary">
+  <div><strong>645</strong><span>kcal medie</span></div>
+  <div><strong>44.5</strong><span>g proteine</span></div>
+  <div><strong>79.3</strong><span>g carboidrati</span></div>
+  <div><strong>18.6</strong><span>g grassi</span></div>
+  <div><strong>13.4</strong><span>g fibra</span></div>
+</div>
+<section class="section-block">
+  <div class="section-heading"><h2>Versioni presenti nel piano</h2></div>
+  <div class="recipe-versions">
+    <article class="recipe-version">
+      <header><h3>Versione 1</h3><span>645 kcal · 25 min</span></header>
+<p>pane bianco comune 90 g; prosciutto cotto sgrassato 60 g; mozzarella vaccina 60 g; carciofi 150 g (ben cotti); mela 120 g (sbucciata/o se meglio tollerata); albume 80 g</p>      <dl class="prep-grid">
+        <div><dt>Preparabile prima</dt><dd>Sì, la sera prima</dd></div>
+        <div><dt>Freddo</dt><dd>Sì</dd></div>
+        <div><dt>Riscaldamento</dt><dd>No</dd></div>
+        <div><dt>Frigo</dt><dd>1 giorno</dd></div>
+      </dl>
+    </article>
+  </div>
+</section>
+<section class="section-block">
+  <div class="section-heading"><h2>Dove compare</h2></div>
+  <div class="occurrence-list">
+    <a href="../../piano/ciclo-5/variante-5/d3/index.html#pasto-1500">
+      <span class="shift-pill d3">D3</span>
+      <span><strong>Gennaio · V5 · giorno 143</strong><small>15:00 · Brunch</small></span>
+      <span>Apri →</span>
+    </a>
+  </div>
+</section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <img src="../../assets/brand/brand-mark.svg" width="42" height="42" alt="">
+      <div><strong>Piano alimentare per turni</strong><span>Documento educativo, non prescrizione medica.</span></div>
+    </div>
+    <div class="footer-note">La tolleranza intestinale e l'andamento clinico vanno rivalutati con un professionista.</div>
+    <div class="footer-links">
+      <a href="../../ricette/index.html">Ricette</a>
+      <a href="../../ingredienti/index.html">Ingredienti</a>
+      <a href="../../strumenti/index.html">Utilità</a>
+      <a href="../../download/index.html">PDF e dati</a>
+      <a href="../../progetto/index.html">Progetto</a>
+    </div>
+  </footer>
+
+  <nav class="mobile-nav" aria-label="Navigazione mobile">
+    <a class="" href="../../oggi/index.html"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-today"></use></svg><span>Oggi</span></a>
+    <a class="" href="../../calendario/index.html"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-calendar"></use></svg><span>Calendario</span></a>
+    <a class="" href="../../ingredienti/index.html"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-leaf"></use></svg><span>Alimenti</span></a>
+    <a class="" href="../../spesa/index.html"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-shopping"></use></svg><span>Spesa</span></a>
+    <a class="" href="../../piano/index.html"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-plan"></use></svg><span>Piano</span></a>
+  </nav>
+</body>
+</html>

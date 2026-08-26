@@ -1,0 +1,21 @@
+{
+  "status": "ok",
+  "checks": {
+    "page_id": true,
+    "main_heading": true,
+    "catalog_grid": true,
+    "new_button": true,
+    "editor_dialog": true,
+    "history_dialog": true,
+    "required_editor_fields": true,
+    "optional_nutrients": true,
+    "conversion_template": true,
+    "custom_units_hint": true,
+    "source_url": true,
+    "mobile_nav": true,
+    "desktop_nav": true,
+    "script_modules": true,
+    "unique_ids": true
+  },
+  "html": "/mnt/data/dieta-site-v5-phase5/docs/ingredienti/index.html"
+}

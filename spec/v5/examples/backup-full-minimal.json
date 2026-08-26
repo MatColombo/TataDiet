@@ -1,0 +1,29 @@
+{
+  "recordType": "backup",
+  "format": "tatadiet-backup",
+  "schemaVersion": 1,
+  "appVersion": "5.0.0-alpha.1",
+  "exportedAt": "2026-08-26T14:45:00+02:00",
+  "baseDataset": {
+    "id": "tatadiet-base-2026-08-26",
+    "sourceSha256": "63fa26b530d0b2f26cc8a25abc51147af92f71f96900f62f2f383862602e0450"
+  },
+  "mode": "full",
+  "data": {
+    "ingredients": [],
+    "ingredientRevisions": [],
+    "recipes": [],
+    "recipeVersions": [],
+    "planInstances": [],
+    "calendarDays": [],
+    "operations": [],
+    "settings": {
+      "locale": "it-IT",
+      "timezone": "Europe/Rome"
+    }
+  },
+  "integrity": {
+    "algorithm": "sha256",
+    "digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+  }
+}

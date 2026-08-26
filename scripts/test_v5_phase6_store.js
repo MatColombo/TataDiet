@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+"use strict";
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+global.structuredClone=global.structuredClone||((v)=>JSON.parse(JSON.stringify(v)));
+const names=['meta','settings','ingredients','ingredientRevisions','recipes','recipeVersions','planInstances','calendarDays','operations','shoppingChecklists'];
+const stores=Object.fromEntries(names.map(n=>[n,new Map()]));const clone=v=>v===undefined?undefined:structuredClone(v);const keyFor=(s,r)=>s==='meta'||s==='settings'?r.key:r.id;
+const mockDB={get:async(s,k)=>clone(stores[s].get(k)),getAll:async s=>[...stores[s].values()].map(clone),put:async(s,r)=>{stores[s].set(keyFor(s,r),clone(r));return clone(r)},getSetting:async k=>clone(stores.settings.get(k)?.value??null),setSetting:async(k,v,source='test')=>{stores.settings.set(k,{key:k,value:v,source,updatedAt:new Date().toISOString()});return v},openDatabase:async()=>({transaction(){const tx={error:null};tx.objectStore=s=>({put:r=>stores[s].set(keyFor(s,r),clone(r)),delete:id=>stores[s].delete(id),clear:()=>stores[s].clear()});setImmediate(()=>tx.oncomplete&&tx.oncomplete());return tx;},close(){}})};
+global.DietCalendarCore=require(path.resolve(__dirname,'../static/assets/js/calendar-core.js'));global.TataDietDB=mockDB;require(path.resolve(__dirname,'../static/assets/js/v5-plan-core.js'));require(path.resolve(__dirname,'../static/assets/js/v5-plan-store.js'));require(path.resolve(__dirname,'../static/assets/js/v5-composer-core.js'));require(path.resolve(__dirname,'../static/assets/js/v5-composer-store.js'));
+const planStore=global.TataDietPlanStore,store=global.TataDietComposerStore,template=JSON.parse(fs.readFileSync(path.resolve(__dirname,'../v5_data/base/plan-template.base.v1.json'),'utf8'));
+const now='2026-08-26T16:00:00.000Z';
+function addRecipe(id,title,kcal,mealTypes,cold=true){const vid=`${id}:v1`;stores.recipes.set(id,{recordType:'recipe',id,title,origin:id.startsWith('usr:')?'personal':'base',currentVersionId:vid,createdAt:now,updatedAt:now,archivedAt:null});stores.recipeVersions.set(vid,{recordType:'recipeVersion',id:vid,recipeId:id,versionNumber:1,servings:1,nutritionMode:'calculated',ingredientLines:[],calculatedNutrition:{energyKcal:kcal,proteinG:20,carbohydrateG:40,fatG:10,fiberG:4},metadata:{mealTypes,cuisine:'Italiana',tags:[],prepMinutes:5,instructions:[],mealPrep:{prepareAhead:true,coldSuitable:cold,reheatable:!cold,fridgeHours:24,notes:null},spiceLevel:'none'},createdAt:now});return vid;}
+const lunch=addRecipe('usr:recipe:lunch','Pranzo personale',450,['Pranzo']);const snack=addRecipe('usr:recipe:snack','Snack personale',180,['Spuntino']);
+(async()=>{let b=await planStore.ensureActive('2026-09-01',template,template.dataset_version);const date='2026-09-01',original=global.TataDietPlanCore.byDate(b.days,date),meal=original.meals[2];
+ let r=await store.replaceMeal(date,meal.id,lunch,1.25);let changed=global.TataDietPlanCore.byDate(r.days,date);assert.equal(changed.meals[2].recipeVersionId,lunch);assert.equal(changed.meals[2].portionMultiplier,1.25);assert.equal(changed.source,'personal');assert.equal((await planStore.history()).length,1);
+ r=await store.updateMeal(date,meal.id,{locked:true});changed=global.TataDietPlanCore.byDate(r.days,date);assert.equal(changed.meals[2].locked,true);assert.equal((await planStore.history()).length,2);
+ r=await store.addMeal(date,{time:'16:00',dayOffset:0,mealType:'Spuntino'},snack,1);changed=global.TataDietPlanCore.byDate(r.days,date);assert.equal(changed.meals.length,6);const added=changed.meals.find(m=>m.recipeVersionId===snack);assert.ok(added);
+ r=await store.removeMeal(date,added.id);changed=global.TataDietPlanCore.byDate(r.days,date);assert.equal(changed.meals.length,5);
+ let u=await planStore.undo();assert.equal(global.TataDietPlanCore.byDate(u.bundle.days,date).meals.length,6);u=await planStore.undo();assert.equal(global.TataDietPlanCore.byDate(u.bundle.days,date).meals.length,5);
+ const c=await store.context(date);assert.ok(c.catalog.some(x=>x.version.id===lunch));
+ const baseModel={meals:[{id:'base:test:meal',time:'18:30',day_offset:0,meal_type:'Spuntino',recipe_version_id:snack}]};r=await store.copyTemplateMenu(date,baseModel);changed=global.TataDietPlanCore.byDate(r.days,date);assert.equal(changed.meals.length,1);assert.equal(changed.meals[0].recipeVersionId,snack);
+
+ r=await store.applySuggestedMenu(date);changed=global.TataDietPlanCore.byDate(r.days,date);assert.ok(changed.meals.length>=1);
+ const report={status:'ok',checkpoint:'5.0.0-alpha.6-phase6',checks:{replace_persist:true,portion_persist:true,lock_persist:true,add_remove:true,history_shared:true,undo_menu:true,library:true,copy_template:true,suggest_menu:true}};console.log(JSON.stringify(report,null,2));
+})().catch(e=>{console.error(e);process.exit(1)});

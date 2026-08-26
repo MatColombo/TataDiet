@@ -1,0 +1,20 @@
+{
+  "status": "ok",
+  "checks": {
+    "page_id": true,
+    "main_heading": true,
+    "new_button": true,
+    "grid": true,
+    "editor_dialog": true,
+    "history_dialog": true,
+    "ingredient_template": true,
+    "required_fields": true,
+    "meal_prep_fields": true,
+    "live_nutrition": true,
+    "script_modules": true,
+    "archive_studio_link": true,
+    "static_recipe_duplicate_link": true,
+    "unique_ids": true
+  },
+  "html": "/mnt/data/dieta-site-v5-phase7/docs/ricette/studio/index.html"
+}

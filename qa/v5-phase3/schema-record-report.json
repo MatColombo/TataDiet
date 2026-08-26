@@ -1,0 +1,11 @@
+{
+  "status": "ok",
+  "records": {
+    "ingredient": 0,
+    "revision": 0
+  },
+  "errors": {
+    "ingredient": [],
+    "revision": []
+  }
+}

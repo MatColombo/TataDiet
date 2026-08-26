@@ -1,0 +1,12 @@
+{
+  "status": "ok",
+  "counts": {
+    "cycles": 6,
+    "variants": 36,
+    "days": 180,
+    "meals": 864,
+    "recipes": 306
+  },
+  "recipes": 306,
+  "output": "/mnt/data/dieta-site-v3/docs"
+}

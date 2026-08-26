@@ -1,0 +1,82 @@
+{
+  "recordType": "recipeVersion",
+  "id": "usr:recipe-version:bowl-riso-pollo-skyr@1",
+  "recipeId": "usr:recipe:bowl-riso-pollo-skyr",
+  "versionNumber": 1,
+  "servings": 1,
+  "nutritionMode": "calculated",
+  "ingredientLines": [
+    {
+      "lineId": "line-1",
+      "ingredientId": "base:ingredient:riso_basmati",
+      "ingredientRevisionId": "base:ingredient-revision:riso_basmati@1",
+      "amount": 55,
+      "unitCode": "g",
+      "normalizedAmount": 55,
+      "displayText": "riso basmati secco 55 g",
+      "optional": false,
+      "notes": null
+    },
+    {
+      "lineId": "line-2",
+      "ingredientId": "base:ingredient:pollo",
+      "ingredientRevisionId": "base:ingredient-revision:pollo@1",
+      "amount": 120,
+      "unitCode": "g",
+      "normalizedAmount": 120,
+      "displayText": "petto di pollo 120 g",
+      "optional": false,
+      "notes": null
+    },
+    {
+      "lineId": "line-3",
+      "ingredientId": "usr:ingredient:skyr-senza-lattosio",
+      "ingredientRevisionId": "usr:ingredient-revision:skyr-senza-lattosio@1",
+      "amount": 40,
+      "unitCode": "g",
+      "normalizedAmount": 40,
+      "displayText": "skyr senza lattosio 40 g",
+      "optional": false,
+      "notes": "Usare come salsa fredda con limone."
+    }
+  ],
+  "calculatedNutrition": {
+    "energyKcal": 463.2,
+    "proteinG": 43.1,
+    "carbohydrateG": 48.6,
+    "fatG": 10.4,
+    "fiberG": 2.1,
+    "sugarsG": null,
+    "saturatedFatG": null,
+    "saltG": null,
+    "sodiumMg": null
+  },
+  "calculation": {
+    "status": "complete",
+    "algorithmVersion": "v5-nutrition-1",
+    "inputDigest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "warnings": []
+  },
+  "metadata": {
+    "mealTypes": ["Pranzo", "Pasto preturno"],
+    "cuisine": "Fusion delicata",
+    "tags": ["trasportabile", "fibra moderata", "non piccante"],
+    "prepMinutes": 30,
+    "instructions": [
+      "Cuocere il riso e lasciarlo intiepidire.",
+      "Cuocere il pollo senza spezie piccanti.",
+      "Completare con la salsa allo skyr poco prima del consumo."
+    ],
+    "mealPrep": {
+      "prepareAhead": true,
+      "coldSuitable": true,
+      "reheatable": true,
+      "fridgeHours": 48,
+      "notes": "Conservare la salsa separata."
+    },
+    "spiceLevel": "very-low",
+    "notes": "Ricetta di esempio per la specifica V5."
+  },
+  "createdAt": "2026-08-26T14:35:00+02:00",
+  "supersedesVersionId": null
+}

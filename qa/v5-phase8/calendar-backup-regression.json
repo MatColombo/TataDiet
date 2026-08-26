@@ -1,0 +1,10 @@
+{
+  "status": "ok",
+  "checkpoint": "5.0.0-alpha.5-phase5",
+  "checks": {
+    "calendar_export": true,
+    "operation_export": true,
+    "no_recipe_payload": true,
+    "checksum": true
+  }
+}

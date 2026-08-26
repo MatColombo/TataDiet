@@ -1,0 +1,40 @@
+{
+  "format": "tatadiet-base-manifest",
+  "schema_version": 1,
+  "dataset_version": "tatadiet-base-v1",
+  "phase_version": "5.0.0-alpha.1-phase1",
+  "generated_at": "2026-08-24T17:01:56+00:00",
+  "immutable": true,
+  "source": {
+    "xlsx": {
+      "file": "Piano_alimentare_revisionato_6_mesi_fibra_moderata.xlsx",
+      "sha256": "63fa26b530d0b2f26cc8a25abc51147af92f71f96900f62f2f383862602e0450"
+    },
+    "pdf": {
+      "file": "Piano_alimentare_revisionato_6_mesi_fibra_moderata.pdf",
+      "sha256": "1f11622a0506f6190494b0806378a253ab946181b8953bf7d0929c48bca907b7"
+    }
+  },
+  "files": {
+    "ingredients.base.v1.json": {
+      "sha256": "ef71e2c8e38ceb96ac242822fee59465bd600ca7d4c6414226bd90912dd2cfb6",
+      "records": 130
+    },
+    "recipes.base.v1.json": {
+      "sha256": "bc9c7d6658163393425d968127b3a163309f98fa1a455616a9df7421689c619f",
+      "recipe_families": 306,
+      "recipe_versions": 547
+    },
+    "plan-template.base.v1.json": {
+      "sha256": "780d39c03bc8ce5b293eec870e42b057f7ac5406f805e5f930b923c5966f48e5",
+      "days": 180,
+      "meals": 864
+    }
+  },
+  "invariants": [
+    "Base records are immutable at runtime.",
+    "User edits create user-owned records or occurrence overrides.",
+    "The source workbook is never modified by the web application.",
+    "A base dataset version is referenced by every full backup."
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tatadiet.local/schemas/v5/base/recipe-family.schema.json",
+  "title": "TataDiet recipe family",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "slug",
+    "title",
+    "origin",
+    "immutable",
+    "status",
+    "meal_types",
+    "cuisines",
+    "version_ids",
+    "default_version_id",
+    "instructions_status"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^(base|user|imported):recipe:[A-Za-z0-9._:-]+$"
+    },
+    "slug": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "origin": {
+      "enum": [
+        "base",
+        "user",
+        "imported"
+      ]
+    },
+    "immutable": {
+      "type": "boolean"
+    },
+    "status": {
+      "enum": [
+        "active",
+        "archived"
+      ]
+    },
+    "meal_types": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "cuisines": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "version_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "current_version_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "instructions_status": {
+      "enum": [
+        "available",
+        "missing",
+        "partial"
+      ]
+    },
+    "created_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "imported_from_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "default_version_id": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

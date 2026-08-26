@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="page-header inline-header">
+  <div>
+    <p class="eyebrow">{{ cycle.month }} · Ciclo {{ cycle.number }}</p>
+    <h1>Variante {{ variant.number }}</h1>
+    <p>Giorni del piano {{ variant.start_day }}–{{ variant.end_day }}.</p>
+  </div>
+  <a class="button secondary" href="../../../spesa/ciclo-{{ cycle.number }}/variante-{{ variant.number }}/index.html">Lista della spesa</a>
+</header>
+<div class="nutrition-grid cycle-summary">
+  <div><strong>{{ variant.avg.kcal|round|int }}</strong><span>kcal medie</span></div>
+  <div><strong>{{ variant.avg.protein|round(1) }}</strong><span>g proteine</span></div>
+  <div><strong>{{ variant.avg.carbs|round(1) }}</strong><span>g carboidrati</span></div>
+  <div><strong>{{ variant.avg.fat|round(1) }}</strong><span>g grassi</span></div>
+  <div><strong>{{ variant.avg.fiber|round(1) }}</strong><span>g fibra</span></div>
+</div>
+<div class="day-grid">
+{% for day in variant.days %}
+  <article class="day-card {{ day.d_code|lower }}">
+    <header>
+      <span class="shift-code">{{ day.d_code }}</span>
+      <div><h2><a href="{{ day.d_code|lower }}/index.html">{{ day.shift_name }}</a></h2><p>Giorno {{ day.global_day }}</p></div>
+      {% if day.flexible %}<span class="flex-badge">Flessibile</span>{% endif %}
+    </header>
+    <div class="meal-preview">
+    {% for meal in day.meals %}
+      <a href="{{ day.d_code|lower }}/index.html#{{ meal.anchor }}"><time>{{ meal.time }}</time><span>{{ meal.title }}</span></a>
+    {% endfor %}
+    </div>
+    <footer><span>{{ day.total.kcal|round|int }} kcal</span><span>{{ day.total.fiber|round(1) }} g fibra</span></footer>
+  </article>
+{% endfor %}
+</div>
+<nav class="pager" aria-label="Varianti adiacenti">
+  {% if prev_variant %}<a href="../variante-{{ prev_variant.number }}/index.html">← Variante {{ prev_variant.number }}</a>{% else %}<span></span>{% endif %}
+  {% if next_variant %}<a href="../variante-{{ next_variant.number }}/index.html">Variante {{ next_variant.number }} →</a>{% endif %}
+</nav>
+{% endblock %}

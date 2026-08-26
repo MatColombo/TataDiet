@@ -1,0 +1,35 @@
+{
+  "format": "tatadiet-v4-to-v5-migration-map",
+  "schema_version": 1,
+  "generated_at": "2026-08-26T15:39:01+00:00",
+  "source_version": "4.0.0",
+  "target_phase": "5.0.0-alpha.1-phase1",
+  "local_storage": [
+    {
+      "source_key": "diet-plan:start-date:v2",
+      "target_store": "settings",
+      "target_key": "planStartDate",
+      "strategy": "copy_if_valid_iso_date"
+    },
+    {
+      "source_key_pattern": "diet-plan-shopping:*",
+      "target_store": "shoppingChecklists",
+      "strategy": "import_legacy_static_checklist"
+    },
+    {
+      "source_key_pattern": "diet-plan-shopping-range:*",
+      "target_store": "shoppingChecklists",
+      "strategy": "import_legacy_range_checklist"
+    }
+  ],
+  "legacy_export": {
+    "format": "diet-plan-preferences",
+    "version": 1,
+    "strategy": "accept_settings_and_checklists_only"
+  },
+  "not_migrated": [
+    "Cache API entries and service-worker caches",
+    "Generated HTML and static JSON files",
+    "URL query parameters other than a valid start date"
+  ]
+}

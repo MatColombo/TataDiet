@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="page-header">
+  <p class="eyebrow">Archivio ricette</p>
+  <h1>{{ recipes|length }} preparazioni consultabili</h1>
+  <p>Ricerca per nome o ingrediente e filtra per pasto, cucina, tempo, consumo freddo, riscaldamento e conservazione.</p>
+</header>
+<section class="notice-card ingredient-recipe-bridge recipe-studio-entry">
+  <div><p class="eyebrow">V5 · ricette personali</p><h2>Crea e personalizza le tue ricette</h2><p>Lo Studio ricette usa ingredienti TataDiet e personali, ricalcola i nutrienti per porzione e conserva ogni modifica come nuova versione.</p></div>
+  <div class="header-actions"><a class="button primary" href="studio/index.html?new=1">Nuova ricetta</a><a class="button secondary" href="studio/index.html">Apri Studio ricette</a></div>
+</section>
+
+<section class="filter-panel expanded" data-recipe-filters>
+  <label class="search-field"><span>Cerca</span><input type="search" placeholder="Es. mozzarella, couscous, freddo…" data-recipe-search></label>
+  <label><span>Pasto</span><select data-filter="meal"><option value="">Tutti</option>{% for item in meal_types %}<option value="{{ item|lower }}">{{ item }}</option>{% endfor %}</select></label>
+  <label><span>Cucina</span><select data-filter="cuisine"><option value="">Tutte</option>{% for item in cuisines %}<option value="{{ item|lower }}">{{ item }}</option>{% endfor %}</select></label>
+  <label><span>Tempo massimo</span><select data-filter="time"><option value="">Qualsiasi</option><option value="10">10 minuti</option><option value="20">20 minuti</option><option value="30">30 minuti</option><option value="45">45 minuti</option></select></label>
+  <label><span>Durata in frigo</span><select data-filter="fridge"><option value="">Qualsiasi</option><option value="1">Almeno 1 giorno</option><option value="2">Almeno 2 giorni</option><option value="3">Almeno 3 giorni</option></select></label>
+  <label class="checkbox-filter"><input type="checkbox" data-filter="ahead"><span>Preparabile prima</span></label>
+  <label class="checkbox-filter"><input type="checkbox" data-filter="cold"><span>Buono freddo</span></label>
+  <label class="checkbox-filter"><input type="checkbox" data-filter="reheat"><span>Riscaldabile</span></label>
+  <button class="button ghost compact filter-reset" type="button" data-clear-recipe-filters>Azzera filtri</button>
+  <p class="result-count"><strong data-result-count>{{ recipes|length }}</strong> risultati</p>
+</section>
+<div class="recipe-grid" data-recipe-grid>
+{% for recipe in recipes %}
+  <article class="recipe-card" data-search="{{ recipe.search_text }}" data-meals="{{ recipe.meal_types_lower }}" data-cuisines="{{ recipe.cuisines_lower }}" data-ahead="{{ 'yes' if recipe.ahead else 'no' }}" data-cold="{{ 'yes' if recipe.cold_ok else 'no' }}" data-reheat="{{ 'yes' if recipe.reheat_ok else 'no' }}" data-min-prep="{{ recipe.min_prep }}" data-fridge="{{ recipe.max_fridge_days }}">
+    <div class="recipe-topline"><span>{{ recipe.primary_meal }}</span><span>{{ recipe.occurrence_count }} occorrenze</span></div>
+    <h2><a href="{{ recipe.slug }}/index.html">{{ recipe.title }}</a></h2>
+    <p>{{ recipe.sample_ingredients }}</p>
+    <div class="recipe-feature-badges">{% if recipe.ahead %}<span>Prep</span>{% endif %}{% if recipe.cold_ok %}<span>Freddo</span>{% endif %}{% if recipe.reheat_ok %}<span>Riscaldabile</span>{% endif %}{% if recipe.max_fridge_days %}<span>Frigo {{ recipe.max_fridge_days }}g</span>{% endif %}</div>
+    <div class="card-meta"><span>{{ recipe.avg_kcal|round|int }} kcal</span><span>{{ recipe.avg_prep|round|int }} min</span><span>{{ recipe.primary_cuisine }}</span></div>
+  </article>
+{% endfor %}
+</div>
+<p class="empty-state" hidden data-empty-state>Nessuna ricetta corrisponde ai filtri.</p>
+{% endblock %}

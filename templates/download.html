@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="page-header">
+  <p class="eyebrow">Download e portabilità</p>
+  <h1>Documenti sorgente</h1>
+  <p>Il sito è derivato dal file Excel revisionato. Il PDF resta disponibile come formato di consultazione e stampa.</p>
+</header>
+<div class="download-grid">
+  <article class="download-card"><span class="file-type">PDF</span><h2>Piano completo revisionato</h2><p>Versione impaginata con liste della spesa e indicazioni meal-prep.</p><a class="button primary" href="../downloads/Piano_alimentare_revisionato_6_mesi_fibra_moderata.pdf" download>Scarica PDF</a></article>
+  <article class="download-card"><span class="file-type">XLSX</span><h2>Dati strutturati</h2><p>Fonte utilizzata dal generatore statico del sito.</p><a class="button secondary" href="../downloads/Piano_alimentare_revisionato_6_mesi_fibra_moderata.xlsx" download>Scarica Excel</a></article>
+  <article class="download-card"><span class="file-type">JSON</span><h2>Dati per il sito</h2><p>Piano, ricette e spesa in formato leggibile da applicazioni web.</p><a class="button secondary" href="../data/plan.json" download>Scarica JSON piano</a></article>
+</div>
+{% endblock %}

@@ -1,0 +1,86 @@
+{
+  "recipe": {
+    "recordType": "recipe",
+    "id": "usr:recipe:078d1d9c-d696-4b90-bcc8-8326078e3692",
+    "origin": "personal",
+    "title": "Toast mozzarella test aggiornato",
+    "currentVersionId": "usr:recipe-version:fc627209-16c9-43b3-bbdb-e7da1e988c14",
+    "createdAt": "2026-08-26T15:00:00.000Z",
+    "updatedAt": "2026-08-26T15:05:00.000Z",
+    "archivedAt": null
+  },
+  "version": {
+    "recordType": "recipeVersion",
+    "id": "usr:recipe-version:fc627209-16c9-43b3-bbdb-e7da1e988c14",
+    "recipeId": "usr:recipe:078d1d9c-d696-4b90-bcc8-8326078e3692",
+    "versionNumber": 2,
+    "servings": 2,
+    "nutritionMode": "calculated",
+    "ingredientLines": [
+      {
+        "lineId": "usr:recipe-version:fc627209-16c9-43b3-bbdb-e7da1e988c14:line:1",
+        "ingredientId": "usr:ingredient:pane",
+        "ingredientRevisionId": "usr:ingredient-revision:pane@1",
+        "amount": 2,
+        "unitCode": "fetta",
+        "normalizedAmount": 80,
+        "displayText": "2 fette Pane prova",
+        "optional": false,
+        "notes": null
+      },
+      {
+        "lineId": "usr:recipe-version:fc627209-16c9-43b3-bbdb-e7da1e988c14:line:2",
+        "ingredientId": "usr:ingredient:mozz",
+        "ingredientRevisionId": "usr:ingredient-revision:mozz@1",
+        "amount": 80,
+        "unitCode": "g",
+        "normalizedAmount": 80,
+        "displayText": "80 g Mozzarella prova",
+        "optional": false,
+        "notes": null
+      }
+    ],
+    "calculatedNutrition": {
+      "energyKcal": 200,
+      "proteinG": 10.4,
+      "carbohydrateG": 20.8,
+      "fatG": 8.4,
+      "fiberG": 1.2000000000000002,
+      "sugarsG": null,
+      "saturatedFatG": null,
+      "saltG": null,
+      "sodiumMg": null
+    },
+    "calculation": {
+      "status": "complete",
+      "algorithmVersion": "v5-recipe-core-1",
+      "inputDigest": "3a0d7d2f22be8b6b02a8b0e237a05b79c270695ebb84191b11483c2ee863717a",
+      "warnings": []
+    },
+    "metadata": {
+      "mealTypes": [
+        "Pranzo"
+      ],
+      "cuisine": "Italiana",
+      "tags": [
+        "test"
+      ],
+      "prepMinutes": 10,
+      "instructions": [
+        "Componi",
+        "Scalda"
+      ],
+      "mealPrep": {
+        "prepareAhead": true,
+        "coldSuitable": true,
+        "reheatable": true,
+        "fridgeHours": 24,
+        "notes": null
+      },
+      "spiceLevel": "none",
+      "notes": "test"
+    },
+    "createdAt": "2026-08-26T15:05:00.000Z",
+    "supersedesVersionId": "usr:recipe-version:8768d2e5-1676-4817-85da-a1d723249697"
+  }
+}

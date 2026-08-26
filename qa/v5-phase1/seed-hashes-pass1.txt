@@ -1,0 +1,4 @@
+c4b261664be9ddb1b54d6f87f08ce1c6093ebfb21f438a554fc2f2e522bf4cd7  v5_data/base/base-dataset-manifest.json
+ef71e2c8e38ceb96ac242822fee59465bd600ca7d4c6414226bd90912dd2cfb6  v5_data/base/ingredients.base.v1.json
+780d39c03bc8ce5b293eec870e42b057f7ac5406f805e5f930b923c5966f48e5  v5_data/base/plan-template.base.v1.json
+bc9c7d6658163393425d968127b3a163309f98fa1a455616a9df7421689c619f  v5_data/base/recipes.base.v1.json

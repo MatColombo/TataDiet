@@ -1,0 +1,13 @@
+{
+  "recordType": "planInstance",
+  "id": "usr:plan:piano-principale",
+  "name": "Piano personale TataDiet",
+  "timezone": "Europe/Rome",
+  "startDate": "2026-09-07",
+  "baseDatasetId": "tatadiet-base-2026-08-26",
+  "schemaVersion": 1,
+  "status": "active",
+  "dayIds": ["usr:calendar-day:2026-09-07-000"],
+  "createdAt": "2026-08-26T14:40:00+02:00",
+  "updatedAt": "2026-08-26T14:40:00+02:00"
+}

@@ -1,0 +1,10 @@
+{
+  "status": "ok",
+  "checks": {
+    "recipe_backup": true,
+    "ingredient_dependency": true,
+    "revision_dependency": true,
+    "integrity": true
+  },
+  "appVersion": "5.0.0-alpha.5-phase5"
+}

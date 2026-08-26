@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="page-header plan-editor-hero">
+  <div>
+    <p class="eyebrow">V5 · calendario effettivo</p>
+    <h1>Planner personale</h1>
+    <p>Adatta turni e giornate alla realtà senza modificare il piano base. Ogni operazione viene salvata localmente e può essere annullata.</p>
+  </div>
+  <div class="plan-editor-hero-badge"><strong>Local-first</strong><span>IndexedDB + backup JSON</span></div>
+</header>
+
+<div class="dynamic-loading" data-effective-plan-loading>Preparazione del calendario personale…</div>
+<section class="setup-card" data-effective-plan-setup hidden>
+  <div><p class="eyebrow">Prima configurazione</p><h2>Serve la data del primo D1</h2><p>Configura prima il calendario base; il planner creerà poi la tua copia personale modificabile.</p></div>
+  <a class="button primary" href="../index.html">Configura calendario</a>
+</section>
+
+<section data-effective-plan-app hidden>
+  <div class="plan-summary-strip">
+    <article><span>Intervallo effettivo</span><strong data-plan-effective-range>—</strong></article>
+    <article><span>Giornate</span><strong data-plan-day-count>—</strong></article>
+    <article><span>Modificate</span><strong data-plan-modified-count>—</strong></article>
+    <article><span>Pasti nel piano</span><strong data-plan-meal-count>—</strong></article>
+  </div>
+
+  <div class="plan-editor-toolbar">
+    <div class="plan-date-jump">
+      <label for="plan-focus-date">Vai alla data</label>
+      <input id="plan-focus-date" type="date" data-plan-focus-date>
+      <button class="button secondary compact" type="button" data-plan-go-date>Apri</button>
+      <button class="button ghost compact" type="button" data-plan-go-today>Oggi</button>
+    </div>
+    <div class="plan-history-actions">
+      <button class="button ghost compact" type="button" data-plan-undo>↶ Annulla</button>
+      <button class="button ghost compact" type="button" data-plan-redo>↷ Ripeti</button>
+      <a class="button secondary compact" href="../index.html">Vista mensile</a>
+    </div>
+  </div>
+
+  <div class="plan-editor-layout">
+    <aside class="plan-timeline-panel">
+      <div class="section-heading compact-heading"><div><p class="eyebrow">Contesto</p><h2>Giorni vicini</h2></div></div>
+      <div class="plan-mini-timeline" data-plan-timeline></div>
+      <div class="plan-legend">
+        <span><i class="dot base"></i>Base</span><span><i class="dot changed"></i>Modificato</span><span><i class="dot status"></i>Aderenza</span>
+      </div>
+    </aside>
+
+    <main class="plan-day-workspace">
+      <article class="plan-day-card" data-plan-day-card>
+        <header class="plan-day-card-header">
+          <div><p class="eyebrow" data-plan-day-meta>—</p><h2 data-plan-day-title>—</h2><p data-plan-day-shift>—</p></div>
+          <div class="day-status-stack"><span class="status-pill" data-plan-source>—</span><span class="status-pill soft" data-plan-adherence>—</span></div>
+        </header>
+
+        <section class="plan-editor-section">
+          <div class="section-heading compact-heading"><div><p class="eyebrow">Aderenza</p><h3>Com'è andata questa giornata?</h3></div></div>
+          <div class="segmented-actions" data-adherence-actions>
+            <button type="button" data-status="planned">Pianificata</button>
+            <button type="button" data-status="followed">Seguita</button>
+            <button type="button" data-status="partial">Parziale</button>
+            <button type="button" data-status="not-followed">Non seguita</button>
+          </div>
+          <p class="field-help">Lo stato di aderenza registra ciò che è successo ma non sposta automaticamente i giorni successivi.</p>
+        </section>
+
+        <section class="plan-editor-section">
+          <div class="section-heading compact-heading"><div><p class="eyebrow">Turno</p><h3>Cambia il tipo di giornata</h3></div></div>
+          <div class="plan-form-grid">
+            <label>Tipo di giorno
+              <select data-plan-day-type><option>D1</option><option>D2</option><option>D3</option><option>D4</option><option>D5</option><option value="OFF">Fuori servizio</option><option value="CUSTOM">Personalizzato</option></select>
+            </label>
+            <label data-custom-shift-name-wrap hidden>Nome turno<input type="text" maxlength="120" value="Turno personalizzato" data-custom-shift-name></label>
+            <label data-custom-start-wrap hidden>Inizio<input type="time" data-custom-start value="08:00"></label>
+            <label data-custom-end-wrap hidden>Fine<input type="time" data-custom-end value="20:00"></label>
+          </div>
+          <div class="custom-shift-options" data-custom-shift-options hidden>
+            <label><input type="checkbox" data-custom-next-day> Termina il giorno successivo</label>
+            <label><input type="checkbox" data-custom-reheat> Posso riscaldare</label>
+            <label><input type="checkbox" data-custom-fridge checked> Ho frigorifero</label>
+            <label><input type="checkbox" data-custom-snack> Posso fare uno spuntino complesso</label>
+          </div>
+          <div class="inline-actions"><button class="button primary compact" type="button" data-plan-change-type>Applica turno</button></div>
+          <p class="field-help">Il cambio turno mantiene i pasti esistenti. Usa il Compositore per sostituire piatti, porzioni e orari in modo indipendente.</p>
+        </section>
+
+        <section class="plan-editor-section meal-preview-section">
+          <div class="section-heading compact-heading"><div><p class="eyebrow">Menu collegato</p><h3 data-plan-meal-heading>Pasti della giornata</h3></div><a class="button secondary compact" data-plan-composer-link href="{{ relroot }}calendario/componi/index.html">Componi menu</a></div>
+          <div class="plan-meal-preview" data-plan-meals></div>
+        </section>
+
+        <section class="plan-editor-section structural-section">
+          <div class="section-heading compact-heading"><div><p class="eyebrow">Sequenza</p><h3>Modifica organicamente il piano</h3></div></div>
+          <div class="structural-action-grid">
+            <button class="action-tile" type="button" data-plan-action="leave-day-free"><strong>Lascia libera</strong><span>Mantiene la data, svuota il menu e non sposta il futuro.</span></button>
+            <button class="action-tile" type="button" data-plan-action="postpone-sequence"><strong>Posticipa da qui</strong><span>Inserisce una giornata libera e sposta avanti tutto il futuro.</span></button>
+            <button class="action-tile" type="button" data-plan-action="insert-day"><strong>Inserisci giornata</strong><span>Inserisce un nuovo giorno nella sequenza e prolunga il piano.</span></button>
+            <button class="action-tile danger" type="button" data-plan-action="remove-day"><strong>Rimuovi dalla sequenza</strong><span>Elimina questa assegnazione e anticipa i giorni successivi.</span></button>
+            <button class="action-tile" type="button" data-plan-action="restore-day"><strong>Ripristina giornata</strong><span>Ripristina turno e pasti della sua origine TataDiet.</span></button>
+            <button class="action-tile danger" type="button" data-plan-action="restore-from-date"><strong>Ripristina da qui</strong><span>Scarta le modifiche future e riprende la sequenza base rispettando ciò che hai già modificato prima di questa data.</span></button>
+          </div>
+        </section>
+      </article>
+    </main>
+  </div>
+</section>
+
+<dialog class="plan-impact-dialog" data-plan-impact-dialog>
+  <form method="dialog" class="impact-dialog-card">
+    <p class="eyebrow">Anteprima impatto</p><h2 data-impact-title>Conferma modifica</h2><p data-impact-copy></p>
+    <dl class="impact-metrics"><div><dt>Giornate</dt><dd data-impact-days>—</dd></div><div><dt>Pasti</dt><dd data-impact-meals>—</dd></div><div><dt>Fine piano</dt><dd data-impact-end>—</dd></div></dl>
+    <div class="impact-extra" data-impact-extra hidden>
+      <label>Tipo giornata inserita<select data-insert-day-type><option value="FREE">Libera</option><option>D1</option><option>D2</option><option>D3</option><option>D4</option><option>D5</option><option value="OFF">Fuori servizio</option></select></label>
+      <p class="field-help">Una giornata D1–D5 inserita nasce senza menu: usa il Compositore dopo la conferma.</p>
+    </div>
+    <div class="dialog-actions"><button class="button ghost" value="cancel">Annulla</button><button class="button primary" type="button" data-impact-confirm>Conferma</button></div>
+  </form>
+</dialog>
+
+<p class="toast-message" data-plan-toast hidden role="status"></p>
+<noscript><section class="notice-card"><h2>JavaScript necessario</h2><p>Il calendario personale è conservato localmente in IndexedDB.</p></section></noscript>
+{% endblock %}

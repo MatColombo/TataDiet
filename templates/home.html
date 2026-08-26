@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero hero-v4">
+  <div class="hero-copy">
+    <div class="hero-kicker"><svg class="ui-icon" aria-hidden="true"><use href="assets/icons.svg#icon-sparkles"></use></svg><span>V5 · piano personale, ingredienti e offline</span></div>
+    <h1>Il piano che segue i tuoi turni, non il contrario.</h1>
+    <p class="lede">Calendario, pasti, preparazioni e spesa restano collegati in un'unica esperienza semplice. Pensata per giornate lunghe, notti e riposi veri.</p>
+    <div class="hero-actions">
+      <a class="button primary" href="oggi/index.html"><svg class="ui-icon" aria-hidden="true"><use href="assets/icons.svg#icon-today"></use></svg>Apri Oggi</a>
+      <a class="button secondary" href="calendario/index.html"><svg class="ui-icon" aria-hidden="true"><use href="assets/icons.svg#icon-calendar"></use></svg>Imposta il calendario</a>
+      <button class="button soft" type="button" data-pwa-install hidden><svg class="ui-icon" aria-hidden="true"><use href="assets/icons.svg#icon-install"></use></svg>Installa l'app</button>
+    </div>
+    <div class="hero-trust-row">
+      <span><svg class="ui-icon" aria-hidden="true"><use href="assets/icons.svg#icon-shield"></use></svg>Dati personali solo nel browser</span>
+      <span><svg class="ui-icon" aria-hidden="true"><use href="assets/icons.svg#icon-wifi-off"></use></svg>Consultabile anche offline</span>
+    </div>
+  </div>
+
+  <div class="hero-visual" aria-label="Organizzazione di turni e pasti">
+    <div class="hero-visual-glow" aria-hidden="true"></div>
+    <img class="hero-illustration" src="assets/illustrations/hero-nurse-planner.svg" width="620" height="520" alt="Infermiera che organizza turni e pasti con agenda e calendario">
+    <div class="floating-note note-today"><span class="float-icon"><svg class="ui-icon" aria-hidden="true"><use href="assets/icons.svg#icon-today"></use></svg></span><div><small>Oggi</small><strong>Turno e pasti in ordine</strong></div></div>
+    <div class="floating-note note-prep"><span class="float-icon"><svg class="ui-icon" aria-hidden="true"><use href="assets/icons.svg#icon-prep"></use></svg></span><div><small>Prossime 48 ore</small><strong>Meal prep senza sorprese</strong></div></div>
+  </div>
+
+  <div class="hero-stats" aria-label="Sintesi del piano">
+    <div><strong>{{ counts.days }}</strong><span>giorni</span></div>
+    <div><strong>{{ counts.recipes }}</strong><span>ricette</span></div>
+    <div><strong>{{ counts.variants }}</strong><span>varianti</span></div>
+    <div><strong>{{ counts.meals }}</strong><span>pasti</span></div>
+  </div>
+</section>
+
+<section class="home-calendar-card elevated-card" data-home-calendar-status aria-live="polite">
+  <div class="loading-line"><span class="loading-dot"></span>Controllo della configurazione del calendario…</div>
+</section>
+
+<section class="section-block welcome-tools">
+  <div class="section-heading">
+    <div><p class="eyebrow">La tua cabina di regia</p><h2>Cinque scorciatoie per rendere il piano pratico</h2><p class="section-intro">Ogni strumento conosce le date reali, il turno e la variante attiva.</p></div>
+  </div>
+  <div class="operation-grid">
+    <a class="operation-card prep" href="preparazioni/index.html">
+      <span class="operation-icon"><svg class="ui-icon" aria-hidden="true"><use href="assets/icons.svg#icon-prep"></use></svg></span>
+      <span class="operation-tag">48 ore complete</span>
+      <h3>Preparazioni</h3><p>Vedi separatamente le attività nelle prime 24 ore e quelle tra 24 e 48 ore.</p><strong>Organizza il meal prep <svg class="inline-icon" aria-hidden="true"><use href="assets/icons.svg#icon-arrow-right"></use></svg></strong>
+    </a>
+    <a class="operation-card shopping" href="spesa/intervallo/index.html">
+      <span class="operation-icon"><svg class="ui-icon" aria-hidden="true"><use href="assets/icons.svg#icon-shopping"></use></svg></span>
+      <span class="operation-tag">Qualunque intervallo</span>
+      <h3>Spesa intelligente</h3><p>Quantità raggruppate per reparto, con checklist che resta sul dispositivo.</p><strong>Prepara la lista <svg class="inline-icon" aria-hidden="true"><use href="assets/icons.svg#icon-arrow-right"></use></svg></strong>
+    </a>
+    <a class="operation-card search" href="cerca/index.html">
+      <span class="operation-icon"><svg class="ui-icon" aria-hidden="true"><use href="assets/icons.svg#icon-search"></use></svg></span>
+      <span class="operation-tag">628 voci</span>
+      <h3>Ricerca globale</h3><p>Trova una ricetta, un ingrediente o il giorno esatto senza sfogliare tutto.</p><strong>Cerca nel piano <svg class="inline-icon" aria-hidden="true"><use href="assets/icons.svg#icon-arrow-right"></use></svg></strong>
+    </a>
+    <a class="operation-card ingredients" href="ingredienti/index.html">
+      <span class="operation-icon"><svg class="ui-icon" aria-hidden="true"><use href="assets/icons.svg#icon-leaf"></use></svg></span>
+      <span class="operation-tag">V5 · local-first</span>
+      <h3>Studio ingredienti</h3><p>Crea alimenti personali, duplica quelli base e conserva revisioni e valori nutrizionali nel browser.</p><strong>Apri gli ingredienti <svg class="inline-icon" aria-hidden="true"><use href="assets/icons.svg#icon-arrow-right"></use></svg></strong>
+    </a>
+    <a class="operation-card tools" href="strumenti/index.html">
+      <span class="operation-icon"><svg class="ui-icon" aria-hidden="true"><use href="assets/icons.svg#icon-install"></use></svg></span>
+      <span class="operation-tag">PWA + offline</span>
+      <h3>Installa e conserva</h3><p>Aggiungi l'app alla schermata Home e scarica l'intera libreria per usarla senza rete.</p><strong>Apri le utilità <svg class="inline-icon" aria-hidden="true"><use href="assets/icons.svg#icon-arrow-right"></use></svg></strong>
+    </a>
+  </div>
+</section>
+
+<section class="section-block shift-section">
+  <div class="section-heading">
+    <div><p class="eyebrow">La matrice dei turni</p><h2>Cinque giorni, un ritmo riconoscibile</h2><p class="section-intro">I colori aiutano a orientarsi, ma ogni stato mantiene sempre sigla e descrizione.</p></div>
+  </div>
+  <div class="shift-grid">
+    {% for shift in shifts %}
+    <article class="shift-card {{ shift.code|lower }}">
+      <div class="shift-card-top">
+        <span class="shift-code">{{ shift.code }}</span>
+        <svg class="shift-icon" aria-hidden="true"><use href="assets/icons.svg#icon-{% if shift.code == 'D1' %}sun{% elif shift.code == 'D2' %}moon{% elif shift.code == 'D3' %}sunrise{% else %}leaf{% endif %}"></use></svg>
+      </div>
+      <h3>{{ shift.name }}</h3>
+      <p>{{ shift.hours }}</p>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section-block cycles-section">
+  <div class="section-heading">
+    <div><p class="eyebrow">Sei cicli stagionali</p><h2>Un percorso che cambia con i mesi</h2><p class="section-intro">Ogni ciclo contiene sei varianti da cinque giorni.</p></div>
+    <a class="text-link" href="piano/index.html">Vedi il piano completo <svg class="inline-icon" aria-hidden="true"><use href="assets/icons.svg#icon-arrow-right"></use></svg></a>
+  </div>
+  <div class="cycle-grid">
+    {% for cycle in cycles %}
+    <article class="cycle-card" data-cycle="{{ cycle.number }}">
+      <div class="cycle-number"><small>Ciclo</small><strong>{{ cycle.number }}</strong></div>
+      <div class="cycle-card-copy">
+        <span class="cycle-month-label">{{ cycle.month }}</span>
+        <h3><a href="piano/ciclo-{{ cycle.number }}/index.html">Scopri le 6 varianti</a></h3>
+        <p>{{ cycle.season_note }}</p>
+        <div class="card-meta"><span>30 giorni</span><span>{{ cycle.flexible_count }} pasti flessibili</span></div>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section-block split-feature home-bottom-feature">
+  <div class="nutrition-feature">
+    <p class="eyebrow">Profilo medio del piano</p>
+    <h2>Struttura stabile, fibra moderata</h2>
+    <p class="section-intro">I valori sono indicativi e vanno sempre letti nel contesto della tolleranza individuale.</p>
+    <div class="nutrition-grid large">
+      <div><strong>{{ summary.kcal|round|int }}</strong><span>kcal/die</span></div>
+      <div><strong>{{ summary.protein|round(1) }}</strong><span>g proteine</span></div>
+      <div><strong>{{ summary.carbs|round(1) }}</strong><span>g carboidrati</span></div>
+      <div><strong>{{ summary.fat|round(1) }}</strong><span>g grassi</span></div>
+      <div><strong>{{ summary.fiber|round(1) }}</strong><span>g fibra</span></div>
+    </div>
+  </div>
+  <aside class="notice-card care-card">
+    <span class="care-card-icon"><svg class="ui-icon" aria-hidden="true"><use href="assets/icons.svg#icon-heart"></use></svg></span>
+    <p class="eyebrow">V5 · ricette personali</p>
+    <h3>Ora puoi costruire anche le tue ricette</h3>
+    <ul class="check-list">
+      <li>Ingredienti TataDiet e personali nello stesso selettore</li>
+      <li>Calcolo automatico di kcal, macro e fibra per porzione</li>
+      <li>Duplicazione delle ricette base senza alterare l'originale</li>
+      <li>Nuova versione a ogni modifica, con storico immutabile</li>
+      <li>Backup JSON e funzionamento offline già integrati</li>
+    </ul>
+    <a class="button secondary compact" href="ricette/studio/index.html">Apri Studio ricette</a>
+    <a class="text-link" href="progetto/index.html">Consulta lo stato del progetto <svg class="inline-icon" aria-hidden="true"><use href="assets/icons.svg#icon-arrow-right"></use></svg></a>
+  </aside>
+</section>
+{% endblock %}

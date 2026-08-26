@@ -1,0 +1,28 @@
+{
+  "status": "ok",
+  "checkpoint": "5.0.0-alpha.3-phase3",
+  "database": "tatadiet-v5",
+  "schema_version": 1,
+  "content_migration_version": 3,
+  "html_files": 585,
+  "links_checked": 29861,
+  "offline_assets": 623,
+  "ingredient_checks": {
+    "valid_draft": true,
+    "basis_ml": true,
+    "custom_conversion_unit": true,
+    "blocking_validation": true,
+    "conversions": true,
+    "atwater_warning": true,
+    "legacy_normalization": true,
+    "create_revision": true,
+    "immutable_history": true,
+    "duplicate_warning": true,
+    "archive_restore": true,
+    "base_immutable": true,
+    "delete_reference_guard": true
+  },
+  "schema_records_valid": true,
+  "base_ingredients": 130,
+  "browser_qa_note": "Script Playwright disponibile; esecuzione localhost bloccata in questo ambiente da policy Chromium. Eseguire sul deploy GitHub Pages o su browser locale non soggetto alla policy."
+}

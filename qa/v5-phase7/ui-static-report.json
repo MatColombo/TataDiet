@@ -1,0 +1,16 @@
+{
+  "status": "ok",
+  "checkpoint": "5.0.0-alpha.7-phase7",
+  "checks": {
+    "effective_modules": true,
+    "today_page": true,
+    "prep_page": true,
+    "shopping_page": true,
+    "search_page": true,
+    "tools_page": true,
+    "shopping_phase7": true,
+    "prep_phase7": true,
+    "today_phase7": true,
+    "offline_effective": true
+  }
+}

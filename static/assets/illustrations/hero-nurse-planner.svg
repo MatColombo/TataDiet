@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 520" role="img" aria-labelledby="title desc">
+  <title id="title">Infermiera che organizza turni e pasti</title>
+  <desc id="desc">Illustrazione leggera di una infermiera con agenda, ciotola e calendario.</desc>
+  <defs>
+    <linearGradient id="bg" x1="60" y1="20" x2="565" y2="500" gradientUnits="userSpaceOnUse"><stop stop-color="#FBE8F2"/><stop offset=".55" stop-color="#ECE9FB"/><stop offset="1" stop-color="#DDF1EE"/></linearGradient>
+    <linearGradient id="scrub" x1="235" y1="242" x2="406" y2="470" gradientUnits="userSpaceOnUse"><stop stop-color="#739E9A"/><stop offset="1" stop-color="#507A78"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#6F4D66" flood-opacity=".16"/></filter>
+  </defs>
+  <path d="M78 89C158 15 296 16 379 57c87 43 191 54 181 170-8 95-78 149-122 218-47 74-155 70-238 50C111 474 51 414 42 321 34 239 21 142 78 89Z" fill="url(#bg)"/>
+  <g opacity=".62"><circle cx="98" cy="151" r="12" fill="#E5A09A"/><circle cx="517" cy="324" r="9" fill="#A98DC9"/><circle cx="465" cy="77" r="7" fill="#7AA9A2"/><path d="M107 359h30M122 344v30" stroke="#D58CA9" stroke-width="7" stroke-linecap="round"/><path d="M496 184h24M508 172v24" stroke="#8E79B5" stroke-width="6" stroke-linecap="round"/></g>
+  <g filter="url(#shadow)">
+    <rect x="75" y="188" width="176" height="216" rx="25" fill="#fff"/>
+    <rect x="92" y="208" width="142" height="44" rx="14" fill="#F5E9F0"/>
+    <path d="M112 222v17M104 230h17" stroke="#9B5F82" stroke-width="4" stroke-linecap="round"/>
+    <path d="M143 220h70M143 233h48" stroke="#7C6F79" stroke-width="5" stroke-linecap="round" opacity=".65"/>
+    <g fill="#E9F3F1"><rect x="92" y="269" width="39" height="39" rx="10"/><rect x="143" y="269" width="39" height="39" rx="10"/><rect x="195" y="269" width="39" height="39" rx="10"/></g>
+    <g fill="#F9E7EF"><rect x="92" y="320" width="39" height="39" rx="10"/><rect x="143" y="320" width="39" height="39" rx="10"/></g>
+    <path d="M103 289h17M154 289h17M206 289h17M103 340h17M154 340h17" stroke="#6C8F8B" stroke-width="4" stroke-linecap="round"/>
+    <rect x="105" y="376" width="116" height="11" rx="5.5" fill="#E9E1E8"/>
+  </g>
+  <g filter="url(#shadow)">
+    <path d="M314 170c0-46 73-58 93-17 14 29 4 74-16 89h-65c-17-18-25-45-12-72Z" fill="#513C4B"/>
+    <circle cx="359" cy="119" r="35" fill="#513C4B"/>
+    <path d="M333 166c3 41 49 46 57 3 2 31-3 49-28 49-26 0-33-19-29-52Z" fill="#E8B59D"/>
+    <path d="M301 278c17-41 43-62 62-62 20 0 52 19 69 62l35 160H273Z" fill="url(#scrub)"/>
+    <path d="M329 226 362 257l33-31" fill="none" stroke="#E7F4F2" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M354 253v57M373 253v57" stroke="#E7F4F2" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="354" cy="314" r="8" fill="#F5D7A8"/>
+    <circle cx="374" cy="314" r="8" fill="#F5D7A8"/>
+    <path d="M314 292c-32 24-49 59-56 98M417 292c30 19 49 50 56 91" fill="none" stroke="#507A78" stroke-width="31" stroke-linecap="round"/>
+    <path d="M258 389c13 7 29 8 42-3M473 383c-13 8-28 10-42-1" fill="none" stroke="#E8B59D" stroke-width="20" stroke-linecap="round"/>
+    <rect x="284" y="332" width="145" height="112" rx="17" fill="#fff" transform="rotate(-4 284 332)"/>
+    <rect x="317" y="316" width="74" height="25" rx="9" fill="#9B5F82" transform="rotate(-4 317 316)"/>
+    <path d="m310 364 10 9 17-22M350 361h53M310 394l10 9 17-22M350 391h44" fill="none" stroke="#8C6F83" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="346" cy="177" r="3.5" fill="#4A3945"/><circle cx="377" cy="177" r="3.5" fill="#4A3945"/>
+    <path d="M352 194c6 5 14 5 20 0" fill="none" stroke="#B67375" stroke-width="3" stroke-linecap="round"/>
+    <path d="M327 161c10-17 41-21 68-5" fill="none" stroke="#513C4B" stroke-width="12" stroke-linecap="round"/>
+  </g>
+  <g filter="url(#shadow)">
+    <ellipse cx="491" cy="431" rx="76" ry="26" fill="#fff"/>
+    <path d="M433 402h116c-5 32-20 48-58 48s-53-16-58-48Z" fill="#F6D8A7"/>
+    <path d="M447 399c18-22 42-23 50 0M484 399c11-19 30-17 42 0" fill="none" stroke="#6F9D88" stroke-width="10" stroke-linecap="round"/>
+    <path d="M491 374v-38M491 343l-16-11M491 350l17-14" stroke="#7B5C70" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="446" y="111" width="109" height="78" rx="20" fill="#fff"/>
+    <path d="M467 138h68M467 157h45" stroke="#8C7AAE" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="522" cy="158" r="12" fill="#F5D7A8"/>
+    <path d="M520 151v14M513 158h14" stroke="#956B85" stroke-width="3" stroke-linecap="round"/>
+  </g>
+</svg>

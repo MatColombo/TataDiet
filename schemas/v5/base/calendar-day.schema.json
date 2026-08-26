@@ -1,0 +1,277 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tatadiet.local/schemas/v5/base/calendar-day.schema.json",
+  "title": "TataDiet calendar day",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "day_type",
+    "shift",
+    "meals"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "base_global_day": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "cycle": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "month": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "variant": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "day_in_variant": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "day_type": {
+      "enum": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "CUSTOM",
+        "OFF",
+        "FREE",
+        "SKIPPED"
+      ]
+    },
+    "shift": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "description",
+        "start_local",
+        "end_local",
+        "end_day_offset"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "start_local": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$"
+        },
+        "end_local": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$"
+        },
+        "end_day_offset": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 3
+        }
+      }
+    },
+    "flexible": {
+      "type": "boolean"
+    },
+    "source_total": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "energy_kcal",
+        "protein_g",
+        "carbohydrate_g",
+        "fat_g",
+        "fiber_g"
+      ],
+      "properties": {
+        "energy_kcal": {
+          "type": "number",
+          "minimum": 0
+        },
+        "protein_g": {
+          "type": "number",
+          "minimum": 0
+        },
+        "carbohydrate_g": {
+          "type": "number",
+          "minimum": 0
+        },
+        "fat_g": {
+          "type": "number",
+          "minimum": 0
+        },
+        "fiber_g": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "meals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "sequence",
+          "recipe_id",
+          "recipe_version_id",
+          "time",
+          "minute_of_day",
+          "day_offset",
+          "meal_type",
+          "source_anchor",
+          "flexible",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sequence": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "recipe_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "recipe_version_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "time": {
+            "type": "string",
+            "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$"
+          },
+          "minute_of_day": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1439
+          },
+          "day_offset": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "meal_type": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_anchor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "flexible": {
+            "type": "boolean"
+          },
+          "status": {
+            "enum": [
+              "planned",
+              "consumed",
+              "partial",
+              "skipped",
+              "replaced"
+            ]
+          },
+          "portion_multiplier": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "notes": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "immutable": {
+      "type": "boolean"
+    },
+    "origin": {
+      "enum": [
+        "base",
+        "user",
+        "imported"
+      ]
+    },
+    "adherence_status": {
+      "enum": [
+        "planned",
+        "followed",
+        "partial",
+        "not_followed",
+        "free"
+      ]
+    },
+    "source_day_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sequence_position": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "created_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    }
+  }
+}

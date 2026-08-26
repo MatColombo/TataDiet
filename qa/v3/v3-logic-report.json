@@ -1,0 +1,21 @@
+{
+  "status": "ok",
+  "version": "3.0.0",
+  "shopping": {
+    "days": 180,
+    "firstVariantItems": 46
+  },
+  "prep": {
+    "windowHours": 48,
+    "items": 9
+  },
+  "search": {
+    "entries": 628,
+    "mozzarellaResults": 93,
+    "day30Results": 153
+  },
+  "ics": {
+    "shiftEvents": 180,
+    "prepEnabled": true
+  }
+}

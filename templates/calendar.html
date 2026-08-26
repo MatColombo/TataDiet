@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="page-header calendar-page-header">
+  <p class="eyebrow">V5 · calendario operativo</p>
+  <h1>Calendario personale</h1>
+  <p>Imposta la data del primo D1. Il sito associa ogni data a ciclo, variante e turno, gestisce la prosecuzione notturna del D2 e collega direttamente preparazioni, spesa e strumenti.</p>
+</header>
+
+<div class="dynamic-loading" data-plan-loading>Caricamento dei dati del piano…</div>
+
+<section class="setup-card" data-plan-setup hidden>
+  <div>
+    <p class="eyebrow">Configurazione iniziale</p>
+    <h2>Qual è la data del primo D1?</h2>
+    <p>La data scelta diventa <strong>C1 · V1 · D1</strong>. Il piano coprirà 180 giorni consecutivi.</p>
+  </div>
+  <form class="start-date-form" data-start-form>
+    <label for="calendar-start-date">Data del primo D1</label>
+    <div class="date-form-row">
+      <input id="calendar-start-date" name="start" type="date" min="2020-01-01" max="2100-12-31" required>
+      <button class="button primary" type="submit">Genera 180 giorni</button>
+    </div>
+    <p class="field-help" data-start-preview></p>
+    <p class="form-error" data-start-error role="alert" hidden></p>
+  </form>
+</section>
+
+<section data-calendar-app hidden aria-live="polite">
+  <div class="calendar-config-bar">
+    <div>
+      <span class="config-label">Intervallo attivo</span>
+      <strong data-active-range></strong>
+      <small>Il primo giorno è C1 · V1 · D1.</small>
+    </div>
+    <div class="config-actions">
+      <a class="button secondary compact" data-today-link href="../oggi/index.html">Oggi</a>
+      <a class="button primary compact" data-plan-editor-link href="modifica/index.html">Modifica piano</a>
+      <a class="button secondary compact" data-prep-link href="../preparazioni/index.html">Prep 48h</a>
+      <a class="button secondary compact" data-range-shopping-link href="../spesa/intervallo/index.html">Spesa per date</a>
+      <a class="button ghost compact" data-tools-link href="../strumenti/index.html">Esporta</a>
+      <button class="button ghost compact" type="button" data-calendar-go-today>Vai a oggi</button>
+      <button class="button ghost compact" type="button" data-print-calendar>Stampa</button>
+      <button class="button ghost compact" type="button" data-copy-calendar-link>Copia link</button>
+      <button class="button ghost compact" type="button" data-change-start>Cambia data</button>
+      <button class="button ghost compact danger-text" type="button" data-clear-start>Rimuovi</button>
+    </div>
+  </div>
+
+  <div class="inline-start-editor" data-start-editor hidden>
+    <form class="start-date-form compact-form" data-start-form>
+      <label for="calendar-edit-start">Nuova data del primo D1</label>
+      <div class="date-form-row">
+        <input id="calendar-edit-start" name="start" type="date" min="2020-01-01" max="2100-12-31" required>
+        <button class="button primary compact" type="submit">Aggiorna</button>
+        <button class="button ghost compact" type="button" data-cancel-start>Cancella</button>
+      </div>
+      <p class="field-help" data-start-preview></p>
+      <p class="form-error" data-start-error role="alert" hidden></p>
+    </form>
+  </div>
+
+  <aside class="effective-calendar-banner" data-effective-calendar-banner hidden><div><strong>Piano personale attivo</strong><span><b data-effective-calendar-count>0</b> giornate modificate sono evidenziate con ✎. Oggi, preparazioni, spesa, ricerca e ICS usano lo stesso piano personale effettivo.</span></div><a class="button secondary compact" href="modifica/index.html">Apri Planner</a></aside>
+
+  <div class="calendar-view-switch" role="group" aria-label="Vista calendario">
+    <button type="button" data-calendar-view="month" aria-pressed="true">Vista mensile</button>
+    <button type="button" data-calendar-view="overview" aria-pressed="false">Sei cicli</button>
+  </div>
+
+  <section data-calendar-month-view>
+    <div class="calendar-toolbar">
+      <button class="calendar-nav-button" type="button" data-month-prev aria-label="Mese precedente">←</button>
+      <div>
+        <p class="eyebrow">Vista mensile</p>
+        <h2 data-month-label></h2>
+      </div>
+      <button class="calendar-nav-button" type="button" data-month-next aria-label="Mese successivo">→</button>
+    </div>
+    <div class="calendar-legend" aria-label="Legenda turni">
+      <span class="d1"><b>D1</b> Giorno</span>
+      <span class="d2"><b>D2</b> Notte</span>
+      <span class="d3"><b>D3</b> Smonto</span>
+      <span class="d4"><b>D4</b> Riposo 1</span>
+      <span class="d5"><b>D5</b> Riposo 2</span>
+      <span class="flex-legend"><b>F</b> Pasto flessibile</span>
+      <span class="tail-legend"><b>+</b> Coda D2</span>
+    </div>
+    <div class="calendar-weekdays" aria-hidden="true"><span>Lun</span><span>Mar</span><span>Mer</span><span>Gio</span><span>Ven</span><span>Sab</span><span>Dom</span></div>
+    <div class="calendar-grid" data-calendar-grid></div>
+  </section>
+
+  <section data-calendar-overview-view hidden>
+    <div class="section-heading overview-heading">
+      <div><p class="eyebrow">Panoramica</p><h2>I sei cicli da 30 giorni</h2></div>
+      <p>Ogni riquadro mantiene la sequenza D1-D5 e riporta l'intervallo civile effettivo.</p>
+    </div>
+    <div class="cycle-calendar-grid" data-cycle-calendar-grid></div>
+  </section>
+</section>
+
+<noscript><section class="notice-card"><h2>JavaScript necessario</h2><p>La generazione del calendario avviene localmente nel browser. Il piano statico resta disponibile nella sezione Piano.</p></section></noscript>
+{% endblock %}

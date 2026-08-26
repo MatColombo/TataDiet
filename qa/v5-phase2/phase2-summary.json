@@ -1,0 +1,18 @@
+{
+  "status": "ok",
+  "checkpoint": "5.0.0-alpha.2-phase2",
+  "database": "tatadiet-v5",
+  "schema_version": 1,
+  "html_files": 584,
+  "links_checked": 26896,
+  "offline_assets": 619,
+  "backup_checks": {
+    "checksum": true,
+    "personal_only": true,
+    "checklists": true,
+    "replace_roundtrip": true,
+    "base_immutable": true,
+    "rollback": true
+  },
+  "browser_qa_note": "Script disponibile; esecuzione locale bloccata in questo ambiente da policy Chromium. Verificare dopo deploy GitHub Pages."
+}

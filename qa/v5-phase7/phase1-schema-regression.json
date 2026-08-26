@@ -1,0 +1,21 @@
+{
+  "status": "pass",
+  "generated_at": "2026-08-26T16:48:53.556496+00:00",
+  "schema": "schemas/v5/domain/tatadiet-v5.schema.json",
+  "draft": "2020-12",
+  "examples": [
+    "spec/v5/examples/backup-full-minimal.json",
+    "spec/v5/examples/calendar-day-custom.json",
+    "spec/v5/examples/ingredient-personal.json",
+    "spec/v5/examples/ingredient-revision-personal.json",
+    "spec/v5/examples/operation-replace-day.json",
+    "spec/v5/examples/plan-instance.json",
+    "spec/v5/examples/recipe-personal.json",
+    "spec/v5/examples/recipe-version-personal.json"
+  ],
+  "example_count": 8,
+  "validation_errors": [],
+  "reference_errors": [],
+  "negative_example_count": 7,
+  "negative_test_failures": []
+}

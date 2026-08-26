@@ -1,0 +1,76 @@
+{
+  "status": "ok",
+  "checkpoint": "5.0.0-alpha.5-phase5",
+  "database": "tatadiet-v5",
+  "schema_version": 1,
+  "html_files": 587,
+  "links_checked": 34677,
+  "offline_assets": 632,
+  "base_days": 180,
+  "base_meals": 864,
+  "plan_core_checks": {
+    "initial_180": true,
+    "d2_tail": true,
+    "adherence_no_shift": true,
+    "replace_preserves_meals": true,
+    "off_preserves_meals": true,
+    "custom_shift": true,
+    "leave_free": true,
+    "restore_day": true,
+    "postpone_extends": true,
+    "patch_undo": true,
+    "insert_day": true,
+    "remove_day": true,
+    "restore_from_date": true,
+    "restore_after_prior_removal": true,
+    "operation_record": true
+  },
+  "plan_store_checks": {
+    "create_plan": true,
+    "reuse_plan": true,
+    "commit": true,
+    "history": true,
+    "undo_structural": true,
+    "undo_adherence": true,
+    "redo": true,
+    "redo_branch_discard": true,
+    "active_bundle": true,
+    "plan_reactivation": true
+  },
+  "ui_checks": {
+    "page_id": true,
+    "heading": true,
+    "summary": true,
+    "adherence": true,
+    "day_types": true,
+    "custom_shift": true,
+    "structural_actions": true,
+    "impact_dialog": true,
+    "undo_redo": true,
+    "meal_preview": true,
+    "modules": true,
+    "calendar_editor_link": true,
+    "calendar_effective_banner": true,
+    "unique_ids": true
+  },
+  "browser_qa_note": "QA Chromium locale completata sulla build finale: 9/9 controlli superati, 0 errori.",
+  "browser_qa": {
+    "status": "ok",
+    "checks": {
+      "planner_loaded": true,
+      "initial_180": true,
+      "adherence_saved": true,
+      "custom_shift": true,
+      "postpone_181": true,
+      "undo_180": true,
+      "calendar_overlay": true,
+      "effective_banner": true,
+      "mobile_no_overflow": true
+    },
+    "errors": [],
+    "screenshots": [
+      "qa/v5-phase5/planner-desktop.png",
+      "qa/v5-phase5/planner-mobile.png"
+    ]
+  }
+}

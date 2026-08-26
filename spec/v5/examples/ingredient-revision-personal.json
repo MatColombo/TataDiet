@@ -1,0 +1,39 @@
+{
+  "recordType": "ingredientRevision",
+  "id": "usr:ingredient-revision:skyr-senza-lattosio@1",
+  "ingredientId": "usr:ingredient:skyr-senza-lattosio",
+  "revisionNumber": 1,
+  "basis": {"amount": 100, "unit": "g"},
+  "preparationState": "ready-to-eat",
+  "brand": "Esempio da etichetta",
+  "nutrition": {
+    "energyKcal": 64,
+    "proteinG": 11,
+    "carbohydrateG": 4,
+    "fatG": 0.5,
+    "fiberG": 0,
+    "sugarsG": 4,
+    "saturatedFatG": 0.2,
+    "saltG": 0.1,
+    "sodiumMg": 40
+  },
+  "conversions": [
+    {
+      "unitCode": "vasetto",
+      "labelSingular": "vasetto",
+      "labelPlural": "vasetti",
+      "basisAmount": 150,
+      "isDefault": true,
+      "notes": "Confezione personale da 150 g."
+    }
+  ],
+  "allergens": ["latte"],
+  "toleranceNotes": "Verificare la tolleranza individuale al lattosio residuo.",
+  "source": {
+    "type": "label",
+    "label": "Valori inseriti manualmente dall'etichetta",
+    "url": null,
+    "notedAt": "2026-08-26T14:30:00+02:00"
+  },
+  "createdAt": "2026-08-26T14:30:00+02:00"
+}

@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Piano alimentare di sei mesi, navigabile per calendario, cicli, varianti, giorni, ricette, preparazioni e liste della spesa.">
+  <meta name="theme-color" content="#7E4D70">
+  <meta name="color-scheme" content="light">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Piano turni">
+  <title>Compositore della giornata · Piano alimentare</title>
+  <link rel="manifest" href="../../manifest.webmanifest">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script defer src="../../assets/js/calendar-core.js"></script>
+  <script defer src="../../assets/js/site-state.js"></script>
+  <script defer src="../../assets/js/operations-core.js"></script>
+  <script defer src="../../assets/js/v5-db.js"></script>
+  <script defer src="../../assets/js/v5-backup.js"></script>
+  <script defer src="../../assets/js/v5-ingredients-core.js"></script>
+  <script defer src="../../assets/js/v5-ingredient-store.js"></script>
+  <script defer src="../../assets/js/v5-ingredients.js"></script>
+  <script defer src="../../assets/js/v5-recipes-core.js"></script>
+  <script defer src="../../assets/js/v5-recipe-store.js"></script>
+  <script defer src="../../assets/js/v5-recipes.js"></script>
+  <script defer src="../../assets/js/v5-plan-core.js"></script>
+  <script defer src="../../assets/js/v5-plan-store.js"></script>
+  <script defer src="../../assets/js/v5-plan.js"></script>
+  <script defer src="../../assets/js/v5-plan-calendar.js"></script>
+  <script defer src="../../assets/js/v5-composer-core.js"></script>
+  <script defer src="../../assets/js/v5-composer-store.js"></script>
+  <script defer src="../../assets/js/v5-composer.js"></script>
+  <script defer src="../../assets/js/v5-effective-core.js"></script>
+  <script defer src="../../assets/js/v5-effective-store.js"></script>
+  <script defer src="../../assets/js/v5-effective-pages.js"></script>
+  <script defer src="../../assets/js/app.js"></script>
+  <script defer src="../../assets/js/calendar.js"></script>
+  <script defer src="../../assets/js/prep.js"></script>
+  <script defer src="../../assets/js/shopping-range.js"></script>
+  <script defer src="../../assets/js/search.js"></script>
+  <script defer src="../../assets/js/tools.js"></script>
+  <script defer src="../../assets/js/v5-tools.js"></script>
+  <script defer src="../../assets/js/pwa.js"></script>
+</head>
+<body data-page="day-composer" data-root="../../" data-version="5.0.0">
+  <a class="skip-link" href="#contenuto">Vai al contenuto</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../../index.html" aria-label="Piano alimentare, pagina iniziale">
+        <img class="brand-mark" src="../../assets/brand/brand-mark.svg" width="48" height="48" alt="">
+        <span class="brand-copy">
+          <strong>Piano alimentare</strong>
+          <small>turni, pasti e spesa · V5</small>
+        </span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Navigazione principale">
+        <a class="" href="../../oggi/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-today"></use></svg><span>Oggi</span></a>
+        <a class="is-active" href="../../calendario/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-calendar"></use></svg><span>Calendario</span></a>
+        <a class="" href="../../piano/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-plan"></use></svg><span>Piano</span></a>
+        <a class="" href="../../ricette/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-recipes"></use></svg><span>Ricette</span></a>
+        <a class="" href="../../ingredienti/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-leaf"></use></svg><span>Ingredienti</span></a>
+        <a class="" href="../../spesa/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-shopping"></use></svg><span>Spesa</span></a>
+        <a class="" href="../../strumenti/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-tools"></use></svg><span>Utilità</span></a>
+      </nav>
+
+      <div class="header-utilities">
+        <span class="network-chip" data-network-status aria-live="polite"><svg class="ui-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-wifi"></use></svg><span>Online</span></span>
+        <button class="header-icon-button install-header-button" type="button" data-pwa-install hidden aria-label="Installa il sito come app"><svg class="ui-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-install"></use></svg></button>
+        <a class="header-icon-button" href="../../cerca/index.html" aria-label="Cerca in tutto il piano"><svg class="ui-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-search"></use></svg></a>
+      </div>
+    </div>
+  </header>
+
+  <aside class="offline-banner" data-offline-banner hidden role="status">
+    <svg class="ui-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-wifi-off"></use></svg>
+    <span>Sei offline. Il piano già memorizzato resta disponibile.</span>
+    <a href="../../strumenti/index.html#offline">Gestisci offline</a>
+  </aside>
+
+  <aside class="update-banner" data-update-banner hidden role="status">
+    <div><svg class="ui-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-update"></use></svg><span><strong>Nuova versione pronta.</strong> Aggiorna senza perdere le preferenze locali.</span></div>
+    <div><button class="button primary compact" type="button" data-update-now>Aggiorna</button><button class="button ghost compact" type="button" data-update-dismiss>Più tardi</button></div>
+  </aside>
+
+  <main id="contenuto" class="page-shell">
+    <nav class="breadcrumbs" aria-label="Percorso">
+      <a class="breadcrumb-home" href="../../index.html" aria-label="Home"><svg class="ui-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-home"></use></svg></a>
+          <span class="crumb-sep" aria-hidden="true">›</span>
+<a href="../../calendario/index.html">Calendario</a>          <span class="crumb-sep" aria-hidden="true">›</span>
+<span aria-current="page">Compositore</span>    </nav>
+<section class="composer-page" data-composer-root>
+  <header class="composer-hero">
+    <div>
+      <p class="eyebrow">V5 · compositore personale</p>
+      <h1>Compositore della giornata</h1>
+      <p class="lead">Scegli i piatti per il giorno effettivo, sostituisci porzioni e ricette, oppure genera proposte compatibili con turno, praticità e profilo nutrizionale del piano.</p>
+    </div>
+    <div class="composer-hero-note"><strong>Local-first</strong><span>Le modifiche restano nel piano personale e sono annullabili.</span></div>
+  </header>
+
+  <div class="notice-card" data-composer-loading>Sto preparando libreria ricette e piano personale…</div>
+  <div class="notice-card" data-composer-setup hidden>
+    <h2>Imposta prima la data di inizio</h2><p>Il compositore lavora sul piano effettivo personale.</p>
+    <a class="button primary" href="../../calendario/index.html">Apri il calendario</a>
+  </div>
+
+  <div data-composer-app hidden>
+    <section class="composer-toolbar">
+      <div class="composer-date-tools">
+        <label>Giornata<input type="date" data-composer-date></label>
+        <button class="button ghost compact" type="button" data-composer-go>Vai</button>
+        <button class="button ghost compact" type="button" data-composer-today>Oggi</button>
+      </div>
+      <div class="composer-history-tools">
+        <button class="button ghost compact" type="button" data-composer-undo>↶ Annulla</button>
+        <button class="button ghost compact" type="button" data-composer-redo>↷ Ripeti</button>
+        <a class="button ghost compact" data-composer-planner-link href="../../calendario/modifica/index.html">Planner</a>
+      </div>
+    </section>
+
+    <section class="composer-day-head">
+      <div><p class="eyebrow" data-composer-meta>—</p><h2 data-composer-title>Giornata</h2><p data-composer-shift>—</p></div>
+      <div class="composer-day-flags"><span class="status-pill" data-composer-source>—</span><span class="status-pill soft" data-composer-count>—</span></div>
+    </section>
+
+    <section class="composer-nutrition-strip" aria-label="Riepilogo nutrizionale">
+      <article class="composer-energy-card"><span>Energia</span><strong><b data-composer-kcal>0</b> kcal</strong><small data-composer-reference>—</small><div class="nutrition-progress"><i data-composer-progress></i></div></article>
+      <article><span>Proteine</span><strong><b data-composer-protein>0</b> g</strong></article>
+      <article><span>Carboidrati</span><strong><b data-composer-carbs>0</b> g</strong></article>
+      <article><span>Grassi</span><strong><b data-composer-fat>0</b> g</strong></article>
+      <article><span>Fibra</span><strong><b data-composer-fiber>0</b> g</strong></article>
+    </section>
+
+    <section class="composer-actions-card">
+      <div><p class="eyebrow">Composizione assistita</p><h3>Costruisci il menu</h3><p>Le proposte privilegiano tipo di pasto, compatibilità con il turno, preparazione pratica, fibra moderata e varietà rispetto ai giorni vicini.</p></div>
+      <div class="composer-main-actions">
+        <button class="button primary" type="button" data-composer-suggest>Proponi menu completo</button>
+        <button class="button secondary" type="button" data-composer-template>Carica menu TataDiet</button>
+        <button class="button ghost" type="button" data-composer-add>Aggiungi pasto</button>
+      </div>
+    </section>
+
+    <div class="composer-layout">
+      <main class="composer-meals-panel">
+        <div class="section-heading compact-heading"><div><p class="eyebrow">Menu effettivo</p><h2>I pasti di questa giornata</h2></div><span class="composer-help">Blocca un pasto per proteggerlo dalle proposte automatiche.</span></div>
+        <div class="composer-meal-list" data-composer-meals></div>
+      </main>
+      <aside class="composer-insights-panel">
+        <section><p class="eyebrow">Lettura rapida</p><h3>Bilanciamento</h3><div data-composer-balance></div></section>
+        <section><p class="eyebrow">Turno</p><h3>Compatibilità pratica</h3><div data-composer-capabilities></div></section>
+        <section><p class="eyebrow">Nota</p><p class="field-help">Il riferimento energetico è ricavato dal piano TataDiet di base e serve per confrontare composizioni, non sostituisce indicazioni cliniche personalizzate.</p></section>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<dialog class="composer-dialog recipe-picker-dialog" data-recipe-picker>
+  <div class="composer-dialog-card">
+    <header><div><p class="eyebrow">Libreria</p><h2 data-picker-title>Scegli una ricetta</h2><p data-picker-context></p></div><button class="dialog-close" type="button" data-picker-close aria-label="Chiudi">×</button></header>
+    <div class="picker-toolbar"><label class="search-field">Cerca<input type="search" data-picker-search placeholder="Es. mozzarella, cous cous, yogurt…"></label><label>Origine<select data-picker-origin><option value="all">Tutte</option><option value="base">TataDiet</option><option value="personal">Personali</option></select></label><label>Compatibilità<select data-picker-fit><option value="all">Tutte</option><option value="cold">Buona fredda</option><option value="quick">Rapida ≤15 min</option><option value="moderate-fiber">Fibra moderata</option><option value="no-reheat">Senza riscaldamento</option></select></label></div>
+    <div class="picker-results" data-picker-results></div>
+    <footer><a class="button ghost compact" target="_blank" href="../../ricette/studio/index.html?new=1">+ Nuova ricetta</a><span>Salva la nuova ricetta e riapri il selettore per aggiornare la libreria.</span></footer>
+  </div>
+</dialog>
+
+<dialog class="composer-dialog" data-add-meal-dialog>
+  <form class="composer-dialog-card compact-dialog" method="dialog" data-add-meal-form>
+    <header><div><p class="eyebrow">Nuovo slot</p><h2>Aggiungi un pasto</h2></div><button class="dialog-close" value="cancel" aria-label="Chiudi">×</button></header>
+    <div class="composer-form-grid"><label>Ora<input type="time" data-add-time required value="13:00"></label><label>Giorno<select data-add-offset><option value="0">Stesso giorno</option><option value="1">Giorno successivo (+1)</option></select></label><label class="wide">Tipo di pasto<input type="text" data-add-type required value="Pranzo"></label><label>Porzione<input type="number" data-add-portion min="0.1" max="20" step="0.1" value="1"></label></div>
+    <div class="dialog-actions"><button class="button ghost" value="cancel">Annulla</button><button class="button primary" type="button" data-add-choose>Scegli ricetta</button></div>
+  </form>
+</dialog>
+
+<dialog class="composer-dialog" data-template-dialog>
+  <div class="composer-dialog-card compact-dialog">
+    <header><div><p class="eyebrow">Menu esistente</p><h2>Carica un giorno TataDiet</h2><p>Sostituisce il menu della giornata corrente, mantenendo data e turno.</p></div><button class="dialog-close" type="button" data-template-close aria-label="Chiudi">×</button></header>
+    <label class="template-select-label">Giornata modello<select data-template-select></select></label>
+    <div class="template-preview" data-template-preview></div>
+    <div class="dialog-actions"><button class="button ghost" type="button" data-template-cancel>Annulla</button><button class="button primary" type="button" data-template-apply>Carica menu</button></div>
+  </div>
+</dialog>
+
+<dialog class="composer-dialog" data-suggest-dialog>
+  <div class="composer-dialog-card">
+    <header><div><p class="eyebrow">Proposta automatica</p><h2>Menu suggerito</h2><p>I pasti bloccati vengono mantenuti. Le altre scelte sono ordinate con un algoritmo locale e trasparente.</p></div><button class="dialog-close" type="button" data-suggest-close aria-label="Chiudi">×</button></header>
+    <div class="suggest-preview" data-suggest-preview></div>
+    <div class="dialog-actions"><button class="button ghost" type="button" data-suggest-cancel>Annulla</button><button class="button primary" type="button" data-suggest-apply>Applica proposta</button></div>
+  </div>
+</dialog>
+
+<p class="toast-message" data-composer-toast hidden role="status"></p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <img src="../../assets/brand/brand-mark.svg" width="42" height="42" alt="">
+      <div><strong>Piano alimentare per turni</strong><span>Documento educativo, non prescrizione medica.</span></div>
+    </div>
+    <div class="footer-note">La tolleranza intestinale e l'andamento clinico vanno rivalutati con un professionista.</div>
+    <div class="footer-links">
+      <a href="../../ricette/index.html">Ricette</a>
+      <a href="../../ingredienti/index.html">Ingredienti</a>
+      <a href="../../strumenti/index.html">Utilità</a>
+      <a href="../../download/index.html">PDF e dati</a>
+      <a href="../../progetto/index.html">Progetto</a>
+    </div>
+  </footer>
+
+  <nav class="mobile-nav" aria-label="Navigazione mobile">
+    <a class="" href="../../oggi/index.html"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-today"></use></svg><span>Oggi</span></a>
+    <a class="is-active" href="../../calendario/index.html"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-calendar"></use></svg><span>Calendario</span></a>
+    <a class="" href="../../ingredienti/index.html"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-leaf"></use></svg><span>Alimenti</span></a>
+    <a class="" href="../../spesa/index.html"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-shopping"></use></svg><span>Spesa</span></a>
+    <a class="" href="../../piano/index.html"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-plan"></use></svg><span>Piano</span></a>
+  </nav>
+</body>
+</html>

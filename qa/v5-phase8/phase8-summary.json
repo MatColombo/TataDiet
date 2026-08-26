@@ -1,0 +1,262 @@
+{
+  "status": "ok",
+  "version": "5.0.0",
+  "database": "tatadiet-v5",
+  "schema_version": 1,
+  "html_files": 588,
+  "links_checked": 38259,
+  "offline_assets": 639,
+  "offline_bytes": 16399793,
+  "base_days": 180,
+  "base_meals": 864,
+  "base_recipes": 306,
+  "recipe_versions": 547,
+  "base_ingredients": 130,
+  "release_static": "ok",
+  "accessibility": {
+    "status": "ok",
+    "counts": {
+      "pages": 588,
+      "images": 1179,
+      "buttons": 2172,
+      "links": 18855,
+      "form_controls": 2197
+    },
+    "warnings": 0
+  },
+  "stress": {
+    "status": "ok",
+    "version": "5.0.0",
+    "operations": 96,
+    "finalDays": 180,
+    "checks": {
+      "continuous_dates": true,
+      "unique_ids": true,
+      "structural_shifts": true,
+      "full_undo": true,
+      "full_redo": true
+    }
+  },
+  "browser_qa": {
+    "status": "ok",
+    "version": "5.0.0",
+    "checks": [
+      {
+        "name": "stable_version_visible",
+        "ok": true
+      },
+      {
+        "name": "no_alpha_brand",
+        "ok": true
+      },
+      {
+        "name": "skip_link_first_focus",
+        "ok": true,
+        "detail": "skip-link"
+      },
+      {
+        "name": "skip_link_visible_on_focus",
+        "ok": true
+      },
+      {
+        "name": "stable_migration_marker",
+        "ok": true,
+        "detail": {
+          "stableMeta": 5,
+          "appMeta": "5.0.0",
+          "before": {
+            "ingredientId": "usr:ingredient:cebdae41-10e7-4d22-b929-6ed867bddada",
+            "recipeId": "usr:recipe:0d517577-72d3-43c2-8bd0-51e80c70c596",
+            "planId": "usr:plan:cced82b3-bd18-4bda-bc53-09e50000858a",
+            "ingredients": [
+              "usr:ingredient:cebdae41-10e7-4d22-b929-6ed867bddada"
+            ],
+            "recipes": [
+              "usr:recipe:0d517577-72d3-43c2-8bd0-51e80c70c596"
+            ],
+            "plans": [
+              "usr:plan:cced82b3-bd18-4bda-bc53-09e50000858a"
+            ],
+            "operations": [
+              "usr:operation:965d216b-b402-4bc1-8ef3-6b4d686272a8"
+            ]
+          },
+          "after": {
+            "ingredients": [
+              "usr:ingredient:cebdae41-10e7-4d22-b929-6ed867bddada"
+            ],
+            "recipes": [
+              "usr:recipe:0d517577-72d3-43c2-8bd0-51e80c70c596"
+            ],
+            "plans": [
+              "usr:plan:cced82b3-bd18-4bda-bc53-09e50000858a"
+            ],
+            "operations": [
+              "usr:operation:965d216b-b402-4bc1-8ef3-6b4d686272a8"
+            ]
+          },
+          "marker": 5,
+          "current": "5.0.0"
+        }
+      },
+      {
+        "name": "stable_migration_preserves_personal_data",
+        "ok": true,
+        "detail": {
+          "stableMeta": 5,
+          "appMeta": "5.0.0",
+          "before": {
+            "ingredientId": "usr:ingredient:cebdae41-10e7-4d22-b929-6ed867bddada",
+            "recipeId": "usr:recipe:0d517577-72d3-43c2-8bd0-51e80c70c596",
+            "planId": "usr:plan:cced82b3-bd18-4bda-bc53-09e50000858a",
+            "ingredients": [
+              "usr:ingredient:cebdae41-10e7-4d22-b929-6ed867bddada"
+            ],
+            "recipes": [
+              "usr:recipe:0d517577-72d3-43c2-8bd0-51e80c70c596"
+            ],
+            "plans": [
+              "usr:plan:cced82b3-bd18-4bda-bc53-09e50000858a"
+            ],
+            "operations": [
+              "usr:operation:965d216b-b402-4bc1-8ef3-6b4d686272a8"
+            ]
+          },
+          "after": {
+            "ingredients": [
+              "usr:ingredient:cebdae41-10e7-4d22-b929-6ed867bddada"
+            ],
+            "recipes": [
+              "usr:recipe:0d517577-72d3-43c2-8bd0-51e80c70c596"
+            ],
+            "plans": [
+              "usr:plan:cced82b3-bd18-4bda-bc53-09e50000858a"
+            ],
+            "operations": [
+              "usr:operation:965d216b-b402-4bc1-8ef3-6b4d686272a8"
+            ]
+          },
+          "marker": 5,
+          "current": "5.0.0"
+        }
+      },
+      {
+        "name": "backup_stable_version",
+        "ok": true,
+        "detail": {
+          "previewValid": true,
+          "warnings": [
+            "Backup creato con TataDiet 5.0.0-alpha.7-phase7; lo schema 1 è compatibile con TataDiet 5.0.0."
+          ],
+          "originalName": "QA Ingrediente stabile",
+          "restored": "QA Ingrediente stabile",
+          "rolledBack": "QA MUTATO PRIMA IMPORT",
+          "final": "QA Ingrediente stabile",
+          "appVersion": "5.0.0"
+        }
+      },
+      {
+        "name": "alpha_backup_compatible",
+        "ok": true,
+        "detail": {
+          "previewValid": true,
+          "warnings": [
+            "Backup creato con TataDiet 5.0.0-alpha.7-phase7; lo schema 1 è compatibile con TataDiet 5.0.0."
+          ],
+          "originalName": "QA Ingrediente stabile",
+          "restored": "QA Ingrediente stabile",
+          "rolledBack": "QA MUTATO PRIMA IMPORT",
+          "final": "QA Ingrediente stabile",
+          "appVersion": "5.0.0"
+        }
+      },
+      {
+        "name": "backup_replace_roundtrip",
+        "ok": true,
+        "detail": {
+          "previewValid": true,
+          "warnings": [
+            "Backup creato con TataDiet 5.0.0-alpha.7-phase7; lo schema 1 è compatibile con TataDiet 5.0.0."
+          ],
+          "originalName": "QA Ingrediente stabile",
+          "restored": "QA Ingrediente stabile",
+          "rolledBack": "QA MUTATO PRIMA IMPORT",
+          "final": "QA Ingrediente stabile",
+          "appVersion": "5.0.0"
+        }
+      },
+      {
+        "name": "backup_rollback",
+        "ok": true,
+        "detail": {
+          "previewValid": true,
+          "warnings": [
+            "Backup creato con TataDiet 5.0.0-alpha.7-phase7; lo schema 1 è compatibile con TataDiet 5.0.0."
+          ],
+          "originalName": "QA Ingrediente stabile",
+          "restored": "QA Ingrediente stabile",
+          "rolledBack": "QA MUTATO PRIMA IMPORT",
+          "final": "QA Ingrediente stabile",
+          "appVersion": "5.0.0"
+        }
+      },
+      {
+        "name": "service_worker_project_scope",
+        "ok": true,
+        "detail": "http://127.0.0.1:8765/docs/"
+      },
+      {
+        "name": "core_offline_planner_composer",
+        "ok": true
+      },
+      {
+        "name": "offline_pack_complete",
+        "ok": true,
+        "detail": {
+          "type": "OFFLINE_PACK_PROGRESS",
+          "state": "complete",
+          "done": 639,
+          "failed": 0,
+          "total": 639,
+          "bytes": 16399793
+        }
+      },
+      {
+        "name": "deep_recipe_offline",
+        "ok": true
+      },
+      {
+        "name": "pwa_update_waiting_and_activate",
+        "ok": true,
+        "detail": {
+          "waiting": true,
+          "controller": true,
+          "url": "http://127.0.0.1:8765/docs/service-worker.js?v=5.0.0-qa-update"
+        }
+      },
+      {
+        "name": "pwa_update_preserves_indexeddb",
+        "ok": true,
+        "detail": [
+          [
+            "usr:ingredient:cebdae41-10e7-4d22-b929-6ed867bddada"
+          ],
+          [
+            "usr:ingredient:cebdae41-10e7-4d22-b929-6ed867bddada"
+          ]
+        ]
+      },
+      {
+        "name": "mobile_no_horizontal_overflow",
+        "ok": true,
+        "detail": []
+      },
+      {
+        "name": "no_page_errors",
+        "ok": true,
+        "detail": []
+      }
+    ],
+    "errors": []
+  }
+}

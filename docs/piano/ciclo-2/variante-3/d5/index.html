@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Piano alimentare di sei mesi, navigabile per calendario, cicli, varianti, giorni, ricette, preparazioni e liste della spesa.">
+  <meta name="theme-color" content="#7E4D70">
+  <meta name="color-scheme" content="light">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Piano turni">
+  <title>Giorno 45 · D5 · Piano alimentare</title>
+  <link rel="manifest" href="../../../../manifest.webmanifest">
+  <link rel="icon" href="../../../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../../../assets/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="../../../../assets/css/styles.css">
+  <script defer src="../../../../assets/js/calendar-core.js"></script>
+  <script defer src="../../../../assets/js/site-state.js"></script>
+  <script defer src="../../../../assets/js/operations-core.js"></script>
+  <script defer src="../../../../assets/js/v5-db.js"></script>
+  <script defer src="../../../../assets/js/v5-backup.js"></script>
+  <script defer src="../../../../assets/js/v5-ingredients-core.js"></script>
+  <script defer src="../../../../assets/js/v5-ingredient-store.js"></script>
+  <script defer src="../../../../assets/js/v5-ingredients.js"></script>
+  <script defer src="../../../../assets/js/v5-recipes-core.js"></script>
+  <script defer src="../../../../assets/js/v5-recipe-store.js"></script>
+  <script defer src="../../../../assets/js/v5-recipes.js"></script>
+  <script defer src="../../../../assets/js/v5-plan-core.js"></script>
+  <script defer src="../../../../assets/js/v5-plan-store.js"></script>
+  <script defer src="../../../../assets/js/v5-plan.js"></script>
+  <script defer src="../../../../assets/js/v5-plan-calendar.js"></script>
+  <script defer src="../../../../assets/js/v5-composer-core.js"></script>
+  <script defer src="../../../../assets/js/v5-composer-store.js"></script>
+  <script defer src="../../../../assets/js/v5-composer.js"></script>
+  <script defer src="../../../../assets/js/v5-effective-core.js"></script>
+  <script defer src="../../../../assets/js/v5-effective-store.js"></script>
+  <script defer src="../../../../assets/js/v5-effective-pages.js"></script>
+  <script defer src="../../../../assets/js/app.js"></script>
+  <script defer src="../../../../assets/js/calendar.js"></script>
+  <script defer src="../../../../assets/js/prep.js"></script>
+  <script defer src="../../../../assets/js/shopping-range.js"></script>
+  <script defer src="../../../../assets/js/search.js"></script>
+  <script defer src="../../../../assets/js/tools.js"></script>
+  <script defer src="../../../../assets/js/v5-tools.js"></script>
+  <script defer src="../../../../assets/js/pwa.js"></script>
+</head>
+<body data-page="day" data-root="../../../../" data-version="5.0.0">
+  <a class="skip-link" href="#contenuto">Vai al contenuto</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../../../../index.html" aria-label="Piano alimentare, pagina iniziale">
+        <img class="brand-mark" src="../../../../assets/brand/brand-mark.svg" width="48" height="48" alt="">
+        <span class="brand-copy">
+          <strong>Piano alimentare</strong>
+          <small>turni, pasti e spesa · V5</small>
+        </span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Navigazione principale">
+        <a class="" href="../../../../oggi/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../../../assets/icons.svg#icon-today"></use></svg><span>Oggi</span></a>
+        <a class="" href="../../../../calendario/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../../../assets/icons.svg#icon-calendar"></use></svg><span>Calendario</span></a>
+        <a class="is-active" href="../../../../piano/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../../../assets/icons.svg#icon-plan"></use></svg><span>Piano</span></a>
+        <a class="" href="../../../../ricette/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../../../assets/icons.svg#icon-recipes"></use></svg><span>Ricette</span></a>
+        <a class="" href="../../../../ingredienti/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../../../assets/icons.svg#icon-leaf"></use></svg><span>Ingredienti</span></a>
+        <a class="" href="../../../../spesa/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../../../assets/icons.svg#icon-shopping"></use></svg><span>Spesa</span></a>
+        <a class="" href="../../../../strumenti/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../../../assets/icons.svg#icon-tools"></use></svg><span>Utilità</span></a>
+      </nav>
+
+      <div class="header-utilities">
+        <span class="network-chip" data-network-status aria-live="polite"><svg class="ui-icon" aria-hidden="true"><use href="../../../../assets/icons.svg#icon-wifi"></use></svg><span>Online</span></span>
+        <button class="header-icon-button install-header-button" type="button" data-pwa-install hidden aria-label="Installa il sito come app"><svg class="ui-icon" aria-hidden="true"><use href="../../../../assets/icons.svg#icon-install"></use></svg></button>
+        <a class="header-icon-button" href="../../../../cerca/index.html" aria-label="Cerca in tutto il piano"><svg class="ui-icon" aria-hidden="true"><use href="../../../../assets/icons.svg#icon-search"></use></svg></a>
+      </div>
+    </div>
+  </header>
+
+  <aside class="offline-banner" data-offline-banner hidden role="status">
+    <svg class="ui-icon" aria-hidden="true"><use href="../../../../assets/icons.svg#icon-wifi-off"></use></svg>
+    <span>Sei offline. Il piano già memorizzato resta disponibile.</span>
+    <a href="../../../../strumenti/index.html#offline">Gestisci offline</a>
+  </aside>
+
+  <aside class="update-banner" data-update-banner hidden role="status">
+    <div><svg class="ui-icon" aria-hidden="true"><use href="../../../../assets/icons.svg#icon-update"></use></svg><span><strong>Nuova versione pronta.</strong> Aggiorna senza perdere le preferenze locali.</span></div>
+    <div><button class="button primary compact" type="button" data-update-now>Aggiorna</button><button class="button ghost compact" type="button" data-update-dismiss>Più tardi</button></div>
+  </aside>
+
+  <main id="contenuto" class="page-shell">
+    <nav class="breadcrumbs" aria-label="Percorso">
+      <a class="breadcrumb-home" href="../../../../index.html" aria-label="Home"><svg class="ui-icon" aria-hidden="true"><use href="../../../../assets/icons.svg#icon-home"></use></svg></a>
+          <span class="crumb-sep" aria-hidden="true">›</span>
+<a href="../../../../piano/index.html">Piano</a>          <span class="crumb-sep" aria-hidden="true">›</span>
+<a href="../../../../piano/ciclo-2/index.html">Ciclo 2</a>          <span class="crumb-sep" aria-hidden="true">›</span>
+<a href="../../../../piano/ciclo-2/variante-3/index.html">Variante 3</a>          <span class="crumb-sep" aria-hidden="true">›</span>
+<span aria-current="page">D5</span>    </nav>
+<header class="day-hero d5" data-plan-day="45">
+  <div class="shift-code large">D5</div>
+  <div>
+    <p class="eyebrow">Ottobre · C2 · V3 · giorno 45</p>
+    <p class="civil-date-line" data-day-civil-date data-global-day="45" hidden></p>
+    <h1>secondo riposo</h1>
+    <p>Giornata di riposo</p>
+  </div>
+</header>
+<div class="nutrition-grid day-summary">
+  <div><strong>1587</strong><span>kcal</span></div>
+  <div><strong>98.4</strong><span>g proteine</span></div>
+  <div><strong>212.8</strong><span>g carboidrati</span></div>
+  <div><strong>40.9</strong><span>g grassi</span></div>
+  <div><strong>18.6</strong><span>g fibra</span></div>
+</div>
+<section class="timeline" aria-label="Pasti del giorno">
+  <article class="meal-card" id="pasto-0800">
+    <div class="meal-time"><time>08:00</time><span>Colazione</span></div>
+    <div class="meal-main">
+      <div class="meal-title-row">
+        <h2><a href="../../../../ricette/toast-bianco-con-ricotta-e-confettura/index.html">Toast bianco con ricotta e confettura</a></h2>
+      </div>
+<p class="ingredients">pane bianco comune 60 g; ricotta vaccina 60 g; confettura di frutta 12 g; mela 130 g (sbucciata/o se meglio tollerata)</p>      <div class="meal-tags">
+        <span>Italiana</span>
+        <span>5 min</span>
+      </div>
+      <details class="prep-details">
+        <summary>Preparazione e conservazione</summary>
+        <dl>
+          <div><dt>Preparabile prima</dt><dd>Sì, la sera prima</dd></div>
+          <div><dt>Buono freddo</dt><dd>Sì</dd></div>
+          <div><dt>Riscaldamento</dt><dd>No</dd></div>
+          <div><dt>Durata in frigo</dt><dd>1 giorno</dd></div>
+        </dl>
+      </details>
+    </div>
+    <div class="meal-nutrition" aria-label="Valori nutrizionali">
+      <strong>344 kcal</strong>
+      <span>P 10.8</span><span>C 57.1</span><span>G 8.7</span><span>F 4.9</span>
+    </div>
+  </article>
+  <article class="meal-card" id="pasto-1100">
+    <div class="meal-time"><time>11:00</time><span>Spuntino</span></div>
+    <div class="meal-main">
+      <div class="meal-title-row">
+        <h2><a href="../../../../ricette/uovo-sodo-e-crackers/index.html">Uovo sodo e crackers</a></h2>
+      </div>
+<p class="ingredients">1 uovo sodo; crackers classici 18 g</p>      <div class="meal-tags">
+        <span>Italiana</span>
+        <span>2 min</span>
+      </div>
+      <details class="prep-details">
+        <summary>Preparazione e conservazione</summary>
+        <dl>
+          <div><dt>Preparabile prima</dt><dd>Sì, porzionabile in anticipo</dd></div>
+          <div><dt>Buono freddo</dt><dd>Sì</dd></div>
+          <div><dt>Riscaldamento</dt><dd>No</dd></div>
+          <div><dt>Durata in frigo</dt><dd>1 giorno se deperibile</dd></div>
+        </dl>
+      </details>
+    </div>
+    <div class="meal-nutrition" aria-label="Valori nutrizionali">
+      <strong>149 kcal</strong>
+      <span>P 7.9</span><span>C 13.3</span><span>G 6.9</span><span>F 0.5</span>
+    </div>
+  </article>
+  <article class="meal-card" id="pasto-1330">
+    <div class="meal-time"><time>13:30</time><span>Pranzo</span></div>
+    <div class="meal-main">
+      <div class="meal-title-row">
+        <h2><a href="../../../../ricette/polpette-svedesi-leggere-con-zucca/index.html">Polpette svedesi leggere con zucca</a></h2>
+      </div>
+<p class="ingredients">petto di tacchino 130 g; pangrattato 15 g; uovo 30 g; patate 220 g; zucca 150 g (ben cotti); yogurt bianco naturale 40 g; olio extravergine di oliva 4 g</p>      <div class="meal-tags">
+        <span>Nordica delicata</span>
+        <span>40 min</span>
+<span>Nessuna; solo erbe facoltative</span>      </div>
+      <details class="prep-details">
+        <summary>Preparazione e conservazione</summary>
+        <dl>
+          <div><dt>Preparabile prima</dt><dd>Sì, 1-2 giorni prima</dd></div>
+          <div><dt>Buono freddo</dt><dd>Non ideale freddo</dd></div>
+          <div><dt>Riscaldamento</dt><dd>Sì, finché ben caldo</dd></div>
+          <div><dt>Durata in frigo</dt><dd>2 giorni</dd></div>
+        </dl>
+      </details>
+    </div>
+    <div class="meal-nutrition" aria-label="Valori nutrizionali">
+      <strong>508 kcal</strong>
+      <span>P 44.4</span><span>C 60.2</span><span>G 10.6</span><span>F 6.3</span>
+    </div>
+  </article>
+  <article class="meal-card" id="pasto-1730">
+    <div class="meal-time"><time>17:30</time><span>Spuntino</span></div>
+    <div class="meal-main">
+      <div class="meal-title-row">
+        <h2><a href="../../../../ricette/frutta-e-nocciole/index.html">Frutta e nocciole</a></h2>
+      </div>
+<p class="ingredients">cachi 120 g; nocciole 8 g</p>      <div class="meal-tags">
+        <span>Italiana</span>
+        <span>2 min</span>
+      </div>
+      <details class="prep-details">
+        <summary>Preparazione e conservazione</summary>
+        <dl>
+          <div><dt>Preparabile prima</dt><dd>Sì, porzionabile in anticipo</dd></div>
+          <div><dt>Buono freddo</dt><dd>Sì</dd></div>
+          <div><dt>Riscaldamento</dt><dd>No</dd></div>
+          <div><dt>Durata in frigo</dt><dd>1 giorno se deperibile</dd></div>
+        </dl>
+      </details>
+    </div>
+    <div class="meal-nutrition" aria-label="Valori nutrizionali">
+      <strong>134 kcal</strong>
+      <span>P 1.9</span><span>C 23.7</span><span>G 5.1</span><span>F 5.1</span>
+    </div>
+  </article>
+  <article class="meal-card" id="pasto-2030">
+    <div class="meal-time"><time>20:30</time><span>Cena</span></div>
+    <div class="meal-main">
+      <div class="meal-title-row">
+        <h2><a href="../../../../ricette/risotto-delicato-con-pollo-e-zucca/index.html">Risotto delicato con pollo e zucca</a></h2>
+      </div>
+<p class="ingredients">riso basmati secco 60 g; petto di pollo 105 g; zucca 180 g (ben cotti); olio extravergine di oliva 5 g; Grana Padano o Parmigiano 8 g</p>      <div class="meal-tags">
+        <span>Italiana</span>
+        <span>35 min</span>
+      </div>
+      <details class="prep-details">
+        <summary>Preparazione e conservazione</summary>
+        <dl>
+          <div><dt>Preparabile prima</dt><dd>Sì, 1-2 giorni prima</dd></div>
+          <div><dt>Buono freddo</dt><dd>Non ideale freddo</dd></div>
+          <div><dt>Riscaldamento</dt><dd>Sì, finché ben caldo</dd></div>
+          <div><dt>Durata in frigo</dt><dd>2 giorni</dd></div>
+        </dl>
+      </details>
+    </div>
+    <div class="meal-nutrition" aria-label="Valori nutrizionali">
+      <strong>452 kcal</strong>
+      <span>P 33.4</span><span>C 58.5</span><span>G 9.6</span><span>F 1.8</span>
+    </div>
+  </article>
+</section>
+<div class="action-strip">
+  <a class="button secondary" href="../../../../spesa/ciclo-2/variante-3/index.html">Spesa della variante</a>
+  <a class="button secondary" href="../../../../calendario/index.html" data-calendar-day-link data-global-day="45">Apri nel calendario</a>
+  <button class="button ghost" type="button" data-copy-url>Copia collegamento</button>
+</div>
+<nav class="pager" aria-label="Giorni adiacenti">
+<a href="../d4/index.html" data-preserve-start>← D4 · giorno 44</a><a href="../../variante-4/d1/index.html" data-preserve-start>D1 · giorno 46 →</a></nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <img src="../../../../assets/brand/brand-mark.svg" width="42" height="42" alt="">
+      <div><strong>Piano alimentare per turni</strong><span>Documento educativo, non prescrizione medica.</span></div>
+    </div>
+    <div class="footer-note">La tolleranza intestinale e l'andamento clinico vanno rivalutati con un professionista.</div>
+    <div class="footer-links">
+      <a href="../../../../ricette/index.html">Ricette</a>
+      <a href="../../../../ingredienti/index.html">Ingredienti</a>
+      <a href="../../../../strumenti/index.html">Utilità</a>
+      <a href="../../../../download/index.html">PDF e dati</a>
+      <a href="../../../../progetto/index.html">Progetto</a>
+    </div>
+  </footer>
+
+  <nav class="mobile-nav" aria-label="Navigazione mobile">
+    <a class="" href="../../../../oggi/index.html"><svg aria-hidden="true"><use href="../../../../assets/icons.svg#icon-today"></use></svg><span>Oggi</span></a>
+    <a class="" href="../../../../calendario/index.html"><svg aria-hidden="true"><use href="../../../../assets/icons.svg#icon-calendar"></use></svg><span>Calendario</span></a>
+    <a class="" href="../../../../ingredienti/index.html"><svg aria-hidden="true"><use href="../../../../assets/icons.svg#icon-leaf"></use></svg><span>Alimenti</span></a>
+    <a class="" href="../../../../spesa/index.html"><svg aria-hidden="true"><use href="../../../../assets/icons.svg#icon-shopping"></use></svg><span>Spesa</span></a>
+    <a class="is-active" href="../../../../piano/index.html"><svg aria-hidden="true"><use href="../../../../assets/icons.svg#icon-plan"></use></svg><span>Piano</span></a>
+  </nav>
+</body>
+</html>

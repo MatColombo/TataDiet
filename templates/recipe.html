@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="page-header recipe-header">
+  <p class="eyebrow">Ricetta · {{ recipe.occurrence_count }} occorrenze nel piano</p>
+  <h1>{{ recipe.title }}</h1>
+  <div class="meal-tags large">
+    {% for meal_type in recipe.meal_types %}<span>{{ meal_type }}</span>{% endfor %}
+    {% for cuisine in recipe.cuisines %}<span>{{ cuisine }}</span>{% endfor %}
+  </div>
+  <div class="header-actions recipe-personalize-actions">
+    <a class="button primary" href="../studio/index.html?recipe=base:recipe:{{ recipe.slug }}">Duplica nello Studio ricette</a>
+    <a class="button ghost" href="../studio/index.html">Studio ricette</a>
+  </div>
+</header>
+<div class="nutrition-grid cycle-summary">
+  <div><strong>{{ recipe.avg_kcal|round|int }}</strong><span>kcal medie</span></div>
+  <div><strong>{{ recipe.avg_protein|round(1) }}</strong><span>g proteine</span></div>
+  <div><strong>{{ recipe.avg_carbs|round(1) }}</strong><span>g carboidrati</span></div>
+  <div><strong>{{ recipe.avg_fat|round(1) }}</strong><span>g grassi</span></div>
+  <div><strong>{{ recipe.avg_fiber|round(1) }}</strong><span>g fibra</span></div>
+</div>
+<section class="section-block">
+  <div class="section-heading"><h2>Versioni presenti nel piano</h2></div>
+  <div class="recipe-versions">
+  {% for version in recipe.versions %}
+    <article class="recipe-version">
+      <header><h3>Versione {{ loop.index }}</h3><span>{{ version.kcal|round|int }} kcal · {{ version.prep_minutes }} min</span></header>
+      {% if version.ingredients %}<p>{{ version.ingredients }}</p>{% else %}<p class="muted">Pasto flessibile senza ingredienti prestabiliti.</p>{% endif %}
+      <dl class="prep-grid">
+        <div><dt>Preparabile prima</dt><dd>{{ version.prepare_ahead }}</dd></div>
+        <div><dt>Freddo</dt><dd>{{ version.cold }}</dd></div>
+        <div><dt>Riscaldamento</dt><dd>{{ version.reheat }}</dd></div>
+        <div><dt>Frigo</dt><dd>{{ version.fridge }}</dd></div>
+      </dl>
+    </article>
+  {% endfor %}
+  </div>
+</section>
+<section class="section-block">
+  <div class="section-heading"><h2>Dove compare</h2></div>
+  <div class="occurrence-list">
+  {% for occurrence in recipe.occurrences %}
+    <a href="../../piano/ciclo-{{ occurrence.cycle }}/variante-{{ occurrence.variant }}/{{ occurrence.d_code|lower }}/index.html#{{ occurrence.anchor }}">
+      <span class="shift-pill {{ occurrence.d_code|lower }}">{{ occurrence.d_code }}</span>
+      <span><strong>{{ occurrence.month }} · V{{ occurrence.variant }} · giorno {{ occurrence.global_day }}</strong><small>{{ occurrence.time }} · {{ occurrence.meal_type }}</small></span>
+      <span>Apri →</span>
+    </a>
+  {% endfor %}
+  </div>
+</section>
+{% endblock %}

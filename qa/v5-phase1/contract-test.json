@@ -1,0 +1,28 @@
+{
+  "status": "pass",
+  "generated_at": "2026-08-26T17:12:30.023790+00:00",
+  "checks": {
+    "ingredients": 130,
+    "recipe_families": 306,
+    "recipe_versions": 547,
+    "days": 180,
+    "meals": 864,
+    "structured_occurrences": 846,
+    "manual_occurrences": 18,
+    "ingredient_line_occurrences": 3189,
+    "formula_count": 5308,
+    "max_nutrient_absolute_difference": {
+      "kcal": 0.05,
+      "protein": 0.05,
+      "carbs": 0.05,
+      "fat": 0.05,
+      "fiber": 0.05
+    },
+    "static_dependency_references": 23,
+    "schema_positive_examples": 8,
+    "schema_negative_examples": 7,
+    "base_schema_records_validated": 1163,
+    "stable_seed_timestamp": "2026-08-24T17:01:56+00:00"
+  },
+  "failures": []
+}

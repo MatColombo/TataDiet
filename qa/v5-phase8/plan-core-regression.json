@@ -1,0 +1,21 @@
+{
+  "status": "ok",
+  "checkpoint": "5.0.0-alpha.5-phase5",
+  "checks": {
+    "initial_180": true,
+    "d2_tail": true,
+    "adherence_no_shift": true,
+    "replace_preserves_meals": true,
+    "off_preserves_meals": true,
+    "custom_shift": true,
+    "leave_free": true,
+    "restore_day": true,
+    "postpone_extends": true,
+    "patch_undo": true,
+    "insert_day": true,
+    "remove_day": true,
+    "restore_from_date": true,
+    "restore_after_prior_removal": true,
+    "operation_record": true
+  }
+}

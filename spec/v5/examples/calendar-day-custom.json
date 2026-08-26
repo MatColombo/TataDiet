@@ -1,0 +1,41 @@
+{
+  "recordType": "calendarDay",
+  "id": "usr:calendar-day:2026-09-07-000",
+  "planInstanceId": "usr:plan:piano-principale",
+  "date": "2026-09-07",
+  "sequenceIndex": 0,
+  "dayType": "CUSTOM",
+  "source": "replaced",
+  "adherenceStatus": "planned",
+  "baseDayRef": "base:calendar-day:d001",
+  "shift": {
+    "type": "CUSTOM",
+    "name": "Turno personalizzato 10:00-22:00",
+    "startTime": "10:00",
+    "endTime": "22:00",
+    "endDayOffset": 0,
+    "capabilities": {
+      "reheat": true,
+      "refrigeration": true,
+      "complexSnack": false
+    }
+  },
+  "meals": [
+    {
+      "id": "usr:meal:2026-09-07-m01",
+      "time": "13:30",
+      "dayOffset": 0,
+      "mealType": "Pranzo",
+      "recipeId": "usr:recipe:bowl-riso-pollo-skyr",
+      "recipeVersionId": "usr:recipe-version:bowl-riso-pollo-skyr@1",
+      "portionMultiplier": 1,
+      "status": "planned",
+      "source": "personal",
+      "baseMealRef": null,
+      "notes": null
+    }
+  ],
+  "notes": "Giornata sostituita manualmente senza spostare la sequenza.",
+  "createdAt": "2026-08-26T14:42:00+02:00",
+  "updatedAt": "2026-08-26T14:42:00+02:00"
+}

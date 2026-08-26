@@ -1,0 +1,28 @@
+{
+  "status": "ok",
+  "checkpoint": "5.0.0-alpha.4-phase4",
+  "database": "tatadiet-v5",
+  "schema_version": 1,
+  "ingredient_content_migration_version": 3,
+  "recipe_content_migration_version": 4,
+  "html_files": 586,
+  "links_checked": 32279,
+  "offline_assets": 627,
+  "base_recipes": 306,
+  "base_recipe_versions": 547,
+  "base_ingredients": 130,
+  "recipe_checks": {
+    "conversion_normalization": true,
+    "nutrition_recalculation": true,
+    "per_serving": true,
+    "immutable_ingredient_revision_reference": true,
+    "new_recipe": true,
+    "new_recipe_version": true,
+    "supersedes_version": true,
+    "missing_conversion_blocked": true,
+    "high_fiber_warning": true,
+    "duplicate_title_warning": true,
+    "input_digest_sha256_shape": true
+  },
+  "browser_qa_note": "Script Playwright disponibile; se localhost è bloccato dalla policy Chromium, eseguirlo sul deploy GitHub Pages."
+}

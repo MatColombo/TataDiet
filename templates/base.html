@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="{{ description|default('Piano alimentare di sei mesi, navigabile per calendario, cicli, varianti, giorni, ricette, preparazioni e liste della spesa.') }}">
+  <meta name="theme-color" content="#7E4D70">
+  <meta name="color-scheme" content="light">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Piano turni">
+  <title>{{ title }} · Piano alimentare</title>
+  <link rel="manifest" href="{{ relroot }}manifest.webmanifest">
+  <link rel="icon" href="{{ relroot }}assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="{{ relroot }}assets/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="{{ relroot }}assets/css/styles.css">
+  <script defer src="{{ relroot }}assets/js/calendar-core.js"></script>
+  <script defer src="{{ relroot }}assets/js/site-state.js"></script>
+  <script defer src="{{ relroot }}assets/js/operations-core.js"></script>
+  <script defer src="{{ relroot }}assets/js/v5-db.js"></script>
+  <script defer src="{{ relroot }}assets/js/v5-backup.js"></script>
+  <script defer src="{{ relroot }}assets/js/v5-ingredients-core.js"></script>
+  <script defer src="{{ relroot }}assets/js/v5-ingredient-store.js"></script>
+  <script defer src="{{ relroot }}assets/js/v5-ingredients.js"></script>
+  <script defer src="{{ relroot }}assets/js/v5-recipes-core.js"></script>
+  <script defer src="{{ relroot }}assets/js/v5-recipe-store.js"></script>
+  <script defer src="{{ relroot }}assets/js/v5-recipes.js"></script>
+  <script defer src="{{ relroot }}assets/js/v5-plan-core.js"></script>
+  <script defer src="{{ relroot }}assets/js/v5-plan-store.js"></script>
+  <script defer src="{{ relroot }}assets/js/v5-plan.js"></script>
+  <script defer src="{{ relroot }}assets/js/v5-plan-calendar.js"></script>
+  <script defer src="{{ relroot }}assets/js/v5-composer-core.js"></script>
+  <script defer src="{{ relroot }}assets/js/v5-composer-store.js"></script>
+  <script defer src="{{ relroot }}assets/js/v5-composer.js"></script>
+  <script defer src="{{ relroot }}assets/js/v5-effective-core.js"></script>
+  <script defer src="{{ relroot }}assets/js/v5-effective-store.js"></script>
+  <script defer src="{{ relroot }}assets/js/v5-effective-pages.js"></script>
+  <script defer src="{{ relroot }}assets/js/app.js"></script>
+  <script defer src="{{ relroot }}assets/js/calendar.js"></script>
+  <script defer src="{{ relroot }}assets/js/prep.js"></script>
+  <script defer src="{{ relroot }}assets/js/shopping-range.js"></script>
+  <script defer src="{{ relroot }}assets/js/search.js"></script>
+  <script defer src="{{ relroot }}assets/js/tools.js"></script>
+  <script defer src="{{ relroot }}assets/js/v5-tools.js"></script>
+  <script defer src="{{ relroot }}assets/js/pwa.js"></script>
+</head>
+<body data-page="{{ page_id|default('') }}" data-root="{{ relroot }}" data-version="{{ site_version }}">
+  <a class="skip-link" href="#contenuto">Vai al contenuto</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="{{ relroot }}index.html" aria-label="Piano alimentare, pagina iniziale">
+        <img class="brand-mark" src="{{ relroot }}assets/brand/brand-mark.svg" width="48" height="48" alt="">
+        <span class="brand-copy">
+          <strong>Piano alimentare</strong>
+          <small>turni, pasti e spesa · V5</small>
+        </span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Navigazione principale">
+        <a class="{{ 'is-active' if nav == 'today' else '' }}" href="{{ relroot }}oggi/index.html"><svg class="nav-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-today"></use></svg><span>Oggi</span></a>
+        <a class="{{ 'is-active' if nav == 'calendar' else '' }}" href="{{ relroot }}calendario/index.html"><svg class="nav-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-calendar"></use></svg><span>Calendario</span></a>
+        <a class="{{ 'is-active' if nav == 'plan' else '' }}" href="{{ relroot }}piano/index.html"><svg class="nav-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-plan"></use></svg><span>Piano</span></a>
+        <a class="{{ 'is-active' if nav == 'recipes' else '' }}" href="{{ relroot }}ricette/index.html"><svg class="nav-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-recipes"></use></svg><span>Ricette</span></a>
+        <a class="{{ 'is-active' if nav == 'ingredients' else '' }}" href="{{ relroot }}ingredienti/index.html"><svg class="nav-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-leaf"></use></svg><span>Ingredienti</span></a>
+        <a class="{{ 'is-active' if nav == 'shopping' else '' }}" href="{{ relroot }}spesa/index.html"><svg class="nav-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-shopping"></use></svg><span>Spesa</span></a>
+        <a class="{{ 'is-active' if nav == 'tools' else '' }}" href="{{ relroot }}strumenti/index.html"><svg class="nav-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-tools"></use></svg><span>Utilità</span></a>
+      </nav>
+
+      <div class="header-utilities">
+        <span class="network-chip" data-network-status aria-live="polite"><svg class="ui-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-wifi"></use></svg><span>Online</span></span>
+        <button class="header-icon-button install-header-button" type="button" data-pwa-install hidden aria-label="Installa il sito come app"><svg class="ui-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-install"></use></svg></button>
+        <a class="header-icon-button" href="{{ relroot }}cerca/index.html" aria-label="Cerca in tutto il piano"><svg class="ui-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-search"></use></svg></a>
+      </div>
+    </div>
+  </header>
+
+  <aside class="offline-banner" data-offline-banner hidden role="status">
+    <svg class="ui-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-wifi-off"></use></svg>
+    <span>Sei offline. Il piano già memorizzato resta disponibile.</span>
+    <a href="{{ relroot }}strumenti/index.html#offline">Gestisci offline</a>
+  </aside>
+
+  <aside class="update-banner" data-update-banner hidden role="status">
+    <div><svg class="ui-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-update"></use></svg><span><strong>Nuova versione pronta.</strong> Aggiorna senza perdere le preferenze locali.</span></div>
+    <div><button class="button primary compact" type="button" data-update-now>Aggiorna</button><button class="button ghost compact" type="button" data-update-dismiss>Più tardi</button></div>
+  </aside>
+
+  <main id="contenuto" class="page-shell">
+    {% if breadcrumbs %}
+    <nav class="breadcrumbs" aria-label="Percorso">
+      <a class="breadcrumb-home" href="{{ relroot }}index.html" aria-label="Home"><svg class="ui-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-home"></use></svg></a>
+      {% for crumb in breadcrumbs %}
+        {% if not (loop.first and crumb.label == 'Panoramica') %}
+          <span class="crumb-sep" aria-hidden="true">›</span>
+          {% if crumb.href %}<a href="{{ crumb.href }}">{{ crumb.label }}</a>{% else %}<span aria-current="page">{{ crumb.label }}</span>{% endif %}
+        {% endif %}
+      {% endfor %}
+    </nav>
+    {% endif %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <img src="{{ relroot }}assets/brand/brand-mark.svg" width="42" height="42" alt="">
+      <div><strong>Piano alimentare per turni</strong><span>Documento educativo, non prescrizione medica.</span></div>
+    </div>
+    <div class="footer-note">La tolleranza intestinale e l'andamento clinico vanno rivalutati con un professionista.</div>
+    <div class="footer-links">
+      <a href="{{ relroot }}ricette/index.html">Ricette</a>
+      <a href="{{ relroot }}ingredienti/index.html">Ingredienti</a>
+      <a href="{{ relroot }}strumenti/index.html">Utilità</a>
+      <a href="{{ relroot }}download/index.html">PDF e dati</a>
+      <a href="{{ relroot }}progetto/index.html">Progetto</a>
+    </div>
+  </footer>
+
+  <nav class="mobile-nav" aria-label="Navigazione mobile">
+    <a class="{{ 'is-active' if nav == 'today' else '' }}" href="{{ relroot }}oggi/index.html"><svg aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-today"></use></svg><span>Oggi</span></a>
+    <a class="{{ 'is-active' if nav == 'calendar' else '' }}" href="{{ relroot }}calendario/index.html"><svg aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-calendar"></use></svg><span>Calendario</span></a>
+    <a class="{{ 'is-active' if nav == 'ingredients' else '' }}" href="{{ relroot }}ingredienti/index.html"><svg aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-leaf"></use></svg><span>Alimenti</span></a>
+    <a class="{{ 'is-active' if nav == 'shopping' else '' }}" href="{{ relroot }}spesa/index.html"><svg aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-shopping"></use></svg><span>Spesa</span></a>
+    <a class="{{ 'is-active' if nav == 'plan' else '' }}" href="{{ relroot }}piano/index.html"><svg aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-plan"></use></svg><span>Piano</span></a>
+  </nav>
+</body>
+</html>

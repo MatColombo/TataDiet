@@ -1,0 +1,83 @@
+{
+  "status": "ok",
+  "version": "5.0.0-alpha.7-phase7",
+  "checks": [
+    {
+      "name": "planner_initialized",
+      "ok": true
+    },
+    {
+      "name": "composer_change_persisted",
+      "ok": true,
+      "detail": [
+        1618.6,
+        1826.5
+      ]
+    },
+    {
+      "name": "today_effective_banner",
+      "ok": true
+    },
+    {
+      "name": "today_effective_nutrition",
+      "ok": true,
+      "detail": [
+        1827.0,
+        1826.5
+      ]
+    },
+    {
+      "name": "prep_effective_source",
+      "ok": true,
+      "detail": "01\n\n0–24 ORE\n\nPrime 24 ore\n\nDa 08:00 di 1 set 2026 fino alla stessa ora del giorno successivo.\n\n4 attività\nDA CONSUMARE\nMartedì 1 settembre 2026\n01/09\n10:30\ntra 3 ore\nPIANO PERSONA"
+    },
+    {
+      "name": "shopping_effective_summary",
+      "ok": true,
+      "detail": "1\ngiorni civili\n16\nprodotti distinti\n5\npasti effettivi\n0\npasti senza ingredienti"
+    },
+    {
+      "name": "planner_free_saved",
+      "ok": true
+    },
+    {
+      "name": "today_free_zero_meals",
+      "ok": true
+    },
+    {
+      "name": "shopping_free_zero_meals",
+      "ok": true
+    },
+    {
+      "name": "search_effective_day",
+      "ok": true,
+      "detail": "Giorni\n1\nGIORNATA PERSONALE\n2026-09-01 · FREE\n\nGiornata libera · 0 pasti\n\nModificata\nApri →"
+    },
+    {
+      "name": "ics_effective_free",
+      "ok": true
+    },
+    {
+      "name": "ics_crlf",
+      "ok": true
+    },
+    {
+      "name": "ics_line_limit",
+      "ok": true
+    },
+    {
+      "name": "home_effective_status",
+      "ok": true,
+      "detail": "PIANO PERSONALE EFFETTIVO · 1 GIORNATE MODIFICATE\n\nMercoledì 26 agosto 2026\nIl piano personale deve ancora iniziare\nPrimo giorno: Martedì 1 settembre 2026\nApri Oggi\nPlanner\nSpesa effettiva"
+    },
+    {
+      "name": "mobile_today_no_overflow",
+      "ok": true,
+      "detail": [
+        390,
+        390
+      ]
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="page-header recipe-studio-header">
+  <p class="eyebrow">V5 · studio ricette</p>
+  <h1>Studio ricette</h1>
+  <p>Crea ricette personali, duplica quelle TataDiet, usa ingredienti base o personali e conserva ogni modifica come nuova versione.</p>
+  <div class="header-actions">
+    <button class="button primary" type="button" data-new-recipe>Nuova ricetta</button>
+    <a class="button secondary" href="../../ingredienti/index.html">Gestisci ingredienti</a>
+    <a class="button ghost" href="../index.html">Archivio statico</a>
+  </div>
+</header>
+
+<section class="studio-kpi-grid" aria-label="Riepilogo ricette">
+  <article><span>Catalogo</span><strong data-recipe-count-base>—</strong><small>ricette TataDiet</small></article>
+  <article><span>Personali</span><strong data-recipe-count-personal>—</strong><small>attive</small></article>
+  <article><span>Versioni</span><strong data-recipe-count-versions>—</strong><small>personali salvate</small></article>
+  <article><span>Archiviate</span><strong data-recipe-count-archived>—</strong><small>personali</small></article>
+</section>
+
+<div class="tool-status" data-recipes-status hidden aria-live="polite"></div>
+<div class="loading-card" data-recipes-loading>Inizializzazione del catalogo ricette…</div>
+
+<section class="filter-panel expanded" data-recipes-app hidden>
+  <label class="search-field"><span>Cerca</span><input type="search" placeholder="Es. mozzarella, couscous, tacchino…" data-recipe-studio-search></label>
+  <label><span>Origine</span><select data-recipe-studio-origin><option value="all">Tutte</option><option value="base">TataDiet</option><option value="personal">Personali</option></select></label>
+  <label><span>Stato</span><select data-recipe-studio-status><option value="active">Attive</option><option value="all">Tutte</option><option value="archived">Archiviate</option></select></label>
+  <p class="result-count"><strong data-recipe-studio-results>0</strong> risultati</p>
+</section>
+
+<section class="recipe-studio-grid" data-recipes-app data-recipe-studio-grid hidden></section>
+<p class="empty-state" data-recipes-app data-recipe-studio-empty hidden>Nessuna ricetta corrisponde ai filtri.</p>
+
+<dialog class="editor-dialog recipe-editor-dialog" data-recipe-dialog>
+  <form method="dialog" class="dialog-shell recipe-editor-shell" data-recipe-form>
+    <header class="dialog-header">
+      <div><p class="eyebrow" data-recipe-dialog-eyebrow>Ricetta personale</p><h2 data-recipe-dialog-title>Nuova ricetta</h2><p data-recipe-dialog-subtitle>Componi la ricetta usando ingredienti con valori nutrizionali versionati.</p></div>
+      <button class="dialog-close" type="button" data-close-recipe-dialog aria-label="Chiudi">×</button>
+    </header>
+
+    <div class="recipe-editor-layout">
+      <div class="recipe-editor-main">
+        <section class="editor-section">
+          <h3>Dati generali</h3>
+          <div class="form-grid two-col">
+            <label class="span-2"><span>Titolo *</span><input name="title" maxlength="200" required></label>
+            <label><span>Porzioni *</span><input name="servings" type="number" min="0.1" max="100" step="0.1" value="1" required></label>
+            <label><span>Tempo preparazione</span><div class="input-suffix"><input name="prepMinutes" type="number" min="0" max="1440" step="1" value="10"><span>min</span></div></label>
+            <label><span>Tipo di pasto *</span><input name="mealTypes" placeholder="Pranzo, Cena" required></label>
+            <label><span>Cucina *</span><input name="cuisine" value="Italiana" required></label>
+            <label class="span-2"><span>Tag</span><input name="tags" placeholder="freddo, turno, autunno"></label>
+          </div>
+        </section>
+
+        <section class="editor-section ingredient-builder-section">
+          <div class="section-heading"><div><h3>Ingredienti</h3><p>La quantità viene normalizzata in g/ml usando la revisione selezionata.</p></div><button class="button secondary compact" type="button" data-add-recipe-line>+ Ingrediente</button></div>
+          <div class="recipe-line-list" data-recipe-line-list></div>
+          <p class="muted" data-recipe-line-empty>Aggiungi almeno un ingrediente.</p>
+        </section>
+
+        <section class="editor-section">
+          <h3>Preparazione e praticità</h3>
+          <div class="form-grid two-col">
+            <label><span>Intensità aromatica</span><select name="spiceLevel"><option value="none">Nessuna</option><option value="very-low">Molto bassa</option><option value="low">Bassa</option><option value="medium">Media</option><option value="high">Alta</option></select></label>
+            <label><span>Conservazione in frigo</span><div class="input-suffix"><input name="fridgeHours" type="number" min="0" max="168" step="1" placeholder="48"><span>ore</span></div></label>
+            <label class="checkbox-filter"><input name="prepareAhead" type="checkbox"><span>Preparabile in anticipo</span></label>
+            <label class="checkbox-filter"><input name="coldSuitable" type="checkbox"><span>Buona fredda</span></label>
+            <label class="checkbox-filter"><input name="reheatable" type="checkbox"><span>Riscaldabile</span></label>
+            <label class="span-2"><span>Note meal prep</span><input name="mealPrepNotes" maxlength="1500" placeholder="Es. conservare separato il condimento"></label>
+            <label class="span-2"><span>Procedimento</span><textarea name="instructions" rows="6" placeholder="Un passaggio per riga"></textarea></label>
+            <label class="span-2"><span>Note pratiche</span><textarea name="notes" rows="3" maxlength="3000"></textarea></label>
+          </div>
+        </section>
+      </div>
+
+      <aside class="recipe-editor-sidebar">
+        <div class="nutrition-live-card">
+          <p class="eyebrow">Per porzione</p>
+          <div class="nutrition-live-kcal"><strong data-recipe-preview-kcal>0</strong><span>kcal</span></div>
+          <div class="nutrition-live-grid">
+            <span><strong data-recipe-preview-protein>0</strong><small>Proteine g</small></span>
+            <span><strong data-recipe-preview-carbs>0</strong><small>Carbo g</small></span>
+            <span><strong data-recipe-preview-fat>0</strong><small>Grassi g</small></span>
+            <span><strong data-recipe-preview-fiber>0</strong><small>Fibra g</small></span>
+          </div>
+          <p class="nutrition-total-note">Totale ricetta: <strong data-recipe-total-kcal>0 kcal</strong></p>
+        </div>
+        <div class="validation-preview is-valid" data-recipe-validation><strong>Componi la ricetta</strong><p>I valori saranno ricalcolati mentre modifichi gli ingredienti.</p></div>
+        <div class="editor-version-note"><strong data-recipe-save-explanation>Il salvataggio creerà la versione 1.</strong><p>Le versioni precedenti non vengono sovrascritte.</p></div>
+      </aside>
+    </div>
+
+    <footer class="dialog-actions">
+      <button class="button ghost" type="button" data-close-recipe-dialog>Annulla</button>
+      <button class="button primary" type="submit" data-save-recipe disabled>Salva ricetta</button>
+    </footer>
+  </form>
+</dialog>
+
+<template id="recipe-line-template">
+  <article class="recipe-editor-line">
+    <div class="recipe-line-main">
+      <label class="recipe-line-ingredient"><span>Ingrediente</span><select data-line="ingredientId"><option value="">Seleziona…</option></select></label>
+      <label><span>Quantità</span><input data-line="amount" type="number" min="0.01" step="0.01" value="100"></label>
+      <label><span>Unità</span><select data-line="unitCode"></select></label>
+      <button class="recipe-line-remove" type="button" data-remove-recipe-line aria-label="Rimuovi ingrediente">×</button>
+    </div>
+    <div class="recipe-line-detail">
+      <span data-line-normalized>—</span>
+      <span data-line-kcal>— kcal</span>
+      <label class="recipe-line-optional"><input data-line="optional" type="checkbox"> facoltativo</label>
+      <input data-line="notes" aria-label="Nota ingrediente" placeholder="Nota, es. ben scolato">
+    </div>
+    <p class="recipe-line-error" data-line-error hidden></p>
+  </article>
+</template>
+
+<dialog class="editor-dialog history-dialog" data-recipe-history-dialog>
+  <form method="dialog" class="dialog-shell">
+    <header class="dialog-header"><div><p class="eyebrow">Storico immutabile</p><h2 data-recipe-history-title>Versioni</h2></div><button class="dialog-close" value="cancel" aria-label="Chiudi">×</button></header>
+    <div class="revision-timeline" data-recipe-version-timeline></div>
+    <footer class="dialog-actions"><button class="button primary" value="cancel">Chiudi</button></footer>
+  </form>
+</dialog>
+{% endblock %}

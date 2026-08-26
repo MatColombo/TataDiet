@@ -1,0 +1,138 @@
+{
+  "generated_at": "2026-08-26T15:39:01+00:00",
+  "runtime_and_build_references": {
+    "build-meta.json": [
+      {
+        "file": "static/service-worker.js",
+        "line": 63,
+        "context": "\"data/build-meta.json\","
+      }
+    ],
+    "calendar.json": [
+      {
+        "file": "static/service-worker.js",
+        "line": 57,
+        "context": "\"data/calendar.json\","
+      },
+      {
+        "file": "static/assets/js/tools.js",
+        "line": 74,
+        "context": "const calendar = await state.fetchJson(\"data/calendar.json\");"
+      },
+      {
+        "file": "static/assets/js/prep.js",
+        "line": 210,
+        "context": "const calendar = await state.fetchJson(\"data/calendar.json\");"
+      },
+      {
+        "file": "static/assets/js/calendar.js",
+        "line": 553,
+        "context": "const response = await fetch(new URL(`${root}data/calendar.json`, window.location.href));"
+      },
+      {
+        "file": "static/assets/js/shopping-range.js",
+        "line": 101,
+        "context": "state.fetchJson(\"data/calendar.json\"),"
+      },
+      {
+        "file": "scripts/validate_site.py",
+        "line": 158,
+        "context": "\"data/calendar.json\", \"data/shopping-range.json\", \"data/search-index.json\","
+      }
+    ],
+    "offline-assets.json": [
+      {
+        "file": "static/service-worker.js",
+        "line": 68,
+        "context": "\"data/offline-assets.json\""
+      },
+      {
+        "file": "static/service-worker.js",
+        "line": 162,
+        "context": "const response = await fetch(absolute(\"data/offline-assets.json\"), { cache: \"no-store\" });"
+      },
+      {
+        "file": "static/assets/js/pwa.js",
+        "line": 148,
+        "context": "fetch(new URL(`${root}data/offline-assets.json`, location.href))"
+      },
+      {
+        "file": "scripts/build_site.py",
+        "line": 137,
+        "context": "excluded = {\"service-worker.js\", \"data/offline-assets.json\"}"
+      },
+      {
+        "file": "scripts/validate_site.py",
+        "line": 159,
+        "context": "\"data/offline-assets.json\","
+      }
+    ],
+    "plan.json": [
+      {
+        "file": "static/service-worker.js",
+        "line": 58,
+        "context": "\"data/plan.json\","
+      },
+      {
+        "file": "templates/download.html",
+        "line": 11,
+        "context": "<article class=\"download-card\"><span class=\"file-type\">JSON</span><h2>Dati per il sito</h2><p>Piano, ricette e spesa in formato leggibile da applicazioni web.</p><a class=\"button secondary\" href=\"../data/plan.json\" download>Scarica JSON pia"
+      }
+    ],
+    "recipes.json": [
+      {
+        "file": "static/service-worker.js",
+        "line": 59,
+        "context": "\"data/recipes.json\","
+      },
+      {
+        "file": "scripts/qa_browser.py",
+        "line": 140,
+        "context": "first_recipe_slug = page.evaluate(\"fetch('../data/recipes.json').then(r=>r.json()).then(d=>d.recipes[0].slug)\")"
+      }
+    ],
+    "search-index.json": [
+      {
+        "file": "static/service-worker.js",
+        "line": 62,
+        "context": "\"data/search-index.json\","
+      },
+      {
+        "file": "static/assets/js/search.js",
+        "line": 29,
+        "context": "const data = await state.fetchJson(\"data/search-index.json\");"
+      },
+      {
+        "file": "scripts/validate_site.py",
+        "line": 158,
+        "context": "\"data/calendar.json\", \"data/shopping-range.json\", \"data/search-index.json\","
+      }
+    ],
+    "shopping-range.json": [
+      {
+        "file": "static/service-worker.js",
+        "line": 61,
+        "context": "\"data/shopping-range.json\","
+      },
+      {
+        "file": "static/assets/js/shopping-range.js",
+        "line": 102,
+        "context": "state.fetchJson(\"data/shopping-range.json\"),"
+      },
+      {
+        "file": "scripts/validate_site.py",
+        "line": 158,
+        "context": "\"data/calendar.json\", \"data/shopping-range.json\", \"data/search-index.json\","
+      }
+    ],
+    "shopping.json": [
+      {
+        "file": "static/service-worker.js",
+        "line": 60,
+        "context": "\"data/shopping.json\","
+      }
+    ]
+  },
+  "reference_count": 23,
+  "v5_requirement": "Ogni modulo operativo deve leggere il piano effettivo (base + dati IndexedDB) attraverso un unico repository, non accedere direttamente ai JSON statici quando esistono personalizzazioni."
+}

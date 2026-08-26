@@ -1,0 +1,43 @@
+{
+  "status": "ok",
+  "version": "5.0.0-alpha.5-phase5",
+  "checks": [
+    {
+      "name": "planner_loaded",
+      "ok": true
+    },
+    {
+      "name": "initial_180",
+      "ok": true
+    },
+    {
+      "name": "adherence_saved",
+      "ok": true
+    },
+    {
+      "name": "custom_shift",
+      "ok": true
+    },
+    {
+      "name": "postpone_181",
+      "ok": true
+    },
+    {
+      "name": "undo_180",
+      "ok": true
+    },
+    {
+      "name": "calendar_overlay",
+      "ok": true
+    },
+    {
+      "name": "effective_banner",
+      "ok": true
+    },
+    {
+      "name": "mobile_no_overflow",
+      "ok": true
+    }
+  ],
+  "errors": []
+}

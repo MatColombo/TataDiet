@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Piano alimentare di sei mesi, navigabile per calendario, cicli, varianti, giorni, ricette, preparazioni e liste della spesa.">
+  <meta name="theme-color" content="#7E4D70">
+  <meta name="color-scheme" content="light">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Piano turni">
+  <title>Ingredienti · Piano alimentare</title>
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script defer src="../assets/js/calendar-core.js"></script>
+  <script defer src="../assets/js/site-state.js"></script>
+  <script defer src="../assets/js/operations-core.js"></script>
+  <script defer src="../assets/js/v5-db.js"></script>
+  <script defer src="../assets/js/v5-backup.js"></script>
+  <script defer src="../assets/js/v5-ingredients-core.js"></script>
+  <script defer src="../assets/js/v5-ingredient-store.js"></script>
+  <script defer src="../assets/js/v5-ingredients.js"></script>
+  <script defer src="../assets/js/v5-recipes-core.js"></script>
+  <script defer src="../assets/js/v5-recipe-store.js"></script>
+  <script defer src="../assets/js/v5-recipes.js"></script>
+  <script defer src="../assets/js/v5-plan-core.js"></script>
+  <script defer src="../assets/js/v5-plan-store.js"></script>
+  <script defer src="../assets/js/v5-plan.js"></script>
+  <script defer src="../assets/js/v5-plan-calendar.js"></script>
+  <script defer src="../assets/js/v5-composer-core.js"></script>
+  <script defer src="../assets/js/v5-composer-store.js"></script>
+  <script defer src="../assets/js/v5-composer.js"></script>
+  <script defer src="../assets/js/v5-effective-core.js"></script>
+  <script defer src="../assets/js/v5-effective-store.js"></script>
+  <script defer src="../assets/js/v5-effective-pages.js"></script>
+  <script defer src="../assets/js/app.js"></script>
+  <script defer src="../assets/js/calendar.js"></script>
+  <script defer src="../assets/js/prep.js"></script>
+  <script defer src="../assets/js/shopping-range.js"></script>
+  <script defer src="../assets/js/search.js"></script>
+  <script defer src="../assets/js/tools.js"></script>
+  <script defer src="../assets/js/v5-tools.js"></script>
+  <script defer src="../assets/js/pwa.js"></script>
+</head>
+<body data-page="ingredients" data-root="../" data-version="5.0.0">
+  <a class="skip-link" href="#contenuto">Vai al contenuto</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../index.html" aria-label="Piano alimentare, pagina iniziale">
+        <img class="brand-mark" src="../assets/brand/brand-mark.svg" width="48" height="48" alt="">
+        <span class="brand-copy">
+          <strong>Piano alimentare</strong>
+          <small>turni, pasti e spesa · V5</small>
+        </span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Navigazione principale">
+        <a class="" href="../oggi/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-today"></use></svg><span>Oggi</span></a>
+        <a class="" href="../calendario/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-calendar"></use></svg><span>Calendario</span></a>
+        <a class="" href="../piano/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-plan"></use></svg><span>Piano</span></a>
+        <a class="" href="../ricette/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-recipes"></use></svg><span>Ricette</span></a>
+        <a class="is-active" href="../ingredienti/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-leaf"></use></svg><span>Ingredienti</span></a>
+        <a class="" href="../spesa/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-shopping"></use></svg><span>Spesa</span></a>
+        <a class="" href="../strumenti/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-tools"></use></svg><span>Utilità</span></a>
+      </nav>
+
+      <div class="header-utilities">
+        <span class="network-chip" data-network-status aria-live="polite"><svg class="ui-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-wifi"></use></svg><span>Online</span></span>
+        <button class="header-icon-button install-header-button" type="button" data-pwa-install hidden aria-label="Installa il sito come app"><svg class="ui-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-install"></use></svg></button>
+        <a class="header-icon-button" href="../cerca/index.html" aria-label="Cerca in tutto il piano"><svg class="ui-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-search"></use></svg></a>
+      </div>
+    </div>
+  </header>
+
+  <aside class="offline-banner" data-offline-banner hidden role="status">
+    <svg class="ui-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-wifi-off"></use></svg>
+    <span>Sei offline. Il piano già memorizzato resta disponibile.</span>
+    <a href="../strumenti/index.html#offline">Gestisci offline</a>
+  </aside>
+
+  <aside class="update-banner" data-update-banner hidden role="status">
+    <div><svg class="ui-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-update"></use></svg><span><strong>Nuova versione pronta.</strong> Aggiorna senza perdere le preferenze locali.</span></div>
+    <div><button class="button primary compact" type="button" data-update-now>Aggiorna</button><button class="button ghost compact" type="button" data-update-dismiss>Più tardi</button></div>
+  </aside>
+
+  <main id="contenuto" class="page-shell">
+    <nav class="breadcrumbs" aria-label="Percorso">
+      <a class="breadcrumb-home" href="../index.html" aria-label="Home"><svg class="ui-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-home"></use></svg></a>
+          <span class="crumb-sep" aria-hidden="true">›</span>
+<span aria-current="page">Ingredienti</span>    </nav>
+<header class="page-header page-header-with-icon ingredients-page-header">
+  <span class="page-header-icon"><svg class="ui-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-leaf"></use></svg></span>
+  <div>
+    <p class="eyebrow">V5 · studio ingredienti</p>
+    <h1>Ingredienti</h1>
+    <p>Consulta il catalogo TataDiet, duplica gli alimenti base e crea ingredienti personali con valori nutrizionali, fonte, stato e conversioni. Le modifiche personali generano sempre una nuova revisione.</p>
+  </div>
+</header>
+
+<div class="dynamic-loading" data-ingredients-loading><span class="loading-dot"></span>Inizializzazione del catalogo locale…</div>
+<div class="tool-status" data-ingredients-status hidden role="status"></div>
+
+<section class="ingredient-studio-summary" data-ingredients-app hidden>
+  <div class="ingredient-summary-copy">
+    <p class="eyebrow">Catalogo local-first</p>
+    <h2>Alimenti base intatti, copie personali modificabili</h2>
+    <p>I valori del catalogo originale non vengono mai sovrascritti. Per personalizzare una voce base, duplicala: la copia entra nei backup JSON e può avere revisioni successive.</p>
+  </div>
+  <dl class="ingredient-summary-facts">
+    <div><dt>Catalogo base</dt><dd data-ingredient-count-base>—</dd></div>
+    <div><dt>Personali attivi</dt><dd data-ingredient-count-personal>—</dd></div>
+    <div><dt>Revisioni personali</dt><dd data-ingredient-count-revisions>—</dd></div>
+    <div><dt>Archiviati</dt><dd data-ingredient-count-archived>—</dd></div>
+  </dl>
+  <button class="button primary ingredient-create-button" type="button" data-new-ingredient>
+    <svg class="ui-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-sparkles"></use></svg>
+    Nuovo ingrediente
+  </button>
+</section>
+
+<section class="ingredient-toolbar" data-ingredients-app hidden aria-label="Filtri ingredienti">
+  <label class="ingredient-search"><span>Cerca</span><input type="search" placeholder="es. mozzarella, riso, avena…" autocomplete="off" data-ingredient-search></label>
+  <label><span>Origine</span><select data-ingredient-origin><option value="all">Tutti</option><option value="base">Catalogo TataDiet</option><option value="personal">Personali</option></select></label>
+  <label><span>Categoria</span><select data-ingredient-category><option value="all">Tutte le categorie</option></select></label>
+  <label><span>Stato</span><select data-ingredient-status-filter><option value="active">Attivi</option><option value="archived">Archiviati</option><option value="all">Tutti</option></select></label>
+  <button class="button ghost compact" type="button" data-ingredient-reset>Reimposta</button>
+</section>
+
+<div class="ingredient-results-meta" data-ingredients-app hidden>
+  <p><strong data-ingredient-results-count>0</strong> ingredienti visualizzati</p>
+  <p class="muted">I nutrienti sono riferiti alla revisione corrente, per 100 g o 100 ml.</p>
+</div>
+
+<section class="ingredient-grid" data-ingredient-grid data-ingredients-app hidden aria-live="polite"></section>
+<div class="empty-state ingredient-empty" data-ingredient-empty hidden>
+  <svg class="ui-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-search"></use></svg>
+  <h2>Nessun ingrediente corrisponde ai filtri</h2>
+  <p>Prova a cambiare ricerca, origine, categoria o stato.</p>
+</div>
+
+<dialog class="ingredient-dialog" data-ingredient-dialog aria-labelledby="ingredient-dialog-title">
+  <form method="dialog" class="ingredient-dialog-shell" data-ingredient-form novalidate>
+    <header class="ingredient-dialog-header">
+      <div>
+        <p class="eyebrow" data-ingredient-dialog-eyebrow>Ingrediente personale</p>
+        <h2 id="ingredient-dialog-title" data-ingredient-dialog-title>Nuovo ingrediente</h2>
+        <p data-ingredient-dialog-subtitle>Inserisci i valori nutrizionali riportati in etichetta o nella fonte scelta.</p>
+      </div>
+      <button type="button" class="dialog-close" data-dialog-close aria-label="Chiudi">×</button>
+    </header>
+
+    <div class="ingredient-form-alert" data-ingredient-form-alert hidden></div>
+
+    <div class="ingredient-form-layout">
+      <div class="ingredient-form-main">
+        <fieldset class="form-section">
+          <legend>Identità</legend>
+          <div class="form-grid two-cols">
+            <label><span>Nome *</span><input name="name" maxlength="160" required placeholder="es. Mozzarella light"></label>
+            <label><span>Categoria *</span><select name="category" required data-ingredient-form-category></select></label>
+            <label><span>Marca <small>facoltativa</small></span><input name="brand" maxlength="160" placeholder="es. marca o linea"></label>
+            <label><span>Stato dell'alimento</span><select name="preparationState"><option value="as-sold">Come venduto</option><option value="raw">Crudo</option><option value="cooked">Cotto</option><option value="dry">Secco</option><option value="drained">Sgocciolato</option><option value="prepared">Preparato</option><option value="ready-to-eat">Pronto al consumo</option><option value="unknown">Non specificato</option></select></label>
+          </div>
+          <label><span>Alias <small>separati da virgola</small></span><input name="aliases" placeholder="es. mozzarella vaccina, fiordilatte"></label>
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend>Valori nutrizionali</legend>
+          <div class="nutrition-basis-row">
+            <span>Valori dichiarati per</span>
+            <strong>100</strong>
+            <select name="basisUnit" aria-label="Unità della base nutrizionale"><option value="g">g</option><option value="ml">ml</option></select>
+          </div>
+          <div class="nutrition-editor-grid">
+            <label><span>Energia *</span><div class="input-unit"><input name="energyKcal" inputmode="decimal" required><em>kcal</em></div></label>
+            <label><span>Proteine *</span><div class="input-unit"><input name="proteinG" inputmode="decimal" required><em>g</em></div></label>
+            <label><span>Carboidrati *</span><div class="input-unit"><input name="carbohydrateG" inputmode="decimal" required><em>g</em></div></label>
+            <label><span>Grassi *</span><div class="input-unit"><input name="fatG" inputmode="decimal" required><em>g</em></div></label>
+            <label><span>Fibre *</span><div class="input-unit"><input name="fiberG" inputmode="decimal" required><em>g</em></div></label>
+            <label><span>Zuccheri</span><div class="input-unit"><input name="sugarsG" inputmode="decimal"><em>g</em></div></label>
+            <label><span>Grassi saturi</span><div class="input-unit"><input name="saturatedFatG" inputmode="decimal"><em>g</em></div></label>
+            <label><span>Sale</span><div class="input-unit"><input name="saltG" inputmode="decimal"><em>g</em></div></label>
+            <label><span>Sodio</span><div class="input-unit"><input name="sodiumMg" inputmode="decimal"><em>mg</em></div></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend>Fonte e tollerabilità</legend>
+          <div class="form-grid two-cols">
+            <label><span>Tipo di fonte *</span><select name="sourceType"><option value="label">Etichetta del prodotto</option><option value="database">Banca dati</option><option value="manual">Inserimento/stima manuale</option><option value="import">Importato</option></select></label>
+            <label><span>Fonte *</span><input name="sourceLabel" maxlength="300" required placeholder="es. etichetta confezione / CREA"></label>
+          </div>
+          <label><span>URL fonte <small>facoltativo</small></span><input name="sourceUrl" type="url" placeholder="https://…"></label>
+          <div class="form-grid two-cols">
+            <label><span>Allergeni / note tecniche <small>separati da virgola</small></span><input name="allergens" placeholder="es. latte, glutine"></label>
+            <label><span>Note di tollerabilità</span><textarea name="toleranceNotes" rows="2" maxlength="2000" placeholder="Facoltativo"></textarea></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-section conversions-section">
+          <div class="fieldset-heading"><legend>Conversioni facoltative</legend><button class="button ghost compact" type="button" data-add-conversion>+ Aggiungi conversione</button></div>
+          <p class="field-help">Servono per usare quantità come “1 uovo”, “1 fetta” o “1 cucchiaio”. Ogni conversione indica quanti grammi o millilitri corrispondono a una unità.</p>
+          <div class="conversion-list" data-conversion-list></div>
+        </fieldset>
+      </div>
+
+      <aside class="ingredient-form-preview">
+        <p class="eyebrow">Controllo rapido</p>
+        <h3>Anteprima nutrizionale</h3>
+        <dl class="ingredient-preview-nutrients">
+          <div><dt>Energia</dt><dd><strong data-preview-kcal>—</strong> kcal</dd></div>
+          <div><dt>Proteine</dt><dd><strong data-preview-protein>—</strong> g</dd></div>
+          <div><dt>Carboidrati</dt><dd><strong data-preview-carbs>—</strong> g</dd></div>
+          <div><dt>Grassi</dt><dd><strong data-preview-fat>—</strong> g</dd></div>
+          <div><dt>Fibre</dt><dd><strong data-preview-fiber>—</strong> g</dd></div>
+        </dl>
+        <div class="atwater-preview"><span>Stima dai macro</span><strong data-preview-atwater>— kcal</strong><small>Controllo di plausibilità, non sostituisce il valore dichiarato.</small></div>
+        <div class="validation-preview" data-validation-preview><p>Compila i campi per vedere controlli ed eventuali avvisi.</p></div>
+      </aside>
+    </div>
+
+    <footer class="ingredient-dialog-footer">
+      <p class="muted" data-save-explanation>Il salvataggio creerà la revisione 1.</p>
+      <div><button class="button ghost" type="button" data-dialog-cancel>Annulla</button><button class="button primary" type="submit" value="save" data-save-ingredient>Salva ingrediente</button></div>
+    </footer>
+  </form>
+</dialog>
+
+<dialog class="ingredient-history-dialog" data-history-dialog aria-labelledby="history-title">
+  <div class="history-dialog-shell">
+    <header class="ingredient-dialog-header"><div><p class="eyebrow">Cronologia immutabile</p><h2 id="history-title" data-history-title>Revisioni</h2><p>Le revisioni precedenti restano disponibili perché ricette e storico possano continuare a riferirsi ai valori originali.</p></div><button type="button" class="dialog-close" data-history-close aria-label="Chiudi">×</button></header>
+    <div class="revision-timeline" data-revision-timeline></div>
+  </div>
+</dialog>
+
+<template id="conversion-row-template">
+  <div class="conversion-row">
+    <label><span>Codice unità</span><input data-conv="unitCode" list="conversion-unit-options" placeholder="es. piece / vasetto"></label>
+    <label><span>Singolare</span><input data-conv="labelSingular" placeholder="es. uovo"></label>
+    <label><span>Plurale</span><input data-conv="labelPlural" placeholder="es. uova"></label>
+    <label><span>Equivale a</span><div class="input-unit"><input data-conv="basisAmount" inputmode="decimal"><em data-conv-basis-unit>g</em></div></label>
+    <label class="conversion-notes"><span>Nota</span><input data-conv="notes" placeholder="facoltativa"></label>
+    <button type="button" class="icon-text-button danger-text" data-remove-conversion aria-label="Rimuovi conversione">Rimuovi</button>
+  </div>
+</template>
+<datalist id="conversion-unit-options"><option value="piece"><option value="portion"><option value="tbsp"><option value="tsp"><option value="cup"><option value="g"><option value="ml"><option value="vasetto"><option value="fetta"></datalist>
+
+<noscript><section class="notice-card"><h2>JavaScript necessario</h2><p>Il catalogo personale è conservato esclusivamente nel browser tramite IndexedDB.</p></section></noscript>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <img src="../assets/brand/brand-mark.svg" width="42" height="42" alt="">
+      <div><strong>Piano alimentare per turni</strong><span>Documento educativo, non prescrizione medica.</span></div>
+    </div>
+    <div class="footer-note">La tolleranza intestinale e l'andamento clinico vanno rivalutati con un professionista.</div>
+    <div class="footer-links">
+      <a href="../ricette/index.html">Ricette</a>
+      <a href="../ingredienti/index.html">Ingredienti</a>
+      <a href="../strumenti/index.html">Utilità</a>
+      <a href="../download/index.html">PDF e dati</a>
+      <a href="../progetto/index.html">Progetto</a>
+    </div>
+  </footer>
+
+  <nav class="mobile-nav" aria-label="Navigazione mobile">
+    <a class="" href="../oggi/index.html"><svg aria-hidden="true"><use href="../assets/icons.svg#icon-today"></use></svg><span>Oggi</span></a>
+    <a class="" href="../calendario/index.html"><svg aria-hidden="true"><use href="../assets/icons.svg#icon-calendar"></use></svg><span>Calendario</span></a>
+    <a class="is-active" href="../ingredienti/index.html"><svg aria-hidden="true"><use href="../assets/icons.svg#icon-leaf"></use></svg><span>Alimenti</span></a>
+    <a class="" href="../spesa/index.html"><svg aria-hidden="true"><use href="../assets/icons.svg#icon-shopping"></use></svg><span>Spesa</span></a>
+    <a class="" href="../piano/index.html"><svg aria-hidden="true"><use href="../assets/icons.svg#icon-plan"></use></svg><span>Piano</span></a>
+  </nav>
+</body>
+</html>

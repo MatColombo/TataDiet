@@ -1,0 +1,13 @@
+{
+  "status": "ok",
+  "version": "5.0.0",
+  "operations": 96,
+  "finalDays": 180,
+  "checks": {
+    "continuous_dates": true,
+    "unique_ids": true,
+    "structural_shifts": true,
+    "full_undo": true,
+    "full_redo": true
+  }
+}

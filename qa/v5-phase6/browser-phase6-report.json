@@ -1,0 +1,82 @@
+{
+  "status": "ok",
+  "version": "5.0.0-alpha.6-phase6",
+  "checks": [
+    {
+      "name": "composer_loaded",
+      "ok": true
+    },
+    {
+      "name": "initial_five_meals",
+      "ok": true,
+      "detail": 5
+    },
+    {
+      "name": "historical_versions_resolved",
+      "ok": true,
+      "detail": 1618.6
+    },
+    {
+      "name": "picker_populated",
+      "ok": true,
+      "detail": 80
+    },
+    {
+      "name": "picker_fit_filter",
+      "ok": true,
+      "detail": 76
+    },
+    {
+      "name": "recipe_replaced",
+      "ok": true
+    },
+    {
+      "name": "portion_recalculates",
+      "ok": true,
+      "detail": [
+        1478.7,
+        1561.5
+      ]
+    },
+    {
+      "name": "meal_locked",
+      "ok": true
+    },
+    {
+      "name": "suggest_preview",
+      "ok": true
+    },
+    {
+      "name": "suggest_respects_lock",
+      "ok": true
+    },
+    {
+      "name": "locked_recipe_preserved",
+      "ok": true
+    },
+    {
+      "name": "template_d3_three_meals",
+      "ok": true,
+      "detail": 3
+    },
+    {
+      "name": "undo_template",
+      "ok": true,
+      "detail": 5
+    },
+    {
+      "name": "manual_add",
+      "ok": true,
+      "detail": 6
+    },
+    {
+      "name": "mobile_no_overflow",
+      "ok": true,
+      "detail": [
+        390,
+        390
+      ]
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,15 @@
+{
+  "status": "ok",
+  "checkpoint": "5.0.0-alpha.6-phase6",
+  "checks": {
+    "replace_persist": true,
+    "portion_persist": true,
+    "lock_persist": true,
+    "add_remove": true,
+    "history_shared": true,
+    "undo_menu": true,
+    "library": true,
+    "copy_template": true,
+    "suggest_menu": true
+  }
+}

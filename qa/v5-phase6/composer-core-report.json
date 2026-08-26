@@ -1,0 +1,16 @@
+{
+  "status": "ok",
+  "checkpoint": "5.0.0-alpha.6-phase6",
+  "checks": {
+    "slot_templates": true,
+    "custom_overnight_slots": true,
+    "no_reheat_ranking": true,
+    "repetition_penalty": true,
+    "portion_nutrition": true,
+    "replace_preserves_identity": true,
+    "meal_edit": true,
+    "add_remove": true,
+    "locked_menu": true,
+    "copy_template": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "recordType": "ingredient",
+  "id": "usr:ingredient:skyr-senza-lattosio",
+  "origin": "personal",
+  "name": "Skyr senza lattosio",
+  "category": "Latticini e uova",
+  "aliases": ["Skyr delattosato"],
+  "currentRevisionId": "usr:ingredient-revision:skyr-senza-lattosio@1",
+  "createdAt": "2026-08-26T14:30:00+02:00",
+  "updatedAt": "2026-08-26T14:30:00+02:00",
+  "archivedAt": null
+}

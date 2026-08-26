@@ -1,0 +1,17 @@
+{
+  "recordType": "operationRecord",
+  "id": "usr:operation:replace-day-2026-09-07",
+  "planInstanceId": "usr:plan:piano-principale",
+  "kind": "replace-day-type",
+  "targetIds": ["usr:calendar-day:2026-09-07-000"],
+  "before": {
+    "dayType": "D1",
+    "source": "base"
+  },
+  "after": {
+    "dayType": "CUSTOM",
+    "source": "replaced"
+  },
+  "createdAt": "2026-08-26T14:42:00+02:00",
+  "undoneAt": null
+}

@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="page-header page-header-with-icon tools-page-header">
+  <span class="page-header-icon"><svg class="ui-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-tools"></use></svg></span>
+  <div>
+    <p class="eyebrow">V5 · app, offline ed esportazioni</p>
+    <h1>Utilità</h1>
+    <p>Installa il sito come app, scarica il piano per l'uso senza rete, esporta i turni e gestisci in modo trasparente i dati salvati nel browser.</p>
+  </div>
+</header>
+
+<div class="dynamic-loading" data-plan-loading><span class="loading-dot"></span>Preparazione degli strumenti…</div>
+<div class="tool-status" data-tools-status hidden role="status"></div>
+
+<section class="pwa-feature-card" id="offline">
+  <div class="pwa-feature-copy">
+    <p class="eyebrow">PWA · pronta per il turno</p>
+    <h2>Porta il piano con te, anche quando la rete non collabora</h2>
+    <p>Le funzioni essenziali vengono memorizzate automaticamente. Per rendere disponibili offline anche tutte le ricette, i 180 giorni e le liste statiche, scarica la libreria completa.</p>
+    <div class="pwa-feature-actions">
+      <button class="button primary" type="button" data-pwa-install hidden><svg class="ui-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-install"></use></svg>Installa l'app</button>
+      <button class="button secondary" type="button" data-download-offline-pack><svg class="ui-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-cloud-download"></use></svg>Scarica libreria offline</button>
+      <button class="button ghost" type="button" data-clear-offline-pack>Libera cache offline</button>
+    </div>
+    <p class="pwa-installed-note" data-pwa-installed hidden><svg class="ui-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-check"></use></svg>L'app è già in modalità installata.</p>
+    <div class="ios-install-help" data-pwa-ios-help hidden>
+      <strong>Su iPhone o iPad</strong>
+      <span>Apri il menu Condividi di Safari e scegli <em>Aggiungi alla schermata Home</em>.</span>
+    </div>
+    <p class="muted" data-pwa-unsupported hidden>Questo browser non supporta l'installazione PWA. Il sito resta comunque utilizzabile normalmente.</p>
+  </div>
+  <div class="pwa-feature-visual">
+    <img src="{{ relroot }}assets/illustrations/offline-ready.svg" width="360" height="220" alt="Telefono con piano disponibile offline">
+    <div class="offline-pack-status" data-offline-pack-status><svg class="ui-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-cloud-download"></use></svg><div><strong>Controllo della cache…</strong><span>Stato offline in aggiornamento</span></div></div>
+    <dl class="offline-pack-facts">
+      <div><dt>Risorse</dt><dd data-offline-pack-count>—</dd></div>
+      <div><dt>Dimensione stimata</dt><dd data-offline-pack-size>—</dd></div>
+      <div><dt>Dati personali</dt><dd>nessuno</dd></div>
+    </dl>
+  </div>
+  <div class="offline-progress" data-offline-progress hidden>
+    <div class="offline-progress-bar" data-offline-progress-bar role="progressbar" aria-label="Download della libreria offline" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span></span></div>
+    <p data-offline-progress-label>Preparazione della libreria offline…</p>
+  </div>
+</section>
+
+<section class="tools-grid tools-grid-v4">
+  <article class="tool-card tool-card-calendar">
+    <span class="tool-card-icon"><svg class="ui-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-calendar"></use></svg></span>
+    <p class="eyebrow">Calendario</p><h2>Esporta file ICS</h2><p>Importabile in Google Calendar, Apple Calendar, Outlook e applicazioni compatibili.</p>
+    <section class="setup-inline" data-plan-setup hidden>
+      <p>Imposta prima la data del primo D1.</p>
+      <form class="start-date-form" data-start-form><label for="tools-start-date">Data del primo D1</label><div class="date-form-row"><input id="tools-start-date" name="start" type="date" required><button class="button primary" type="submit">Configura</button></div><p class="field-help" data-start-preview></p><p class="form-error" data-start-error role="alert" hidden></p></form>
+    </section>
+    <div data-ics-app hidden>
+      <p class="tool-range"><span>Calendario attivo</span><strong data-active-range></strong></p>
+      <label class="field-stack"><span>Intervallo</span><select data-ics-scope><option value="all">Tutto il piano effettivo</option><option value="custom">Intervallo personalizzato</option></select></label>
+      <div class="ics-custom-grid" data-ics-custom hidden><label><span>Dal</span><input type="date" data-ics-from></label><label><span>Al</span><input type="date" data-ics-to></label></div>
+      <label class="checkbox-row"><input type="checkbox" data-ics-prep> Aggiungi promemoria meal-prep alle 18:00 del giorno precedente</label>
+      <button class="button primary" type="button" data-export-ics><svg class="ui-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-download"></use></svg>Scarica calendario .ics</button>
+    </div>
+  </article>
+
+  <article class="tool-card">
+    <span class="tool-card-icon"><svg class="ui-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-shield"></use></svg></span>
+    <p class="eyebrow">Compatibilità V4</p><h2>Preferenze legacy del browser</h2><p>Comprendono data iniziale, spunte della spesa e altre impostazioni locali. Non includono dati clinici.</p>
+    <p class="local-data-count"><strong data-local-count>0</strong><span>elementi locali rilevati</span></p>
+    <div class="tool-actions"><button class="button secondary" type="button" data-export-preferences>Esporta JSON</button><label class="button ghost file-button">Importa JSON<input type="file" accept="application/json,.json" data-import-preferences></label><button class="button ghost danger-text" type="button" data-reset-preferences>Rimuovi dati locali</button></div>
+  </article>
+
+  <article class="tool-card">
+    <span class="tool-card-icon"><svg class="ui-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-print"></use></svg></span>
+    <p class="eyebrow">Stampa</p><h2>Documenti essenziali</h2><p>Le pagine operative dispongono di stili dedicati per una stampa pulita.</p>
+    <div class="tool-link-list"><a href="../calendario/index.html">Calendario mensile o sei cicli →</a><a href="../preparazioni/index.html">Preparazioni 48 ore →</a><a href="../spesa/intervallo/index.html">Spesa per intervallo →</a><a href="../download/index.html">PDF completo e dati →</a></div>
+  </article>
+</section>
+
+
+<section class="v5-data-card" id="v5-data">
+  <div class="v5-data-intro">
+    <p class="eyebrow">V5 · dati locali</p>
+    <h2>Backup completo TataDiet</h2>
+    <p>La V5 conserva i dati personali in IndexedDB, separati dal catalogo base immutabile. Puoi esportarli in JSON, verificarli prima dell'importazione e tornare al checkpoint precedente se qualcosa non va.</p>
+  </div>
+  <div class="v5-data-facts" aria-label="Stato archivio V5">
+    <div><span>IndexedDB</span><strong data-v5-db-state>Inizializzazione…</strong></div>
+    <div><span>Catalogo base locale</span><strong data-v5-base-count>—</strong></div>
+    <div><span>Dati personali</span><strong data-v5-personal-count>—</strong></div>
+    <div><span>Migrazione V4</span><strong data-v5-migration>—</strong></div>
+    <div><span>Data iniziale V5</span><strong data-v5-start>non impostata</strong></div>
+  </div>
+  <div class="tool-status" data-v5-status hidden role="status"></div>
+
+  <div class="v5-backup-grid">
+    <article class="v5-backup-panel">
+      <p class="eyebrow">Esporta</p>
+      <h3>Crea un backup JSON</h3>
+      <p>Ogni file include versione del dataset base e checksum SHA-256. Il catalogo base non viene duplicato nel backup.</p>
+      <div class="v5-export-buttons">
+        <button class="button primary" type="button" data-v5-export="full">Backup completo</button>
+        <button class="button secondary" type="button" data-v5-export="recipes">Ricette e ingredienti</button>
+        <button class="button secondary" type="button" data-v5-export="calendar">Calendario</button>
+        <button class="button ghost" type="button" data-v5-export="settings">Impostazioni</button>
+      </div>
+    </article>
+
+    <article class="v5-backup-panel">
+      <p class="eyebrow">Importa</p>
+      <h3>Verifica prima di scrivere</h3>
+      <p>Il file viene letto e controllato prima di modificare il database. Un checkpoint automatico precede ogni importazione confermata.</p>
+      <label class="button secondary file-button">Seleziona backup JSON<input type="file" accept="application/json,.json" data-v5-import-file></label>
+      <div class="import-preview" data-import-preview hidden></div>
+      <div class="import-mode-actions" data-import-actions hidden>
+        <button class="button primary compact" type="button" data-v5-import-mode="replace">Sostituisci dati personali</button>
+        <button class="button secondary compact" type="button" data-v5-import-mode="merge">Unisci</button>
+        <button class="button ghost compact" type="button" data-v5-import-mode="recipes">Solo ricette</button>
+        <button class="button ghost compact" type="button" data-v5-import-mode="calendar">Solo calendario</button>
+        <button class="button ghost compact" type="button" data-v5-import-mode="settings">Solo impostazioni</button>
+      </div>
+      <button class="button ghost danger-text rollback-button" type="button" data-rollback-import hidden>Ripristina checkpoint pre-import</button>
+    </article>
+  </div>
+  <p class="v5-data-note"><strong>V5:</strong> sono attivi lo <a href="../ingredienti/index.html">Studio ingredienti</a> e lo <a href="../ricette/studio/index.html">Studio ricette</a>. Ingredienti, ricette e relative versioni personali sono inclusi nei backup JSON <code>full</code> e <code>recipes</code>.</p>
+</section>
+
+<noscript><section class="notice-card"><h2>JavaScript necessario</h2><p>Installazione, cache ed esportazioni vengono gestite localmente nel browser.</p></section></noscript>
+{% endblock %}

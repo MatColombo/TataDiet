@@ -1,0 +1,16 @@
+{
+  "status": "ok",
+  "checkpoint": "5.0.0-alpha.5-phase5",
+  "checks": {
+    "create_plan": true,
+    "reuse_plan": true,
+    "commit": true,
+    "history": true,
+    "undo_structural": true,
+    "undo_adherence": true,
+    "redo": true,
+    "redo_branch_discard": true,
+    "active_bundle": true,
+    "plan_reactivation": true
+  }
+}

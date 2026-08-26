@@ -1,0 +1,14 @@
+{
+  "status": "ok",
+  "checkpoint": "5.0.0-alpha.7-phase7",
+  "checks": {
+    "civil_tail": true,
+    "effective_nutrition": true,
+    "prep_48h": true,
+    "shopping_from_recipe_versions": true,
+    "personal_ingredient_exact": true,
+    "ics_effective": true,
+    "ics_folded": true,
+    "personal_search": true
+  }
+}

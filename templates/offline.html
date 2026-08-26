@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="offline-fallback-card">
+  <div class="offline-fallback-visual">
+    <img src="{{ relroot }}assets/illustrations/offline-ready.svg" width="420" height="260" alt="Telefono con piano alimentare disponibile senza connessione">
+  </div>
+  <div class="offline-fallback-copy">
+    <p class="eyebrow">Modalità offline</p>
+    <h1>La rete è in pausa. Il tuo piano no.</h1>
+    <p>Questa pagina compare quando una destinazione non è ancora stata memorizzata. Le sezioni essenziali e tutto ciò che hai scaricato dalla libreria offline restano disponibili.</p>
+    <div class="offline-fallback-actions">
+      <a class="button primary" href="{{ relroot }}oggi/index.html"><svg class="ui-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-today"></use></svg>Apri Oggi</a>
+      <a class="button secondary" href="{{ relroot }}calendario/index.html"><svg class="ui-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-calendar"></use></svg>Calendario</a>
+      <a class="button soft" href="{{ relroot }}strumenti/index.html#offline"><svg class="ui-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-wifi-off"></use></svg>Gestisci offline</a>
+    </div>
+    <nav class="offline-quick-links" aria-label="Sezioni disponibili offline">
+      <a href="{{ relroot }}piano/index.html">Piano completo</a>
+      <a href="{{ relroot }}ricette/index.html">Ricette</a>
+      <a href="{{ relroot }}spesa/index.html">Spesa</a>
+      <a href="{{ relroot }}preparazioni/index.html">Preparazioni</a>
+    </nav>
+  </div>
+</section>
+{% endblock %}

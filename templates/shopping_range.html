@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="page-header">
+  <p class="eyebrow">V5 · spesa effettiva</p>
+  <h1>Lista della spesa per intervallo</h1>
+  <p>Seleziona qualsiasi periodo del calendario personale. Gli ingredienti vengono sommati per categoria, con quantità necessaria e acquisto pratico suggerito.</p>
+</header>
+<div class="dynamic-loading" data-plan-loading>Caricamento dei dati di spesa…</div>
+<section class="setup-card" data-plan-setup hidden>
+  <div><p class="eyebrow">Configurazione richiesta</p><h2>Imposta la data del primo D1</h2><p>Serve per associare le date civili al piano. Se esiste un piano personale, la spesa usa ricette e porzioni effettive.</p></div>
+  <form class="start-date-form" data-start-form>
+    <label for="shopping-start-date">Data del primo D1</label>
+    <div class="date-form-row"><input id="shopping-start-date" name="start" type="date" min="2020-01-01" max="2100-12-31" required><button class="button primary" type="submit">Configura</button></div>
+    <p class="field-help" data-start-preview></p><p class="form-error" data-start-error role="alert" hidden></p>
+  </form>
+</section>
+<section data-range-shopping-app hidden>
+  <div class="calendar-config-bar">
+    <div><span class="config-label">Intervallo selezionato</span><strong data-range-shopping-label></strong><small>Le spunte restano in questo browser.</small></div>
+    <div class="config-actions"><a class="button secondary compact" href="../index.html">Liste standard</a><button class="button ghost compact" type="button" data-copy-range-shopping>Copia</button><button class="button ghost compact" type="button" data-download-range-shopping>Scarica TXT</button><button class="button ghost compact" type="button" data-print-range-shopping>Stampa</button><button class="button ghost compact danger-text" type="button" data-clear-range-shopping>Azzera spunte</button></div>
+  </div>
+  <form class="operation-form shopping-range-form" data-range-shopping-form>
+    <label><span>Dal</span><input type="date" data-shopping-from required></label>
+    <label><span>Al</span><input type="date" data-shopping-to required></label>
+    <button class="button primary" type="submit">Calcola spesa</button>
+  </form>
+  <div class="quick-range-actions" aria-label="Intervalli rapidi">
+    <button type="button" data-shopping-quick="5">Prossimi 5 giorni</button>
+    <button type="button" data-shopping-quick="7">Prossimi 7 giorni</button>
+    <button type="button" data-shopping-quick="variant">Blocco corrente · 5 giorni</button>
+    <button type="button" data-shopping-quick="cycle">Blocco corrente · 30 giorni</button>
+  </div>
+  <div class="operation-summary" data-range-shopping-summary></div>
+  <div class="shopping-progress" data-range-shopping-progress><span></span><strong>0 / 0</strong></div>
+  <div class="shopping-categories" data-range-shopping-results></div>
+</section>
+<noscript><section class="notice-card"><h2>JavaScript necessario</h2><p>La lista per date viene calcolata nel browser. Le liste statiche restano disponibili nella sezione Spesa.</p></section></noscript>
+{% endblock %}

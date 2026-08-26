@@ -1,0 +1,46 @@
+{
+  "status": "ok",
+  "results": [
+    {
+      "page": "calendario desktop",
+      "url": "http://172.26.36.4:8765/calendario/?start=2026-09-07&focus=2026-09-09",
+      "horizontal_overflow_px": 0
+    },
+    {
+      "page": "panoramica sei cicli desktop",
+      "url": "http://172.26.36.4:8765/calendario/?start=2026-09-07&focus=2026-09-09&view=overview",
+      "horizontal_overflow_px": 0
+    },
+    {
+      "page": "oggi smonto desktop",
+      "url": "http://172.26.36.4:8765/oggi/?start=2026-09-07&date=2026-09-09",
+      "horizontal_overflow_px": 0
+    },
+    {
+      "page": "giorno statico con data",
+      "url": "http://172.26.36.4:8765/piano/ciclo-1/variante-1/d3/?start=2026-09-07",
+      "horizontal_overflow_px": 0
+    },
+    {
+      "page": "home configurata",
+      "url": "http://172.26.36.4:8765/",
+      "horizontal_overflow_px": 0
+    },
+    {
+      "page": "calendario mobile",
+      "url": "http://172.26.36.4:8765/calendario/?start=2026-09-07&focus=2026-09-09",
+      "horizontal_overflow_px": 0
+    },
+    {
+      "page": "oggi mobile",
+      "url": "http://172.26.36.4:8765/oggi/?start=2026-09-07&date=2026-09-09",
+      "horizontal_overflow_px": 0
+    },
+    {
+      "page": "configurazione iniziale",
+      "url": "http://172.26.36.4:8765/calendario/",
+      "horizontal_overflow_px": 0
+    }
+  ],
+  "errors": []
+}

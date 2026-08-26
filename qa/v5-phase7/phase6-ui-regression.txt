@@ -1,0 +1,21 @@
+{
+  "status": "ok",
+  "checkpoint": "5.0.0-alpha.6-phase6",
+  "checks": {
+    "page_exists": true,
+    "page_id": true,
+    "composer_core": true,
+    "composer_store": true,
+    "composer_ui": true,
+    "nutrition_summary": true,
+    "suggest_action": true,
+    "template_action": true,
+    "add_action": true,
+    "picker": true,
+    "picker_fit_filter": true,
+    "planner_link": true,
+    "planner_to_composer": true,
+    "offline_page": true,
+    "offline_core": true
+  }
+}

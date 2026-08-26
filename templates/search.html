@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="page-header">
+  <p class="eyebrow">V5 · ricerca globale</p>
+  <h1>Cerca in tutto il piano</h1>
+  <p>Trova ricette, ingredienti e giornate del piano base insieme ai contenuti personali salvati nel browser.</p>
+</header>
+<section class="global-search-panel">
+  <label class="global-search-field"><span>Cerca</span><input type="search" data-global-search placeholder="Es. mozzarella, D2 notte, couscous, giorno 30…" autocomplete="off"></label>
+  <fieldset class="search-type-filters"><legend>Tipi di risultato</legend>
+    <label><input type="checkbox" value="recipe" data-search-type checked> Ricette</label>
+    <label><input type="checkbox" value="ingredient" data-search-type checked> Ingredienti</label>
+    <label><input type="checkbox" value="day" data-search-type checked> Giorni</label>
+    <label><input type="checkbox" value="variant" data-search-type checked> Varianti</label>
+    <label><input type="checkbox" value="cycle" data-search-type checked> Cicli</label>
+    <button type="button" data-search-all>Tutti</button>
+  </fieldset>
+  <p class="search-count"><strong data-global-count>0</strong> risultati mostrati</p>
+</section>
+<div class="dynamic-loading" data-search-loading>Caricamento dell'indice di ricerca…</div>
+<div class="global-results" data-global-results></div>
+<noscript><section class="notice-card"><h2>JavaScript necessario</h2><p>L'archivio statico delle ricette resta disponibile anche senza ricerca globale.</p></section></noscript>
+{% endblock %}

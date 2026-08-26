@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="day-hero {{ day.d_code|lower }}" data-plan-day="{{ day.global_day }}">
+  <div class="shift-code large">{{ day.d_code }}</div>
+  <div>
+    <p class="eyebrow">{{ cycle.month }} · C{{ cycle.number }} · V{{ variant.number }} · giorno {{ day.global_day }}</p>
+    <p class="civil-date-line" data-day-civil-date data-global-day="{{ day.global_day }}" hidden></p>
+    <h1>{{ day.shift_name }}</h1>
+    <p>{{ day.shift_hours }}</p>
+  </div>
+  {% if day.flexible %}<span class="flex-badge large">Pasto flessibile</span>{% endif %}
+</header>
+<div class="nutrition-grid day-summary">
+  <div><strong>{{ day.total.kcal|round|int }}</strong><span>kcal</span></div>
+  <div><strong>{{ day.total.protein|round(1) }}</strong><span>g proteine</span></div>
+  <div><strong>{{ day.total.carbs|round(1) }}</strong><span>g carboidrati</span></div>
+  <div><strong>{{ day.total.fat|round(1) }}</strong><span>g grassi</span></div>
+  <div><strong>{{ day.total.fiber|round(1) }}</strong><span>g fibra</span></div>
+</div>
+<section class="timeline" aria-label="Pasti del giorno">
+{% for meal in day.meals %}
+  <article class="meal-card{% if meal.flexible %} flexible-meal{% endif %}" id="{{ meal.anchor }}">
+    <div class="meal-time"><time>{{ meal.time }}</time><span>{{ meal.meal_type }}{% if meal.day_offset %} · giorno successivo{% endif %}</span></div>
+    <div class="meal-main">
+      <div class="meal-title-row">
+        <h2><a href="../../../../ricette/{{ meal.recipe_slug }}/index.html">{{ meal.title }}</a></h2>
+        {% if meal.flexible %}<span class="flex-badge">Flessibile</span>{% endif %}
+      </div>
+      {% if meal.ingredients %}<p class="ingredients">{{ meal.ingredients }}</p>{% else %}<p class="ingredients muted">Scelta libera entro i vincoli indicati nel piano.</p>{% endif %}
+      <div class="meal-tags">
+        <span>{{ meal.cuisine }}</span>
+        <span>{{ meal.prep_minutes }} min</span>
+        {% if meal.spices and meal.spices != 'Nessuna' %}<span>{{ meal.spices }}</span>{% endif %}
+      </div>
+      <details class="prep-details">
+        <summary>Preparazione e conservazione</summary>
+        <dl>
+          <div><dt>Preparabile prima</dt><dd>{{ meal.prepare_ahead }}</dd></div>
+          <div><dt>Buono freddo</dt><dd>{{ meal.cold }}</dd></div>
+          <div><dt>Riscaldamento</dt><dd>{{ meal.reheat }}</dd></div>
+          <div><dt>Durata in frigo</dt><dd>{{ meal.fridge }}</dd></div>
+          {% if meal.notes %}<div><dt>Nota</dt><dd>{{ meal.notes }}</dd></div>{% endif %}
+        </dl>
+      </details>
+    </div>
+    <div class="meal-nutrition" aria-label="Valori nutrizionali">
+      <strong>{{ meal.kcal|round|int }} kcal</strong>
+      <span>P {{ meal.protein|round(1) }}</span><span>C {{ meal.carbs|round(1) }}</span><span>G {{ meal.fat|round(1) }}</span><span>F {{ meal.fiber|round(1) }}</span>
+    </div>
+  </article>
+{% endfor %}
+</section>
+<div class="action-strip">
+  <a class="button secondary" href="../../../../spesa/ciclo-{{ cycle.number }}/variante-{{ variant.number }}/index.html">Spesa della variante</a>
+  <a class="button secondary" href="../../../../calendario/index.html" data-calendar-day-link data-global-day="{{ day.global_day }}">Apri nel calendario</a>
+  <button class="button ghost" type="button" data-copy-url>Copia collegamento</button>
+</div>
+<nav class="pager" aria-label="Giorni adiacenti">
+  {% if prev_day %}<a href="{{ prev_day.href }}" data-preserve-start>← {{ prev_day.label }}</a>{% else %}<span></span>{% endif %}
+  {% if next_day %}<a href="{{ next_day.href }}" data-preserve-start>{{ next_day.label }} →</a>{% endif %}
+</nav>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="page-header">
+  <p class="eyebrow">Registro del progetto</p>
+  <h1>Versione {{ site_version }}</h1>
+  <p>Questa pagina sintetizza lo stato corrente. Il registro completo e modificabile è nel file <code>PROJECT_MEMORY.md</code> del repository.</p>
+</header>
+<div class="project-columns">
+  <section class="notice-card"><h2>Completato</h2><ul class="check-list">{% for item in completed %}<li>{{ item }}</li>{% endfor %}</ul></section>
+  <section class="notice-card"><h2>Prossimi passi</h2><ol class="roadmap-list">{% for item in todo %}<li>{{ item }}</li>{% endfor %}</ol></section>
+</div>
+<section class="section-block"><h2>Decisioni consolidate</h2><div class="decision-grid">{% for item in decisions %}<article><h3>{{ item.title }}</h3><p>{{ item.text }}</p></article>{% endfor %}</div></section>
+{% endblock %}

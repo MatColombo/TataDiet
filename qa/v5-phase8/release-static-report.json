@@ -1,0 +1,26 @@
+{
+  "status": "ok",
+  "version": "5.0.0",
+  "checks": {
+    "dataset_versions_stable": true,
+    "all_html_stable": true,
+    "no_alpha_in_public_ui": true,
+    "no_phase_badges_public_ui": true,
+    "backup_app_version": true,
+    "db_app_version": true,
+    "stable_migration_marker": true,
+    "alpha_backup_compatibility_warning": true,
+    "pwa_core_covers_global_js": true,
+    "pwa_core_calendario/modifica/index.html": true,
+    "pwa_core_calendario/componi/index.html": true,
+    "pwa_core_offline/index.html": true,
+    "pwa_install_atomic": true,
+    "pwa_update_explicit": true,
+    "manifest_stable_brand": true,
+    "manifest_standalone": true,
+    "manifest_scope_relative": true,
+    "public_artifacts_clean": true
+  },
+  "errors": [],
+  "html_files": 588
+}

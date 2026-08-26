@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="page-header">
+  <p class="eyebrow">Piano alimentare</p>
+  <h1>Sei cicli, trentasei varianti</h1>
+  <p>Ogni variante copre la matrice D1–D5. Le date personali verranno associate nella versione 2.</p>
+</header>
+<div class="cycle-grid wide">
+{% for cycle in cycles %}
+  <article class="cycle-card plan-card">
+    <div class="cycle-number">C{{ cycle.number }}</div>
+    <div class="grow">
+      <h2><a href="ciclo-{{ cycle.number }}/index.html">{{ cycle.month }}</a></h2>
+      <p>{{ cycle.season_note }}</p>
+      <div class="variant-links" aria-label="Varianti di {{ cycle.month }}">
+        {% for variant in cycle.variants %}
+        <a href="ciclo-{{ cycle.number }}/variante-{{ variant.number }}/index.html">V{{ variant.number }}</a>
+        {% endfor %}
+      </div>
+      <div class="card-meta"><span>{{ cycle.avg.kcal|round|int }} kcal medie</span><span>{{ cycle.avg.fiber|round(1) }} g fibra</span></div>
+    </div>
+    <a class="button compact secondary" href="ciclo-{{ cycle.number }}/index.html">Apri ciclo</a>
+  </article>
+{% endfor %}
+</div>
+{% endblock %}

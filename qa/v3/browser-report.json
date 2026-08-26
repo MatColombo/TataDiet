@@ -1,0 +1,66 @@
+{
+  "status": "ok",
+  "results": [
+    {
+      "page": "calendario desktop",
+      "url": "http://127.0.0.1:8000/calendario/?start=2026-09-07&focus=2026-09-09",
+      "horizontal_overflow_px": 0
+    },
+    {
+      "page": "panoramica sei cicli",
+      "url": "http://127.0.0.1:8000/calendario/?start=2026-09-07&focus=2026-09-09&view=overview",
+      "horizontal_overflow_px": 0
+    },
+    {
+      "page": "oggi con prep",
+      "url": "http://127.0.0.1:8000/oggi/?start=2026-08-24",
+      "horizontal_overflow_px": 0
+    },
+    {
+      "page": "preparazioni 48 ore",
+      "url": "http://127.0.0.1:8000/preparazioni/?start=2026-09-07&date=2026-09-07&time=08:00",
+      "horizontal_overflow_px": 0
+    },
+    {
+      "page": "spesa per intervallo",
+      "url": "http://127.0.0.1:8000/spesa/intervallo/?start=2026-09-07&from=2026-09-07&to=2026-09-11",
+      "horizontal_overflow_px": 0
+    },
+    {
+      "page": "ricerca globale",
+      "url": "http://127.0.0.1:8000/cerca/?start=2026-09-07&q=mozzarella",
+      "horizontal_overflow_px": 0
+    },
+    {
+      "page": "filtri ricette",
+      "url": "http://127.0.0.1:8000/ricette/",
+      "horizontal_overflow_px": 0
+    },
+    {
+      "page": "strumenti ed export ICS",
+      "url": "http://127.0.0.1:8000/strumenti/?start=2026-09-07",
+      "horizontal_overflow_px": 0
+    },
+    {
+      "page": "prep mobile",
+      "url": "http://127.0.0.1:8000/preparazioni/?start=2026-09-07&date=2026-09-07&time=08:00",
+      "horizontal_overflow_px": 0
+    },
+    {
+      "page": "spesa mobile",
+      "url": "http://127.0.0.1:8000/spesa/intervallo/?start=2026-09-07&from=2026-09-07&to=2026-09-11",
+      "horizontal_overflow_px": 0
+    },
+    {
+      "page": "ricerca mobile",
+      "url": "http://127.0.0.1:8000/cerca/?q=mozzarella",
+      "horizontal_overflow_px": 0
+    },
+    {
+      "page": "configurazione iniziale V3",
+      "url": "http://127.0.0.1:8000/preparazioni/",
+      "horizontal_overflow_px": 0
+    }
+  ],
+  "errors": []
+}

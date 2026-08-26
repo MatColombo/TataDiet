@@ -1,0 +1,20 @@
+{
+  "status": "ok",
+  "checks": {
+    "page_id": true,
+    "heading": true,
+    "summary": true,
+    "adherence": true,
+    "day_types": true,
+    "custom_shift": true,
+    "structural_actions": true,
+    "impact_dialog": true,
+    "undo_redo": true,
+    "meal_preview": true,
+    "modules": true,
+    "calendar_editor_link": true,
+    "calendar_effective_banner": true,
+    "unique_ids": true
+  },
+  "html": "/mnt/data/dieta-site-v5-phase7/docs/calendario/modifica/index.html"
+}

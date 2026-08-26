@@ -1,0 +1,4 @@
+-r requirements.txt
+playwright>=1.47,<2
+
+jsonschema>=4.23,<5

@@ -1,0 +1,385 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tatadiet.local/schemas/v5/base/ingredient.schema.json",
+  "title": "TataDiet ingredient record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "code",
+    "name",
+    "aliases",
+    "category_id",
+    "category_name",
+    "origin",
+    "immutable",
+    "status",
+    "revision_id",
+    "revision",
+    "food_state",
+    "nutrition_basis",
+    "nutrients",
+    "conversions",
+    "provenance"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^(base|user|imported):ingredient:[A-Za-z0-9._:-]+$"
+    },
+    "code": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "pattern": "^[a-z0-9][a-z0-9_-]*$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "aliases": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "category_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "category_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "brand": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 200
+    },
+    "origin": {
+      "enum": [
+        "base",
+        "user",
+        "imported"
+      ]
+    },
+    "immutable": {
+      "type": "boolean"
+    },
+    "status": {
+      "enum": [
+        "active",
+        "archived"
+      ]
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "food_state": {
+      "enum": [
+        "raw",
+        "cooked",
+        "dry",
+        "drained",
+        "prepared",
+        "as_sold",
+        "unspecified"
+      ]
+    },
+    "food_state_source": {
+      "enum": [
+        "user_declared",
+        "label",
+        "database",
+        "name_inference",
+        "not_declared"
+      ]
+    },
+    "food_state_review_required": {
+      "type": "boolean"
+    },
+    "nutrition_basis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "amount",
+        "unit"
+      ],
+      "properties": {
+        "amount": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "unit": {
+          "enum": [
+            "g",
+            "ml"
+          ]
+        }
+      }
+    },
+    "nutrients": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "energy_kcal",
+        "protein_g",
+        "carbohydrate_g",
+        "fat_g",
+        "fiber_g"
+      ],
+      "properties": {
+        "energy_kcal": {
+          "type": "number",
+          "minimum": 0
+        },
+        "protein_g": {
+          "type": "number",
+          "minimum": 0
+        },
+        "carbohydrate_g": {
+          "type": "number",
+          "minimum": 0
+        },
+        "fat_g": {
+          "type": "number",
+          "minimum": 0
+        },
+        "fiber_g": {
+          "type": "number",
+          "minimum": 0
+        },
+        "sugars_g": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "saturated_fat_g": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "salt_g": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sodium_mg": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "conversions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "unit",
+          "base_quantity",
+          "base_unit"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "unit": {
+            "enum": [
+              "piece",
+              "tbsp",
+              "tsp",
+              "cup",
+              "portion",
+              "ml",
+              "g"
+            ]
+          },
+          "singular_label": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "plural_label": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "base_quantity": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "base_unit": {
+            "enum": [
+              "g",
+              "ml"
+            ]
+          },
+          "source": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "granularity",
+        "source_name"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "legacy_dataset_estimate",
+            "manual_label",
+            "manual_database",
+            "manual_estimate",
+            "imported"
+          ]
+        },
+        "granularity": {
+          "enum": [
+            "dataset_level",
+            "item_level"
+          ]
+        },
+        "source_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        },
+        "source_file": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_sheet": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_row": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "captured_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "usage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "used_in_base_plan",
+        "occurrence_days",
+        "total_base_quantity",
+        "base_unit"
+      ],
+      "properties": {
+        "used_in_base_plan": {
+          "type": "boolean"
+        },
+        "occurrence_days": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "total_base_quantity": {
+          "type": "number",
+          "minimum": 0
+        },
+        "base_unit": {
+          "enum": [
+            "g",
+            "ml"
+          ]
+        }
+      }
+    },
+    "created_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "imported_from_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "revision_id": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

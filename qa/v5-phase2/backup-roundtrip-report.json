@@ -1,0 +1,11 @@
+{
+  "status": "ok",
+  "checks": {
+    "checksum": true,
+    "personal_only": true,
+    "checklists": true,
+    "replace_roundtrip": true,
+    "base_immutable": true,
+    "rollback": true
+  }
+}

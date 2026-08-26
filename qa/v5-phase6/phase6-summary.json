@@ -1,0 +1,135 @@
+{
+  "status": "ok",
+  "checkpoint": "5.0.0-alpha.6-phase6",
+  "database": "tatadiet-v5",
+  "schema_version": 1,
+  "html_files": 588,
+  "links_checked": 38259,
+  "offline_assets": 639,
+  "base_days": 180,
+  "base_meals": 864,
+  "base_recipes": 306,
+  "recipe_versions": 547,
+  "composer_core_checks": {
+    "slot_templates": true,
+    "custom_overnight_slots": true,
+    "no_reheat_ranking": true,
+    "repetition_penalty": true,
+    "portion_nutrition": true,
+    "replace_preserves_identity": true,
+    "meal_edit": true,
+    "add_remove": true,
+    "locked_menu": true,
+    "copy_template": true
+  },
+  "composer_store_checks": {
+    "replace_persist": true,
+    "portion_persist": true,
+    "lock_persist": true,
+    "add_remove": true,
+    "history_shared": true,
+    "undo_menu": true,
+    "library": true,
+    "copy_template": true,
+    "suggest_menu": true
+  },
+  "ui_checks": {
+    "page_exists": true,
+    "page_id": true,
+    "composer_core": true,
+    "composer_store": true,
+    "composer_ui": true,
+    "nutrition_summary": true,
+    "suggest_action": true,
+    "template_action": true,
+    "add_action": true,
+    "picker": true,
+    "picker_fit_filter": true,
+    "planner_link": true,
+    "planner_to_composer": true,
+    "offline_page": true,
+    "offline_core": true
+  },
+  "browser_qa": {
+    "status": "ok",
+    "version": "5.0.0-alpha.6-phase6",
+    "checks": [
+      {
+        "name": "composer_loaded",
+        "ok": true
+      },
+      {
+        "name": "initial_five_meals",
+        "ok": true,
+        "detail": 5
+      },
+      {
+        "name": "historical_versions_resolved",
+        "ok": true,
+        "detail": 1618.6
+      },
+      {
+        "name": "picker_populated",
+        "ok": true,
+        "detail": 80
+      },
+      {
+        "name": "picker_fit_filter",
+        "ok": true,
+        "detail": 76
+      },
+      {
+        "name": "recipe_replaced",
+        "ok": true
+      },
+      {
+        "name": "portion_recalculates",
+        "ok": true,
+        "detail": [
+          1478.7,
+          1561.5
+        ]
+      },
+      {
+        "name": "meal_locked",
+        "ok": true
+      },
+      {
+        "name": "suggest_preview",
+        "ok": true
+      },
+      {
+        "name": "suggest_respects_lock",
+        "ok": true
+      },
+      {
+        "name": "locked_recipe_preserved",
+        "ok": true
+      },
+      {
+        "name": "template_d3_three_meals",
+        "ok": true,
+        "detail": 3
+      },
+      {
+        "name": "undo_template",
+        "ok": true,
+        "detail": 5
+      },
+      {
+        "name": "manual_add",
+        "ok": true,
+        "detail": 6
+      },
+      {
+        "name": "mobile_no_overflow",
+        "ok": true,
+        "detail": [
+          390,
+          390
+        ]
+      }
+    ],
+    "errors": []
+  }
+}

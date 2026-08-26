@@ -1,0 +1,349 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tatadiet.local/schemas/v5/base/recipe-version.schema.json",
+  "title": "TataDiet recipe version",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "recipe_id",
+    "revision",
+    "servings",
+    "servings_source",
+    "origin",
+    "immutable",
+    "status",
+    "composition_status",
+    "ingredient_lines",
+    "nutrition",
+    "prep_minutes",
+    "meal_prep",
+    "cuisine",
+    "spices",
+    "instructions",
+    "instructions_status",
+    "editable_ingredient_composition"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^(base|user|imported):recipe-version:[A-Za-z0-9._:-]+$"
+    },
+    "recipe_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "servings": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "servings_source": {
+      "enum": [
+        "explicit",
+        "inferred_single_person_meal",
+        "imported"
+      ]
+    },
+    "origin": {
+      "enum": [
+        "base",
+        "user",
+        "imported"
+      ]
+    },
+    "immutable": {
+      "type": "boolean"
+    },
+    "status": {
+      "enum": [
+        "active",
+        "archived"
+      ]
+    },
+    "composition_status": {
+      "enum": [
+        "structured",
+        "unstructured_estimate",
+        "incomplete"
+      ]
+    },
+    "ingredient_lines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "ingredient_id",
+          "ingredient_revision_id",
+          "ingredient_code",
+          "label",
+          "quantity",
+          "unit",
+          "base_quantity",
+          "base_unit",
+          "conversion_id",
+          "preparation_note",
+          "source_text"
+        ],
+        "properties": {
+          "ingredient_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "ingredient_code": {
+            "type": "string",
+            "minLength": 1
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "quantity": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "unit": {
+            "enum": [
+              "g",
+              "ml",
+              "piece",
+              "portion",
+              "tbsp",
+              "tsp",
+              "cup"
+            ]
+          },
+          "base_quantity": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "base_unit": {
+            "enum": [
+              "g",
+              "ml"
+            ]
+          },
+          "conversion_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "preparation_note": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source_text": {
+            "type": "string"
+          },
+          "ingredient_revision_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "source_ingredient_text": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "nutrition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "values_per_serving",
+        "source_values_per_serving",
+        "rounded_match_to_source",
+        "calculation_version"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "calculated_from_ingredients",
+            "manual_estimate",
+            "incomplete"
+          ]
+        },
+        "values_per_serving": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "energy_kcal",
+            "protein_g",
+            "carbohydrate_g",
+            "fat_g",
+            "fiber_g"
+          ],
+          "properties": {
+            "energy_kcal": {
+              "type": "number",
+              "minimum": 0
+            },
+            "protein_g": {
+              "type": "number",
+              "minimum": 0
+            },
+            "carbohydrate_g": {
+              "type": "number",
+              "minimum": 0
+            },
+            "fat_g": {
+              "type": "number",
+              "minimum": 0
+            },
+            "fiber_g": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        },
+        "source_values_per_serving": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "energy_kcal",
+            "protein_g",
+            "carbohydrate_g",
+            "fat_g",
+            "fiber_g"
+          ],
+          "properties": {
+            "energy_kcal": {
+              "type": "number",
+              "minimum": 0
+            },
+            "protein_g": {
+              "type": "number",
+              "minimum": 0
+            },
+            "carbohydrate_g": {
+              "type": "number",
+              "minimum": 0
+            },
+            "fat_g": {
+              "type": "number",
+              "minimum": 0
+            },
+            "fiber_g": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        },
+        "rounded_match_to_source": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "calculation_version": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "prep_minutes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "meal_prep": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "prepare_ahead",
+        "cold",
+        "reheat",
+        "fridge"
+      ],
+      "properties": {
+        "prepare_ahead": {
+          "type": "string"
+        },
+        "cold": {
+          "type": "string"
+        },
+        "reheat": {
+          "type": "string"
+        },
+        "fridge": {
+          "type": "string"
+        }
+      }
+    },
+    "cuisine": {
+      "type": "string"
+    },
+    "spices": {
+      "type": "string"
+    },
+    "instructions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "instructions_status": {
+      "enum": [
+        "available",
+        "missing",
+        "partial"
+      ]
+    },
+    "practical_notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "editable_ingredient_composition": {
+      "type": "boolean"
+    },
+    "source_occurrence_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "source_occurrence_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "supersedes_version_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "created_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "imported_from_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "version": "5.0.0",
+  "generated_at": "2026-08-26T17:09:37.459415+00:00",
+  "source_file": "Piano_alimentare_revisionato_6_mesi_fibra_moderata.xlsx",
+  "source_sha256": "63fa26b530d0b2f26cc8a25abc51147af92f71f96900f62f2f383862602e0450",
+  "counts": {
+    "cycles": 6,
+    "variants": 36,
+    "days": 180,
+    "meals": 864,
+    "recipes": 306
+  }
+}

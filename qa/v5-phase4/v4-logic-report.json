@@ -1,0 +1,27 @@
+{
+  "status": "ok",
+  "version": "5.0.0-alpha.4-phase4",
+  "pwa": {
+    "manifest": true,
+    "serviceWorker": true
+  },
+  "shopping": {
+    "days": 180,
+    "firstVariantItems": 46
+  },
+  "prep": {
+    "windowHours": 48,
+    "items": 9,
+    "secondSegmentItems": 5,
+    "syntheticSecondSegment": true
+  },
+  "search": {
+    "entries": 628,
+    "mozzarellaResults": 93,
+    "day30Results": 153
+  },
+  "ics": {
+    "shiftEvents": 180,
+    "prepEnabled": true
+  }
+}

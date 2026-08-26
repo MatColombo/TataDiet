@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Piano alimentare di sei mesi, navigabile per calendario, cicli, varianti, giorni, ricette, preparazioni e liste della spesa.">
+  <meta name="theme-color" content="#7E4D70">
+  <meta name="color-scheme" content="light">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Piano turni">
+  <title>Spesa · Novembre · Variante 5 · Piano alimentare</title>
+  <link rel="manifest" href="../../../manifest.webmanifest">
+  <link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../../assets/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="../../../assets/css/styles.css">
+  <script defer src="../../../assets/js/calendar-core.js"></script>
+  <script defer src="../../../assets/js/site-state.js"></script>
+  <script defer src="../../../assets/js/operations-core.js"></script>
+  <script defer src="../../../assets/js/v5-db.js"></script>
+  <script defer src="../../../assets/js/v5-backup.js"></script>
+  <script defer src="../../../assets/js/v5-ingredients-core.js"></script>
+  <script defer src="../../../assets/js/v5-ingredient-store.js"></script>
+  <script defer src="../../../assets/js/v5-ingredients.js"></script>
+  <script defer src="../../../assets/js/v5-recipes-core.js"></script>
+  <script defer src="../../../assets/js/v5-recipe-store.js"></script>
+  <script defer src="../../../assets/js/v5-recipes.js"></script>
+  <script defer src="../../../assets/js/v5-plan-core.js"></script>
+  <script defer src="../../../assets/js/v5-plan-store.js"></script>
+  <script defer src="../../../assets/js/v5-plan.js"></script>
+  <script defer src="../../../assets/js/v5-plan-calendar.js"></script>
+  <script defer src="../../../assets/js/v5-composer-core.js"></script>
+  <script defer src="../../../assets/js/v5-composer-store.js"></script>
+  <script defer src="../../../assets/js/v5-composer.js"></script>
+  <script defer src="../../../assets/js/v5-effective-core.js"></script>
+  <script defer src="../../../assets/js/v5-effective-store.js"></script>
+  <script defer src="../../../assets/js/v5-effective-pages.js"></script>
+  <script defer src="../../../assets/js/app.js"></script>
+  <script defer src="../../../assets/js/calendar.js"></script>
+  <script defer src="../../../assets/js/prep.js"></script>
+  <script defer src="../../../assets/js/shopping-range.js"></script>
+  <script defer src="../../../assets/js/search.js"></script>
+  <script defer src="../../../assets/js/tools.js"></script>
+  <script defer src="../../../assets/js/v5-tools.js"></script>
+  <script defer src="../../../assets/js/pwa.js"></script>
+</head>
+<body data-page="shopping-list" data-root="../../../" data-version="5.0.0">
+  <a class="skip-link" href="#contenuto">Vai al contenuto</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../../../index.html" aria-label="Piano alimentare, pagina iniziale">
+        <img class="brand-mark" src="../../../assets/brand/brand-mark.svg" width="48" height="48" alt="">
+        <span class="brand-copy">
+          <strong>Piano alimentare</strong>
+          <small>turni, pasti e spesa · V5</small>
+        </span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Navigazione principale">
+        <a class="" href="../../../oggi/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../../assets/icons.svg#icon-today"></use></svg><span>Oggi</span></a>
+        <a class="" href="../../../calendario/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../../assets/icons.svg#icon-calendar"></use></svg><span>Calendario</span></a>
+        <a class="" href="../../../piano/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../../assets/icons.svg#icon-plan"></use></svg><span>Piano</span></a>
+        <a class="" href="../../../ricette/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../../assets/icons.svg#icon-recipes"></use></svg><span>Ricette</span></a>
+        <a class="" href="../../../ingredienti/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../../assets/icons.svg#icon-leaf"></use></svg><span>Ingredienti</span></a>
+        <a class="is-active" href="../../../spesa/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../../assets/icons.svg#icon-shopping"></use></svg><span>Spesa</span></a>
+        <a class="" href="../../../strumenti/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../../assets/icons.svg#icon-tools"></use></svg><span>Utilità</span></a>
+      </nav>
+
+      <div class="header-utilities">
+        <span class="network-chip" data-network-status aria-live="polite"><svg class="ui-icon" aria-hidden="true"><use href="../../../assets/icons.svg#icon-wifi"></use></svg><span>Online</span></span>
+        <button class="header-icon-button install-header-button" type="button" data-pwa-install hidden aria-label="Installa il sito come app"><svg class="ui-icon" aria-hidden="true"><use href="../../../assets/icons.svg#icon-install"></use></svg></button>
+        <a class="header-icon-button" href="../../../cerca/index.html" aria-label="Cerca in tutto il piano"><svg class="ui-icon" aria-hidden="true"><use href="../../../assets/icons.svg#icon-search"></use></svg></a>
+      </div>
+    </div>
+  </header>
+
+  <aside class="offline-banner" data-offline-banner hidden role="status">
+    <svg class="ui-icon" aria-hidden="true"><use href="../../../assets/icons.svg#icon-wifi-off"></use></svg>
+    <span>Sei offline. Il piano già memorizzato resta disponibile.</span>
+    <a href="../../../strumenti/index.html#offline">Gestisci offline</a>
+  </aside>
+
+  <aside class="update-banner" data-update-banner hidden role="status">
+    <div><svg class="ui-icon" aria-hidden="true"><use href="../../../assets/icons.svg#icon-update"></use></svg><span><strong>Nuova versione pronta.</strong> Aggiorna senza perdere le preferenze locali.</span></div>
+    <div><button class="button primary compact" type="button" data-update-now>Aggiorna</button><button class="button ghost compact" type="button" data-update-dismiss>Più tardi</button></div>
+  </aside>
+
+  <main id="contenuto" class="page-shell">
+    <nav class="breadcrumbs" aria-label="Percorso">
+      <a class="breadcrumb-home" href="../../../index.html" aria-label="Home"><svg class="ui-icon" aria-hidden="true"><use href="../../../assets/icons.svg#icon-home"></use></svg></a>
+          <span class="crumb-sep" aria-hidden="true">›</span>
+<a href="../../../spesa/index.html">Spesa</a>          <span class="crumb-sep" aria-hidden="true">›</span>
+<a href="../../../spesa/ciclo-3/index.html">Ciclo 3</a>          <span class="crumb-sep" aria-hidden="true">›</span>
+<span aria-current="page">Variante 5</span>    </nav>
+<header class="page-header inline-header">
+  <div>
+    <p class="eyebrow">Lista della spesa</p>
+    <h1>Novembre · Variante 5</h1>
+    <p>Acquisti per i giorni 81–85 della matrice D1–D5.</p>
+  </div>
+  <div class="header-actions">
+<a class="button secondary" href="../../../piano/ciclo-3/variante-5/index.html">Torna al piano</a>    <button class="button ghost" type="button" data-copy-shopping-text>Copia lista</button>
+    <button class="button ghost" type="button" data-print>Stampa</button>
+    <button class="button ghost danger-text" type="button" data-clear-shopping>Azzera spunte</button>
+  </div>
+</header>
+<div class="shopping-progress" data-shopping-progress><span></span><strong>0 / 48</strong></div>
+<div class="shopping-categories" data-shopping-list="ciclo-3-variante-5" data-shopping-heading="Novembre · Variante 5">
+  <section class="shopping-category">
+    <h2>Ortofrutta <span>13</span></h2>
+    <div class="shopping-items">
+      <label class="shopping-item">
+        <input type="checkbox" value="arancia">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>arancia</strong><small>Acquisto fresco scaglionato.</small></span>
+        <span class="shopping-quantity"><strong>200 g</strong><small>necessari 130 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="banana">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>banana</strong><small>Acquisto fresco scaglionato.</small></span>
+        <span class="shopping-quantity"><strong>100 g</strong><small>necessari 100 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="carota">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>carote</strong><small>Acquisto fresco scaglionato.</small></span>
+        <span class="shopping-quantity"><strong>200 g</strong><small>necessari 150 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="cavolfiore">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>cavolfiore</strong><small>Acquisto fresco scaglionato.</small></span>
+        <span class="shopping-quantity"><strong>300 g</strong><small>necessari 250 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="cetriolo">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>cetriolo senza buccia e semi</strong><small>Acquisto fresco scaglionato.</small></span>
+        <span class="shopping-quantity"><strong>200 g</strong><small>necessari 160 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="finocchio">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>finocchi</strong><small>Acquisto fresco scaglionato.</small></span>
+        <span class="shopping-quantity"><strong>500 g</strong><small>necessari 450 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="kiwi">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>kiwi</strong><small>Acquisto fresco scaglionato.</small></span>
+        <span class="shopping-quantity"><strong>300 g</strong><small>necessari 240 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="mandarino">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>mandarini o clementine</strong><small>Acquisto fresco scaglionato.</small></span>
+        <span class="shopping-quantity"><strong>300 g</strong><small>necessari 260 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="mela">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>mela</strong><small>Acquisto fresco scaglionato.</small></span>
+        <span class="shopping-quantity"><strong>200 g</strong><small>necessari 130 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="pera">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>pera</strong><small>Acquisto fresco scaglionato.</small></span>
+        <span class="shopping-quantity"><strong>400 g</strong><small>necessari 390 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="pomodoro">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>pomodori</strong><small>Acquisto fresco scaglionato.</small></span>
+        <span class="shopping-quantity"><strong>200 g</strong><small>necessari 200 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="radicchio">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>radicchio</strong><small>Acquisto fresco scaglionato.</small></span>
+        <span class="shopping-quantity"><strong>400 g</strong><small>necessari 310 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="zucca">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>zucca</strong><small>Acquisto fresco scaglionato.</small></span>
+        <span class="shopping-quantity"><strong>500 g</strong><small>necessari 490 g</small></span>
+      </label>
+    </div>
+  </section>
+  <section class="shopping-category">
+    <h2>Carne e affettati <span>3</span></h2>
+    <div class="shopping-items">
+      <label class="shopping-item">
+        <input type="checkbox" value="bresaola">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>bresaola</strong><small>Acquisto fresco scaglionato.</small></span>
+        <span class="shopping-quantity"><strong>50 g</strong><small>necessari 30 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="tacchino">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>petto di tacchino</strong><small>Acquisto fresco scaglionato.</small></span>
+        <span class="shopping-quantity"><strong>250 g</strong><small>necessari 240 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="prosciutto_cotto">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>prosciutto cotto sgrassato</strong><small>Acquisto fresco scaglionato.</small></span>
+        <span class="shopping-quantity"><strong>100 g</strong><small>necessari 75 g</small></span>
+      </label>
+    </div>
+  </section>
+  <section class="shopping-category">
+    <h2>Pesce <span>3</span></h2>
+    <div class="shopping-items">
+      <label class="shopping-item">
+        <input type="checkbox" value="branzino">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>branzino</strong><small>Acquisto fresco scaglionato.</small></span>
+        <span class="shopping-quantity"><strong>200 g</strong><small>necessari 170 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="gamberi">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>gamberi</strong><small>Acquisto fresco scaglionato.</small></span>
+        <span class="shopping-quantity"><strong>150 g</strong><small>necessari 130 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="salmone">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>salmone</strong><small>Acquisto fresco scaglionato.</small></span>
+        <span class="shopping-quantity"><strong>200 g</strong><small>necessari 180 g</small></span>
+      </label>
+    </div>
+  </section>
+  <section class="shopping-category">
+    <h2>Latticini e uova <span>11</span></h2>
+    <div class="shopping-items">
+      <label class="shopping-item">
+        <input type="checkbox" value="albume">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>albume</strong><small>Acquisto fresco scaglionato.</small></span>
+        <span class="shopping-quantity"><strong>400 g</strong><small>necessari 400 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="feta">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>feta</strong><small>Acquisto fresco scaglionato.</small></span>
+        <span class="shopping-quantity"><strong>50 g</strong><small>necessari 30 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="fiocchi_latte">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>fiocchi di latte</strong><small>Acquisto fresco scaglionato.</small></span>
+        <span class="shopping-quantity"><strong>50 g</strong><small>necessari 45 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="primosale">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>formaggio primosale</strong><small>Acquisto fresco scaglionato.</small></span>
+        <span class="shopping-quantity"><strong>250 g</strong><small>necessari 220 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="grana">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>Grana Padano o Parmigiano</strong><small>Acquisto fresco scaglionato.</small></span>
+        <span class="shopping-quantity"><strong>50 g</strong><small>necessari 31 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="latte_ps">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>latte parzialmente scremato</strong><small>Acquisto fresco scaglionato.</small></span>
+        <span class="shopping-quantity"><strong>300 ml</strong><small>necessari 260 ml</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="mozzarella">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>mozzarella vaccina</strong><small>Acquisto fresco scaglionato.</small></span>
+        <span class="shopping-quantity"><strong>50 g</strong><small>necessari 50 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="ricotta">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>ricotta vaccina</strong><small>Acquisto fresco scaglionato.</small></span>
+        <span class="shopping-quantity"><strong>100 g</strong><small>necessari 100 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="robiola">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>robiola</strong><small>Acquisto fresco scaglionato.</small></span>
+        <span class="shopping-quantity"><strong>50 g</strong><small>necessari 35 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="uovo">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>uovo intero</strong><small>Quantità espressa in numero di uova; 1 uovo circa 50 g.</small></span>
+        <span class="shopping-quantity"><strong>7 uova</strong><small>necessari 7 uova</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="yogurt_bianco">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>yogurt bianco naturale</strong><small>Acquisto fresco scaglionato.</small></span>
+        <span class="shopping-quantity"><strong>50 g</strong><small>necessari 40 g</small></span>
+      </label>
+    </div>
+  </section>
+  <section class="shopping-category">
+    <h2>Cereali, pane e derivati <span>12</span></h2>
+    <div class="shopping-items">
+      <label class="shopping-item">
+        <input type="checkbox" value="couscous">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>couscous di semola secco</strong><small>Quantità arrotondata alla confezione pratica.</small></span>
+        <span class="shopping-quantity"><strong>100 g</strong><small>necessari 60 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="crackers">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>crackers classici</strong><small>Quantità arrotondata alla confezione pratica.</small></span>
+        <span class="shopping-quantity"><strong>100 g</strong><small>necessari 57 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="farina00">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>farina di frumento 00</strong><small>Quantità arrotondata alla confezione pratica.</small></span>
+        <span class="shopping-quantity"><strong>50 g</strong><small>necessari 45 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="polenta">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>farina di mais per polenta</strong><small>Quantità arrotondata alla confezione pratica.</small></span>
+        <span class="shopping-quantity"><strong>50 g</strong><small>necessari 45 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="gallette_riso">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>gallette di riso</strong><small>Quantità arrotondata alla confezione pratica.</small></span>
+        <span class="shopping-quantity"><strong>50 g</strong><small>necessari 36 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="pane_bianco">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>pane bianco comune</strong><small>Quantità arrotondata alla confezione pratica.</small></span>
+        <span class="shopping-quantity"><strong>350 g</strong><small>necessari 333 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="pane_segale">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>pane di segale</strong><small>Quantità arrotondata alla confezione pratica.</small></span>
+        <span class="shopping-quantity"><strong>50 g</strong><small>necessari 40 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="pangrattato">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>pangrattato</strong><small>Quantità arrotondata alla confezione pratica.</small></span>
+        <span class="shopping-quantity"><strong>50 g</strong><small>necessari 12 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="patata">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>patate</strong><small>Quantità arrotondata alla confezione pratica.</small></span>
+        <span class="shopping-quantity"><strong>500 g</strong><small>necessari 455 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="riso_basmati">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>riso basmati secco</strong><small>Quantità arrotondata alla confezione pratica.</small></span>
+        <span class="shopping-quantity"><strong>200 g</strong><small>necessari 155 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="riso_integrale">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>riso integrale secco</strong><small>Quantità arrotondata alla confezione pratica.</small></span>
+        <span class="shopping-quantity"><strong>50 g</strong><small>necessari 50 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="tortilla">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>tortilla di frumento</strong><small>Quantità arrotondata alla confezione pratica.</small></span>
+        <span class="shopping-quantity"><strong>50 g</strong><small>necessari 45 g</small></span>
+      </label>
+    </div>
+  </section>
+  <section class="shopping-category">
+    <h2>Legumi e conserve <span>1</span></h2>
+    <div class="shopping-items">
+      <label class="shopping-item">
+        <input type="checkbox" value="hummus">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>hummus semplice senza spezie piccanti</strong><small>Quantità arrotondata alla confezione pratica.</small></span>
+        <span class="shopping-quantity"><strong>50 g</strong><small>necessari 25 g</small></span>
+      </label>
+    </div>
+  </section>
+  <section class="shopping-category">
+    <h2>Frutta secca e semi <span>1</span></h2>
+    <div class="shopping-items">
+      <label class="shopping-item">
+        <input type="checkbox" value="sesamo">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>semi di sesamo</strong><small>Quantità arrotondata alla confezione pratica.</small></span>
+        <span class="shopping-quantity"><strong>10 g</strong><small>necessari 3 g</small></span>
+      </label>
+    </div>
+  </section>
+  <section class="shopping-category">
+    <h2>Condimenti e dispensa <span>4</span></h2>
+    <div class="shopping-items">
+      <label class="shopping-item">
+        <input type="checkbox" value="marmellata">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>confettura di frutta</strong><small>Quantità arrotondata alla confezione pratica.</small></span>
+        <span class="shopping-quantity"><strong>20 g</strong><small>necessari 12 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="miele">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>miele</strong><small>Quantità arrotondata alla confezione pratica.</small></span>
+        <span class="shopping-quantity"><strong>10 g</strong><small>necessari 5 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="olio">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>olio extravergine di oliva</strong><small>Quantità arrotondata alla confezione pratica.</small></span>
+        <span class="shopping-quantity"><strong>40 g</strong><small>necessari 35 g</small></span>
+      </label>
+      <label class="shopping-item">
+        <input type="checkbox" value="salsa_soia">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="shopping-name"><strong>salsa di soia delicata</strong><small>Quantità arrotondata alla confezione pratica.</small></span>
+        <span class="shopping-quantity"><strong>10 g</strong><small>necessari 5 g</small></span>
+      </label>
+    </div>
+  </section>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <img src="../../../assets/brand/brand-mark.svg" width="42" height="42" alt="">
+      <div><strong>Piano alimentare per turni</strong><span>Documento educativo, non prescrizione medica.</span></div>
+    </div>
+    <div class="footer-note">La tolleranza intestinale e l'andamento clinico vanno rivalutati con un professionista.</div>
+    <div class="footer-links">
+      <a href="../../../ricette/index.html">Ricette</a>
+      <a href="../../../ingredienti/index.html">Ingredienti</a>
+      <a href="../../../strumenti/index.html">Utilità</a>
+      <a href="../../../download/index.html">PDF e dati</a>
+      <a href="../../../progetto/index.html">Progetto</a>
+    </div>
+  </footer>
+
+  <nav class="mobile-nav" aria-label="Navigazione mobile">
+    <a class="" href="../../../oggi/index.html"><svg aria-hidden="true"><use href="../../../assets/icons.svg#icon-today"></use></svg><span>Oggi</span></a>
+    <a class="" href="../../../calendario/index.html"><svg aria-hidden="true"><use href="../../../assets/icons.svg#icon-calendar"></use></svg><span>Calendario</span></a>
+    <a class="" href="../../../ingredienti/index.html"><svg aria-hidden="true"><use href="../../../assets/icons.svg#icon-leaf"></use></svg><span>Alimenti</span></a>
+    <a class="is-active" href="../../../spesa/index.html"><svg aria-hidden="true"><use href="../../../assets/icons.svg#icon-shopping"></use></svg><span>Spesa</span></a>
+    <a class="" href="../../../piano/index.html"><svg aria-hidden="true"><use href="../../../assets/icons.svg#icon-plan"></use></svg><span>Piano</span></a>
+  </nav>
+</body>
+</html>
