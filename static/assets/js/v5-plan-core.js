@@ -7,14 +7,16 @@
   "use strict";
   if (!calendarCore) throw new Error("DietCalendarCore non disponibile");
   const core = calendarCore;
-  const DAY_TYPES = ["D1", "D2", "D3", "D4", "D5", "CUSTOM", "OFF", "FREE"];
+  const DAY_TYPES = ["D1", "D2", "D3", "D4", "D5", "M", "P", "CUSTOM", "OFF", "FREE"];
   const ADHERENCE = ["planned", "followed", "partial", "not-followed", "not-applicable"];
   const DEFAULT_SHIFTS = {
-    D1: { type:"D1", name:"Turno giorno", startTime:"08:00", endTime:"20:00", endDayOffset:0, capabilities:{reheat:true,refrigeration:true,complexSnack:true} },
-    D2: { type:"D2", name:"Turno notte", startTime:"20:00", endTime:"08:00", endDayOffset:1, capabilities:{reheat:false,refrigeration:true,complexSnack:false} },
+    D1: { type:"D1", name:"Giornata", startTime:"08:00", endTime:"20:00", endDayOffset:0, capabilities:{reheat:true,refrigeration:true,complexSnack:true} },
+    D2: { type:"D2", name:"Notte", startTime:"20:00", endTime:"08:00", endDayOffset:1, capabilities:{reheat:false,refrigeration:true,complexSnack:false} },
     D3: { type:"D3", name:"Smonto", startTime:null, endTime:null, endDayOffset:0, capabilities:{reheat:true,refrigeration:true,complexSnack:true} },
-    D4: { type:"D4", name:"Primo riposo", startTime:null, endTime:null, endDayOffset:0, capabilities:{reheat:true,refrigeration:true,complexSnack:true} },
-    D5: { type:"D5", name:"Secondo riposo", startTime:null, endTime:null, endDayOffset:0, capabilities:{reheat:true,refrigeration:true,complexSnack:true} },
+    D4: { type:"D4", name:"Riposo 1", startTime:null, endTime:null, endDayOffset:0, capabilities:{reheat:true,refrigeration:true,complexSnack:true} },
+    D5: { type:"D5", name:"Riposo 2", startTime:null, endTime:null, endDayOffset:0, capabilities:{reheat:true,refrigeration:true,complexSnack:true} },
+    M: { type:"M", name:"Mattino", startTime:null, endTime:null, endDayOffset:0, capabilities:{reheat:true,refrigeration:true,complexSnack:true} },
+    P: { type:"P", name:"Pomeriggio", startTime:null, endTime:null, endDayOffset:0, capabilities:{reheat:true,refrigeration:true,complexSnack:true} },
     OFF: { type:"OFF", name:"Fuori servizio", startTime:null, endTime:null, endDayOffset:0, capabilities:{reheat:true,refrigeration:true,complexSnack:true} },
     FREE: { type:"FREE", name:"Giornata libera", startTime:null, endTime:null, endDayOffset:0, capabilities:{reheat:true,refrigeration:true,complexSnack:true} },
   };
@@ -70,7 +72,7 @@
     const beforeStats=stats(plan,days); const kind=action;
     const requireTarget=()=>{if(!target) throw new Error("Giornata non trovata nel piano effettivo.");};
     if(action==="mark-adherence") { requireTarget(); if(!ADHERENCE.includes(params.status)) throw new Error("Stato di aderenza non valido"); target.adherenceStatus=params.status; target.updatedAt=now; }
-    else if(action==="replace-day-type") { requireTarget(); const type=params.dayType; if(!["D1","D2","D3","D4","D5","CUSTOM","OFF"].includes(type)) throw new Error("Tipo giorno non valido"); target.dayType=type; target.shift=type==="CUSTOM"?customShift(params.customShift||{}):defaultShift(type); target.source="replaced"; target.adherenceStatus="planned"; target.updatedAt=now; }
+    else if(action==="replace-day-type") { requireTarget(); const type=params.dayType; if(!["D1","D2","D3","D4","D5","M","P","CUSTOM","OFF"].includes(type)) throw new Error("Tipo giorno non valido"); target.dayType=type; target.shift=type==="CUSTOM"?customShift(params.customShift||{}):defaultShift(type); target.source="replaced"; target.adherenceStatus="planned"; target.updatedAt=now; }
     else if(action==="leave-day-free") { requireTarget(); target.dayType="FREE"; target.shift=defaultShift("FREE"); target.source="replaced"; target.adherenceStatus="not-applicable"; target.meals=[]; target.updatedAt=now; }
     else if(action==="insert-day" || action==="postpone-sequence") {
       const index=target ? target.sequenceIndex : (params.date===core.addDays(days.at(-1).date,1)?days.length:-1); if(index<0) throw new Error("Data di inserimento fuori piano");

@@ -54,7 +54,7 @@
               <h2>Cerca in tutto il piano</h2>
               <p>Puoi usare nomi di alimenti, ricette, turni, mesi, numeri di giorno o cucine.</p>
               <div class="search-suggestions">
-                ${["mozzarella", "D2 notte", "pasto freddo", "giorno 30", "couscous", "Ottobre variante 3"].map((term) => `<button type="button" data-search-suggestion="${esc(term)}">${esc(term)}</button>`).join("")}
+                ${["mozzarella", "N notte", "pasto freddo", "giorno 30", "couscous", "Ottobre variante 3"].map((term) => `<button type="button" data-search-suggestion="${esc(term)}">${esc(term)}</button>`).join("")}
               </div>
             </section>`;
           host.querySelectorAll("[data-search-suggestion]").forEach((button) => {

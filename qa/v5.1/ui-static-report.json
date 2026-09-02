@@ -1,0 +1,26 @@
+{
+  "status": "ok",
+  "version": "5.1.0",
+  "checks": {
+    "html_count": true,
+    "manager_page": true,
+    "preferences_page": true,
+    "seven_visible_day_choices": true,
+    "single_final_confirmation": true,
+    "preferences_from_manager": true,
+    "no_visible_legacy_day_codes": true,
+    "palette_--d1": true,
+    "palette_--d2": true,
+    "palette_--d3": true,
+    "palette_--d4": true,
+    "palette_--d5": true,
+    "palette_--m": true,
+    "palette_--p": true,
+    "manager_pwa_shortcut": true,
+    "domain_schema_morning_afternoon": true,
+    "service_worker_manager": true,
+    "service_worker_preferences": true
+  },
+  "errors": [],
+  "html_files": 590
+}

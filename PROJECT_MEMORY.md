@@ -2,31 +2,28 @@
 
 ## Stato corrente
 
-- Versione stabile: **5.0.0**
-- Data release: **26 agosto 2026**
+- Versione stabile: **5.1.0**
+- Data release: **2 settembre 2026**
 - Distribuzione: sito statico/PWA da `docs/`, compatibile con GitHub Pages project site
-- Persistenza personale: IndexedDB `tatadiet-v5`
+- Persistenza: IndexedDB `tatadiet-v5`
 - DB version: 1
 - Schema domain/backup: 1
 - Dataset base: `tatadiet-base-v1`
-- Fonte alimentare autorevole: `source_data/Piano_alimentare_revisionato_6_mesi_fibra_moderata.xlsx`
-- Il repository non deve contenere identificatori personali o profili sanitari nominativi. I vincoli alimentari necessari sono codificati nel dataset e nella logica del prodotto.
+- Fonte autorevole: `source_data/Piano_alimentare_revisionato_6_mesi_fibra_moderata.xlsx`
 
-## Conteggi base verificati
+## Conteggi base
 
-| Oggetto | Quantità |
-|---|---:|
-| Cicli | 6 |
-| Varianti | 36 |
-| Giorni base | 180 |
-| Pasti/spuntini base | 864 |
-| Famiglie ricetta | 306 |
-| Versioni ricetta base | 547 |
-| Ingredienti base | 130 |
-| Ingredienti usati dal piano | 100 |
-| HTML generati | 588 |
-| Link/risorse/frammenti verificati | 38.259 |
-| Risorse libreria offline | 639 |
+```text
+6 cicli
+36 varianti
+180 giorni base
+864 pasti/spuntini base
+306 famiglie ricetta
+547 versioni ricetta base
+130 ingredienti base
+```
+
+I conteggi HTML/QA della 5.1 sono prodotti da `./v5_1.sh` e salvati in `qa/v5.1/`.
 
 ## Principio architetturale
 
@@ -36,28 +33,107 @@ BASE IMMUTABILE
 + CALENDARIO EFFETTIVO
 + VERSIONI RICETTA ASSEGNATE
 + PORZIONI DELLE OCCORRENZE
++ PREFERENZE ALIMENTARI
 = PIANO EFFETTIVO
 ```
 
-Il dataset base non viene modificato dal browser. Tutte le personalizzazioni sono locali e possono essere esportate in JSON.
+Il dataset base non viene modificato dal browser. `docs/` è output generato e non va modificato manualmente.
 
-## Fonti autorevoli del repository
+## Nomenclatura giornate V5.1
+
+Internamente il dataset base conserva D1-D5 per compatibilità. La UI usa sempre:
+
+| Interno | UI | Sigla | CSS | Profilo alimentare |
+|---|---|---|---|---|
+| D1 | Giornata | G | d1 / ocra | D1 |
+| D2 | Notte | N | d2 / blu intenso | D2 |
+| D3 | Smonto | SN | d3 / azzurro | D3 |
+| D4 | Riposo 1 | R1 | d4 / verde | D4 |
+| D5 | Riposo 2 | R2 | d5 / verde | D5 |
+| M | Mattino | M | m / giallo tuorlo | D1 |
+| P | Pomeriggio | P | p / rosso intenso | D1 |
+
+Colori canonici:
 
 ```text
-source_data/        dati alimentari di origine
-static/             CSS, JS, manifest, SW, icone, illustrazioni
-templates/          template Jinja2
-scripts/            build, validatori e test
-schemas/v5/         JSON Schema
-spec/v5/            esempi di contratto
-v5_data/base/       seed immutabile
-docs/               output generato
-qa/                 report e screenshot
+G  #a66a21
+N  #173b83
+SN #58a9d6
+R1 #3e8a59
+R2 #3e8a59
+M  #e5a700
+P  #b6242d
 ```
 
-Non modificare manualmente `docs/`.
+M e P sono nuovi tipi effettivi ammessi nel calendario personale. Non hanno orari fissi perché non sono stati forniti; `defaultShift(M/P)` mantiene `startTime/endTime = null`. Il Compositore mappa M/P al profilo D1 per slot, kcal di riferimento e proposta menu.
 
-## IndexedDB
+Il mapping UI autorevole è `static/assets/js/v5-day-types.js`; lato build è replicato da `SHIFT_INFO`/`DAY_UI` in `scripts/build_site.py`.
+
+## Gestisci giornata
+
+Percorso primario: `/calendario/gestisci/`.
+
+È la UX consigliata per il lavoro quotidiano. Contiene:
+
+1. calendario mensile navigabile;
+2. selettore G/N/SN/R1/R2/M/P;
+3. scelta menu `adapt / keep / personal`;
+4. sostituzione dei singoli piatti in modalità personal;
+5. aderenza;
+6. FREE, postpone, insert, remove;
+7. anteprima impatto;
+8. una sola conferma finale.
+
+Regola: quando cambia tipo di giornata, `menuMode` passa automaticamente a `adapt`.
+
+Le modifiche restano in memoria finché l'utente non conferma. `v5-plan-store.commitState()` salva lo stato finale come **una singola operationRecord**, quindi undo/redo è atomico rispetto alla modifica composta.
+
+La pagina `/calendario/modifica/` resta come **Gestione avanzata** per CUSTOM e operazioni di basso livello. `/calendario/componi/` resta il Compositore completo.
+
+Bug V5.1 già corretto: entrando in Gestisci giornata su FREE/CUSTOM/OFF, la bozza conserva il tipo reale e non converte implicitamente a Giornata.
+
+## Preferenze alimentari
+
+Percorso: `/preferenze/`.
+Setting IndexedDB: `foodPreferencesV1`, schemaVersion 1.
+
+Famiglie iniziali:
+
+```text
+eggs        Uova
+milkYogurt  Latte e yogurt
+cheese      Formaggi
+coldCuts    Affettati
+fish        Pesce
+legumes     Legumi
+redMeat     Carne rossa
+```
+
+Livelli:
+
+```text
+more normal less rare never
+```
+
+Ogni gruppo supporta `maxPer7Days` opzionale. Una occasione è un **pasto** che contiene il gruppo. La finestra usa i 3 giorni precedenti e 3 successivi rispetto alla data target; durante la generazione di un menu il contatore viene aggiornato anche per i pasti appena selezionati nello stesso giorno.
+
+Semantica:
+
+- `more`: bonus ranking;
+- `normal`: neutro;
+- `less`: penalità crescente;
+- `rare`: penalità maggiore;
+- `never`: non eleggibile automaticamente;
+- limite raggiunto: non eleggibile automaticamente;
+- scelta manuale: sempre possibile, salvo futuri vincoli clinici separati.
+
+Classificazione: `v5-preferences-core.js` usa prima gli ingredienti effettivi della `recipeVersion`; il titolo ricetta è solo fallback quando non esistono righe ingrediente. I nomi arrivano dal catalogo ingredienti caricato in `v5-composer-store.library()`.
+
+Casi espliciti verificati: uovo/albume, yogurt/kefir/skyr, mozzarella/ricotta/grana/feta/fiocchi di latte/primosale; latte di cocco e bevande vegetali nominate come latte non vengono trattate automaticamente come latticini.
+
+Le preferenze influenzano il Compositore completo e il menu adattato da Gestisci giornata.
+
+## IndexedDB e versionamento
 
 Store:
 
@@ -74,46 +150,23 @@ operations
 shoppingChecklists
 ```
 
-Regole:
+Regole V5 invarianti:
 
-- record `origin=base`/`immutable=true` non modificabili;
-- ingredienti personali hanno revisioni immutabili;
-- ricette personali hanno versioni immutabili;
-- ogni riga ricetta conserva l'esatto `ingredientRevisionId`;
-- ogni pasto effettivo conserva l'esatto `recipeVersionId` e `portionMultiplier`;
-- lo storico non viene ricalcolato silenziosamente quando cambia una revisione/versione.
+- record base immutabili;
+- ingredienti personali con revisioni immutabili;
+- ricette personali con versioni immutabili;
+- ogni pasto conserva `recipeVersionId` e `portionMultiplier`;
+- lo storico non viene ricalcolato silenziosamente;
+- una nuova modifica dopo undo elimina il ramo redo.
 
-## Ingredienti personali
+V5.1 mantiene DB/schema 1. `currentAppVersion` viene aggiornato a 5.1.0 senza riscrivere record personali.
 
-L'utente può creare/duplicare ingredienti con:
+## Piano effettivo
 
-- nome, categoria, marca/alias;
-- base per 100 g o 100 ml;
-- kcal, proteine, carboidrati, grassi, fibra;
-- zuccheri, saturi, sale, sodio facoltativi;
-- stato alimento;
-- fonte e note;
-- conversioni pratiche (`pezzo`, `vasetto`, `fetta`, unità personalizzate).
-
-Una modifica crea una nuova revisione. Eliminazione consentita solo se non referenziato.
-
-## Ricette personali
-
-- le 306 ricette base sono immutabili;
-- una base può essere duplicata come personale;
-- una ricetta personale può essere creata da zero;
-- kcal/macro/fibra sono ricalcolati da ingredienti e quantità;
-- le porzioni dividono il totale nutrizionale;
-- ogni modifica crea una nuova versione;
-- archiviazione conserva lo storico;
-- eliminazione bloccata se il piano contiene riferimenti.
-
-## Planner personale
-
-Tipi giorno:
+Tipi ammessi:
 
 ```text
-D1 D2 D3 D4 D5 CUSTOM OFF FREE
+D1 D2 D3 D4 D5 M P CUSTOM OFF FREE
 ```
 
 Aderenza:
@@ -122,42 +175,11 @@ Aderenza:
 planned followed partial not-followed not-applicable
 ```
 
-Semantica consolidata:
+`not-followed` non sposta la sequenza. FREE svuota il menu senza spostare il futuro. Insert/remove/postpone restano operazioni strutturali.
 
-- `not-followed` registra aderenza e non sposta il piano;
-- D1-D5/OFF/CUSTOM possono sostituire il tipo mantenendo il menu;
-- `FREE` mantiene la data ma svuota i pasti;
-- `postpone-sequence` inserisce FREE e sposta il futuro;
-- `insert-day` prolunga la sequenza;
-- `remove-day` anticipa il futuro;
-- CUSTOM supporta turni oltre mezzanotte;
-- ogni operazione produce patch before/after;
-- undo/redo è persistente;
-- una nuova modifica dopo undo elimina il ramo redo;
-- tornando a una data iniziale già usata viene riattivato il piano personale precedente.
+Home, Oggi, Preparazioni 48h, Spesa, Ricerca e ICS leggono il piano effettivo. La spesa deriva dalle righe ingrediente della versione ricetta effettiva scalate per porzione; i pasti oltre mezzanotte appartengono alla data civile di consumo.
 
-## Compositore giornata
-
-Permette di:
-
-- mantenere/sostituire/rimuovere/aggiungere pasti;
-- cambiare orario, tipo e porzione;
-- scegliere ricette base o personali;
-- bloccare pasti da preservare;
-- caricare un menu da uno dei 180 giorni base;
-- filtrare per origine, freddo, rapidità, fibra moderata e assenza di riscaldamento;
-- generare suggerimenti deterministici locali;
-- ricalcolare nutrienti della giornata.
-
-I suggerimenti non modificano il piano senza conferma.
-
-## Resolver del piano effettivo
-
-Home, Oggi, Preparazioni 48h, Spesa, Ricerca e ICS leggono lo stesso piano personale.
-
-La spesa viene ricostruita dalle righe ingrediente della versione ricetta effettiva, scalate per porzione. I pasti oltre mezzanotte appartengono alla data civile di consumo.
-
-La finestra Preparazioni resta mobile e inclusiva fino a +48 ore, visualizzata come 0–24 e 24–48.
+ICS usa le sigle UI nei SUMMARY/CATEGORIES; M/P senza orario sono eventi all-day.
 
 ## Backup
 
@@ -170,106 +192,55 @@ calendar
 settings
 ```
 
-Ogni envelope contiene `format=tatadiet-backup`, schema 1, appVersion, dataset base, SHA-256 e dati personali.
+Nuovi backup: `appVersion = 5.1.0`. Backup V5.0/schema 1 e stesso dataset base restano importabili con warning. Le preferenze sono presenti in `settings`, quindi nei backup `full` e `settings`.
 
-Import:
-
-1. parse;
-2. validazione forma;
-3. verifica checksum;
-4. verifica dataset base;
-5. rilevamento conflitti;
-6. anteprima;
-7. checkpoint preventivo;
-8. transazione;
-9. possibilità di rollback.
-
-Backup alpha V5 schema 1 con lo stesso dataset base sono compatibili con 5.0.0 e producono un warning, non un errore.
-
-## Migrazione stabile
-
-`stableReleaseMigrationVersion = 5`.
-
-La stabile usa ancora DB schema 1. Dopo le normalizzazioni base di ingredienti/ricette, la migrazione finale aggiorna solo i marker `meta` e **non riscrive i record personali**.
-
-QA verificata con record personali creati prima del downgrade simulato dei marker alpha e confronto degli ID prima/dopo.
+Import conserva checksum SHA-256, anteprima, controllo dataset, conflitti e rollback.
 
 ## PWA/offline
 
-- service worker scope-safe per GitHub Pages project path;
-- cache core versionata;
-- installazione core atomica: una risorsa mancante annulla l'installazione del nuovo worker;
-- Planner e Compositore inclusi nella cache core;
-- navigazioni offline con query usano match `ignoreSearch`;
-- libreria completa offline facoltativa;
-- PDF/XLSX pesanti esclusi dal pack;
-- aggiornamento esplicito tramite worker waiting + `SKIP_WAITING`;
-- `controllerchange` ricarica la pagina;
-- IndexedDB non viene toccato dalla pulizia cache o dall'upgrade SW.
+- service worker scope-safe per GitHub Pages;
+- cache core atomica;
+- query offline gestite con `ignoreSearch`;
+- Gestisci giornata e Preferenze sono core offline;
+- offline pack completo facoltativo;
+- IndexedDB non viene cancellato dagli aggiornamenti SW;
+- shortcut manifest del calendario apre Gestisci giornata.
 
-## QA stabile 5.0.0
+## Build e QA
 
-Validazione deterministica:
-
-```text
-588 HTML
-38.259 link/risorse/frammenti
-0 errori
-0 warning
-639 risorse offline
-```
-
-Accessibilità statica:
-
-```text
-588 pagine
-1.179 immagini
-2.172 pulsanti
-18.855 link
-2.196 controlli form
-0 errori
-0 warning
-```
-
-Stress calendario:
-
-```text
-96 operazioni miste
-stato valido dopo ogni operazione
-undo completo = stato iniziale
-redo completo = stato finale
-```
-
-QA browser Chromium:
-
-- migrazione alpha→stabile senza perdita dati;
-- backup stable e alpha compatibile;
-- import replace e rollback;
-- service worker sotto `/docs/`;
-- Planner/Compositore offline con query;
-- offline pack 639/639, 0 failure;
-- ricetta profonda offline;
-- update worker waiting/activate;
-- IndexedDB preservato;
-- nessun overflow sulle viste principali a 390 px;
-- nessun pageerror.
-
-Limite: non è stata eseguita una prova fisica standalone su iOS/Android reale; farla dopo il deploy pubblico.
-
-## Build e gate
+Build:
 
 ```bash
 ./build.sh
-./phase8.sh
-# equivalente
-./qa.sh
+```
+
+Gate V5.1:
+
+```bash
+./v5_1.sh
+# oppure ./qa.sh
 ```
 
 QA browser:
 
 ```bash
-python3 scripts/qa_v5_phase8.py --base-url <URL-pubblicata>
+python3 scripts/qa_v5_1.py --base-url <root-pubblicata>
 ```
+
+Controlli specifici V5.1:
+
+- nessun D1-D5 visibile nelle 590 pagine HTML;
+- 7 tipi UI e palette canonica;
+- M/P validi nello schema e nel piano;
+- M/P usano profilo alimentare Giornata;
+- cambio tipo propone menu adattato;
+- conferma unica via `commitState`;
+- preferenze conteggiate per pasto;
+- riconoscimento famiglie dagli ingredienti;
+- `never`/limite escludono solo le proposte automatiche;
+- backup include preferenze;
+- Gestisci/Preferenze funzionano offline;
+- nessun overflow mobile.
 
 ## Pubblicazione
 
@@ -280,16 +251,15 @@ branch main
 folder /docs
 ```
 
-Percorsi relativi; compatibile con `https://<utente>.github.io/<repo>/`.
+## Limiti / backlog
 
-## Backlog post-V5
+- nessuna sincronizzazione cloud/account;
+- orari esatti di Mattino/Pomeriggio non definiti: usare CUSTOM quando servono;
+- preferenze alimentari non equivalgono a allergie/intolleranze cliniche;
+- possibile futuro: preset preferenze, statistiche di frequenza, import turni da calendario, dispensa e batch cooking.
 
-Non fa parte della 5.0.0:
+Qualunque V5.2/V6 deve partire da questa memoria e preservare backup/IndexedDB o fornire una migrazione esplicita e testata.
 
-- sincronizzazione cloud/account;
-- preferiti e note personali avanzate;
-- dispensa personale;
-- batch cooking avanzato;
-- sostituzioni equivalenti interattive più evolute.
+## Gate finale V5.1.0
 
-Qualunque V6 deve partire da questa memoria e non rompere schema backup/IndexedDB senza una migrazione esplicita e testata.
+Release validata il 2 settembre 2026: 590 HTML, 41.327 link/risorse/frammenti, 0 errori e 0 warning; 645 risorse offline (16.664.804 byte). Audit accessibilita: 590 pagine, 1.183 immagini, 2.196 pulsanti, 19.497 link, 2.208 controlli form, 0 errori e 0 warning. Stress: 96 operazioni con undo/redo completo. QA Chromium: 20 controlli V5.1 superati, inclusi palette, M/P, cambio tipo con menu adattato, preferenze, backup, offline e mobile.

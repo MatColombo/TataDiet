@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="page-header manager-hero">
+  <div><p class="eyebrow">V5.1 · gestione rapida</p><h1>Gestisci giornata</h1><p>Seleziona una data, cambia il tipo di giornata e decidi nello stesso posto cosa fare con il menu. Le modifiche restano in bozza fino alla conferma finale.</p></div>
+  <a class="button ghost compact" href="../modifica/index.html" data-manager-advanced-link>Gestione avanzata</a>
+</header>
+<div class="dynamic-loading" data-manager-loading>Caricamento del piano personale…</div>
+<section class="setup-card" data-manager-setup hidden><div><p class="eyebrow">Prima configurazione</p><h2>Imposta la prima Giornata</h2><p>Serve una data iniziale per creare il calendario personale.</p></div><a class="button primary" href="../index.html">Configura calendario</a></section>
+<section data-manager-app hidden>
+  <div class="manager-layout">
+    <aside class="manager-calendar-card">
+      <div class="manager-month-head"><button class="icon-button" type="button" data-manager-prev-month aria-label="Mese precedente">←</button><strong data-manager-month>—</strong><button class="icon-button" type="button" data-manager-next-month aria-label="Mese successivo">→</button></div>
+      <div class="manager-weekdays" aria-hidden="true"><span>L</span><span>M</span><span>M</span><span>G</span><span>V</span><span>S</span><span>D</span></div>
+      <div class="manager-month-grid" data-manager-calendar></div>
+      <div class="manager-date-jump"><input type="date" data-manager-date aria-label="Vai alla data"><button class="button secondary compact" type="button" data-manager-go>Apri</button><button class="button ghost compact" type="button" data-manager-today>Oggi</button></div>
+    </aside>
+
+    <main class="manager-workspace">
+      <article class="manager-day-summary">
+        <div><p class="eyebrow" data-manager-meta>—</p><h2 data-manager-title>—</h2><p data-manager-shift>—</p></div><span class="manager-type-badge" data-manager-current-badge>—</span>
+      </article>
+
+      <section class="manager-step">
+        <div class="manager-step-title"><span>1</span><div><h3>Tipo di giornata</h3><p>Mattino e Pomeriggio usano lo stesso profilo alimentare di Giornata.</p></div></div>
+        <div class="day-type-picker" data-manager-type-picker>
+          <button type="button" data-day-type="D1"><b>G</b><span>Giornata</span></button>
+          <button type="button" data-day-type="D2"><b>N</b><span>Notte</span></button>
+          <button type="button" data-day-type="D3"><b>SN</b><span>Smonto</span></button>
+          <button type="button" data-day-type="D4"><b>R1</b><span>Riposo 1</span></button>
+          <button type="button" data-day-type="D5"><b>R2</b><span>Riposo 2</span></button>
+          <button type="button" data-day-type="M"><b>M</b><span>Mattino</span></button>
+          <button type="button" data-day-type="P"><b>P</b><span>Pomeriggio</span></button>
+        </div>
+      </section>
+
+      <section class="manager-step" data-manager-menu-step>
+        <div class="manager-step-title"><span>2</span><div><h3>Cosa facciamo con il menu?</h3><p>Quando cambi tipo, TataDiet propone di adattare il menu in modo coerente. <a href="../../preferenze/index.html">Preferenze alimentari</a></p></div></div>
+        <div class="menu-choice-grid">
+          <label class="choice-card"><input type="radio" name="manager-menu" value="adapt" data-manager-menu-mode><strong>Adatta menu</strong><span>Rigenera gli slot e propone ricette compatibili con giornata, turno e preferenze.</span></label>
+          <label class="choice-card"><input type="radio" name="manager-menu" value="keep" data-manager-menu-mode checked><strong>Mantieni menu</strong><span>Conserva piatti, porzioni e orari già programmati.</span></label>
+          <label class="choice-card"><input type="radio" name="manager-menu" value="personal" data-manager-menu-mode><strong>Personalizza</strong><span>Parti dalla proposta concorde e cambia solo i piatti che vuoi.</span></label>
+        </div>
+        <div class="manager-menu-preview" data-manager-menu-preview></div>
+      </section>
+
+      <section class="manager-step">
+        <div class="manager-step-title"><span>3</span><div><h3>Stato e altre modifiche</h3><p>Queste azioni restano separate dal semplice cambio di turno.</p></div></div>
+        <div class="manager-adherence-row">
+          <label for="manager-adherence">Aderenza</label>
+          <select id="manager-adherence" data-manager-adherence><option value="planned">Pianificata</option><option value="followed">Seguita</option><option value="partial">Parziale</option><option value="not-followed">Non seguita</option></select>
+        </div>
+        <div class="manager-struct-grid" data-manager-struct>
+          <label><input type="radio" name="manager-struct" value="none" checked><strong>Nessuna</strong><span>Modifica solo questa giornata.</span></label>
+          <label><input type="radio" name="manager-struct" value="free"><strong>Giornata libera</strong><span>Svuota il menu, senza spostare il futuro.</span></label>
+          <label><input type="radio" name="manager-struct" value="postpone"><strong>Posticipa da qui</strong><span>Inserisce una giornata libera e sposta il futuro.</span></label>
+          <label><input type="radio" name="manager-struct" value="insert"><strong>Inserisci giornata</strong><span>Inserisce il tipo selezionato e prolunga il piano.</span></label>
+          <label class="danger"><input type="radio" name="manager-struct" value="remove"><strong>Elimina giornata</strong><span>Rimuove l'assegnazione e anticipa il futuro.</span></label>
+        </div>
+      </section>
+
+      <section class="manager-final-bar">
+        <div><strong data-manager-change-summary>Nessuna modifica in bozza</strong><span data-manager-change-detail>Seleziona un cambiamento per vedere l'anteprima.</span></div>
+        <div><button class="button ghost" type="button" data-manager-reset>Annulla bozza</button><button class="button primary" type="button" data-manager-confirm>Conferma modifiche</button></div>
+      </section>
+    </main>
+  </div>
+</section>
+
+<dialog class="recipe-picker-dialog" data-manager-picker>
+  <div class="recipe-picker-shell"><header><div><p class="eyebrow">Sostituisci piatto</p><h2 data-manager-picker-title>Scegli una ricetta</h2></div><button class="icon-button" type="button" data-manager-picker-close aria-label="Chiudi">×</button></header><div class="picker-filters"><label>Cerca<input type="search" data-manager-picker-search placeholder="Nome, cucina, ingrediente…"></label></div><div class="recipe-picker-results" data-manager-picker-results></div></div>
+</dialog>
+<dialog class="plan-impact-dialog" data-manager-final-dialog>
+  <div class="impact-dialog-card"><p class="eyebrow">Conferma finale</p><h2>Applica le modifiche?</h2><div data-manager-final-copy></div><div class="dialog-actions"><button class="button ghost" type="button" data-manager-final-cancel>Annulla</button><button class="button primary" type="button" data-manager-final-apply>Applica al piano</button></div></div>
+</dialog>
+<p class="toast-message" data-manager-toast hidden role="status"></p>
+{% endblock %}

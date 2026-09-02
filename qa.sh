@@ -2,4 +2,4 @@
 set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$ROOT_DIR"
-./phase8.sh
+./v5_1.sh

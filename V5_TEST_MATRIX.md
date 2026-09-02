@@ -237,3 +237,23 @@ Gate automatici aggiunti nella Fase 8:
 | REL-013 | mobile 390 px senza overflow nelle viste principali | PASS |
 
 La prova standalone su hardware iOS/Android reale resta manuale post-deploy.
+
+## 14. Gate release 5.1.0
+
+| ID | Verifica | Automazione |
+|---|---|---|
+| V51-001 | UI usa G/N/SN/R1/R2 e non espone D1-D5 | `test_v5_1_ui.py` |
+| V51-002 | palette nota all'utilizzatore | static + Chromium |
+| V51-003 | M/P ammessi dal dominio | `test_v5_1_core.js` + schema |
+| V51-004 | M/P usano profilo dietistico Giornata | `test_v5_1_core.js` |
+| V51-005 | cambio tipo seleziona Adatta menu | `qa_v5_1.py` |
+| V51-006 | modifica composta usa una conferma finale | static + Chromium |
+| V51-007 | M e P persistono nel piano effettivo | `qa_v5_1.py` |
+| V51-008 | preferenze salvate localmente | `qa_v5_1.py` |
+| V51-009 | occasioni conteggiate per pasto | `test_v5_1_core.js` |
+| V51-010 | ingredienti reali classificano uova/latticini/formaggi | `test_v5_1_core.js` |
+| V51-011 | `never`/limite bloccano solo proposte automatiche | core + Chromium |
+| V51-012 | preferenze incluse nel backup JSON | Chromium |
+| V51-013 | Gestisci/Preferenze disponibili offline | Chromium |
+| V51-014 | nessun overflow a 390 px | Chromium |
+| V51-015 | regressioni V5.0 e stress 96 operazioni | `v5_1.sh` |

@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
-VERSION = "5.0.0"
+VERSION = "5.1.0"
 
 
 def load_json(name: str):
@@ -94,7 +94,7 @@ def main() -> int:
         "giorni": (len(days), 180),
         "pasti": (len(meals), 864),
         "ricette": (len(recipes["recipes"]), 306),
-        "html": (len(html_files), 588),
+        "html": (len(html_files), 590),
         "giorni calendario": (len(calendar["days"]), 180),
         "pasti calendario": (sum(len(day["meals"]) for day in calendar["days"]), 864),
         "giorni spesa intervallo": (len(shopping_range["days"]), 180),

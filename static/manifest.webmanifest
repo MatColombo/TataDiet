@@ -50,10 +50,10 @@
       ]
     },
     {
-      "name": "Calendario",
-      "short_name": "Calendario",
-      "description": "Calendario personale dei 180 giorni",
-      "url": "calendario/index.html",
+      "name": "Gestisci giornata",
+      "short_name": "Gestisci",
+      "description": "Modifica rapidamente tipo di giornata e menu",
+      "url": "calendario/gestisci/index.html",
       "icons": [
         {
           "src": "assets/icons/icon-192.png",

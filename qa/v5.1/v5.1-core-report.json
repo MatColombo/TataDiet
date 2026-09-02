@@ -1,0 +1,13 @@
+{
+  "status": "ok",
+  "version": "5.1.0",
+  "checks": {
+    "day_labels": true,
+    "new_day_types": true,
+    "morning_afternoon_profile": true,
+    "ingredient_name_classification": true,
+    "meal_occurrence_counts": true,
+    "preference_limits": true,
+    "manual_only_never": true
+  }
+}

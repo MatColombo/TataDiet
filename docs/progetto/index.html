@@ -18,6 +18,8 @@
   <script defer src="../assets/js/calendar-core.js"></script>
   <script defer src="../assets/js/site-state.js"></script>
   <script defer src="../assets/js/operations-core.js"></script>
+  <script defer src="../assets/js/v5-day-types.js"></script>
+  <script defer src="../assets/js/v5-preferences-core.js"></script>
   <script defer src="../assets/js/v5-db.js"></script>
   <script defer src="../assets/js/v5-backup.js"></script>
   <script defer src="../assets/js/v5-ingredients-core.js"></script>
@@ -33,6 +35,8 @@
   <script defer src="../assets/js/v5-composer-core.js"></script>
   <script defer src="../assets/js/v5-composer-store.js"></script>
   <script defer src="../assets/js/v5-composer.js"></script>
+  <script defer src="../assets/js/v5-day-manager.js"></script>
+  <script defer src="../assets/js/v5-preferences.js"></script>
   <script defer src="../assets/js/v5-effective-core.js"></script>
   <script defer src="../assets/js/v5-effective-store.js"></script>
   <script defer src="../assets/js/v5-effective-pages.js"></script>
@@ -45,7 +49,7 @@
   <script defer src="../assets/js/v5-tools.js"></script>
   <script defer src="../assets/js/pwa.js"></script>
 </head>
-<body data-page="project" data-root="../" data-version="5.0.0">
+<body data-page="project" data-root="../" data-version="5.1.0">
   <a class="skip-link" href="#contenuto">Vai al contenuto</a>
 
   <header class="site-header">
@@ -54,7 +58,7 @@
         <img class="brand-mark" src="../assets/brand/brand-mark.svg" width="48" height="48" alt="">
         <span class="brand-copy">
           <strong>Piano alimentare</strong>
-          <small>turni, pasti e spesa · V5</small>
+          <small>turni, pasti e spesa · V5.1</small>
         </span>
       </a>
 
@@ -94,14 +98,14 @@
 <span aria-current="page">Progetto</span>    </nav>
 <header class="page-header">
   <p class="eyebrow">Registro del progetto</p>
-  <h1>Versione 5.0.0</h1>
+  <h1>Versione 5.1.0</h1>
   <p>Questa pagina sintetizza lo stato corrente. Il registro completo e modificabile è nel file <code>PROJECT_MEMORY.md</code> del repository.</p>
 </header>
 <div class="project-columns">
-  <section class="notice-card"><h2>Completato</h2><ul class="check-list"><li>Importazione verificata del file Excel revisionato</li><li>Pagine statiche per 6 cicli, 36 varianti e 180 giorni</li><li>Calendario civile e pagina Oggi con gestione della coda D2</li><li>Finestra mobile completa di 48 ore, distinta in 0-24 e 24-48 ore</li><li>Lista della spesa per intervallo con aggregazione di 3.190 record ingrediente-giorno</li><li>Ricerca globale, filtri ricette ed esportazione ICS</li><li>Backup locale, stampa e checklist salvate nel browser</li><li>PWA installabile con manifest, service worker e indicatori online/offline</li><li>Pacchetto offline opzionale per pagine, ricette, piano e dati</li><li>Strategia di aggiornamento cache con notifica e attivazione esplicita</li><li>Redesign UI completo, responsive e accessibile, con asset grafici locali leggeri</li><li>Test automatici di date, spesa, 48 ore, ricerca, ICS, PWA e collegamenti</li><li>Studio ingredienti V5 con catalogo base/personale, revisioni, conversioni, validazioni e archiviazione</li><li>Studio ricette V5 con ingredient picker, ricalcolo nutrizionale, porzioni, duplicazione e versionamento</li><li>Calendario effettivo V5 modificabile, aderenza, turni personalizzati e undo/redo</li><li>Compositore della giornata V5 con ricette base/personali, porzioni, blocchi e suggerimenti locali</li><li>Resolver unico del piano effettivo V5 per Home, Oggi, preparazioni, spesa, ricerca ed export ICS</li><li>Release 5.0.0: hardening della migrazione, cache PWA atomica, test accessibilita/stress e release stabile 5.0.0</li></ul></section>
+  <section class="notice-card"><h2>Completato</h2><ul class="check-list"><li>Importazione verificata del file Excel revisionato</li><li>Pagine statiche per 6 cicli, 36 varianti e 180 giorni</li><li>Calendario civile e pagina Oggi con gestione della coda N</li><li>Finestra mobile completa di 48 ore, distinta in 0-24 e 24-48 ore</li><li>Lista della spesa per intervallo con aggregazione di 3.190 record ingrediente-giorno</li><li>Ricerca globale, filtri ricette ed esportazione ICS</li><li>Backup locale, stampa e checklist salvate nel browser</li><li>PWA installabile con manifest, service worker e indicatori online/offline</li><li>Pacchetto offline opzionale per pagine, ricette, piano e dati</li><li>Strategia di aggiornamento cache con notifica e attivazione esplicita</li><li>Redesign UI completo, responsive e accessibile, con asset grafici locali leggeri</li><li>Test automatici di date, spesa, 48 ore, ricerca, ICS, PWA e collegamenti</li><li>Studio ingredienti V5 con catalogo base/personale, revisioni, conversioni, validazioni e archiviazione</li><li>Studio ricette V5 con ingredient picker, ricalcolo nutrizionale, porzioni, duplicazione e versionamento</li><li>Calendario effettivo V5 modificabile, aderenza, turni personalizzati e undo/redo</li><li>Compositore della giornata V5 con ricette base/personali, porzioni, blocchi e suggerimenti locali</li><li>Resolver unico del piano effettivo V5 per Home, Oggi, preparazioni, spesa, ricerca ed export ICS</li><li>Release 5.1.0: nuova nomenclatura e colori dei turni, Mattino/Pomeriggio, Gestisci giornata e preferenze alimentari locali</li></ul></section>
   <section class="notice-card"><h2>Prossimi passi</h2><ol class="roadmap-list"><li>Verifica manuale dell’installazione e del comportamento standalone su dispositivi Android e iOS reali</li><li>Backlog V5: preferiti, note locali e sostituzioni equivalenti interattive</li><li>Backlog V5: pianificazione batch-cooking e dispensa personale</li></ol></section>
 </div>
-<section class="section-block"><h2>Decisioni consolidate</h2><div class="decision-grid"><article><h3>Hosting</h3><p>Frontend statico pubblicabile dalla cartella docs su GitHub Pages, senza backend; IndexedDB conserva localmente il piano personale.</p></article><article><h3>Fonte dati</h3><p>L&#39;Excel revisionato resta la fonte autorevole del piano base; HTML e JSON vengono rigenerati e IndexedDB applica il livello personale effettivo.</p></article><article><h3>Asset</h3><p>CSS, JavaScript, icone e illustrazioni vivono in static e vengono copiati nella build; non si modificano i file generati.</p></article><article><h3>Privacy</h3><p>Nessun dato personale viene pubblicato. Piano, ricette, ingredienti, modifiche e preferenze restano nel browser e sono esportabili in JSON.</p></article><article><h3>UI</h3><p>Palette berry, blush, teal e lilla; grafica leggera con illustrazioni SVG locali e font di sistema per evitare rallentamenti.</p></article><article><h3>Accessibilità</h3><p>Colori sempre accompagnati da sigle e testo, focus visibile, contrasto controllato e supporto a movimento ridotto.</p></article><article><h3>Calendario</h3><p>Il template parte da C1/V1/D1; il calendario effettivo puo poi contenere eccezioni, inserimenti, rimozioni, turni CUSTOM e pasti personalizzati.</p></article><article><h3>48 ore</h3><p>La finestra è mobile e inclusiva: dal riferimento fino a +48 ore, visualizzata in blocchi 0-24 e 24-48.</p></article><article><h3>Offline</h3><p>Le risorse essenziali sono memorizzate automaticamente; l&#39;intera libreria statica è scaricabile facoltativamente dalle Utilità.</p></article><article><h3>Aggiornamenti</h3><p>Una nuova build usa cache versionate; l&#39;utente riceve un avviso e decide quando attivare la versione pronta.</p></article><article><h3>Stato locale</h3><p>Configurazione semplice in localStorage e dati V5 strutturati in IndexedDB; ingredienti e ricette personali restano sul dispositivo e sono esportabili in JSON.</p></article><article><h3>Ricette V5</h3><p>Le ricette base sono immutabili; le personali hanno versioni successive e ogni riga conserva la revisione esatta dell&#39;ingrediente usata nel calcolo.</p></article><article><h3>Piano effettivo</h3><p>Home, Oggi, 48 ore, spesa, ricerca e ICS risolvono lo stesso piano locale: date civili, versioni ricetta, porzioni e pasti effettivamente assegnati.</p></article><article><h3>ICS</h3><p>L&#39;export usa il piano effettivo nel fuso Europe/Rome; D1-D2 e CUSTOM con turno sono eventi orari, gli altri tipi di giornata sono eventi giornalieri.</p></article></div></section>
+<section class="section-block"><h2>Decisioni consolidate</h2><div class="decision-grid"><article><h3>Hosting</h3><p>Frontend statico pubblicabile dalla cartella docs su GitHub Pages, senza backend; IndexedDB conserva localmente il piano personale.</p></article><article><h3>Fonte dati</h3><p>L&#39;Excel revisionato resta la fonte autorevole del piano base; HTML e JSON vengono rigenerati e IndexedDB applica il livello personale effettivo.</p></article><article><h3>Asset</h3><p>CSS, JavaScript, icone e illustrazioni vivono in static e vengono copiati nella build; non si modificano i file generati.</p></article><article><h3>Privacy</h3><p>Nessun dato personale viene pubblicato. Piano, ricette, ingredienti, modifiche e preferenze restano nel browser e sono esportabili in JSON.</p></article><article><h3>UI</h3><p>Palette berry, blush, teal e lilla; grafica leggera con illustrazioni SVG locali e font di sistema per evitare rallentamenti.</p></article><article><h3>Accessibilità</h3><p>Colori sempre accompagnati da sigle e testo, focus visibile, contrasto controllato e supporto a movimento ridotto.</p></article><article><h3>Calendario</h3><p>Il template parte da C1/V1/G; il calendario effettivo può poi contenere eccezioni, inserimenti, rimozioni, Mattino, Pomeriggio, turni personalizzati e pasti personalizzati.</p></article><article><h3>48 ore</h3><p>La finestra è mobile e inclusiva: dal riferimento fino a +48 ore, visualizzata in blocchi 0-24 e 24-48.</p></article><article><h3>Offline</h3><p>Le risorse essenziali sono memorizzate automaticamente; l&#39;intera libreria statica è scaricabile facoltativamente dalle Utilità.</p></article><article><h3>Aggiornamenti</h3><p>Una nuova build usa cache versionate; l&#39;utente riceve un avviso e decide quando attivare la versione pronta.</p></article><article><h3>Stato locale</h3><p>Configurazione semplice in localStorage e dati V5 strutturati in IndexedDB; ingredienti e ricette personali restano sul dispositivo e sono esportabili in JSON.</p></article><article><h3>Ricette V5</h3><p>Le ricette base sono immutabili; le personali hanno versioni successive e ogni riga conserva la revisione esatta dell&#39;ingrediente usata nel calcolo.</p></article><article><h3>Piano effettivo</h3><p>Home, Oggi, 48 ore, spesa, ricerca e ICS risolvono lo stesso piano locale: date civili, versioni ricetta, porzioni e pasti effettivamente assegnati.</p></article><article><h3>ICS</h3><p>L&#39;export usa il piano effettivo nel fuso Europe/Rome; G, N e i turni personalizzati con orario sono eventi orari, gli altri tipi di giornata sono eventi giornalieri.</p></article></div></section>
   </main>
 
   <footer class="site-footer">
@@ -113,6 +117,7 @@
     <div class="footer-links">
       <a href="../ricette/index.html">Ricette</a>
       <a href="../ingredienti/index.html">Ingredienti</a>
+      <a href="../preferenze/index.html">Preferenze</a>
       <a href="../strumenti/index.html">Utilità</a>
       <a href="../download/index.html">PDF e dati</a>
       <a href="../progetto/index.html">Progetto</a>

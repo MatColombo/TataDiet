@@ -18,6 +18,8 @@
   <script defer src="../../assets/js/calendar-core.js"></script>
   <script defer src="../../assets/js/site-state.js"></script>
   <script defer src="../../assets/js/operations-core.js"></script>
+  <script defer src="../../assets/js/v5-day-types.js"></script>
+  <script defer src="../../assets/js/v5-preferences-core.js"></script>
   <script defer src="../../assets/js/v5-db.js"></script>
   <script defer src="../../assets/js/v5-backup.js"></script>
   <script defer src="../../assets/js/v5-ingredients-core.js"></script>
@@ -33,6 +35,8 @@
   <script defer src="../../assets/js/v5-composer-core.js"></script>
   <script defer src="../../assets/js/v5-composer-store.js"></script>
   <script defer src="../../assets/js/v5-composer.js"></script>
+  <script defer src="../../assets/js/v5-day-manager.js"></script>
+  <script defer src="../../assets/js/v5-preferences.js"></script>
   <script defer src="../../assets/js/v5-effective-core.js"></script>
   <script defer src="../../assets/js/v5-effective-store.js"></script>
   <script defer src="../../assets/js/v5-effective-pages.js"></script>
@@ -45,7 +49,7 @@
   <script defer src="../../assets/js/v5-tools.js"></script>
   <script defer src="../../assets/js/pwa.js"></script>
 </head>
-<body data-page="cycle" data-root="../../" data-version="5.0.0">
+<body data-page="cycle" data-root="../../" data-version="5.1.0">
   <a class="skip-link" href="#contenuto">Vai al contenuto</a>
 
   <header class="site-header">
@@ -54,7 +58,7 @@
         <img class="brand-mark" src="../../assets/brand/brand-mark.svg" width="48" height="48" alt="">
         <span class="brand-copy">
           <strong>Piano alimentare</strong>
-          <small>turni, pasti e spesa · V5</small>
+          <small>turni, pasti e spesa · V5.1</small>
         </span>
       </a>
 
@@ -116,7 +120,7 @@
       <h3><a href="variante-1/index.html">Variante 1</a></h3>
       <p>Giorni 1–5</p>
       <div class="mini-shifts">
-<a class="d1" href="variante-1/d1/index.html">D1</a><a class="d2" href="variante-1/d2/index.html">D2</a><a class="d3" href="variante-1/d3/index.html">D3</a><a class="d4" href="variante-1/d4/index.html">D4</a><a class="d5" href="variante-1/d5/index.html">D5</a>      </div>
+<a class="d1" href="variante-1/d1/index.html">G</a><a class="d2" href="variante-1/d2/index.html">N</a><a class="d3" href="variante-1/d3/index.html">SN</a><a class="d4" href="variante-1/d4/index.html">R1</a><a class="d5" href="variante-1/d5/index.html">R2</a>      </div>
       <div class="card-meta"><span>1605 kcal</span><span>23.8 g fibra</span></div>
     </article>
     <article class="variant-card">
@@ -124,7 +128,7 @@
       <h3><a href="variante-2/index.html">Variante 2</a></h3>
       <p>Giorni 6–10</p>
       <div class="mini-shifts">
-<a class="d1" href="variante-2/d1/index.html">D1</a><a class="d2" href="variante-2/d2/index.html">D2</a><a class="d3" href="variante-2/d3/index.html">D3</a><a class="d4" href="variante-2/d4/index.html">D4</a><a class="d5" href="variante-2/d5/index.html">D5</a>      </div>
+<a class="d1" href="variante-2/d1/index.html">G</a><a class="d2" href="variante-2/d2/index.html">N</a><a class="d3" href="variante-2/d3/index.html">SN</a><a class="d4" href="variante-2/d4/index.html">R1</a><a class="d5" href="variante-2/d5/index.html">R2</a>      </div>
       <div class="card-meta"><span>1612 kcal</span><span>20.4 g fibra</span></div>
     </article>
     <article class="variant-card">
@@ -132,7 +136,7 @@
       <h3><a href="variante-3/index.html">Variante 3</a></h3>
       <p>Giorni 11–15</p>
       <div class="mini-shifts">
-<a class="d1" href="variante-3/d1/index.html">D1</a><a class="d2" href="variante-3/d2/index.html">D2</a><a class="d3" href="variante-3/d3/index.html">D3</a><a class="d4" href="variante-3/d4/index.html">D4</a><a class="d5" href="variante-3/d5/index.html">D5</a>      </div>
+<a class="d1" href="variante-3/d1/index.html">G</a><a class="d2" href="variante-3/d2/index.html">N</a><a class="d3" href="variante-3/d3/index.html">SN</a><a class="d4" href="variante-3/d4/index.html">R1</a><a class="d5" href="variante-3/d5/index.html">R2</a>      </div>
       <div class="card-meta"><span>1603 kcal</span><span>18.9 g fibra</span></div>
     </article>
     <article class="variant-card">
@@ -140,7 +144,7 @@
       <h3><a href="variante-4/index.html">Variante 4</a></h3>
       <p>Giorni 16–20</p>
       <div class="mini-shifts">
-<a class="d1" href="variante-4/d1/index.html">D1</a><a class="d2" href="variante-4/d2/index.html">D2</a><a class="d3" href="variante-4/d3/index.html">D3</a><a class="d4" href="variante-4/d4/index.html">D4</a><a class="d5" href="variante-4/d5/index.html">D5</a>      </div>
+<a class="d1" href="variante-4/d1/index.html">G</a><a class="d2" href="variante-4/d2/index.html">N</a><a class="d3" href="variante-4/d3/index.html">SN</a><a class="d4" href="variante-4/d4/index.html">R1</a><a class="d5" href="variante-4/d5/index.html">R2</a>      </div>
       <div class="card-meta"><span>1605 kcal</span><span>20.8 g fibra</span></div>
     </article>
     <article class="variant-card">
@@ -148,7 +152,7 @@
       <h3><a href="variante-5/index.html">Variante 5</a></h3>
       <p>Giorni 21–25</p>
       <div class="mini-shifts">
-<a class="d1" href="variante-5/d1/index.html">D1</a><a class="d2" href="variante-5/d2/index.html">D2</a><a class="d3" href="variante-5/d3/index.html">D3</a><a class="d4" href="variante-5/d4/index.html">D4</a><a class="d5" href="variante-5/d5/index.html">D5</a>      </div>
+<a class="d1" href="variante-5/d1/index.html">G</a><a class="d2" href="variante-5/d2/index.html">N</a><a class="d3" href="variante-5/d3/index.html">SN</a><a class="d4" href="variante-5/d4/index.html">R1</a><a class="d5" href="variante-5/d5/index.html">R2</a>      </div>
       <div class="card-meta"><span>1601 kcal</span><span>19.7 g fibra</span></div>
     </article>
     <article class="variant-card">
@@ -156,7 +160,7 @@
       <h3><a href="variante-6/index.html">Variante 6</a></h3>
       <p>Giorni 26–30</p>
       <div class="mini-shifts">
-<a class="d1" href="variante-6/d1/index.html">D1</a><a class="d2" href="variante-6/d2/index.html">D2</a><a class="d3" href="variante-6/d3/index.html">D3</a><a class="d4" href="variante-6/d4/index.html">D4</a><a class="d5" href="variante-6/d5/index.html">D5</a>      </div>
+<a class="d1" href="variante-6/d1/index.html">G</a><a class="d2" href="variante-6/d2/index.html">N</a><a class="d3" href="variante-6/d3/index.html">SN</a><a class="d4" href="variante-6/d4/index.html">R1</a><a class="d5" href="variante-6/d5/index.html">R2</a>      </div>
       <div class="card-meta"><span>1610 kcal</span><span>20.0 g fibra</span></div>
     </article>
   </div>
@@ -172,6 +176,7 @@
     <div class="footer-links">
       <a href="../../ricette/index.html">Ricette</a>
       <a href="../../ingredienti/index.html">Ingredienti</a>
+      <a href="../../preferenze/index.html">Preferenze</a>
       <a href="../../strumenti/index.html">Utilità</a>
       <a href="../../download/index.html">PDF e dati</a>
       <a href="../../progetto/index.html">Progetto</a>

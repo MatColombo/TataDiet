@@ -28,7 +28,7 @@ SOURCE_XLSX = ROOT / "source_data" / "Piano_alimentare_revisionato_6_mesi_fibra_
 SOURCE_PDF = ROOT / "source_data" / "Piano_alimentare_revisionato_6_mesi_fibra_moderata.pdf"
 DOWNLOAD_XLSX = DOCS / "downloads" / SOURCE_XLSX.name
 DOWNLOAD_PDF = DOCS / "downloads" / "Piano_alimentare_revisionato_6_mesi_fibra_moderata.pdf"
-VERSION = "5.0.0"
+VERSION = "5.1.0"
 
 MONTH_SHEETS = [
     (1, "M1 Settembre"),
@@ -40,12 +40,20 @@ MONTH_SHEETS = [
 ]
 
 SHIFT_INFO = {
-    "D1": {"name": "Turno giorno", "hours": "08:00–20:00"},
-    "D2": {"name": "Turno notte", "hours": "20:00–08:00; ultimo mini-pasto alle 08:20"},
-    "D3": {"name": "Smonto", "hours": "Ripresa alimentare dal risveglio pomeridiano"},
-    "D4": {"name": "Primo riposo", "hours": "Giornata di riposo"},
-    "D5": {"name": "Secondo riposo", "hours": "Giornata di riposo"},
+    "D1": {"name": "Giornata", "short": "G", "hours": "08:00–20:00"},
+    "D2": {"name": "Notte", "short": "N", "hours": "20:00–08:00; ultimo mini-pasto alle 08:20"},
+    "D3": {"name": "Smonto", "short": "SN", "hours": "Ripresa alimentare dal risveglio pomeridiano"},
+    "D4": {"name": "Riposo 1", "short": "R1", "hours": "Giornata di riposo"},
+    "D5": {"name": "Riposo 2", "short": "R2", "hours": "Giornata di riposo"},
+    "M": {"name": "Mattino", "short": "M", "hours": "Profilo alimentare di Giornata"},
+    "P": {"name": "Pomeriggio", "short": "P", "hours": "Profilo alimentare di Giornata"},
 }
+DAY_UI = {code: data for code, data in SHIFT_INFO.items()}
+DAY_UI.update({"CUSTOM":{"name":"Personalizzata","short":"C"},"OFF":{"name":"Fuori servizio","short":"OFF"},"FREE":{"name":"Giornata libera","short":"L"}})
+def day_short(code: str) -> str:
+    return DAY_UI.get(code, {"short": code}).get("short", code)
+def day_label(code: str) -> str:
+    return DAY_UI.get(code, {"name": code}).get("name", code)
 
 CATEGORY_ORDER = [
     "Ortofrutta",
@@ -602,9 +610,9 @@ def build_search_index(
                 "id": f"day:{day['global_day']}",
                 "type": "day",
                 "type_label": "Giorno",
-                "title": f"Giorno {day['global_day']} · {day['d_code']} · {day['shift_name']}",
+                "title": f"Giorno {day['global_day']} · {day_short(day['d_code'])} · {day_label(day['d_code'])}",
                 "subtitle": f"{day['month']} · C{day['cycle']} · V{day['variant']}",
-                "text": f"{meal_titles} {ingredients} {day['month']} {day['shift_name']} {day['d_code']}",
+                "text": f"{meal_titles} {ingredients} {day['month']} {day['shift_name']} {day['d_code']} {day_short(day['d_code'])} {day_label(day['d_code'])}",
                 "href": f"piano/ciclo-{day['cycle']}/variante-{day['variant']}/{day['d_code'].lower()}/index.html",
                 "badges": [f"{day['total']['kcal']:.0f} kcal", f"{len(day['meals'])} pasti"],
                 "global_day": day["global_day"],
@@ -680,6 +688,8 @@ def main() -> None:
     )
     env.filters["format_quantity"] = format_quantity
     env.globals["site_version"] = VERSION
+    env.globals["day_short"] = day_short
+    env.globals["day_label"] = day_label
 
     def render(template_name: str, relative_path: str, **context: Any) -> None:
         output = DOCS / relative_path
@@ -721,6 +731,14 @@ def main() -> None:
     render(
         "day_composer.html", "calendario/componi/index.html", title="Compositore della giornata", nav="calendar", page_id="day-composer",
         breadcrumbs=[{"label": "Panoramica", "path": "index.html"}, {"label": "Calendario", "path": "calendario/index.html"}, {"label": "Compositore"}],
+    )
+    render(
+        "day_manager.html", "calendario/gestisci/index.html", title="Gestisci giornata", nav="calendar", page_id="day-manager",
+        breadcrumbs=[{"label": "Panoramica", "path": "index.html"}, {"label": "Calendario", "path": "calendario/index.html"}, {"label": "Gestisci giornata"}],
+    )
+    render(
+        "preferences.html", "preferenze/index.html", title="Preferenze alimentari", nav="preferences", page_id="preferences",
+        breadcrumbs=[{"label": "Panoramica", "path": "index.html"}, {"label": "Preferenze alimentari"}],
     )
     render(
         "prep.html", "preparazioni/index.html", title="Preparazioni 48 ore", nav="tools", page_id="prep",
@@ -784,18 +802,18 @@ def main() -> None:
                     target_path = DOCS / f"piano/ciclo-{target['cycle']}/variante-{target['variant']}/{target['d_code'].lower()}/index.html"
                     return {
                         "href": os.path.relpath(target_path, output_dir).replace(os.sep, "/"),
-                        "label": f"{target['d_code']} · giorno {target['global_day']}",
+                        "label": f"{day_short(target['d_code'])} · giorno {target['global_day']}",
                     }
 
                 render(
-                    "day.html", relative_path, title=f"Giorno {day['global_day']} · {day['d_code']}", nav="plan", page_id="day",
+                    "day.html", relative_path, title=f"Giorno {day['global_day']} · {day_short(day['d_code'])}", nav="plan", page_id="day",
                     cycle=cycle, variant=variant, day=day, prev_day=adjacent(day["global_day"] - 1), next_day=adjacent(day["global_day"] + 1),
                     breadcrumbs=[
                         {"label": "Panoramica", "path": "index.html"},
                         {"label": "Piano", "path": "piano/index.html"},
                         {"label": f"Ciclo {cycle['number']}", "path": f"piano/ciclo-{cycle['number']}/index.html"},
                         {"label": f"Variante {variant['number']}", "path": f"piano/ciclo-{cycle['number']}/variante-{variant['number']}/index.html"},
-                        {"label": day["d_code"]},
+                        {"label": day_short(day["d_code"])},
                     ],
                 )
 
@@ -844,7 +862,7 @@ def main() -> None:
                 "shopping_list.html", f"spesa/ciclo-{cycle['number']}/variante-{variant['number']}/index.html",
                 title=f"Spesa · {cycle['month']} · Variante {variant['number']}", nav="shopping", page_id="shopping-list",
                 heading=f"{cycle['month']} · Variante {variant['number']}",
-                subheading=f"Acquisti per i giorni {variant['start_day']}–{variant['end_day']} della matrice D1–D5.",
+                subheading=f"Acquisti per i giorni {variant['start_day']}–{variant['end_day']} della matrice G–N–SN–R1–R2.",
                 items=items, grouped_items=group_by_category(items), list_key=f"ciclo-{cycle['number']}-variante-{variant['number']}",
                 plan_href=f"../../../piano/ciclo-{cycle['number']}/variante-{variant['number']}/index.html",
                 breadcrumbs=[
@@ -862,7 +880,7 @@ def main() -> None:
     completed = [
         "Importazione verificata del file Excel revisionato",
         "Pagine statiche per 6 cicli, 36 varianti e 180 giorni",
-        "Calendario civile e pagina Oggi con gestione della coda D2",
+        "Calendario civile e pagina Oggi con gestione della coda N",
         "Finestra mobile completa di 48 ore, distinta in 0-24 e 24-48 ore",
         "Lista della spesa per intervallo con aggregazione di 3.190 record ingrediente-giorno",
         "Ricerca globale, filtri ricette ed esportazione ICS",
@@ -877,7 +895,7 @@ def main() -> None:
         "Calendario effettivo V5 modificabile, aderenza, turni personalizzati e undo/redo",
         "Compositore della giornata V5 con ricette base/personali, porzioni, blocchi e suggerimenti locali",
         "Resolver unico del piano effettivo V5 per Home, Oggi, preparazioni, spesa, ricerca ed export ICS",
-        "Release 5.0.0: hardening della migrazione, cache PWA atomica, test accessibilita/stress e release stabile 5.0.0",
+        "Release 5.1.0: nuova nomenclatura e colori dei turni, Mattino/Pomeriggio, Gestisci giornata e preferenze alimentari locali",
     ]
     todo = [
         "Verifica manuale dell’installazione e del comportamento standalone su dispositivi Android e iOS reali",
@@ -891,14 +909,14 @@ def main() -> None:
         {"title": "Privacy", "text": "Nessun dato personale viene pubblicato. Piano, ricette, ingredienti, modifiche e preferenze restano nel browser e sono esportabili in JSON."},
         {"title": "UI", "text": "Palette berry, blush, teal e lilla; grafica leggera con illustrazioni SVG locali e font di sistema per evitare rallentamenti."},
         {"title": "Accessibilità", "text": "Colori sempre accompagnati da sigle e testo, focus visibile, contrasto controllato e supporto a movimento ridotto."},
-        {"title": "Calendario", "text": "Il template parte da C1/V1/D1; il calendario effettivo puo poi contenere eccezioni, inserimenti, rimozioni, turni CUSTOM e pasti personalizzati."},
+        {"title": "Calendario", "text": "Il template parte da C1/V1/G; il calendario effettivo può poi contenere eccezioni, inserimenti, rimozioni, Mattino, Pomeriggio, turni personalizzati e pasti personalizzati."},
         {"title": "48 ore", "text": "La finestra è mobile e inclusiva: dal riferimento fino a +48 ore, visualizzata in blocchi 0-24 e 24-48."},
         {"title": "Offline", "text": "Le risorse essenziali sono memorizzate automaticamente; l'intera libreria statica è scaricabile facoltativamente dalle Utilità."},
         {"title": "Aggiornamenti", "text": "Una nuova build usa cache versionate; l'utente riceve un avviso e decide quando attivare la versione pronta."},
         {"title": "Stato locale", "text": "Configurazione semplice in localStorage e dati V5 strutturati in IndexedDB; ingredienti e ricette personali restano sul dispositivo e sono esportabili in JSON."},
         {"title": "Ricette V5", "text": "Le ricette base sono immutabili; le personali hanno versioni successive e ogni riga conserva la revisione esatta dell'ingrediente usata nel calcolo."},
         {"title": "Piano effettivo", "text": "Home, Oggi, 48 ore, spesa, ricerca e ICS risolvono lo stesso piano locale: date civili, versioni ricetta, porzioni e pasti effettivamente assegnati."},
-        {"title": "ICS", "text": "L'export usa il piano effettivo nel fuso Europe/Rome; D1-D2 e CUSTOM con turno sono eventi orari, gli altri tipi di giornata sono eventi giornalieri."},
+        {"title": "ICS", "text": "L'export usa il piano effettivo nel fuso Europe/Rome; G, N e i turni personalizzati con orario sono eventi orari, gli altri tipi di giornata sono eventi giornalieri."},
     ]
     render(
         "project.html", "progetto/index.html", title="Stato del progetto", nav="", page_id="project",

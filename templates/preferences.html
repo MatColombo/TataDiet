@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="page-header preference-hero"><p class="eyebrow">V5.1 · libertà alimentare</p><h1>Preferenze alimentari</h1><p>Indica quanto spesso desideri vedere alcune famiglie di alimenti. Le preferenze influenzano le proposte automatiche, ma non cancellano le tue scelte manuali.</p></header>
+<section class="preference-intro notice-card"><h2>Preferenze, non divieti clinici</h2><p>“Meno spesso”, “Raramente” e i limiti settimanali abbassano la priorità nelle proposte. Una occasione corrisponde a un pasto che contiene quella famiglia alimentare. “Mai” la esclude dai menu automatici, ma resta possibile scegliere manualmente una ricetta.</p></section>
+<section class="section-block"><div class="section-heading"><div><p class="eyebrow">Frequenza desiderata</p><h2>Quanto spesso vuoi che compaiano?</h2></div></div><div class="preference-grid" data-pref-groups></div></section>
+<section class="preference-actions"><a class="button ghost" href="../calendario/gestisci/index.html">Torna a Gestisci giornata</a><div><button class="button ghost" type="button" data-pref-reset>Ripristina valori normali</button><button class="button primary" type="button" data-pref-save>Salva preferenze</button></div></section>
+<p class="toast-message" data-pref-toast hidden role="status"></p>
+{% endblock %}

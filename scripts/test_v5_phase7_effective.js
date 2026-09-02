@@ -2,6 +2,7 @@
 "use strict";
 const assert=require('node:assert/strict'),path=require('node:path');
 global.DietCalendarCore=require(path.resolve(__dirname,'../static/assets/js/calendar-core.js'));
+global.TataDietDayTypes=require(path.resolve(__dirname,'../static/assets/js/v5-day-types.js'));
 require(path.resolve(__dirname,'../static/assets/js/v5-composer-core.js'));
 const eff=require(path.resolve(__dirname,'../static/assets/js/v5-effective-core.js'));
 const recipes=[
@@ -35,7 +36,7 @@ assert.equal(shop.mealCount,2);assert.equal(shop.unresolvedMeals,0);
 const yogurt=shop.items.find(x=>x.name==='yogurt personale');assert.ok(yogurt);assert.equal(yogurt.exact,375); // 125 tail + 250 same day
 assert.equal(yogurt.suggested,375); // personal ingredient, no rule
 const ics=eff.buildIcs(plan,days,maps,'2026-09-01','2026-09-02',true,new Date('2026-08-26T16:00:00Z'));
-assert.ok(ics.includes('TataDiet D2'));assert.ok(ics.includes('TataDiet CUSTOM'));assert.ok(ics.includes('meal prep'));assert.ok(ics.includes('\r\n'));
+assert.ok(ics.includes('TataDiet N'));assert.ok(ics.includes('TataDiet C'));assert.ok(ics.includes('meal prep'));assert.ok(ics.includes('\r\n'));
 const maxLine=Math.max(...ics.split('\r\n').map(x=>new TextEncoder().encode(x).length));assert.ok(maxLine<=75,maxLine);
 const search=eff.personalSearchEntries({recipes,ingredients,days},maps,'2026-09-01');assert.ok(search.some(x=>x.title==='Snack personale'));assert.ok(search.some(x=>x.title==='yogurt personale'));assert.ok(search.some(x=>x.type==='day'));
 console.log(JSON.stringify({status:'ok',checkpoint:'5.0.0-alpha.7-phase7',checks:{civil_tail:true,effective_nutrition:true,prep_48h:true,shopping_from_recipe_versions:true,personal_ingredient_exact:true,ics_effective:true,ics_folded:true,personal_search:true}},null,2));

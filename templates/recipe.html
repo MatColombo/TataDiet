@@ -41,7 +41,7 @@
   <div class="occurrence-list">
   {% for occurrence in recipe.occurrences %}
     <a href="../../piano/ciclo-{{ occurrence.cycle }}/variante-{{ occurrence.variant }}/{{ occurrence.d_code|lower }}/index.html#{{ occurrence.anchor }}">
-      <span class="shift-pill {{ occurrence.d_code|lower }}">{{ occurrence.d_code }}</span>
+      <span class="shift-pill {{ occurrence.d_code|lower }}">{{ day_short(occurrence.d_code) }}</span>
       <span><strong>{{ occurrence.month }} · V{{ occurrence.variant }} · giorno {{ occurrence.global_day }}</strong><small>{{ occurrence.time }} · {{ occurrence.meal_type }}</small></span>
       <span>Apri →</span>
     </a>

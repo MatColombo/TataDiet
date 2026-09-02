@@ -21,9 +21,17 @@
     const db=await dbApi.openDatabase();try{const tx=db.transaction(["planInstances","calendarDays","operations"],"readwrite");const os=tx.objectStore("operations");existing.filter(x=>x.planInstanceId===current.plan.id&&x.undoneAt).forEach(x=>os.delete(x.id));patch.after.deleteIds.forEach(id=>tx.objectStore("calendarDays").delete(id));patch.after.upsert.forEach(d=>tx.objectStore("calendarDays").put(d));tx.objectStore("planInstances").put(next.plan);os.put(op);await txDone(tx);}finally{db.close();}
     return {operation:op,...next};
   }
+  async function commitState(nextPlanInput,nextDaysInput,kind="manage-day") {
+    deps(); const current=await activeBundle(); if(!current) throw new Error("Nessun piano personale attivo");
+    const plan=structuredClone(nextPlanInput), days=core.sortDays(structuredClone(nextDaysInput)); const now=new Date().toISOString();
+    plan.updatedAt=now; plan.dayIds=days.map(d=>d.id); const validation=core.validateState(plan,days); if(!validation.valid) throw new Error(validation.errors.join("; "));
+    const patch=core.diffPatch(current.plan,current.days,plan,days); const op=core.operationRecord(plan.id,kind,patch,now); const existing=await dbApi.getAll("operations");
+    const db=await dbApi.openDatabase(); try { const tx=db.transaction(["planInstances","calendarDays","operations"],"readwrite"); const os=tx.objectStore("operations"); existing.filter(x=>x.planInstanceId===plan.id&&x.undoneAt).forEach(x=>os.delete(x.id)); patch.after.deleteIds.forEach(id=>tx.objectStore("calendarDays").delete(id)); patch.after.upsert.forEach(d=>tx.objectStore("calendarDays").put(d)); tx.objectStore("planInstances").put(plan); os.put(op); await txDone(tx); } finally { db.close(); }
+    return {operation:op,plan,days};
+  }
   async function applyHistory(op,side){const current=await bundle(op.planInstanceId);if(!current)throw new Error("Piano non trovato");const patch=op[side];const db=await dbApi.openDatabase();try{const tx=db.transaction(["planInstances","calendarDays","operations"],"readwrite");(patch.deleteIds||[]).forEach(id=>tx.objectStore("calendarDays").delete(id));(patch.upsert||[]).forEach(d=>tx.objectStore("calendarDays").put(d));tx.objectStore("planInstances").put(patch.plan);tx.objectStore("operations").put(op);await txDone(tx);}finally{db.close();}return bundle(op.planInstanceId);}
   async function history(){const current=await activeBundle();if(!current)return [];return (await dbApi.getAll("operations")).filter(o=>o.planInstanceId===current.plan.id).sort((a,b)=>String(a.createdAt).localeCompare(String(b.createdAt)));}
   async function undo(){const ops=await history();const op=[...ops].reverse().find(o=>!o.undoneAt);if(!op)return null;op.undoneAt=new Date().toISOString();return {operation:op,bundle:await applyHistory(op,"before")};}
   async function redo(){const ops=await history();const op=ops.find(o=>o.undoneAt);if(!op)return null;op.undoneAt=null;return {operation:op,bundle:await applyHistory(op,"after")};}
-  return {bundle,activeBundle,ensureActive,preview,commit,history,undo,redo};
+  return {bundle,activeBundle,ensureActive,preview,commit,commitState,history,undo,redo};
 });

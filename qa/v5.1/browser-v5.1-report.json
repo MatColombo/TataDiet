@@ -1,0 +1,177 @@
+{
+  "status": "ok",
+  "version": "5.1.0",
+  "checks": [
+    {
+      "name": "version_5_1",
+      "ok": true
+    },
+    {
+      "name": "plan_initialized",
+      "ok": true,
+      "detail": {
+        "id": "usr:plan:f09df340-d853-435c-a32b-cf26846e91c5",
+        "days": 180
+      }
+    },
+    {
+      "name": "manager_seven_types",
+      "ok": true,
+      "detail": 7
+    },
+    {
+      "name": "manager_labels",
+      "ok": true,
+      "detail": [
+        "G Giornata",
+        "N Notte",
+        "SN Smonto",
+        "R1 Riposo 1",
+        "R2 Riposo 2",
+        "M Mattino",
+        "P Pomeriggio"
+      ]
+    },
+    {
+      "name": "known_day_palette",
+      "ok": true,
+      "detail": {
+        "--d1": "#a66a21",
+        "--d2": "#173b83",
+        "--d3": "#58a9d6",
+        "--d4": "#3e8a59",
+        "--d5": "#3e8a59",
+        "--m": "#e5a700",
+        "--p": "#b6242d"
+      }
+    },
+    {
+      "name": "type_change_defaults_to_adapt",
+      "ok": true
+    },
+    {
+      "name": "morning_preview_uses_day_menu",
+      "ok": true,
+      "detail": 5
+    },
+    {
+      "name": "one_final_confirm",
+      "ok": true
+    },
+    {
+      "name": "morning_persisted",
+      "ok": true,
+      "detail": {
+        "type": "M",
+        "meals": 5,
+        "shift": {
+          "type": "M",
+          "name": "Mattino",
+          "startTime": null,
+          "endTime": null,
+          "endDayOffset": 0,
+          "capabilities": {
+            "reheat": true,
+            "refrigeration": true,
+            "complexSnack": true
+          }
+        }
+      }
+    },
+    {
+      "name": "afternoon_defaults_to_adapt",
+      "ok": true
+    },
+    {
+      "name": "afternoon_persisted",
+      "ok": true,
+      "detail": {
+        "type": "P",
+        "meals": 5
+      }
+    },
+    {
+      "name": "preferences_saved",
+      "ok": true,
+      "detail": {
+        "schemaVersion": 1,
+        "groups": {
+          "eggs": {
+            "level": "never",
+            "maxPer7Days": null
+          },
+          "milkYogurt": {
+            "level": "normal",
+            "maxPer7Days": null
+          },
+          "cheese": {
+            "level": "rare",
+            "maxPer7Days": 2
+          },
+          "coldCuts": {
+            "level": "normal",
+            "maxPer7Days": null
+          },
+          "fish": {
+            "level": "normal",
+            "maxPer7Days": null
+          },
+          "legumes": {
+            "level": "normal",
+            "maxPer7Days": null
+          },
+          "redMeat": {
+            "level": "normal",
+            "maxPer7Days": null
+          }
+        }
+      }
+    },
+    {
+      "name": "automatic_menu_respects_never",
+      "ok": true,
+      "detail": [
+        "milkYogurt",
+        "redMeat"
+      ]
+    },
+    {
+      "name": "automatic_menu_respects_cheese_limit",
+      "ok": true,
+      "detail": [
+        "milkYogurt",
+        "redMeat"
+      ]
+    },
+    {
+      "name": "manual_choice_not_removed",
+      "ok": true,
+      "detail": 94
+    },
+    {
+      "name": "preferences_in_json_backup",
+      "ok": true,
+      "detail": "5.1.0"
+    },
+    {
+      "name": "calendar_displays_morning_afternoon",
+      "ok": true,
+      "detail": "Vai al contenuto\nPiano alimentare\nturni, pasti e spesa · V5.1\nOggi\nCalendario\nPiano\nRicette\nIngredienti\nSpesa\nUtilità\nOnline\n›\nCalendario\n\nV5 · CALENDARIO OPERATIVO\n\nCalendario personale\n\nImposta la data della prima Giornata (G). Il sito associa ogni data a ciclo, variante e turno, gestisce la prosecuzione notturna della Notte (N) e collega direttamente preparazioni, spesa e strumenti.\n\nINTERVALLO ATTIVO\n1 set 2026 – 27 feb 2027\nIl primo giorno è C1 · V1 · G.\nOggi\nGestisci giornata\nPrep 48h\nSpes"
+    },
+    {
+      "name": "manager_preferences_offline",
+      "ok": true
+    },
+    {
+      "name": "mobile_no_horizontal_overflow",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no_page_errors",
+      "ok": true,
+      "detail": []
+    }
+  ],
+  "errors": []
+}

@@ -29,7 +29,7 @@ for (let i = 0; i < actions; i += 1) {
       commit('mark-adherence', { date, status: ['followed', 'partial', 'not-followed'][i % 3] });
       break;
     case 1:
-      commit('replace-day-type', { date, dayType: ['D1', 'D2', 'D3', 'D4', 'D5'][i % 5] });
+      commit('replace-day-type', { date, dayType: ['D1', 'D2', 'D3', 'D4', 'D5', 'M', 'P'][i % 7] });
       break;
     case 2:
       commit('leave-day-free', { date });
@@ -76,7 +76,7 @@ assert.equal(JSON.stringify({ plan, days }), finalState, 'redo completo non rico
 
 console.log(JSON.stringify({
   status: 'ok',
-  version: '5.0.0',
+  version: '5.1.0',
   operations: history.length,
   finalDays: days.length,
   checks: { continuous_dates: true, unique_ids: true, structural_shifts: true, full_undo: true, full_redo: true }

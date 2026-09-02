@@ -1,24 +1,24 @@
 {
   "recipe": {
     "recordType": "recipe",
-    "id": "usr:recipe:078d1d9c-d696-4b90-bcc8-8326078e3692",
+    "id": "usr:recipe:c1b946ef-0324-4b68-b622-85d644a262cd",
     "origin": "personal",
     "title": "Toast mozzarella test aggiornato",
-    "currentVersionId": "usr:recipe-version:fc627209-16c9-43b3-bbdb-e7da1e988c14",
+    "currentVersionId": "usr:recipe-version:3a34e499-828f-4e1c-a011-b5f8968a5f9b",
     "createdAt": "2026-08-26T15:00:00.000Z",
     "updatedAt": "2026-08-26T15:05:00.000Z",
     "archivedAt": null
   },
   "version": {
     "recordType": "recipeVersion",
-    "id": "usr:recipe-version:fc627209-16c9-43b3-bbdb-e7da1e988c14",
-    "recipeId": "usr:recipe:078d1d9c-d696-4b90-bcc8-8326078e3692",
+    "id": "usr:recipe-version:3a34e499-828f-4e1c-a011-b5f8968a5f9b",
+    "recipeId": "usr:recipe:c1b946ef-0324-4b68-b622-85d644a262cd",
     "versionNumber": 2,
     "servings": 2,
     "nutritionMode": "calculated",
     "ingredientLines": [
       {
-        "lineId": "usr:recipe-version:fc627209-16c9-43b3-bbdb-e7da1e988c14:line:1",
+        "lineId": "usr:recipe-version:3a34e499-828f-4e1c-a011-b5f8968a5f9b:line:1",
         "ingredientId": "usr:ingredient:pane",
         "ingredientRevisionId": "usr:ingredient-revision:pane@1",
         "amount": 2,
@@ -29,7 +29,7 @@
         "notes": null
       },
       {
-        "lineId": "usr:recipe-version:fc627209-16c9-43b3-bbdb-e7da1e988c14:line:2",
+        "lineId": "usr:recipe-version:3a34e499-828f-4e1c-a011-b5f8968a5f9b:line:2",
         "ingredientId": "usr:ingredient:mozz",
         "ingredientRevisionId": "usr:ingredient-revision:mozz@1",
         "amount": 80,
@@ -54,7 +54,7 @@
     "calculation": {
       "status": "complete",
       "algorithmVersion": "v5-recipe-core-1",
-      "inputDigest": "3a0d7d2f22be8b6b02a8b0e237a05b79c270695ebb84191b11483c2ee863717a",
+      "inputDigest": "4b9c38d0f804db5a6cc78421f9267173306466003bf324999f3981dca3019169",
       "warnings": []
     },
     "metadata": {
@@ -81,6 +81,6 @@
       "notes": "test"
     },
     "createdAt": "2026-08-26T15:05:00.000Z",
-    "supersedesVersionId": "usr:recipe-version:8768d2e5-1676-4817-85da-a1d723249697"
+    "supersedesVersionId": "usr:recipe-version:75400c8c-a9dd-4913-bca3-dd45a91946a7"
   }
 }

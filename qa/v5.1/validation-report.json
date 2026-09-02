@@ -1,0 +1,18 @@
+{
+  "version": "5.1.0",
+  "html_files": 590,
+  "links_checked": 41327,
+  "data_counts": {
+    "cycles": 6,
+    "variants": 36,
+    "days": 180,
+    "meals": 864,
+    "recipes": 306,
+    "search_entries": 628,
+    "shopping_day_records": 2735,
+    "offline_assets": 645,
+    "offline_bytes": 16664804
+  },
+  "errors": [],
+  "warnings": []
+}

@@ -18,6 +18,8 @@
   <script defer src="../../assets/js/calendar-core.js"></script>
   <script defer src="../../assets/js/site-state.js"></script>
   <script defer src="../../assets/js/operations-core.js"></script>
+  <script defer src="../../assets/js/v5-day-types.js"></script>
+  <script defer src="../../assets/js/v5-preferences-core.js"></script>
   <script defer src="../../assets/js/v5-db.js"></script>
   <script defer src="../../assets/js/v5-backup.js"></script>
   <script defer src="../../assets/js/v5-ingredients-core.js"></script>
@@ -33,6 +35,8 @@
   <script defer src="../../assets/js/v5-composer-core.js"></script>
   <script defer src="../../assets/js/v5-composer-store.js"></script>
   <script defer src="../../assets/js/v5-composer.js"></script>
+  <script defer src="../../assets/js/v5-day-manager.js"></script>
+  <script defer src="../../assets/js/v5-preferences.js"></script>
   <script defer src="../../assets/js/v5-effective-core.js"></script>
   <script defer src="../../assets/js/v5-effective-store.js"></script>
   <script defer src="../../assets/js/v5-effective-pages.js"></script>
@@ -45,7 +49,7 @@
   <script defer src="../../assets/js/v5-tools.js"></script>
   <script defer src="../../assets/js/pwa.js"></script>
 </head>
-<body data-page="shopping-range" data-root="../../" data-version="5.0.0">
+<body data-page="shopping-range" data-root="../../" data-version="5.1.0">
   <a class="skip-link" href="#contenuto">Vai al contenuto</a>
 
   <header class="site-header">
@@ -54,7 +58,7 @@
         <img class="brand-mark" src="../../assets/brand/brand-mark.svg" width="48" height="48" alt="">
         <span class="brand-copy">
           <strong>Piano alimentare</strong>
-          <small>turni, pasti e spesa · V5</small>
+          <small>turni, pasti e spesa · V5.1</small>
         </span>
       </a>
 
@@ -100,9 +104,9 @@
 </header>
 <div class="dynamic-loading" data-plan-loading>Caricamento dei dati di spesa…</div>
 <section class="setup-card" data-plan-setup hidden>
-  <div><p class="eyebrow">Configurazione richiesta</p><h2>Imposta la data del primo D1</h2><p>Serve per associare le date civili al piano. Se esiste un piano personale, la spesa usa ricette e porzioni effettive.</p></div>
+  <div><p class="eyebrow">Configurazione richiesta</p><h2>Imposta la data del prima Giornata</h2><p>Serve per associare le date civili al piano. Se esiste un piano personale, la spesa usa ricette e porzioni effettive.</p></div>
   <form class="start-date-form" data-start-form>
-    <label for="shopping-start-date">Data del primo D1</label>
+    <label for="shopping-start-date">Data del prima Giornata</label>
     <div class="date-form-row"><input id="shopping-start-date" name="start" type="date" min="2020-01-01" max="2100-12-31" required><button class="button primary" type="submit">Configura</button></div>
     <p class="field-help" data-start-preview></p><p class="form-error" data-start-error role="alert" hidden></p>
   </form>
@@ -139,6 +143,7 @@
     <div class="footer-links">
       <a href="../../ricette/index.html">Ricette</a>
       <a href="../../ingredienti/index.html">Ingredienti</a>
+      <a href="../../preferenze/index.html">Preferenze</a>
       <a href="../../strumenti/index.html">Utilità</a>
       <a href="../../download/index.html">PDF e dati</a>
       <a href="../../progetto/index.html">Progetto</a>

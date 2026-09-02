@@ -1,0 +1,79 @@
+{
+  "status": "ok",
+  "checkpoint": "5.0.0-alpha.3-phase3",
+  "checks": {
+    "valid_draft": true,
+    "basis_ml": true,
+    "custom_conversion_unit": true,
+    "blocking_validation": true,
+    "conversions": true,
+    "atwater_warning": true,
+    "legacy_normalization": true,
+    "create_revision": true,
+    "immutable_history": true,
+    "duplicate_warning": true,
+    "archive_restore": true,
+    "base_immutable": true,
+    "delete_reference_guard": true
+  },
+  "schemaSample": {
+    "ingredient": {
+      "recordType": "ingredient",
+      "id": "usr:ingredient:b151183e-7376-4692-bbd7-24f10a252c26",
+      "origin": "personal",
+      "name": "Mozzarella test",
+      "category": "latticini-e-uova",
+      "aliases": [
+        "fiordilatte test"
+      ],
+      "currentRevisionId": "usr:ingredient-revision:4e6dce6b-c8d1-4a23-ab3c-fb03d993324e",
+      "createdAt": "2026-08-26T14:30:00.000Z",
+      "updatedAt": "2026-08-26T14:30:00.000Z",
+      "archivedAt": null
+    },
+    "revision": {
+      "recordType": "ingredientRevision",
+      "id": "usr:ingredient-revision:4e6dce6b-c8d1-4a23-ab3c-fb03d993324e",
+      "ingredientId": "usr:ingredient:b151183e-7376-4692-bbd7-24f10a252c26",
+      "revisionNumber": 1,
+      "basis": {
+        "amount": 100,
+        "unit": "g"
+      },
+      "preparationState": "as-sold",
+      "brand": "Test",
+      "nutrition": {
+        "energyKcal": 240,
+        "proteinG": 18,
+        "carbohydrateG": 2,
+        "fatG": 18,
+        "fiberG": 0,
+        "sugarsG": 1,
+        "saturatedFatG": 12,
+        "saltG": 0.7,
+        "sodiumMg": 280
+      },
+      "conversions": [
+        {
+          "unitCode": "portion",
+          "labelSingular": "porzione",
+          "labelPlural": "porzioni",
+          "basisAmount": 80,
+          "isDefault": false,
+          "notes": "porzione pratica"
+        }
+      ],
+      "allergens": [
+        "latte"
+      ],
+      "toleranceNotes": null,
+      "source": {
+        "type": "label",
+        "label": "Etichetta test",
+        "url": "https://example.com/label",
+        "notedAt": "2026-08-26T14:30:00.000Z"
+      },
+      "createdAt": "2026-08-26T14:30:00.000Z"
+    }
+  }
+}

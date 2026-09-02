@@ -19,7 +19,7 @@
 {% for day in variant.days %}
   <article class="day-card {{ day.d_code|lower }}">
     <header>
-      <span class="shift-code">{{ day.d_code }}</span>
+      <span class="shift-code">{{ day_short(day.d_code) }}</span>
       <div><h2><a href="{{ day.d_code|lower }}/index.html">{{ day.shift_name }}</a></h2><p>Giorno {{ day.global_day }}</p></div>
       {% if day.flexible %}<span class="flex-badge">Flessibile</span>{% endif %}
     </header>

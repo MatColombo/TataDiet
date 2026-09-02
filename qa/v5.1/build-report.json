@@ -1,0 +1,15 @@
+{
+  "status": "ok",
+  "version": "5.1.0",
+  "counts": {
+    "cycles": 6,
+    "variants": 36,
+    "days": 180,
+    "meals": 864,
+    "recipes": 306
+  },
+  "recipes": 306,
+  "offline_assets": 645,
+  "offline_bytes": 16664804,
+  "output": "/mnt/data/dieta-site-v5.1/docs"
+}

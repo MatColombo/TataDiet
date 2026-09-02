@@ -2,6 +2,7 @@
   "use strict";
 
   const core = window.DietCalendarCore;
+  const dayTypes = window.TataDietDayTypes;
   if (!core) return;
 
   const body = document.body;
@@ -121,7 +122,7 @@
         const error = form.querySelector("[data-start-error]");
         if (!core.isValidISO(value)) {
           if (error) {
-            error.textContent = "La data del primo D1 non è valida.";
+            error.textContent = "La data della prima Giornata non è valida.";
             show(error, true);
           }
           input.focus();
@@ -201,7 +202,7 @@
         <div>
           <p class="eyebrow">Calendario non configurato</p>
           <h2>Associa il piano alle date reali</h2>
-          <p>Indica il primo D1 per attivare la pagina Oggi e il calendario dei 180 giorni.</p>
+          <p>Indica la prima Giornata per attivare la pagina Oggi e il calendario dei 180 giorni.</p>
         </div>
         <a class="button primary" href="${escapeHtml(stateUrl("calendario/index.html", null).href)}">Configura ora</a>`;
       return;
@@ -213,7 +214,7 @@
     if (day) {
       status = `<strong>${escapeHtml(day.d_code)} · ${escapeHtml(day.shift_name)}</strong><span>${escapeHtml(day.month)} · C${day.cycle} · V${day.variant}</span>`;
     } else if (core.diffDays(today, range.start) > 0) {
-      status = `<strong>Il piano deve ancora iniziare</strong><span>Primo D1: ${escapeHtml(core.formatLong(range.start))}</span>`;
+      status = `<strong>Il piano deve ancora iniziare</strong><span>Prima Giornata: ${escapeHtml(core.formatLong(range.start))}</span>`;
     } else {
       status = `<strong>Il periodo di 180 giorni è terminato</strong><span>Ultimo giorno: ${escapeHtml(core.formatLong(range.end))}</span>`;
     }
@@ -318,18 +319,19 @@
         if (!day) {
           return `<div class="${classes.join(" ")}" data-calendar-date="${date}" aria-hidden="${inCurrentMonth ? "false" : "true"}"><span class="calendar-date-number">${dateNumber}</span></div>`;
         }
-        const labels = [core.formatLong(date), day.d_code, day.shift_name, `Ciclo ${day.cycle}`, `Variante ${day.variant}`];
+        const uiCode=dayTypes?dayTypes.short(day.d_code):day.d_code; const uiLabel=dayTypes?dayTypes.label(day.d_code):day.shift_name;
+        const labels = [core.formatLong(date), uiCode, uiLabel, `Ciclo ${day.cycle}`, `Variante ${day.variant}`];
         if (day.flexible) labels.push("pasto flessibile");
-        if (tails.length) labels.push(`prosecuzione D2 alle ${tails.map((item) => item.time).join(" e ")}`);
+        if (tails.length) labels.push(`prosecuzione Notte alle ${tails.map((item) => item.time).join(" e ")}`);
         const href = dayHref(day, start, date);
         return `
           <a class="${classes.join(" ")}" data-calendar-date="${date}" href="${escapeHtml(href)}" aria-label="${escapeHtml(labels.join(", "))}">
-            <span class="calendar-cell-top"><span class="calendar-date-number">${dateNumber}</span><b class="calendar-shift-code">${escapeHtml(day.d_code)}</b></span>
-            <span class="calendar-shift-name">${escapeHtml(day.shift_name.replace(/\s+\d{2}:\d{2}.*$/, ""))}</span>
+            <span class="calendar-cell-top"><span class="calendar-date-number">${dateNumber}</span><b class="calendar-shift-code">${escapeHtml(uiCode)}</b></span>
+            <span class="calendar-shift-name">${escapeHtml(uiLabel)}</span>
             <span class="calendar-cell-meta">C${day.cycle} · V${day.variant}</span>
             <span class="calendar-cell-flags">
               ${day.flexible ? '<span class="calendar-flag flex" title="Pasto flessibile">F</span>' : ""}
-              ${tails.length ? '<span class="calendar-flag tail" title="Prosecuzione del D2 precedente">+D2</span>' : ""}
+              ${tails.length ? '<span class="calendar-flag tail" title="Prosecuzione della Notte precedente">+N</span>' : ""}
             </span>
           </a>`;
       }).join("");
@@ -346,9 +348,9 @@
           const date = core.addDays(start, day.global_day - 1);
           const tails = core.eventsOnDate(data.days, start, date).filter((event) => event.is_tail);
           return `
-            <a class="cycle-mini-day ${day.d_code.toLowerCase()}${date === today ? " is-today" : ""}" href="${escapeHtml(dayHref(day, start, date))}" title="${escapeHtml(`${core.formatLong(date)} · ${day.d_code} · ${day.shift_name}`)}">
+            <a class="cycle-mini-day ${day.d_code.toLowerCase()}${date === today ? " is-today" : ""}" href="${escapeHtml(dayHref(day, start, date))}" title="${escapeHtml(`${core.formatLong(date)} · ${dayTypes?dayTypes.short(day.d_code):day.d_code} · ${dayTypes?dayTypes.label(day.d_code):day.shift_name}`)}">
               <span>${escapeHtml(core.formatShort(date))}</span>
-              <b>${escapeHtml(day.d_code)}</b>
+              <b>${escapeHtml(dayTypes?dayTypes.short(day.d_code):day.d_code)}</b>
               <i>${day.flexible ? "F" : ""}${tails.length ? "+" : ""}</i>
             </a>`;
         }).join("");
@@ -467,7 +469,7 @@
         <section class="today-outside-card">
           <p class="eyebrow">${escapeHtml(core.formatLong(selectedDate))}</p>
           <h2>${before ? "Il piano non è ancora iniziato" : "Il periodo di 180 giorni è terminato"}</h2>
-          <p>${before ? `Mancano ${distance} giorni al primo D1.` : `Sono trascorsi ${distance} giorni dall'ultimo D5.`}</p>
+          <p>${before ? `Mancano ${distance} giorni alla prima Giornata.` : `Sono trascorsi ${distance} giorni dall'ultimo Riposo 2.`}</p>
           <div class="hero-actions">
             <a class="button primary" href="${escapeHtml(stateUrl("calendario/index.html", start, { focus }).href)}">Apri il calendario</a>
             <a class="button secondary" href="${escapeHtml(stateUrl("oggi/index.html", start, { date: before ? range.start : range.end }).href)}">Mostra ${before ? "il primo" : "l'ultimo"} giorno</a>
@@ -518,10 +520,10 @@
         </div>
         ${day.flexible ? '<span class="flex-badge large">Pasto flessibile</span>' : ""}
       </header>
-      ${tails.length ? `<aside class="night-tail-callout"><strong>Prosecuzione del D2 precedente</strong><span>${tails.map((item) => `${escapeHtml(item.time)} · ${escapeHtml(item.title)}`).join("; ")}</span></aside>` : ""}
+      ${tails.length ? `<aside class="night-tail-callout"><strong>Prosecuzione della Notte precedente</strong><span>${tails.map((item) => `${escapeHtml(item.time)} · ${escapeHtml(item.title)}`).join("; ")}</span></aside>` : ""}
       ${nextBlock}
       <div class="nutrition-grid day-summary today-nutrition">
-        <div><strong>${Math.round(day.total.kcal)}</strong><span>kcal del ${escapeHtml(day.d_code)}</span></div>
+        <div><strong>${Math.round(day.total.kcal)}</strong><span>kcal del ${escapeHtml(dayTypes?dayTypes.short(day.d_code):day.d_code)}</span></div>
         <div><strong>${Number(day.total.protein).toFixed(1)}</strong><span>g proteine</span></div>
         <div><strong>${Number(day.total.carbs).toFixed(1)}</strong><span>g carboidrati</span></div>
         <div><strong>${Number(day.total.fat).toFixed(1)}</strong><span>g grassi</span></div>

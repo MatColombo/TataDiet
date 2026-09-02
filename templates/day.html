@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <header class="day-hero {{ day.d_code|lower }}" data-plan-day="{{ day.global_day }}">
-  <div class="shift-code large">{{ day.d_code }}</div>
+  <div class="shift-code large">{{ day_short(day.d_code) }}</div>
   <div>
     <p class="eyebrow">{{ cycle.month }} · C{{ cycle.number }} · V{{ variant.number }} · giorno {{ day.global_day }}</p>
     <p class="civil-date-line" data-day-civil-date data-global-day="{{ day.global_day }}" hidden></p>

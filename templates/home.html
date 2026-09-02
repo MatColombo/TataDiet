@@ -2,7 +2,7 @@
 {% block content %}
 <section class="hero hero-v4">
   <div class="hero-copy">
-    <div class="hero-kicker"><svg class="ui-icon" aria-hidden="true"><use href="assets/icons.svg#icon-sparkles"></use></svg><span>V5 · piano personale, ingredienti e offline</span></div>
+    <div class="hero-kicker"><svg class="ui-icon" aria-hidden="true"><use href="assets/icons.svg#icon-sparkles"></use></svg><span>V5.1 · turni flessibili, preferenze e piano personale</span></div>
     <h1>Il piano che segue i tuoi turni, non il contrario.</h1>
     <p class="lede">Calendario, pasti, preparazioni e spesa restano collegati in un'unica esperienza semplice. Pensata per giornate lunghe, notti e riposi veri.</p>
     <div class="hero-actions">
@@ -37,7 +37,7 @@
 
 <section class="section-block welcome-tools">
   <div class="section-heading">
-    <div><p class="eyebrow">La tua cabina di regia</p><h2>Cinque scorciatoie per rendere il piano pratico</h2><p class="section-intro">Ogni strumento conosce le date reali, il turno e la variante attiva.</p></div>
+    <div><p class="eyebrow">La tua cabina di regia</p><h2>Scorciatoie per rendere il piano pratico</h2><p class="section-intro">Ogni strumento conosce le date reali, il turno e la variante attiva.</p></div>
   </div>
   <div class="operation-grid">
     <a class="operation-card prep" href="preparazioni/index.html">
@@ -60,6 +60,14 @@
       <span class="operation-tag">V5 · local-first</span>
       <h3>Studio ingredienti</h3><p>Crea alimenti personali, duplica quelli base e conserva revisioni e valori nutrizionali nel browser.</p><strong>Apri gli ingredienti <svg class="inline-icon" aria-hidden="true"><use href="assets/icons.svg#icon-arrow-right"></use></svg></strong>
     </a>
+    <a class="operation-card calendar" href="calendario/gestisci/index.html">
+      <span class="operation-icon"><svg class="ui-icon" aria-hidden="true"><use href="assets/icons.svg#icon-calendar"></use></svg></span>
+      <span class="operation-tag">V5.1 · un solo flusso</span><h3>Gestisci giornata</h3><p>Cambia turno, adatta il menu e conferma tutto insieme senza saltare tra pagine.</p><strong>Gestisci il calendario <svg class="inline-icon" aria-hidden="true"><use href="assets/icons.svg#icon-arrow-right"></use></svg></strong>
+    </a>
+    <a class="operation-card preferences" href="preferenze/index.html">
+      <span class="operation-icon"><svg class="ui-icon" aria-hidden="true"><use href="assets/icons.svg#icon-heart"></use></svg></span>
+      <span class="operation-tag">Frequenze personali</span><h3>Preferenze alimentari</h3><p>Riduci uova o latticini, oppure dai più spazio agli alimenti che preferisci.</p><strong>Imposta le preferenze <svg class="inline-icon" aria-hidden="true"><use href="assets/icons.svg#icon-arrow-right"></use></svg></strong>
+    </a>
     <a class="operation-card tools" href="strumenti/index.html">
       <span class="operation-icon"><svg class="ui-icon" aria-hidden="true"><use href="assets/icons.svg#icon-install"></use></svg></span>
       <span class="operation-tag">PWA + offline</span>
@@ -70,14 +78,14 @@
 
 <section class="section-block shift-section">
   <div class="section-heading">
-    <div><p class="eyebrow">La matrice dei turni</p><h2>Cinque giorni, un ritmo riconoscibile</h2><p class="section-intro">I colori aiutano a orientarsi, ma ogni stato mantiene sempre sigla e descrizione.</p></div>
+    <div><p class="eyebrow">Tipi di giornata</p><h2>Sette stati riconoscibili a colpo d’occhio</h2><p class="section-intro">G, N, SN, R1 e R2 seguono la matrice base; Mattino e Pomeriggio possono essere inseriti nel calendario personale e usano il profilo alimentare di Giornata.</p></div>
   </div>
   <div class="shift-grid">
     {% for shift in shifts %}
     <article class="shift-card {{ shift.code|lower }}">
       <div class="shift-card-top">
-        <span class="shift-code">{{ shift.code }}</span>
-        <svg class="shift-icon" aria-hidden="true"><use href="assets/icons.svg#icon-{% if shift.code == 'D1' %}sun{% elif shift.code == 'D2' %}moon{% elif shift.code == 'D3' %}sunrise{% else %}leaf{% endif %}"></use></svg>
+        <span class="shift-code">{{ shift.short }}</span>
+        <svg class="shift-icon" aria-hidden="true"><use href="assets/icons.svg#icon-{% if shift.code in ['D1','M'] %}sun{% elif shift.code == 'D2' %}moon{% elif shift.code == 'D3' %}sunrise{% elif shift.code == 'P' %}today{% else %}leaf{% endif %}"></use></svg>
       </div>
       <h3>{{ shift.name }}</h3>
       <p>{{ shift.hours }}</p>

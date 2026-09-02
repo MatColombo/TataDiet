@@ -541,16 +541,22 @@ Il giorno effettivo contiene:
 
 ### 6.2 Tipi giornata
 
-```text
-D1
-D2
-D3
-D4
-D5
-CUSTOM
-OFF
-FREE
-```
+Il dataset base conserva i codici D1-D5. La presentazione V5.1 usa G/N/SN/R1/R2 e aggiunge M/P al calendario personale.
+
+| Valore persistito | UI | Profilo alimentare |
+|---|---|---|
+| D1 | Giornata / G | D1 |
+| D2 | Notte / N | D2 |
+| D3 | Smonto / SN | D3 |
+| D4 | Riposo 1 / R1 | D4 |
+| D5 | Riposo 2 / R2 | D5 |
+| M | Mattino / M | D1 |
+| P | Pomeriggio / P | D1 |
+| CUSTOM | Personalizzata / C | dipende dagli slot generati |
+| OFF | Fuori servizio / OFF | profilo generico |
+| FREE | Giornata libera / L | nessun pasto |
+
+M e P non impongono un orario di turno: i requisiti definiscono il tipo di calendario e il profilo alimentare, non gli orari esatti.
 
 ### 6.3 Stati di aderenza
 
@@ -1066,7 +1072,7 @@ Invarianti implementati:
 
 - il piano base non viene modificato;
 - `not-followed` è aderenza e non sposta la sequenza;
-- D1–D5, `OFF` e `CUSTOM` mantengono i pasti esistenti quando si cambia tipo;
+- D1–D5, `M`, `P`, `OFF` e `CUSTOM` mantengono i pasti esistenti quando si cambia tipo a livello core; la UI Gestisci giornata propone di adattare il menu;
 - `FREE` svuota il menu della data senza spostare il futuro;
 - `postpone-sequence` inserisce una giornata libera e sposta il futuro;
 - `insert-day` e `remove-day` mantengono date civili consecutive e `sequenceIndex` continuo;
@@ -1087,3 +1093,36 @@ La release stabile mantiene `DB_VERSION = 1` e `SCHEMA_VERSION = 1`. `stableRele
 Il resolver effettivo alimenta Home, Oggi, Preparazioni 48h, Spesa, Ricerca e ICS. I backup alpha V5 schema 1 e stesso dataset base sono importabili con warning di compatibilità.
 
 Hardening PWA: cache core atomica, Planner/Compositore nella cache essenziale, fallback offline con `ignoreSearch` per URL con query e aggiornamento esplicito via `SKIP_WAITING`.
+
+
+## 14. Estensione compatibile 5.1.0
+
+La 5.1 mantiene `DB_VERSION = 1` e `SCHEMA_VERSION = 1`.
+
+Aggiunte di dominio:
+
+- `M` e `P` sono ammessi in `calendarDay.dayType` e `shift.type`;
+- il mapping di presentazione è separato dai codici base D1-D5;
+- `M`/`P` usano il profilo dietistico D1 nel Compositore;
+- `settings.foodPreferencesV1` conserva preferenze di frequenza senza introdurre nuovi object store.
+
+### 14.1 Preferenze alimentari
+
+```json
+{
+  "schemaVersion": 1,
+  "groups": {
+    "eggs": {"level": "less", "maxPer7Days": 2},
+    "milkYogurt": {"level": "normal", "maxPer7Days": null},
+    "cheese": {"level": "rare", "maxPer7Days": 2}
+  }
+}
+```
+
+`level` appartiene a `more | normal | less | rare | never`. `maxPer7Days` è opzionale. Una occasione equivale a un pasto contenente la famiglia.
+
+La classificazione parte dalle righe ingrediente della specifica `recipeVersion`, risolte contro il catalogo ingredienti. Il titolo ricetta viene usato solo come fallback in assenza di righe ingrediente. La selezione automatica usa `avoidAutomatic`; la libreria manuale non rimuove la ricetta.
+
+### 14.2 Transazione Gestisci giornata
+
+La nuova UI costruisce uno stato `plan + calendarDays` in memoria e lo persiste con `planStore.commitState()` solo dopo la conferma finale. La diff before/after produce una singola `operationRecord`, mantenendo undo/redo atomico.

@@ -12,9 +12,9 @@ const rangeData = JSON.parse(fs.readFileSync(path.join(root, "docs", "data", "sh
 const shopping = JSON.parse(fs.readFileSync(path.join(root, "docs", "data", "shopping.json"), "utf8"));
 const searchIndex = JSON.parse(fs.readFileSync(path.join(root, "docs", "data", "search-index.json"), "utf8"));
 
-assert.equal(calendar.version, "5.0.0");
-assert.equal(rangeData.version, "5.0.0");
-assert.equal(searchIndex.version, "5.0.0");
+assert.equal(calendar.version, "5.1.0");
+assert.equal(rangeData.version, "5.1.0");
+assert.equal(searchIndex.version, "5.1.0");
 assert.equal(rangeData.days.length, 180);
 assert.equal(searchIndex.entries.length, 628);
 
@@ -76,7 +76,7 @@ assert.ok(mozzarella.some((entry) => entry.type === "ingredient"));
 assert.ok(mozzarella.some((entry) => entry.type === "recipe"));
 const day30 = ops.search(searchIndex.entries, "giorno 30", ["day"]);
 assert.ok(day30.some((entry) => entry.type === "day" && /30/.test(entry.title)));
-const night = ops.search(searchIndex.entries, "D2 notte", ["day"]);
+const night = ops.search(searchIndex.entries, "N notte", ["day"]);
 assert.ok(night.length > 0 && night.every((entry) => entry.type === "day"));
 
 console.log(JSON.stringify({

@@ -24,7 +24,7 @@
       <h3><a href="variante-{{ variant.number }}/index.html">Variante {{ variant.number }}</a></h3>
       <p>Giorni {{ variant.start_day }}–{{ variant.end_day }}</p>
       <div class="mini-shifts">
-      {% for day in variant.days %}<a class="{{ day.d_code|lower }}" href="variante-{{ variant.number }}/{{ day.d_code|lower }}/index.html">{{ day.d_code }}</a>{% endfor %}
+      {% for day in variant.days %}<a class="{{ day.d_code|lower }}" href="variante-{{ variant.number }}/{{ day.d_code|lower }}/index.html">{{ day_short(day.d_code) }}</a>{% endfor %}
       </div>
       <div class="card-meta"><span>{{ variant.avg.kcal|round|int }} kcal</span><span>{{ variant.avg.fiber|round(1) }} g fibra</span></div>
     </article>

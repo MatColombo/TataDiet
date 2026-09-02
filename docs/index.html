@@ -18,6 +18,8 @@
   <script defer src="assets/js/calendar-core.js"></script>
   <script defer src="assets/js/site-state.js"></script>
   <script defer src="assets/js/operations-core.js"></script>
+  <script defer src="assets/js/v5-day-types.js"></script>
+  <script defer src="assets/js/v5-preferences-core.js"></script>
   <script defer src="assets/js/v5-db.js"></script>
   <script defer src="assets/js/v5-backup.js"></script>
   <script defer src="assets/js/v5-ingredients-core.js"></script>
@@ -33,6 +35,8 @@
   <script defer src="assets/js/v5-composer-core.js"></script>
   <script defer src="assets/js/v5-composer-store.js"></script>
   <script defer src="assets/js/v5-composer.js"></script>
+  <script defer src="assets/js/v5-day-manager.js"></script>
+  <script defer src="assets/js/v5-preferences.js"></script>
   <script defer src="assets/js/v5-effective-core.js"></script>
   <script defer src="assets/js/v5-effective-store.js"></script>
   <script defer src="assets/js/v5-effective-pages.js"></script>
@@ -45,7 +49,7 @@
   <script defer src="assets/js/v5-tools.js"></script>
   <script defer src="assets/js/pwa.js"></script>
 </head>
-<body data-page="home" data-root="" data-version="5.0.0">
+<body data-page="home" data-root="" data-version="5.1.0">
   <a class="skip-link" href="#contenuto">Vai al contenuto</a>
 
   <header class="site-header">
@@ -54,7 +58,7 @@
         <img class="brand-mark" src="assets/brand/brand-mark.svg" width="48" height="48" alt="">
         <span class="brand-copy">
           <strong>Piano alimentare</strong>
-          <small>turni, pasti e spesa · V5</small>
+          <small>turni, pasti e spesa · V5.1</small>
         </span>
       </a>
 
@@ -90,7 +94,7 @@
   <main id="contenuto" class="page-shell">
 <section class="hero hero-v4">
   <div class="hero-copy">
-    <div class="hero-kicker"><svg class="ui-icon" aria-hidden="true"><use href="assets/icons.svg#icon-sparkles"></use></svg><span>V5 · piano personale, ingredienti e offline</span></div>
+    <div class="hero-kicker"><svg class="ui-icon" aria-hidden="true"><use href="assets/icons.svg#icon-sparkles"></use></svg><span>V5.1 · turni flessibili, preferenze e piano personale</span></div>
     <h1>Il piano che segue i tuoi turni, non il contrario.</h1>
     <p class="lede">Calendario, pasti, preparazioni e spesa restano collegati in un'unica esperienza semplice. Pensata per giornate lunghe, notti e riposi veri.</p>
     <div class="hero-actions">
@@ -125,7 +129,7 @@
 
 <section class="section-block welcome-tools">
   <div class="section-heading">
-    <div><p class="eyebrow">La tua cabina di regia</p><h2>Cinque scorciatoie per rendere il piano pratico</h2><p class="section-intro">Ogni strumento conosce le date reali, il turno e la variante attiva.</p></div>
+    <div><p class="eyebrow">La tua cabina di regia</p><h2>Scorciatoie per rendere il piano pratico</h2><p class="section-intro">Ogni strumento conosce le date reali, il turno e la variante attiva.</p></div>
   </div>
   <div class="operation-grid">
     <a class="operation-card prep" href="preparazioni/index.html">
@@ -148,6 +152,14 @@
       <span class="operation-tag">V5 · local-first</span>
       <h3>Studio ingredienti</h3><p>Crea alimenti personali, duplica quelli base e conserva revisioni e valori nutrizionali nel browser.</p><strong>Apri gli ingredienti <svg class="inline-icon" aria-hidden="true"><use href="assets/icons.svg#icon-arrow-right"></use></svg></strong>
     </a>
+    <a class="operation-card calendar" href="calendario/gestisci/index.html">
+      <span class="operation-icon"><svg class="ui-icon" aria-hidden="true"><use href="assets/icons.svg#icon-calendar"></use></svg></span>
+      <span class="operation-tag">V5.1 · un solo flusso</span><h3>Gestisci giornata</h3><p>Cambia turno, adatta il menu e conferma tutto insieme senza saltare tra pagine.</p><strong>Gestisci il calendario <svg class="inline-icon" aria-hidden="true"><use href="assets/icons.svg#icon-arrow-right"></use></svg></strong>
+    </a>
+    <a class="operation-card preferences" href="preferenze/index.html">
+      <span class="operation-icon"><svg class="ui-icon" aria-hidden="true"><use href="assets/icons.svg#icon-heart"></use></svg></span>
+      <span class="operation-tag">Frequenze personali</span><h3>Preferenze alimentari</h3><p>Riduci uova o latticini, oppure dai più spazio agli alimenti che preferisci.</p><strong>Imposta le preferenze <svg class="inline-icon" aria-hidden="true"><use href="assets/icons.svg#icon-arrow-right"></use></svg></strong>
+    </a>
     <a class="operation-card tools" href="strumenti/index.html">
       <span class="operation-icon"><svg class="ui-icon" aria-hidden="true"><use href="assets/icons.svg#icon-install"></use></svg></span>
       <span class="operation-tag">PWA + offline</span>
@@ -158,28 +170,28 @@
 
 <section class="section-block shift-section">
   <div class="section-heading">
-    <div><p class="eyebrow">La matrice dei turni</p><h2>Cinque giorni, un ritmo riconoscibile</h2><p class="section-intro">I colori aiutano a orientarsi, ma ogni stato mantiene sempre sigla e descrizione.</p></div>
+    <div><p class="eyebrow">Tipi di giornata</p><h2>Sette stati riconoscibili a colpo d’occhio</h2><p class="section-intro">G, N, SN, R1 e R2 seguono la matrice base; Mattino e Pomeriggio possono essere inseriti nel calendario personale e usano il profilo alimentare di Giornata.</p></div>
   </div>
   <div class="shift-grid">
     <article class="shift-card d1">
       <div class="shift-card-top">
-        <span class="shift-code">D1</span>
+        <span class="shift-code">G</span>
         <svg class="shift-icon" aria-hidden="true"><use href="assets/icons.svg#icon-sun"></use></svg>
       </div>
-      <h3>Turno giorno</h3>
+      <h3>Giornata</h3>
       <p>08:00–20:00</p>
     </article>
     <article class="shift-card d2">
       <div class="shift-card-top">
-        <span class="shift-code">D2</span>
+        <span class="shift-code">N</span>
         <svg class="shift-icon" aria-hidden="true"><use href="assets/icons.svg#icon-moon"></use></svg>
       </div>
-      <h3>Turno notte</h3>
+      <h3>Notte</h3>
       <p>20:00–08:00; ultimo mini-pasto alle 08:20</p>
     </article>
     <article class="shift-card d3">
       <div class="shift-card-top">
-        <span class="shift-code">D3</span>
+        <span class="shift-code">SN</span>
         <svg class="shift-icon" aria-hidden="true"><use href="assets/icons.svg#icon-sunrise"></use></svg>
       </div>
       <h3>Smonto</h3>
@@ -187,19 +199,35 @@
     </article>
     <article class="shift-card d4">
       <div class="shift-card-top">
-        <span class="shift-code">D4</span>
+        <span class="shift-code">R1</span>
         <svg class="shift-icon" aria-hidden="true"><use href="assets/icons.svg#icon-leaf"></use></svg>
       </div>
-      <h3>Primo riposo</h3>
+      <h3>Riposo 1</h3>
       <p>Giornata di riposo</p>
     </article>
     <article class="shift-card d5">
       <div class="shift-card-top">
-        <span class="shift-code">D5</span>
+        <span class="shift-code">R2</span>
         <svg class="shift-icon" aria-hidden="true"><use href="assets/icons.svg#icon-leaf"></use></svg>
       </div>
-      <h3>Secondo riposo</h3>
+      <h3>Riposo 2</h3>
       <p>Giornata di riposo</p>
+    </article>
+    <article class="shift-card m">
+      <div class="shift-card-top">
+        <span class="shift-code">M</span>
+        <svg class="shift-icon" aria-hidden="true"><use href="assets/icons.svg#icon-sun"></use></svg>
+      </div>
+      <h3>Mattino</h3>
+      <p>Profilo alimentare di Giornata</p>
+    </article>
+    <article class="shift-card p">
+      <div class="shift-card-top">
+        <span class="shift-code">P</span>
+        <svg class="shift-icon" aria-hidden="true"><use href="assets/icons.svg#icon-today"></use></svg>
+      </div>
+      <h3>Pomeriggio</h3>
+      <p>Profilo alimentare di Giornata</p>
     </article>
   </div>
 </section>
@@ -306,6 +334,7 @@
     <div class="footer-links">
       <a href="ricette/index.html">Ricette</a>
       <a href="ingredienti/index.html">Ingredienti</a>
+      <a href="preferenze/index.html">Preferenze</a>
       <a href="strumenti/index.html">Utilità</a>
       <a href="download/index.html">PDF e dati</a>
       <a href="progetto/index.html">Progetto</a>

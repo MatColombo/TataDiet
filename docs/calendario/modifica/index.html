@@ -18,6 +18,8 @@
   <script defer src="../../assets/js/calendar-core.js"></script>
   <script defer src="../../assets/js/site-state.js"></script>
   <script defer src="../../assets/js/operations-core.js"></script>
+  <script defer src="../../assets/js/v5-day-types.js"></script>
+  <script defer src="../../assets/js/v5-preferences-core.js"></script>
   <script defer src="../../assets/js/v5-db.js"></script>
   <script defer src="../../assets/js/v5-backup.js"></script>
   <script defer src="../../assets/js/v5-ingredients-core.js"></script>
@@ -33,6 +35,8 @@
   <script defer src="../../assets/js/v5-composer-core.js"></script>
   <script defer src="../../assets/js/v5-composer-store.js"></script>
   <script defer src="../../assets/js/v5-composer.js"></script>
+  <script defer src="../../assets/js/v5-day-manager.js"></script>
+  <script defer src="../../assets/js/v5-preferences.js"></script>
   <script defer src="../../assets/js/v5-effective-core.js"></script>
   <script defer src="../../assets/js/v5-effective-store.js"></script>
   <script defer src="../../assets/js/v5-effective-pages.js"></script>
@@ -45,7 +49,7 @@
   <script defer src="../../assets/js/v5-tools.js"></script>
   <script defer src="../../assets/js/pwa.js"></script>
 </head>
-<body data-page="plan-editor" data-root="../../" data-version="5.0.0">
+<body data-page="plan-editor" data-root="../../" data-version="5.1.0">
   <a class="skip-link" href="#contenuto">Vai al contenuto</a>
 
   <header class="site-header">
@@ -54,7 +58,7 @@
         <img class="brand-mark" src="../../assets/brand/brand-mark.svg" width="48" height="48" alt="">
         <span class="brand-copy">
           <strong>Piano alimentare</strong>
-          <small>turni, pasti e spesa · V5</small>
+          <small>turni, pasti e spesa · V5.1</small>
         </span>
       </a>
 
@@ -96,15 +100,15 @@
 <header class="page-header plan-editor-hero">
   <div>
     <p class="eyebrow">V5 · calendario effettivo</p>
-    <h1>Planner personale</h1>
+    <h1>Gestione avanzata del piano</h1>
     <p>Adatta turni e giornate alla realtà senza modificare il piano base. Ogni operazione viene salvata localmente e può essere annullata.</p>
   </div>
-  <div class="plan-editor-hero-badge"><strong>Local-first</strong><span>IndexedDB + backup JSON</span></div>
+  <div class="plan-editor-hero-badge"><strong>Modalità avanzata</strong><span><a href="../gestisci/index.html">Apri Gestisci giornata</a></span></div>
 </header>
 
 <div class="dynamic-loading" data-effective-plan-loading>Preparazione del calendario personale…</div>
 <section class="setup-card" data-effective-plan-setup hidden>
-  <div><p class="eyebrow">Prima configurazione</p><h2>Serve la data del primo D1</h2><p>Configura prima il calendario base; il planner creerà poi la tua copia personale modificabile.</p></div>
+  <div><p class="eyebrow">Prima configurazione</p><h2>Serve la data della prima Giornata</h2><p>Configura prima il calendario base; il planner creerà poi la tua copia personale modificabile.</p></div>
   <a class="button primary" href="../index.html">Configura calendario</a>
 </section>
 
@@ -161,7 +165,7 @@
           <div class="section-heading compact-heading"><div><p class="eyebrow">Turno</p><h3>Cambia il tipo di giornata</h3></div></div>
           <div class="plan-form-grid">
             <label>Tipo di giorno
-              <select data-plan-day-type><option>D1</option><option>D2</option><option>D3</option><option>D4</option><option>D5</option><option value="OFF">Fuori servizio</option><option value="CUSTOM">Personalizzato</option></select>
+              <select data-plan-day-type><option value="D1">G · Giornata</option><option value="D2">N · Notte</option><option value="D3">SN · Smonto</option><option value="D4">R1 · Riposo 1</option><option value="D5">R2 · Riposo 2</option><option value="M">M · Mattino</option><option value="P">P · Pomeriggio</option><option value="OFF">Fuori servizio</option><option value="CUSTOM">Personalizzato</option></select>
             </label>
             <label data-custom-shift-name-wrap hidden>Nome turno<input type="text" maxlength="120" value="Turno personalizzato" data-custom-shift-name></label>
             <label data-custom-start-wrap hidden>Inizio<input type="time" data-custom-start value="08:00"></label>
@@ -203,8 +207,8 @@
     <p class="eyebrow">Anteprima impatto</p><h2 data-impact-title>Conferma modifica</h2><p data-impact-copy></p>
     <dl class="impact-metrics"><div><dt>Giornate</dt><dd data-impact-days>—</dd></div><div><dt>Pasti</dt><dd data-impact-meals>—</dd></div><div><dt>Fine piano</dt><dd data-impact-end>—</dd></div></dl>
     <div class="impact-extra" data-impact-extra hidden>
-      <label>Tipo giornata inserita<select data-insert-day-type><option value="FREE">Libera</option><option>D1</option><option>D2</option><option>D3</option><option>D4</option><option>D5</option><option value="OFF">Fuori servizio</option></select></label>
-      <p class="field-help">Una giornata D1–D5 inserita nasce senza menu: usa il Compositore dopo la conferma.</p>
+      <label>Tipo giornata inserita<select data-insert-day-type><option value="FREE">Libera</option><option value="D1">G · Giornata</option><option value="D2">N · Notte</option><option value="D3">SN · Smonto</option><option value="D4">R1 · Riposo 1</option><option value="D5">R2 · Riposo 2</option><option value="M">M · Mattino</option><option value="P">P · Pomeriggio</option><option value="OFF">Fuori servizio</option></select></label>
+      <p class="field-help">Una giornata G/N/SN/R1/R2/M/P inserita nasce senza menu: usa il Compositore dopo la conferma.</p>
     </div>
     <div class="dialog-actions"><button class="button ghost" value="cancel">Annulla</button><button class="button primary" type="button" data-impact-confirm>Conferma</button></div>
   </form>
@@ -223,6 +227,7 @@
     <div class="footer-links">
       <a href="../../ricette/index.html">Ricette</a>
       <a href="../../ingredienti/index.html">Ingredienti</a>
+      <a href="../../preferenze/index.html">Preferenze</a>
       <a href="../../strumenti/index.html">Utilità</a>
       <a href="../../download/index.html">PDF e dati</a>
       <a href="../../progetto/index.html">Progetto</a>

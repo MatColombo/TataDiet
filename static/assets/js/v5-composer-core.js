@@ -1,9 +1,11 @@
 (function (global, factory) {
   const calendar = global.DietCalendarCore || (typeof module === "object" && module.exports ? require("./calendar-core.js") : null);
-  const api = factory(calendar);
+  const pref = global.TataDietFoodPreferences || (typeof module === "object" && module.exports ? require("./v5-preferences-core.js") : null);
+  const dayTypes = global.TataDietDayTypes || (typeof module === "object" && module.exports ? require("./v5-day-types.js") : null);
+  const api = factory(calendar, pref, dayTypes);
   if (typeof module === "object" && module.exports) module.exports = api;
   global.TataDietComposerCore = api;
-})(typeof globalThis !== "undefined" ? globalThis : this, function (calendar) {
+})(typeof globalThis !== "undefined" ? globalThis : this, function (calendar, foodPrefs, dayTypes) {
   "use strict";
   if (!calendar) throw new Error("DietCalendarCore non disponibile");
 
@@ -15,7 +17,7 @@
     D5: [["08:00",0,"Colazione"],["11:00",0,"Spuntino"],["13:30",0,"Pranzo"],["17:30",0,"Spuntino"],["20:30",0,"Cena"]],
     OFF: [["08:00",0,"Colazione"],["13:30",0,"Pranzo"],["17:30",0,"Spuntino"],["20:30",0,"Cena"]],
   };
-  const REFERENCE_KCAL = {D1:1612,D2:1709,D3:1467,D4:1614,D5:1626,OFF:1600,CUSTOM:1600,FREE:0};
+  const REFERENCE_KCAL = {D1:1612,D2:1709,D3:1467,D4:1614,D5:1626,M:1612,P:1612,OFF:1600,CUSTOM:1600,FREE:0};
   const NUTRIENT_KEYS = ["energyKcal","proteinG","carbohydrateG","fatG","fiberG"];
 
   function clone(v){ return v == null ? v : JSON.parse(JSON.stringify(v)); }
@@ -30,15 +32,16 @@
     const raw=version?.nutritionMode==="manual"?(version.manualNutrition||version.calculatedNutrition):(version?.calculatedNutrition||version?.manualNutrition)||{};
     return {energyKcal:numeric(raw.energyKcal??raw.energy_kcal),proteinG:numeric(raw.proteinG??raw.protein_g),carbohydrateG:numeric(raw.carbohydrateG??raw.carbohydrate_g),fatG:numeric(raw.fatG??raw.fat_g),fiberG:numeric(raw.fiberG??raw.fiber_g)};
   }
-  function entryFrom(recipe,version){
+  function entryFrom(recipe,version,ingredientById=null){
     if(!recipe||!version)return null;const meta=version.metadata||{};
-    return {recipe,version,isCurrent:recipe.currentVersionId===version.id,nutrition:nutritionOfVersion(version),mealTypes:meta.mealTypes||recipe.mealTypes||[],cuisine:meta.cuisine||recipe.cuisines?.[0]||"",tags:meta.tags||[],prepMinutes:numeric(meta.prepMinutes),mealPrep:meta.mealPrep||{},spiceLevel:meta.spiceLevel||"none"};
+    return {recipe,version,isCurrent:recipe.currentVersionId===version.id,nutrition:nutritionOfVersion(version),mealTypes:meta.mealTypes||recipe.mealTypes||[],cuisine:meta.cuisine||recipe.cuisines?.[0]||"",tags:meta.tags||[],prepMinutes:numeric(meta.prepMinutes),mealPrep:meta.mealPrep||{},spiceLevel:meta.spiceLevel||"none",foodGroups:foodPrefs?foodPrefs.groupsForVersion(version,recipe,ingredientById):[]};
   }
-  function makeCatalog(recipes,versions){ const recipeById=new Map((recipes||[]).map(r=>[r.id,r]));return (versions||[]).map(v=>entryFrom(recipeById.get(v.recipeId||v.recipe_id),v)).filter(Boolean); }
+  function makeCatalog(recipes,versions,ingredients=null){ const recipeById=new Map((recipes||[]).map(r=>[r.id,r]));const ingredientById=ingredients instanceof Map?ingredients:new Map((ingredients||[]).map(i=>[i.id,i]));return (versions||[]).map(v=>entryFrom(recipeById.get(v.recipeId||v.recipe_id),v,ingredientById)).filter(Boolean); }
   function catalogMap(catalog){ return new Map((catalog||[]).map(e=>[e.version.id,e])); }
 
   function slotTemplates(day){
-    if(day?.dayType!=="CUSTOM")return (SLOT_TEMPLATES[day?.dayType]||SLOT_TEMPLATES.OFF).map(([time,dayOffset,mealType],i)=>({id:`slot-${i+1}`,time,dayOffset,mealType}));
+    const profile=dayTypes?dayTypes.dietaryProfile(day?.dayType):day?.dayType;
+    if(day?.dayType!=="CUSTOM")return (SLOT_TEMPLATES[profile]||SLOT_TEMPLATES.OFF).map(([time,dayOffset,mealType],i)=>({id:`slot-${i+1}`,time,dayOffset,mealType}));
     const sh=day.shift||{};let start=minutes(sh.startTime),end=minutes(sh.endTime);if(start===null||end===null)return SLOT_TEMPLATES.OFF.map(([time,dayOffset,mealType],i)=>({id:`slot-${i+1}`,time,dayOffset,mealType}));
     let endAbs=end+numeric(sh.endDayOffset)*1440;if(endAbs<=start)endAbs+=1440;const duration=endAbs-start;
     const points=[];const pre=start-90;if(pre>=0)points.push(pre);points.push(start+Math.min(210,Math.round(duration*.3)));if(duration>=480)points.push(start+Math.min(450,Math.round(duration*.62)));points.push(endAbs+30);
@@ -63,13 +66,14 @@
     if(["medium","high"].includes(entry.spiceLevel)){score-=entry.spiceLevel==="high"?18:9;warnings.push("intensità aromatica superiore al profilo abituale");}
     const recent=new Set(ctx.recentRecipeIds||[]);if(recent.has(entry.recipe.id)){score-=32;warnings.push("già usata nei giorni vicini");}else score+=4;
     if(entry.recipe.origin==="personal"){score+=2;reasons.push("ricetta personale");}
-    return {score,reasons:[...new Set(reasons)].slice(0,4),warnings:[...new Set(warnings)].slice(0,4),targetKcal:target};
+    let avoidAutomatic=false; if(foodPrefs&&ctx.preferences){const adj=foodPrefs.scoreAdjustment(entry,ctx.preferences,ctx.groupOccurrences||{});score+=adj.score;avoidAutomatic=adj.avoidAutomatic;reasons.push(...adj.reasons);warnings.push(...adj.warnings);}
+    return {score,avoidAutomatic,reasons:[...new Set(reasons)].slice(0,5),warnings:[...new Set(warnings)].slice(0,5),targetKcal:target};
   }
   function suggestRecipes(catalog,ctx={},limit=12){return (catalog||[]).filter(entry=>entry.isCurrent&&!entry.recipe.archivedAt).map(entry=>({...entry,match:compatibilityScore(entry,ctx)})).sort((a,b)=>b.match.score-a.match.score||a.recipe.title.localeCompare(b.recipe.title,"it")).slice(0,limit);}
 
   function scaleNutrition(n,f){const out={};NUTRIENT_KEYS.forEach(k=>out[k]=numeric(n?.[k])*f);return out;}
   function addNutrition(a,b){const out={};NUTRIENT_KEYS.forEach(k=>out[k]=numeric(a?.[k])+numeric(b?.[k]));return out;}
-  function daySummary(day,catalogOrMap,referenceKcal=null){const map=catalogOrMap instanceof Map?catalogOrMap:catalogMap(catalogOrMap);let total={energyKcal:0,proteinG:0,carbohydrateG:0,fatG:0,fiberG:0},resolved=0,unresolved=0;const rows=[];(day?.meals||[]).forEach(m=>{if(m.status==="skipped")return;const entry=map.get(m.recipeVersionId);if(!entry){unresolved++;rows.push({meal:m,entry:null,nutrition:null});return;}resolved++;const n=scaleNutrition(entry.nutrition,numeric(m.portionMultiplier,1));total=addNutrition(total,n);rows.push({meal:m,entry,nutrition:n});});const reference=referenceKcal??REFERENCE_KCAL[day?.dayType]??1600;return {total,rows,resolved,unresolved,referenceKcal:reference,kcalDelta:total.energyKcal-reference,percentOfReference:reference?total.energyKcal/reference*100:0};}
+  function daySummary(day,catalogOrMap,referenceKcal=null){const map=catalogOrMap instanceof Map?catalogOrMap:catalogMap(catalogOrMap);let total={energyKcal:0,proteinG:0,carbohydrateG:0,fatG:0,fiberG:0},resolved=0,unresolved=0;const rows=[];(day?.meals||[]).forEach(m=>{if(m.status==="skipped")return;const entry=map.get(m.recipeVersionId);if(!entry){unresolved++;rows.push({meal:m,entry:null,nutrition:null});return;}resolved++;const n=scaleNutrition(entry.nutrition,numeric(m.portionMultiplier,1));total=addNutrition(total,n);rows.push({meal:m,entry,nutrition:n});});const profile=dayTypes?dayTypes.dietaryProfile(day?.dayType):day?.dayType;const reference=referenceKcal??REFERENCE_KCAL[profile]??1600;return {total,rows,resolved,unresolved,referenceKcal:reference,kcalDelta:total.energyKcal-reference,percentOfReference:reference?total.energyKcal/reference*100:0};}
 
   function recentRecipeIds(days,targetDate,radius=3){const out=[];(days||[]).forEach(d=>{const dist=Math.abs(calendar.diffDays(targetDate,d.date));if(dist>0&&dist<=radius)(d.meals||[]).forEach(m=>out.push(m.recipeId));});return out;}
   function mealRecord(day,slot,entry,portionMultiplier=1,source=null,id=null){if(!entry?.recipe||!entry?.version)throw new Error("Ricetta non valida");const portion=Math.max(.1,Math.min(20,numeric(portionMultiplier,1)));return {id:id||safeId(`${day.id}:meal`),time:slot.time,dayOffset:numeric(slot.dayOffset),mealType:slot.mealType||"Pasto",recipeId:entry.recipe.id,recipeVersionId:entry.version.id,portionMultiplier:portion,status:"planned",source:source||(entry.recipe.origin==="personal"?"personal":"suggested"),baseMealRef:slot.baseMealRef||null,notes:slot.notes||null,locked:Boolean(slot.locked)};}
@@ -79,6 +83,6 @@
   function addMeal(day,slot,entry,portionMultiplier=1){const out=clone(day);out.meals=[...(out.meals||[]),mealRecord(out,slot,entry,portionMultiplier,entry.recipe.origin==="personal"?"personal":"copied")];out.meals.sort((a,b)=>(a.dayOffset*1440+minutes(a.time))-(b.dayOffset*1440+minutes(b.time)));return out;}
   function replaceMenu(day,items){const out=clone(day);out.meals=(items||[]).map((item,i)=>mealRecord(out,item.slot||item,item.entry,item.portionMultiplier||1,item.source||"suggested",item.id||null));out.meals.sort((a,b)=>(a.dayOffset*1440+minutes(a.time))-(b.dayOffset*1440+minutes(b.time)));return out;}
   function copyMenuFromTemplate(day,baseDay,catalogByVersion){const map=catalogByVersion instanceof Map?catalogByVersion:catalogMap(catalogByVersion);const items=(baseDay?.meals||[]).map(m=>{const entry=map.get(m.recipe_version_id||m.recipeVersionId);if(!entry)return null;return {slot:{time:m.time,dayOffset:numeric(m.day_offset??m.dayOffset),mealType:m.meal_type||m.mealType,baseMealRef:m.id||null},entry,portionMultiplier:1,source:"copied"};}).filter(Boolean);if(!items.length)throw new Error("Il menu modello non contiene ricette disponibili");return replaceMenu(day,items);}
-  function suggestedMenu(day,catalog,days,options={}){const map=catalogMap(catalog),slots=day?.meals?.length?clone(day.meals):slotTemplates(day),recent=recentRecipeIds(days,day.date,3),used=new Set(),items=[];for(const slot of slots){if(slot.locked&&slot.recipeVersionId&&map.get(slot.recipeVersionId)){const entry=map.get(slot.recipeVersionId);used.add(entry.recipe.id);items.push({slot,entry,portionMultiplier:slot.portionMultiplier||1,source:slot.source||"copied",locked:true,match:{score:999,reasons:["pasto bloccato"],warnings:[]}});continue;}const ranked=suggestRecipes(catalog,{mealType:slot.mealType,shift:day.shift,recentRecipeIds:[...recent,...used]},20);const pick=ranked.find(x=>!used.has(x.recipe.id))||ranked[0];if(!pick)continue;used.add(pick.recipe.id);items.push({slot,entry:pick,portionMultiplier:slot.portionMultiplier||1,source:"suggested",match:pick.match});}const next=replaceMenu(day,items);next.meals.forEach((m,i)=>{if(items[i]?.locked)m.locked=true;});return {day:next,items};}
+  function suggestedMenu(day,catalog,days,options={}){const map=catalogMap(catalog),slots=options.forceSlots?slotTemplates(day):(day?.meals?.length?clone(day.meals):slotTemplates(day)),recent=recentRecipeIds(days,day.date,3),groupOccurrences=foodPrefs?foodPrefs.occurrenceCounts(days,day.date,map,calendar):{},used=new Set(),items=[];for(const slot of slots){if(slot.locked&&slot.recipeVersionId&&map.get(slot.recipeVersionId)){const entry=map.get(slot.recipeVersionId);used.add(entry.recipe.id);items.push({slot,entry,portionMultiplier:slot.portionMultiplier||1,source:slot.source||"copied",locked:true,match:{score:999,reasons:["pasto bloccato"],warnings:[]}});continue;}const ranked=suggestRecipes(catalog,{mealType:slot.mealType,shift:day.shift,recentRecipeIds:[...recent,...used],preferences:options.preferences,groupOccurrences},40);const eligible=ranked.filter(x=>!x.match.avoidAutomatic);const pick=eligible.find(x=>!used.has(x.recipe.id))||eligible[0]||ranked.find(x=>!used.has(x.recipe.id))||ranked[0];if(!pick)continue;used.add(pick.recipe.id);(pick.foodGroups||[]).forEach(g=>{groupOccurrences[g]=Number(groupOccurrences[g]||0)+1;});items.push({slot,entry:pick,portionMultiplier:slot.portionMultiplier||1,source:"suggested",match:pick.match});}const next=replaceMenu(day,items);next.meals.forEach((m,i)=>{if(items[i]?.locked)m.locked=true;});return {day:next,items};}
   return {SLOT_TEMPLATES,REFERENCE_KCAL,NUTRIENT_KEYS,normalize,numeric,minutes,mealFamily,targetEnergy,nutritionOfVersion,entryFrom,makeCatalog,catalogMap,slotTemplates,existingOrSuggestedSlots,compatibilityScore,suggestRecipes,scaleNutrition,addNutrition,daySummary,recentRecipeIds,mealRecord,replaceMeal,updateMeal,removeMeal,addMeal,replaceMenu,copyMenuFromTemplate,suggestedMenu};
 });
