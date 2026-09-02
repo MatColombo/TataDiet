@@ -1,62 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
 <header class="page-header today-page-header">
-  <p class="eyebrow">V5 · piano effettivo</p>
+  <p class="eyebrow">V5.2 · piano effettivo</p>
   <h1>Oggi</h1>
-  <p>Turno, pasti e attività pratiche della data civile selezionata. Gli alimenti delle 03:30 e delle 08:20 restano collegati al Notte iniziato la sera precedente.</p>
+  <p>Prima il tipo di giornata e il prossimo pasto, poi tutti gli appuntamenti alimentari della data civile, i valori nutrizionali e la preparazione delle prossime 48 ore.</p>
 </header>
-
 <div class="dynamic-loading" data-plan-loading>Caricamento del calendario personale…</div>
-
-<section class="setup-card" data-plan-setup hidden>
-  <div>
-    <p class="eyebrow">Configurazione iniziale</p>
-    <h2>Indica la data del prima Giornata</h2>
-    <p>Questa data corrisponderà a <strong>Ciclo 1 · Variante 1 · G, turno 08:00-20:00</strong>. Le altre 179 date saranno calcolate automaticamente.</p>
-  </div>
-  <form class="start-date-form" data-start-form>
-    <label for="today-start-date">Data del prima Giornata</label>
-    <div class="date-form-row">
-      <input id="today-start-date" name="start" type="date" min="2020-01-01" max="2100-12-31" required>
-      <button class="button primary" type="submit">Genera il calendario</button>
-    </div>
-    <p class="field-help" data-start-preview></p>
-    <p class="form-error" data-start-error role="alert" hidden></p>
-  </form>
-</section>
-
+<section class="setup-card" data-plan-setup hidden><div><p class="eyebrow">Configurazione iniziale</p><h2>Indica la data della prima Giornata</h2><p>Questa data corrisponderà a <strong>Ciclo 1 · Variante 1 · G, turno 08:00-20:00</strong>. Le altre 179 date saranno calcolate automaticamente.</p></div><form class="start-date-form" data-start-form><label for="today-start-date">Data della prima Giornata</label><div class="date-form-row"><input id="today-start-date" name="start" type="date" min="2020-01-01" max="2100-12-31" required><button class="button primary" type="submit">Genera il calendario</button></div><p class="field-help" data-start-preview></p><p class="form-error" data-start-error role="alert" hidden></p></form></section>
 <section data-today-app hidden aria-live="polite">
-  <div class="calendar-config-bar">
-    <div>
-      <span class="config-label">Calendario attivo</span>
-      <strong data-active-range></strong>
-    </div>
-    <div class="config-actions">
-      <a class="button secondary compact" data-today-link href="index.html">Torna a oggi</a>
-      <a class="button secondary compact" data-calendar-link href="../calendario/index.html">Calendario</a>
-      <a class="button secondary compact" data-prep-link href="../preparazioni/index.html">Preparazioni 48h</a>
-      <a class="button ghost compact" data-range-shopping-link href="../spesa/intervallo/index.html">Spesa per date</a>
-      <button class="button ghost compact" type="button" data-copy-calendar-link>Copia link</button>
-      <button class="button ghost compact" type="button" data-change-start>Cambia data</button>
-    </div>
-  </div>
-
-  <div class="inline-start-editor" data-start-editor hidden>
-    <form class="start-date-form compact-form" data-start-form>
-      <label for="today-edit-start">Nuova data del prima Giornata</label>
-      <div class="date-form-row">
-        <input id="today-edit-start" name="start" type="date" min="2020-01-01" max="2100-12-31" required>
-        <button class="button primary compact" type="submit">Aggiorna</button>
-        <button class="button ghost compact" type="button" data-cancel-start>Cancella</button>
-      </div>
-      <p class="field-help" data-start-preview></p>
-      <p class="form-error" data-start-error role="alert" hidden></p>
-    </form>
-  </div>
-
   <div data-today-content></div>
   <section class="section-block today-prep-preview" data-today-prep-preview hidden></section>
 </section>
-
-<noscript><section class="notice-card"><h2>JavaScript necessario</h2><p>La pagina Oggi calcola le date nel browser. Il piano statico resta disponibile nella sezione Piano.</p></section></noscript>
+<noscript><section class="notice-card"><h2>JavaScript necessario</h2><p>La pagina Oggi calcola le date nel browser. Il piano statico resta disponibile dal collegamento in fondo al Calendario.</p></section></noscript>
 {% endblock %}

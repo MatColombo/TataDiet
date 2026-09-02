@@ -33,10 +33,13 @@
   <script defer src="../assets/js/v5-plan.js"></script>
   <script defer src="../assets/js/v5-plan-calendar.js"></script>
   <script defer src="../assets/js/v5-composer-core.js"></script>
+  <script defer src="../assets/js/v5-planning-core.js"></script>
   <script defer src="../assets/js/v5-composer-store.js"></script>
   <script defer src="../assets/js/v5-composer.js"></script>
   <script defer src="../assets/js/v5-day-manager.js"></script>
   <script defer src="../assets/js/v5-preferences.js"></script>
+  <script defer src="../assets/js/v5-balance.js"></script>
+  <script defer src="../assets/js/v5-recipe-scheduler.js"></script>
   <script defer src="../assets/js/v5-effective-core.js"></script>
   <script defer src="../assets/js/v5-effective-store.js"></script>
   <script defer src="../assets/js/v5-effective-pages.js"></script>
@@ -49,7 +52,7 @@
   <script defer src="../assets/js/v5-tools.js"></script>
   <script defer src="../assets/js/pwa.js"></script>
 </head>
-<body data-page="preferences" data-root="../" data-version="5.1.0">
+<body data-page="preferences" data-root="../" data-version="5.2.0">
   <a class="skip-link" href="#contenuto">Vai al contenuto</a>
 
   <header class="site-header">
@@ -58,17 +61,17 @@
         <img class="brand-mark" src="../assets/brand/brand-mark.svg" width="48" height="48" alt="">
         <span class="brand-copy">
           <strong>Piano alimentare</strong>
-          <small>turni, pasti e spesa · V5.1</small>
+          <small>turni, pasti e spesa · V5.2</small>
         </span>
       </a>
 
       <nav class="desktop-nav" aria-label="Navigazione principale">
         <a class="" href="../oggi/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-today"></use></svg><span>Oggi</span></a>
         <a class="" href="../calendario/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-calendar"></use></svg><span>Calendario</span></a>
-        <a class="" href="../piano/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-plan"></use></svg><span>Piano</span></a>
         <a class="" href="../ricette/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-recipes"></use></svg><span>Ricette</span></a>
         <a class="" href="../ingredienti/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-leaf"></use></svg><span>Ingredienti</span></a>
         <a class="" href="../spesa/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-shopping"></use></svg><span>Spesa</span></a>
+        <a class="is-active" href="../preferenze/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-heart"></use></svg><span>Preferenze</span></a>
         <a class="" href="../strumenti/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-tools"></use></svg><span>Utilità</span></a>
       </nav>
 
@@ -96,11 +99,31 @@
       <a class="breadcrumb-home" href="../index.html" aria-label="Home"><svg class="ui-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-home"></use></svg></a>
           <span class="crumb-sep" aria-hidden="true">›</span>
 <span aria-current="page">Preferenze alimentari</span>    </nav>
-<header class="page-header preference-hero"><p class="eyebrow">V5.1 · libertà alimentare</p><h1>Preferenze alimentari</h1><p>Indica quanto spesso desideri vedere alcune famiglie di alimenti. Le preferenze influenzano le proposte automatiche, ma non cancellano le tue scelte manuali.</p></header>
+<header class="page-header preference-hero"><p class="eyebrow">V5.2 · libertà alimentare</p><h1>Preferenze alimentari</h1><p>Indica quanto spesso desideri vedere alcune famiglie di alimenti. Le preferenze guidano le proposte automatiche e, quando vuoi, possono riequilibrare in blocco il piano futuro.</p></header>
 <section class="preference-intro notice-card"><h2>Preferenze, non divieti clinici</h2><p>“Meno spesso”, “Raramente” e i limiti settimanali abbassano la priorità nelle proposte. Una occasione corrisponde a un pasto che contiene quella famiglia alimentare. “Mai” la esclude dai menu automatici, ma resta possibile scegliere manualmente una ricetta.</p></section>
 <section class="section-block"><div class="section-heading"><div><p class="eyebrow">Frequenza desiderata</p><h2>Quanto spesso vuoi che compaiano?</h2></div></div><div class="preference-grid" data-pref-groups></div></section>
+<section class="section-block rebalance-launcher" data-rebalance-section>
+  <div class="section-heading"><div><p class="eyebrow">Riequilibrio del piano</p><h2>Applica le preferenze ai menu già programmati</h2><p>Analizza il periodo nel suo insieme, mantiene il più possibile calorie e macronutrienti e propone soltanto sostituzioni compatibili. Nulla cambia prima della conferma.</p></div></div>
+  <div class="rebalance-range-grid" role="group" aria-label="Periodo da riequilibrare">
+    <button class="range-choice-card" type="button" data-rebalance-range="1"><strong>Prossima giornata</strong><span>Una sola data futura</span></button>
+    <button class="range-choice-card" type="button" data-rebalance-range="7"><strong>Prossimi 7 giorni</strong><span>Una settimana</span></button>
+    <button class="range-choice-card" type="button" data-rebalance-range="30"><strong>Prossimi 30 giorni</strong><span>Un mese</span></button>
+    <button class="range-choice-card" type="button" data-rebalance-range="rest"><strong>Tutto il piano futuro</strong><span>Fino all'ultima giornata</span></button>
+  </div>
+  <p class="field-help" data-rebalance-state>Salva prima le preferenze che vuoi utilizzare.</p>
+</section>
 <section class="preference-actions"><a class="button ghost" href="../calendario/gestisci/index.html">Torna a Gestisci giornata</a><div><button class="button ghost" type="button" data-pref-reset>Ripristina valori normali</button><button class="button primary" type="button" data-pref-save>Salva preferenze</button></div></section>
 <p class="toast-message" data-pref-toast hidden role="status"></p>
+
+<dialog class="editor-dialog rebalance-dialog" data-rebalance-dialog>
+  <div class="dialog-shell rebalance-shell">
+    <header class="dialog-header"><div><p class="eyebrow">Anteprima · nessuna modifica ancora applicata</p><h2 data-rebalance-title>Riequilibra piano</h2><p data-rebalance-subtitle></p></div><button class="dialog-close" type="button" data-rebalance-close aria-label="Chiudi">×</button></header>
+    <div class="rebalance-overview" data-rebalance-overview></div>
+    <div class="rebalance-actions-row"><label class="checkbox-filter"><input type="checkbox" data-rebalance-select-all checked><span>Seleziona tutte le proposte</span></label><strong data-rebalance-selected-count></strong></div>
+    <div class="rebalance-proposals" data-rebalance-proposals></div>
+    <footer class="dialog-actions"><button class="button ghost" type="button" data-rebalance-close>Annulla</button><button class="button primary" type="button" data-rebalance-apply>Applica modifiche selezionate</button></footer>
+  </div>
+</dialog>
   </main>
 
   <footer class="site-footer">
@@ -124,7 +147,9 @@
     <a class="" href="../calendario/index.html"><svg aria-hidden="true"><use href="../assets/icons.svg#icon-calendar"></use></svg><span>Calendario</span></a>
     <a class="" href="../ingredienti/index.html"><svg aria-hidden="true"><use href="../assets/icons.svg#icon-leaf"></use></svg><span>Alimenti</span></a>
     <a class="" href="../spesa/index.html"><svg aria-hidden="true"><use href="../assets/icons.svg#icon-shopping"></use></svg><span>Spesa</span></a>
-    <a class="" href="../piano/index.html"><svg aria-hidden="true"><use href="../assets/icons.svg#icon-plan"></use></svg><span>Piano</span></a>
+    <a class="" href="../ricette/index.html"><svg aria-hidden="true"><use href="../assets/icons.svg#icon-recipes"></use></svg><span>Ricette</span></a>
+    <a class="is-active" href="../preferenze/index.html" aria-label="Preferenze alimentari"><svg aria-hidden="true"><use href="../assets/icons.svg#icon-heart"></use></svg><span>Preferenze</span></a>
+    <a class="" href="../strumenti/index.html"><svg aria-hidden="true"><use href="../assets/icons.svg#icon-tools"></use></svg><span>Utilità</span></a>
   </nav>
 </body>
 </html>

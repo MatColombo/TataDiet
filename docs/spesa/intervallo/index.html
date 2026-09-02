@@ -33,10 +33,13 @@
   <script defer src="../../assets/js/v5-plan.js"></script>
   <script defer src="../../assets/js/v5-plan-calendar.js"></script>
   <script defer src="../../assets/js/v5-composer-core.js"></script>
+  <script defer src="../../assets/js/v5-planning-core.js"></script>
   <script defer src="../../assets/js/v5-composer-store.js"></script>
   <script defer src="../../assets/js/v5-composer.js"></script>
   <script defer src="../../assets/js/v5-day-manager.js"></script>
   <script defer src="../../assets/js/v5-preferences.js"></script>
+  <script defer src="../../assets/js/v5-balance.js"></script>
+  <script defer src="../../assets/js/v5-recipe-scheduler.js"></script>
   <script defer src="../../assets/js/v5-effective-core.js"></script>
   <script defer src="../../assets/js/v5-effective-store.js"></script>
   <script defer src="../../assets/js/v5-effective-pages.js"></script>
@@ -49,7 +52,7 @@
   <script defer src="../../assets/js/v5-tools.js"></script>
   <script defer src="../../assets/js/pwa.js"></script>
 </head>
-<body data-page="shopping-range" data-root="../../" data-version="5.1.0">
+<body data-page="shopping-range" data-root="../../" data-version="5.2.0">
   <a class="skip-link" href="#contenuto">Vai al contenuto</a>
 
   <header class="site-header">
@@ -58,17 +61,17 @@
         <img class="brand-mark" src="../../assets/brand/brand-mark.svg" width="48" height="48" alt="">
         <span class="brand-copy">
           <strong>Piano alimentare</strong>
-          <small>turni, pasti e spesa · V5.1</small>
+          <small>turni, pasti e spesa · V5.2</small>
         </span>
       </a>
 
       <nav class="desktop-nav" aria-label="Navigazione principale">
         <a class="" href="../../oggi/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-today"></use></svg><span>Oggi</span></a>
         <a class="" href="../../calendario/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-calendar"></use></svg><span>Calendario</span></a>
-        <a class="" href="../../piano/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-plan"></use></svg><span>Piano</span></a>
         <a class="" href="../../ricette/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-recipes"></use></svg><span>Ricette</span></a>
         <a class="" href="../../ingredienti/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-leaf"></use></svg><span>Ingredienti</span></a>
         <a class="is-active" href="../../spesa/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-shopping"></use></svg><span>Spesa</span></a>
+        <a class="" href="../../preferenze/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-heart"></use></svg><span>Preferenze</span></a>
         <a class="" href="../../strumenti/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-tools"></use></svg><span>Utilità</span></a>
       </nav>
 
@@ -98,40 +101,48 @@
 <a href="../../spesa/index.html">Spesa</a>          <span class="crumb-sep" aria-hidden="true">›</span>
 <span aria-current="page">Intervallo di date</span>    </nav>
 <header class="page-header">
-  <p class="eyebrow">V5 · spesa effettiva</p>
-  <h1>Lista della spesa per intervallo</h1>
-  <p>Seleziona qualsiasi periodo del calendario personale. Gli ingredienti vengono sommati per categoria, con quantità necessaria e acquisto pratico suggerito.</p>
+  <p class="eyebrow">V5.2 · spesa effettiva</p>
+  <h1>Spesa per date</h1>
+  <p>La lista parte automaticamente da oggi. Usa un intervallo rapido oppure scegli due date: ricette, porzioni e modifiche del piano personale vengono conteggiate subito.</p>
 </header>
 <div class="dynamic-loading" data-plan-loading>Caricamento dei dati di spesa…</div>
 <section class="setup-card" data-plan-setup hidden>
-  <div><p class="eyebrow">Configurazione richiesta</p><h2>Imposta la data del prima Giornata</h2><p>Serve per associare le date civili al piano. Se esiste un piano personale, la spesa usa ricette e porzioni effettive.</p></div>
-  <form class="start-date-form" data-start-form>
-    <label for="shopping-start-date">Data del prima Giornata</label>
-    <div class="date-form-row"><input id="shopping-start-date" name="start" type="date" min="2020-01-01" max="2100-12-31" required><button class="button primary" type="submit">Configura</button></div>
-    <p class="field-help" data-start-preview></p><p class="form-error" data-start-error role="alert" hidden></p>
-  </form>
+  <div><p class="eyebrow">Configurazione richiesta</p><h2>Imposta la data della prima Giornata</h2><p>Serve per associare le date civili al piano. Se esiste un piano personale, la spesa usa ricette e porzioni effettive.</p></div>
+  <form class="start-date-form" data-start-form><label for="shopping-start-date">Data della prima Giornata</label><div class="date-form-row"><input id="shopping-start-date" name="start" type="date" min="2020-01-01" max="2100-12-31" required><button class="button primary" type="submit">Configura</button></div><p class="field-help" data-start-preview></p><p class="form-error" data-start-error role="alert" hidden></p></form>
 </section>
 <section data-range-shopping-app hidden>
-  <div class="calendar-config-bar">
+  <section class="shopping-quick-panel" aria-labelledby="shopping-quick-title">
+    <div class="section-heading"><div><p class="eyebrow">Intervalli rapidi</p><h2 id="shopping-quick-title">Cosa devi comprare?</h2></div></div>
+    <div class="quick-range-actions prominent" aria-label="Intervalli rapidi">
+      <button type="button" data-shopping-quick="today">Oggi</button>
+      <button type="button" data-shopping-quick="tomorrow">Domani</button>
+      <button type="button" data-shopping-quick="48h">Prossime 48h</button>
+      <button type="button" data-shopping-quick="5">Prossimi 5 giorni</button>
+      <button type="button" data-shopping-quick="7">Prossimi 7 giorni</button>
+    </div>
+  </section>
+
+  <section class="shopping-date-picker-card">
+    <div class="section-heading"><div><p class="eyebrow">Date personalizzate</p><h2>Scegli l'intervallo</h2></div></div>
+    <form class="operation-form shopping-range-form" data-range-shopping-form>
+      <label><span>Dal</span><input type="date" data-shopping-from required></label>
+      <label><span>Al</span><input type="date" data-shopping-to required></label>
+      <button class="button primary" type="submit">Calcola spesa</button>
+    </form>
+  </section>
+
+  <div class="calendar-config-bar shopping-selection-card">
     <div><span class="config-label">Intervallo selezionato</span><strong data-range-shopping-label></strong><small>Le spunte restano in questo browser.</small></div>
-    <div class="config-actions"><a class="button secondary compact" href="../index.html">Liste standard</a><button class="button ghost compact" type="button" data-copy-range-shopping>Copia</button><button class="button ghost compact" type="button" data-download-range-shopping>Scarica TXT</button><button class="button ghost compact" type="button" data-print-range-shopping>Stampa</button><button class="button ghost compact danger-text" type="button" data-clear-range-shopping>Azzera spunte</button></div>
+    <div class="config-actions"><button class="button ghost compact" type="button" data-copy-range-shopping>Copia</button><button class="button ghost compact" type="button" data-download-range-shopping>Scarica TXT</button><button class="button ghost compact" type="button" data-print-range-shopping>Stampa</button><button class="button ghost compact danger-text" type="button" data-clear-range-shopping>Azzera spunte</button></div>
   </div>
-  <form class="operation-form shopping-range-form" data-range-shopping-form>
-    <label><span>Dal</span><input type="date" data-shopping-from required></label>
-    <label><span>Al</span><input type="date" data-shopping-to required></label>
-    <button class="button primary" type="submit">Calcola spesa</button>
-  </form>
-  <div class="quick-range-actions" aria-label="Intervalli rapidi">
-    <button type="button" data-shopping-quick="5">Prossimi 5 giorni</button>
-    <button type="button" data-shopping-quick="7">Prossimi 7 giorni</button>
-    <button type="button" data-shopping-quick="variant">Blocco corrente · 5 giorni</button>
-    <button type="button" data-shopping-quick="cycle">Blocco corrente · 30 giorni</button>
-  </div>
+
   <div class="operation-summary" data-range-shopping-summary></div>
   <div class="shopping-progress" data-range-shopping-progress><span></span><strong>0 / 0</strong></div>
   <div class="shopping-categories" data-range-shopping-results></div>
+
+  <section class="secondary-link-card shopping-static-link"><div><p class="eyebrow">Archivio originale</p><h2>Liste per ciclo e variante</h2><p>Le liste statiche del piano base restano disponibili come riferimento.</p></div><a class="button ghost" href="../cicli/index.html">Apri liste per ciclo/variante</a></section>
 </section>
-<noscript><section class="notice-card"><h2>JavaScript necessario</h2><p>La lista per date viene calcolata nel browser. Le liste statiche restano disponibili nella sezione Spesa.</p></section></noscript>
+<noscript><section class="notice-card"><h2>JavaScript necessario</h2><p>La lista per date viene calcolata nel browser. Le liste statiche restano disponibili dall'archivio cicli.</p></section></noscript>
   </main>
 
   <footer class="site-footer">
@@ -155,7 +166,9 @@
     <a class="" href="../../calendario/index.html"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-calendar"></use></svg><span>Calendario</span></a>
     <a class="" href="../../ingredienti/index.html"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-leaf"></use></svg><span>Alimenti</span></a>
     <a class="is-active" href="../../spesa/index.html"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-shopping"></use></svg><span>Spesa</span></a>
-    <a class="" href="../../piano/index.html"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-plan"></use></svg><span>Piano</span></a>
+    <a class="" href="../../ricette/index.html"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-recipes"></use></svg><span>Ricette</span></a>
+    <a class="" href="../../preferenze/index.html" aria-label="Preferenze alimentari"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-heart"></use></svg><span>Preferenze</span></a>
+    <a class="" href="../../strumenti/index.html"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-tools"></use></svg><span>Utilità</span></a>
   </nav>
 </body>
 </html>

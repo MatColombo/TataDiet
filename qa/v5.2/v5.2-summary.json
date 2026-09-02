@@ -1,0 +1,60 @@
+{
+  "status": "ok",
+  "version": "5.2.0",
+  "database": "tatadiet-v5",
+  "schema_version": 1,
+  "html_files": 592,
+  "links_checked": 44713,
+  "offline_assets": 650,
+  "offline_bytes": 17113344,
+  "base_days": 180,
+  "base_meals": 864,
+  "base_recipes": 306,
+  "recipe_versions": 547,
+  "base_ingredients": 130,
+  "v5_2_core": {
+    "status": "ok",
+    "version": "5.2.0",
+    "checks": {
+      "rebalance_limits": true,
+      "locked_preserved": true,
+      "nutrition_preserved": true,
+      "random_schedule_count": true,
+      "random_schedule_distinct_dates": true,
+      "random_schedule_reason_numeric": true,
+      "no_past_range": true
+    },
+    "rebalanceProposals": 5,
+    "scheduled": 3
+  },
+  "accessibility": {
+    "status": "ok",
+    "counts": {
+      "pages": 592,
+      "images": 1187,
+      "buttons": 2220,
+      "links": 21033,
+      "form_controls": 2217
+    },
+    "warnings": 0
+  },
+  "stress": {
+    "status": "ok",
+    "version": "5.2.0",
+    "operations": 96,
+    "finalDays": 180,
+    "checks": {
+      "continuous_dates": true,
+      "unique_ids": true,
+      "structural_shifts": true,
+      "full_undo": true,
+      "full_redo": true
+    }
+  },
+  "browser_qa": {
+    "status": "ok",
+    "checks_total": 23,
+    "checks_passed": 23,
+    "errors": []
+  }
+}

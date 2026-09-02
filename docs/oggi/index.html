@@ -33,10 +33,13 @@
   <script defer src="../assets/js/v5-plan.js"></script>
   <script defer src="../assets/js/v5-plan-calendar.js"></script>
   <script defer src="../assets/js/v5-composer-core.js"></script>
+  <script defer src="../assets/js/v5-planning-core.js"></script>
   <script defer src="../assets/js/v5-composer-store.js"></script>
   <script defer src="../assets/js/v5-composer.js"></script>
   <script defer src="../assets/js/v5-day-manager.js"></script>
   <script defer src="../assets/js/v5-preferences.js"></script>
+  <script defer src="../assets/js/v5-balance.js"></script>
+  <script defer src="../assets/js/v5-recipe-scheduler.js"></script>
   <script defer src="../assets/js/v5-effective-core.js"></script>
   <script defer src="../assets/js/v5-effective-store.js"></script>
   <script defer src="../assets/js/v5-effective-pages.js"></script>
@@ -49,7 +52,7 @@
   <script defer src="../assets/js/v5-tools.js"></script>
   <script defer src="../assets/js/pwa.js"></script>
 </head>
-<body data-page="today" data-root="../" data-version="5.1.0">
+<body data-page="today" data-root="../" data-version="5.2.0">
   <a class="skip-link" href="#contenuto">Vai al contenuto</a>
 
   <header class="site-header">
@@ -58,17 +61,17 @@
         <img class="brand-mark" src="../assets/brand/brand-mark.svg" width="48" height="48" alt="">
         <span class="brand-copy">
           <strong>Piano alimentare</strong>
-          <small>turni, pasti e spesa · V5.1</small>
+          <small>turni, pasti e spesa · V5.2</small>
         </span>
       </a>
 
       <nav class="desktop-nav" aria-label="Navigazione principale">
         <a class="is-active" href="../oggi/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-today"></use></svg><span>Oggi</span></a>
         <a class="" href="../calendario/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-calendar"></use></svg><span>Calendario</span></a>
-        <a class="" href="../piano/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-plan"></use></svg><span>Piano</span></a>
         <a class="" href="../ricette/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-recipes"></use></svg><span>Ricette</span></a>
         <a class="" href="../ingredienti/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-leaf"></use></svg><span>Ingredienti</span></a>
         <a class="" href="../spesa/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-shopping"></use></svg><span>Spesa</span></a>
+        <a class="" href="../preferenze/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-heart"></use></svg><span>Preferenze</span></a>
         <a class="" href="../strumenti/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../assets/icons.svg#icon-tools"></use></svg><span>Utilità</span></a>
       </nav>
 
@@ -97,64 +100,17 @@
           <span class="crumb-sep" aria-hidden="true">›</span>
 <span aria-current="page">Oggi</span>    </nav>
 <header class="page-header today-page-header">
-  <p class="eyebrow">V5 · piano effettivo</p>
+  <p class="eyebrow">V5.2 · piano effettivo</p>
   <h1>Oggi</h1>
-  <p>Turno, pasti e attività pratiche della data civile selezionata. Gli alimenti delle 03:30 e delle 08:20 restano collegati al Notte iniziato la sera precedente.</p>
+  <p>Prima il tipo di giornata e il prossimo pasto, poi tutti gli appuntamenti alimentari della data civile, i valori nutrizionali e la preparazione delle prossime 48 ore.</p>
 </header>
-
 <div class="dynamic-loading" data-plan-loading>Caricamento del calendario personale…</div>
-
-<section class="setup-card" data-plan-setup hidden>
-  <div>
-    <p class="eyebrow">Configurazione iniziale</p>
-    <h2>Indica la data del prima Giornata</h2>
-    <p>Questa data corrisponderà a <strong>Ciclo 1 · Variante 1 · G, turno 08:00-20:00</strong>. Le altre 179 date saranno calcolate automaticamente.</p>
-  </div>
-  <form class="start-date-form" data-start-form>
-    <label for="today-start-date">Data del prima Giornata</label>
-    <div class="date-form-row">
-      <input id="today-start-date" name="start" type="date" min="2020-01-01" max="2100-12-31" required>
-      <button class="button primary" type="submit">Genera il calendario</button>
-    </div>
-    <p class="field-help" data-start-preview></p>
-    <p class="form-error" data-start-error role="alert" hidden></p>
-  </form>
-</section>
-
+<section class="setup-card" data-plan-setup hidden><div><p class="eyebrow">Configurazione iniziale</p><h2>Indica la data della prima Giornata</h2><p>Questa data corrisponderà a <strong>Ciclo 1 · Variante 1 · G, turno 08:00-20:00</strong>. Le altre 179 date saranno calcolate automaticamente.</p></div><form class="start-date-form" data-start-form><label for="today-start-date">Data della prima Giornata</label><div class="date-form-row"><input id="today-start-date" name="start" type="date" min="2020-01-01" max="2100-12-31" required><button class="button primary" type="submit">Genera il calendario</button></div><p class="field-help" data-start-preview></p><p class="form-error" data-start-error role="alert" hidden></p></form></section>
 <section data-today-app hidden aria-live="polite">
-  <div class="calendar-config-bar">
-    <div>
-      <span class="config-label">Calendario attivo</span>
-      <strong data-active-range></strong>
-    </div>
-    <div class="config-actions">
-      <a class="button secondary compact" data-today-link href="index.html">Torna a oggi</a>
-      <a class="button secondary compact" data-calendar-link href="../calendario/index.html">Calendario</a>
-      <a class="button secondary compact" data-prep-link href="../preparazioni/index.html">Preparazioni 48h</a>
-      <a class="button ghost compact" data-range-shopping-link href="../spesa/intervallo/index.html">Spesa per date</a>
-      <button class="button ghost compact" type="button" data-copy-calendar-link>Copia link</button>
-      <button class="button ghost compact" type="button" data-change-start>Cambia data</button>
-    </div>
-  </div>
-
-  <div class="inline-start-editor" data-start-editor hidden>
-    <form class="start-date-form compact-form" data-start-form>
-      <label for="today-edit-start">Nuova data del prima Giornata</label>
-      <div class="date-form-row">
-        <input id="today-edit-start" name="start" type="date" min="2020-01-01" max="2100-12-31" required>
-        <button class="button primary compact" type="submit">Aggiorna</button>
-        <button class="button ghost compact" type="button" data-cancel-start>Cancella</button>
-      </div>
-      <p class="field-help" data-start-preview></p>
-      <p class="form-error" data-start-error role="alert" hidden></p>
-    </form>
-  </div>
-
   <div data-today-content></div>
   <section class="section-block today-prep-preview" data-today-prep-preview hidden></section>
 </section>
-
-<noscript><section class="notice-card"><h2>JavaScript necessario</h2><p>La pagina Oggi calcola le date nel browser. Il piano statico resta disponibile nella sezione Piano.</p></section></noscript>
+<noscript><section class="notice-card"><h2>JavaScript necessario</h2><p>La pagina Oggi calcola le date nel browser. Il piano statico resta disponibile dal collegamento in fondo al Calendario.</p></section></noscript>
   </main>
 
   <footer class="site-footer">
@@ -178,7 +134,9 @@
     <a class="" href="../calendario/index.html"><svg aria-hidden="true"><use href="../assets/icons.svg#icon-calendar"></use></svg><span>Calendario</span></a>
     <a class="" href="../ingredienti/index.html"><svg aria-hidden="true"><use href="../assets/icons.svg#icon-leaf"></use></svg><span>Alimenti</span></a>
     <a class="" href="../spesa/index.html"><svg aria-hidden="true"><use href="../assets/icons.svg#icon-shopping"></use></svg><span>Spesa</span></a>
-    <a class="" href="../piano/index.html"><svg aria-hidden="true"><use href="../assets/icons.svg#icon-plan"></use></svg><span>Piano</span></a>
+    <a class="" href="../ricette/index.html"><svg aria-hidden="true"><use href="../assets/icons.svg#icon-recipes"></use></svg><span>Ricette</span></a>
+    <a class="" href="../preferenze/index.html" aria-label="Preferenze alimentari"><svg aria-hidden="true"><use href="../assets/icons.svg#icon-heart"></use></svg><span>Preferenze</span></a>
+    <a class="" href="../strumenti/index.html"><svg aria-hidden="true"><use href="../assets/icons.svg#icon-tools"></use></svg><span>Utilità</span></a>
   </nav>
 </body>
 </html>

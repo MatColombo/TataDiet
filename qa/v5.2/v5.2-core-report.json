@@ -1,0 +1,15 @@
+{
+  "status": "ok",
+  "version": "5.2.0",
+  "checks": {
+    "rebalance_limits": true,
+    "locked_preserved": true,
+    "nutrition_preserved": true,
+    "random_schedule_count": true,
+    "random_schedule_distinct_dates": true,
+    "random_schedule_reason_numeric": true,
+    "no_past_range": true
+  },
+  "rebalanceProposals": 5,
+  "scheduled": 3
+}

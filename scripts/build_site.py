@@ -28,7 +28,7 @@ SOURCE_XLSX = ROOT / "source_data" / "Piano_alimentare_revisionato_6_mesi_fibra_
 SOURCE_PDF = ROOT / "source_data" / "Piano_alimentare_revisionato_6_mesi_fibra_moderata.pdf"
 DOWNLOAD_XLSX = DOCS / "downloads" / SOURCE_XLSX.name
 DOWNLOAD_PDF = DOCS / "downloads" / "Piano_alimentare_revisionato_6_mesi_fibra_moderata.pdf"
-VERSION = "5.1.0"
+VERSION = "5.2.0"
 
 MONTH_SHEETS = [
     (1, "M1 Settembre"),
@@ -761,6 +761,10 @@ def main() -> None:
         breadcrumbs=[{"label": "Panoramica", "path": "index.html"}, {"label": "Ricette", "path": "ricette/index.html"}, {"label": "Studio ricette"}],
     )
     render(
+        "recipe_scheduler.html", "ricette/programma/index.html", title="Programma ricetta", nav="recipes", page_id="recipe-scheduler",
+        breadcrumbs=[{"label": "Panoramica", "path": "index.html"}, {"label": "Ricette", "path": "ricette/index.html"}, {"label": "Programma nel calendario"}],
+    )
+    render(
         "plan_index.html", "piano/index.html", title="Piano", nav="plan", page_id="plan",
         cycles=cycles,
         breadcrumbs=[{"label": "Panoramica", "path": "index.html"}, {"label": "Piano"}],
@@ -836,12 +840,16 @@ def main() -> None:
         )
 
     render(
-        "shopping_index.html", "spesa/index.html", title="Spesa", nav="shopping", page_id="shopping", cycles=cycles,
+        "shopping_range.html", "spesa/index.html", title="Spesa per date", nav="shopping", page_id="shopping-range", cycles_href="cicli/index.html",
         breadcrumbs=[{"label": "Panoramica", "path": "index.html"}, {"label": "Spesa"}],
     )
     render(
-        "shopping_range.html", "spesa/intervallo/index.html", title="Spesa per date", nav="shopping", page_id="shopping-range",
+        "shopping_range.html", "spesa/intervallo/index.html", title="Spesa per date", nav="shopping", page_id="shopping-range", cycles_href="../cicli/index.html",
         breadcrumbs=[{"label": "Panoramica", "path": "index.html"}, {"label": "Spesa", "path": "spesa/index.html"}, {"label": "Intervallo di date"}],
+    )
+    render(
+        "shopping_index.html", "spesa/cicli/index.html", title="Spesa per ciclo e variante", nav="shopping", page_id="shopping", cycles=cycles, list_prefix="../",
+        breadcrumbs=[{"label": "Panoramica", "path": "index.html"}, {"label": "Spesa", "path": "spesa/index.html"}, {"label": "Cicli e varianti"}],
     )
     for cycle in cycles:
         cycle_items = shopping_cycles.get(cycle["number"], [])
@@ -896,6 +904,7 @@ def main() -> None:
         "Compositore della giornata V5 con ricette base/personali, porzioni, blocchi e suggerimenti locali",
         "Resolver unico del piano effettivo V5 per Home, Oggi, preparazioni, spesa, ricerca ed export ICS",
         "Release 5.1.0: nuova nomenclatura e colori dei turni, Mattino/Pomeriggio, Gestisci giornata e preferenze alimentari locali",
+        "Release 5.2.0: riequilibrio massivo per preferenze, programmazione ricette, navigazione semplificata, Oggi e Spesa ridisegnati",
     ]
     todo = [
         "Verifica manuale dell’installazione e del comportamento standalone su dispositivi Android e iOS reali",

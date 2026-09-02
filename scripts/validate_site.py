@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
-VERSION = "5.1.0"
+VERSION = "5.2.0"
 
 
 def load_json(name: str):
@@ -94,7 +94,7 @@ def main() -> int:
         "giorni": (len(days), 180),
         "pasti": (len(meals), 864),
         "ricette": (len(recipes["recipes"]), 306),
-        "html": (len(html_files), 590),
+        "html": (len(html_files), 592),
         "giorni calendario": (len(calendar["days"]), 180),
         "pasti calendario": (sum(len(day["meals"]) for day in calendar["days"]), 864),
         "giorni spesa intervallo": (len(shopping_range["days"]), 180),
@@ -146,9 +146,9 @@ def main() -> int:
 
     required = [
         "oggi/index.html", "calendario/index.html", "calendario/modifica/index.html", "preparazioni/index.html", "cerca/index.html",
-        "strumenti/index.html", "spesa/intervallo/index.html", "offline/index.html",
+        "strumenti/index.html", "spesa/index.html", "spesa/intervallo/index.html", "spesa/cicli/index.html", "ricette/programma/index.html", "preferenze/index.html", "offline/index.html",
         "assets/js/calendar-core.js", "assets/js/calendar.js", "assets/js/site-state.js",
-        "assets/js/operations-core.js", "assets/js/v5-plan-core.js", "assets/js/v5-plan-store.js", "assets/js/v5-plan.js", "assets/js/v5-plan-calendar.js", "assets/js/prep.js", "assets/js/shopping-range.js",
+        "assets/js/operations-core.js", "assets/js/v5-planning-core.js", "assets/js/v5-balance.js", "assets/js/v5-recipe-scheduler.js", "assets/js/v5-plan-core.js", "assets/js/v5-plan-store.js", "assets/js/v5-plan.js", "assets/js/v5-plan-calendar.js", "assets/js/prep.js", "assets/js/shopping-range.js",
         "assets/js/search.js", "assets/js/tools.js", "assets/js/pwa.js",
         "assets/css/styles.css", "assets/icons.svg", "assets/brand/brand-mark.svg",
         "assets/illustrations/hero-nurse-planner.svg", "assets/illustrations/offline-ready.svg",

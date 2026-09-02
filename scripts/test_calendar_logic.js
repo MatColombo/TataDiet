@@ -7,7 +7,7 @@ const path = require("node:path");
 const core = require(path.join(__dirname, "..", "docs", "assets", "js", "calendar-core.js"));
 const calendar = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "docs", "data", "calendar.json"), "utf8"));
 
-assert.equal(calendar.version, "5.1.0");
+assert.equal(calendar.version, "5.2.0");
 assert.equal(calendar.days.length, 180);
 assert.equal(calendar.days.flatMap((day) => day.meals).length, 864);
 

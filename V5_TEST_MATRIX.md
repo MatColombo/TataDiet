@@ -257,3 +257,26 @@ La prova standalone su hardware iOS/Android reale resta manuale post-deploy.
 | V51-013 | Gestisci/Preferenze disponibili offline | Chromium |
 | V51-014 | nessun overflow a 390 px | Chromium |
 | V51-015 | regressioni V5.0 e stress 96 operazioni | `v5_1.sh` |
+
+## 15. Gate release 5.2.0
+
+| ID | Verifica | Automazione |
+|---|---|---|
+| V52-001 | riequilibrio riduce frequenze oltre limite | `test_v5_2_core.js` |
+| V52-002 | pasti bloccati non vengono sostituiti | `test_v5_2_core.js` |
+| V52-003 | profilo nutrizionale medio resta vicino | `test_v5_2_core.js` |
+| V52-004 | riequilibrio supporta selezione parziale | `qa_v5_2.py` |
+| V52-005 | riequilibrio applicato come una operation | `qa_v5_2.py` |
+| V52-006 | scheduler produce N proposte su date distinte | `test_v5_2_core.js` |
+| V52-007 | scheduler mantiene scostamento nutrizionale numerico | `test_v5_2_core.js` |
+| V52-008 | scheduler supporta conferma parziale | `qa_v5_2.py` |
+| V52-009 | scheduler applicato come una operation | `qa_v5_2.py` |
+| V52-010 | Spesa apre su oggi | `qa_v5_2.py` |
+| V52-011 | preset Spesa 7 giorni compila intervallo | `qa_v5_2.py` |
+| V52-012 | Oggi rispetta nuovo ordine | `qa_v5_2.py` |
+| V52-013 | card Calendario attivo assente | static + Chromium |
+| V52-014 | Piano assente da toolbar e presente in fondo Calendario | static + Chromium |
+| V52-015 | pagine core V5.2 disponibili offline | `qa_v5_2.py` |
+| V52-016 | mobile 390 px senza overflow | `qa_v5_2.py` |
+| V52-017 | accessibilità tutte le pagine | `test_v5_2_accessibility.py` |
+| V52-018 | regressioni V5 + stress 96 operazioni | `v5_2.sh` |

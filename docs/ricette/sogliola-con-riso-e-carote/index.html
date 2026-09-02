@@ -33,10 +33,13 @@
   <script defer src="../../assets/js/v5-plan.js"></script>
   <script defer src="../../assets/js/v5-plan-calendar.js"></script>
   <script defer src="../../assets/js/v5-composer-core.js"></script>
+  <script defer src="../../assets/js/v5-planning-core.js"></script>
   <script defer src="../../assets/js/v5-composer-store.js"></script>
   <script defer src="../../assets/js/v5-composer.js"></script>
   <script defer src="../../assets/js/v5-day-manager.js"></script>
   <script defer src="../../assets/js/v5-preferences.js"></script>
+  <script defer src="../../assets/js/v5-balance.js"></script>
+  <script defer src="../../assets/js/v5-recipe-scheduler.js"></script>
   <script defer src="../../assets/js/v5-effective-core.js"></script>
   <script defer src="../../assets/js/v5-effective-store.js"></script>
   <script defer src="../../assets/js/v5-effective-pages.js"></script>
@@ -49,7 +52,7 @@
   <script defer src="../../assets/js/v5-tools.js"></script>
   <script defer src="../../assets/js/pwa.js"></script>
 </head>
-<body data-page="recipe" data-root="../../" data-version="5.1.0">
+<body data-page="recipe" data-root="../../" data-version="5.2.0">
   <a class="skip-link" href="#contenuto">Vai al contenuto</a>
 
   <header class="site-header">
@@ -58,17 +61,17 @@
         <img class="brand-mark" src="../../assets/brand/brand-mark.svg" width="48" height="48" alt="">
         <span class="brand-copy">
           <strong>Piano alimentare</strong>
-          <small>turni, pasti e spesa · V5.1</small>
+          <small>turni, pasti e spesa · V5.2</small>
         </span>
       </a>
 
       <nav class="desktop-nav" aria-label="Navigazione principale">
         <a class="" href="../../oggi/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-today"></use></svg><span>Oggi</span></a>
         <a class="" href="../../calendario/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-calendar"></use></svg><span>Calendario</span></a>
-        <a class="" href="../../piano/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-plan"></use></svg><span>Piano</span></a>
         <a class="is-active" href="../../ricette/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-recipes"></use></svg><span>Ricette</span></a>
         <a class="" href="../../ingredienti/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-leaf"></use></svg><span>Ingredienti</span></a>
         <a class="" href="../../spesa/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-shopping"></use></svg><span>Spesa</span></a>
+        <a class="" href="../../preferenze/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-heart"></use></svg><span>Preferenze</span></a>
         <a class="" href="../../strumenti/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-tools"></use></svg><span>Utilità</span></a>
       </nav>
 
@@ -104,6 +107,7 @@
 <span>Pasto preturno</span><span>Italiana</span>  </div>
   <div class="header-actions recipe-personalize-actions">
     <a class="button primary" href="../studio/index.html?recipe=base:recipe:sogliola-con-riso-e-carote">Duplica nello Studio ricette</a>
+    <a class="button secondary" href="../programma/index.html?recipe=base:recipe:sogliola-con-riso-e-carote">Programma nel calendario</a>
     <a class="button ghost" href="../studio/index.html">Studio ricette</a>
   </div>
 </header>
@@ -161,7 +165,9 @@
     <a class="" href="../../calendario/index.html"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-calendar"></use></svg><span>Calendario</span></a>
     <a class="" href="../../ingredienti/index.html"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-leaf"></use></svg><span>Alimenti</span></a>
     <a class="" href="../../spesa/index.html"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-shopping"></use></svg><span>Spesa</span></a>
-    <a class="" href="../../piano/index.html"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-plan"></use></svg><span>Piano</span></a>
+    <a class="is-active" href="../../ricette/index.html"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-recipes"></use></svg><span>Ricette</span></a>
+    <a class="" href="../../preferenze/index.html" aria-label="Preferenze alimentari"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-heart"></use></svg><span>Preferenze</span></a>
+    <a class="" href="../../strumenti/index.html"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-tools"></use></svg><span>Utilità</span></a>
   </nav>
 </body>
 </html>

@@ -33,10 +33,13 @@
   <script defer src="{{ relroot }}assets/js/v5-plan.js"></script>
   <script defer src="{{ relroot }}assets/js/v5-plan-calendar.js"></script>
   <script defer src="{{ relroot }}assets/js/v5-composer-core.js"></script>
+  <script defer src="{{ relroot }}assets/js/v5-planning-core.js"></script>
   <script defer src="{{ relroot }}assets/js/v5-composer-store.js"></script>
   <script defer src="{{ relroot }}assets/js/v5-composer.js"></script>
   <script defer src="{{ relroot }}assets/js/v5-day-manager.js"></script>
   <script defer src="{{ relroot }}assets/js/v5-preferences.js"></script>
+  <script defer src="{{ relroot }}assets/js/v5-balance.js"></script>
+  <script defer src="{{ relroot }}assets/js/v5-recipe-scheduler.js"></script>
   <script defer src="{{ relroot }}assets/js/v5-effective-core.js"></script>
   <script defer src="{{ relroot }}assets/js/v5-effective-store.js"></script>
   <script defer src="{{ relroot }}assets/js/v5-effective-pages.js"></script>
@@ -58,17 +61,17 @@
         <img class="brand-mark" src="{{ relroot }}assets/brand/brand-mark.svg" width="48" height="48" alt="">
         <span class="brand-copy">
           <strong>Piano alimentare</strong>
-          <small>turni, pasti e spesa · V5.1</small>
+          <small>turni, pasti e spesa · V5.2</small>
         </span>
       </a>
 
       <nav class="desktop-nav" aria-label="Navigazione principale">
         <a class="{{ 'is-active' if nav == 'today' else '' }}" href="{{ relroot }}oggi/index.html"><svg class="nav-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-today"></use></svg><span>Oggi</span></a>
         <a class="{{ 'is-active' if nav == 'calendar' else '' }}" href="{{ relroot }}calendario/index.html"><svg class="nav-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-calendar"></use></svg><span>Calendario</span></a>
-        <a class="{{ 'is-active' if nav == 'plan' else '' }}" href="{{ relroot }}piano/index.html"><svg class="nav-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-plan"></use></svg><span>Piano</span></a>
         <a class="{{ 'is-active' if nav == 'recipes' else '' }}" href="{{ relroot }}ricette/index.html"><svg class="nav-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-recipes"></use></svg><span>Ricette</span></a>
         <a class="{{ 'is-active' if nav == 'ingredients' else '' }}" href="{{ relroot }}ingredienti/index.html"><svg class="nav-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-leaf"></use></svg><span>Ingredienti</span></a>
         <a class="{{ 'is-active' if nav == 'shopping' else '' }}" href="{{ relroot }}spesa/index.html"><svg class="nav-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-shopping"></use></svg><span>Spesa</span></a>
+        <a class="{{ 'is-active' if nav == 'preferences' else '' }}" href="{{ relroot }}preferenze/index.html"><svg class="nav-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-heart"></use></svg><span>Preferenze</span></a>
         <a class="{{ 'is-active' if nav == 'tools' else '' }}" href="{{ relroot }}strumenti/index.html"><svg class="nav-icon" aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-tools"></use></svg><span>Utilità</span></a>
       </nav>
 
@@ -127,7 +130,9 @@
     <a class="{{ 'is-active' if nav == 'calendar' else '' }}" href="{{ relroot }}calendario/index.html"><svg aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-calendar"></use></svg><span>Calendario</span></a>
     <a class="{{ 'is-active' if nav == 'ingredients' else '' }}" href="{{ relroot }}ingredienti/index.html"><svg aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-leaf"></use></svg><span>Alimenti</span></a>
     <a class="{{ 'is-active' if nav == 'shopping' else '' }}" href="{{ relroot }}spesa/index.html"><svg aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-shopping"></use></svg><span>Spesa</span></a>
-    <a class="{{ 'is-active' if nav == 'plan' else '' }}" href="{{ relroot }}piano/index.html"><svg aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-plan"></use></svg><span>Piano</span></a>
+    <a class="{{ 'is-active' if nav == 'recipes' else '' }}" href="{{ relroot }}ricette/index.html"><svg aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-recipes"></use></svg><span>Ricette</span></a>
+    <a class="{{ 'is-active' if nav == 'preferences' else '' }}" href="{{ relroot }}preferenze/index.html" aria-label="Preferenze alimentari"><svg aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-heart"></use></svg><span>Preferenze</span></a>
+    <a class="{{ 'is-active' if nav == 'tools' else '' }}" href="{{ relroot }}strumenti/index.html"><svg aria-hidden="true"><use href="{{ relroot }}assets/icons.svg#icon-tools"></use></svg><span>Utilità</span></a>
   </nav>
 </body>
 </html>

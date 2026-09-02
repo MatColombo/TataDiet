@@ -33,10 +33,13 @@
   <script defer src="assets/js/v5-plan.js"></script>
   <script defer src="assets/js/v5-plan-calendar.js"></script>
   <script defer src="assets/js/v5-composer-core.js"></script>
+  <script defer src="assets/js/v5-planning-core.js"></script>
   <script defer src="assets/js/v5-composer-store.js"></script>
   <script defer src="assets/js/v5-composer.js"></script>
   <script defer src="assets/js/v5-day-manager.js"></script>
   <script defer src="assets/js/v5-preferences.js"></script>
+  <script defer src="assets/js/v5-balance.js"></script>
+  <script defer src="assets/js/v5-recipe-scheduler.js"></script>
   <script defer src="assets/js/v5-effective-core.js"></script>
   <script defer src="assets/js/v5-effective-store.js"></script>
   <script defer src="assets/js/v5-effective-pages.js"></script>
@@ -49,7 +52,7 @@
   <script defer src="assets/js/v5-tools.js"></script>
   <script defer src="assets/js/pwa.js"></script>
 </head>
-<body data-page="home" data-root="" data-version="5.1.0">
+<body data-page="home" data-root="" data-version="5.2.0">
   <a class="skip-link" href="#contenuto">Vai al contenuto</a>
 
   <header class="site-header">
@@ -58,17 +61,17 @@
         <img class="brand-mark" src="assets/brand/brand-mark.svg" width="48" height="48" alt="">
         <span class="brand-copy">
           <strong>Piano alimentare</strong>
-          <small>turni, pasti e spesa · V5.1</small>
+          <small>turni, pasti e spesa · V5.2</small>
         </span>
       </a>
 
       <nav class="desktop-nav" aria-label="Navigazione principale">
         <a class="" href="oggi/index.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/icons.svg#icon-today"></use></svg><span>Oggi</span></a>
         <a class="" href="calendario/index.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/icons.svg#icon-calendar"></use></svg><span>Calendario</span></a>
-        <a class="" href="piano/index.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/icons.svg#icon-plan"></use></svg><span>Piano</span></a>
         <a class="" href="ricette/index.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/icons.svg#icon-recipes"></use></svg><span>Ricette</span></a>
         <a class="" href="ingredienti/index.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/icons.svg#icon-leaf"></use></svg><span>Ingredienti</span></a>
         <a class="" href="spesa/index.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/icons.svg#icon-shopping"></use></svg><span>Spesa</span></a>
+        <a class="" href="preferenze/index.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/icons.svg#icon-heart"></use></svg><span>Preferenze</span></a>
         <a class="" href="strumenti/index.html"><svg class="nav-icon" aria-hidden="true"><use href="assets/icons.svg#icon-tools"></use></svg><span>Utilità</span></a>
       </nav>
 
@@ -94,7 +97,7 @@
   <main id="contenuto" class="page-shell">
 <section class="hero hero-v4">
   <div class="hero-copy">
-    <div class="hero-kicker"><svg class="ui-icon" aria-hidden="true"><use href="assets/icons.svg#icon-sparkles"></use></svg><span>V5.1 · turni flessibili, preferenze e piano personale</span></div>
+    <div class="hero-kicker"><svg class="ui-icon" aria-hidden="true"><use href="assets/icons.svg#icon-sparkles"></use></svg><span>V5.2 · turni flessibili, preferenze e piano personale</span></div>
     <h1>Il piano che segue i tuoi turni, non il contrario.</h1>
     <p class="lede">Calendario, pasti, preparazioni e spesa restano collegati in un'unica esperienza semplice. Pensata per giornate lunghe, notti e riposi veri.</p>
     <div class="hero-actions">
@@ -154,7 +157,7 @@
     </a>
     <a class="operation-card calendar" href="calendario/gestisci/index.html">
       <span class="operation-icon"><svg class="ui-icon" aria-hidden="true"><use href="assets/icons.svg#icon-calendar"></use></svg></span>
-      <span class="operation-tag">V5.1 · un solo flusso</span><h3>Gestisci giornata</h3><p>Cambia turno, adatta il menu e conferma tutto insieme senza saltare tra pagine.</p><strong>Gestisci il calendario <svg class="inline-icon" aria-hidden="true"><use href="assets/icons.svg#icon-arrow-right"></use></svg></strong>
+      <span class="operation-tag">V5.2 · un solo flusso</span><h3>Gestisci giornata</h3><p>Cambia turno, adatta il menu e conferma tutto insieme senza saltare tra pagine.</p><strong>Gestisci il calendario <svg class="inline-icon" aria-hidden="true"><use href="assets/icons.svg#icon-arrow-right"></use></svg></strong>
     </a>
     <a class="operation-card preferences" href="preferenze/index.html">
       <span class="operation-icon"><svg class="ui-icon" aria-hidden="true"><use href="assets/icons.svg#icon-heart"></use></svg></span>
@@ -346,7 +349,9 @@
     <a class="" href="calendario/index.html"><svg aria-hidden="true"><use href="assets/icons.svg#icon-calendar"></use></svg><span>Calendario</span></a>
     <a class="" href="ingredienti/index.html"><svg aria-hidden="true"><use href="assets/icons.svg#icon-leaf"></use></svg><span>Alimenti</span></a>
     <a class="" href="spesa/index.html"><svg aria-hidden="true"><use href="assets/icons.svg#icon-shopping"></use></svg><span>Spesa</span></a>
-    <a class="" href="piano/index.html"><svg aria-hidden="true"><use href="assets/icons.svg#icon-plan"></use></svg><span>Piano</span></a>
+    <a class="" href="ricette/index.html"><svg aria-hidden="true"><use href="assets/icons.svg#icon-recipes"></use></svg><span>Ricette</span></a>
+    <a class="" href="preferenze/index.html" aria-label="Preferenze alimentari"><svg aria-hidden="true"><use href="assets/icons.svg#icon-heart"></use></svg><span>Preferenze</span></a>
+    <a class="" href="strumenti/index.html"><svg aria-hidden="true"><use href="assets/icons.svg#icon-tools"></use></svg><span>Utilità</span></a>
   </nav>
 </body>
 </html>

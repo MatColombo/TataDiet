@@ -1126,3 +1126,51 @@ La classificazione parte dalle righe ingrediente della specifica `recipeVersion`
 ### 14.2 Transazione Gestisci giornata
 
 La nuova UI costruisce uno stato `plan + calendarDays` in memoria e lo persiste con `planStore.commitState()` solo dopo la conferma finale. La diff before/after produce una singola `operationRecord`, mantenendo undo/redo atomico.
+
+## 15. Estensione compatibile 5.2.0
+
+La 5.2 mantiene `DB_VERSION = 1` e `SCHEMA_VERSION = 1`.
+
+### 15.1 Riequilibrio del piano
+
+Il riequilibrio non introduce nuovi record di dominio. Produce una lista di proposte temporanee a partire da `calendarDays`, catalogo ricette e `settings.foodPreferencesV1`.
+
+Ogni proposta contiene almeno:
+
+```text
+id
+kind = preference | preference-more
+date
+dayId
+dayType
+mealId
+time
+mealType
+oldRecipeVersionId
+newRecipeVersionId
+portionMultiplier
+nutritionBefore
+nutritionAfter
+reason
+score
+```
+
+Solo le proposte confermate vengono trasformate in nuovi `calendarDays`. L'intera applicazione è persistita come singola `operationRecord` con kind `rebalance-preferences`.
+
+### 15.2 Programmazione di una ricetta
+
+La proposta di programmazione usa una `recipeVersionId` specifica e un intervallo futuro. I candidati:
+
+- non sono pasti bloccati;
+- appartengono a date distinte;
+- devono superare il ranking di compatibilità;
+- ricevono un `portionMultiplier` che minimizza lo scostamento energetico/nutrizionale rispetto al pasto sostituito;
+- non modificano il calendario fino alla conferma.
+
+Le proposte applicate vengono salvate in una singola operazione `schedule-recipe`.
+
+### 15.3 Spesa e Oggi
+
+`/spesa/` è la vista primaria per intervallo civile e usa il resolver del piano effettivo. Alla prima apertura seleziona la data odierna; i preset aggiornano lo stesso date picker senza cambiare route.
+
+`/oggi/` mantiene il resolver effettivo V5.0 ma la presentazione è ordinata: tipo giornata, prossimo pasto, pasti civili, nutrienti, preparazioni 48h.

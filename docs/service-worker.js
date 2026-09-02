@@ -1,4 +1,4 @@
-/* TataDiet 5 - service worker stabile, scope-safe anche su GitHub Pages project site. */
+/* TataDiet 5.2 - service worker stabile, scope-safe anche su GitHub Pages project site. */
 "use strict";
 
 const SCRIPT_URL = new URL(self.location.href);
@@ -23,9 +23,11 @@ const CORE_ASSETS = [
   "piano/index.html",
   "ricette/index.html",
   "ricette/studio/index.html",
+  "ricette/programma/index.html",
   "ingredienti/index.html",
   "spesa/index.html",
   "spesa/intervallo/index.html",
+  "spesa/cicli/index.html",
   "preferenze/index.html",
   "strumenti/index.html",
   "progetto/index.html",
@@ -44,6 +46,7 @@ const CORE_ASSETS = [
   "assets/js/operations-core.js",
   "assets/js/v5-day-types.js",
   "assets/js/v5-preferences-core.js",
+  "assets/js/v5-planning-core.js",
   "assets/js/v5-db.js",
   "assets/js/v5-backup.js",
   "assets/js/v5-ingredients-core.js",
@@ -61,6 +64,8 @@ const CORE_ASSETS = [
   "assets/js/v5-composer.js",
   "assets/js/v5-day-manager.js",
   "assets/js/v5-preferences.js",
+  "assets/js/v5-balance.js",
+  "assets/js/v5-recipe-scheduler.js",
   "assets/js/v5-effective-core.js",
   "assets/js/v5-effective-store.js",
   "assets/js/v5-effective-pages.js",

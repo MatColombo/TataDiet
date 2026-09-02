@@ -1,0 +1,14 @@
+{
+  "status": "ok",
+  "checkpoint": "5.0.0-alpha.4-phase4",
+  "checks": {
+    "create_persist": true,
+    "edit_creates_version": true,
+    "version_history": true,
+    "duplicate_base": true,
+    "base_immutable": true,
+    "archive_restore": true,
+    "delete_reference_guard": true,
+    "delete_unused": true
+  }
+}

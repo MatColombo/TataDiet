@@ -7,7 +7,7 @@
 </header>
 <section class="shopping-range-cta">
   <div><p class="eyebrow">Funzione V3</p><h2>Calcola la spesa per qualsiasi intervallo</h2><p>Seleziona due date del calendario personale oppure usa gli intervalli rapidi da 5 giorni, 7 giorni, variante o ciclo.</p></div>
-  <a class="button primary" href="intervallo/index.html">Apri spesa per date</a>
+  <a class="button primary" href="../index.html">Apri spesa per date</a>
 </section>
 <div class="section-heading"><div><p class="eyebrow">Liste statiche</p><h2>Varianti e cicli</h2></div><p>Utili anche senza configurare il calendario personale.</p></div>
 <div class="cycle-grid wide">
@@ -17,10 +17,10 @@
     <div class="grow">
       <h2>{{ cycle.month }}</h2>
       <div class="variant-links shopping-links">
-      {% for variant in cycle.variants %}<a href="ciclo-{{ cycle.number }}/variante-{{ variant.number }}/index.html">V{{ variant.number }}</a>{% endfor %}
+      {% for variant in cycle.variants %}<a href="{{ list_prefix|default('') }}ciclo-{{ cycle.number }}/variante-{{ variant.number }}/index.html">V{{ variant.number }}</a>{% endfor %}
       </div>
     </div>
-    <a class="button compact secondary" href="ciclo-{{ cycle.number }}/index.html">Riepilogo ciclo</a>
+    <a class="button compact secondary" href="{{ list_prefix|default('') }}ciclo-{{ cycle.number }}/index.html">Riepilogo ciclo</a>
   </article>
 {% endfor %}
 </div>

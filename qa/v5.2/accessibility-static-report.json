@@ -1,0 +1,13 @@
+{
+  "status": "ok",
+  "version": "5.2.0",
+  "counts": {
+    "pages": 592,
+    "images": 1187,
+    "buttons": 2220,
+    "links": 21033,
+    "form_controls": 2217
+  },
+  "errors": [],
+  "warnings": []
+}

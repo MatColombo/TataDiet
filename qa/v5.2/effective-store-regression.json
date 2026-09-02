@@ -1,0 +1,10 @@
+{
+  "status": "ok",
+  "checkpoint": "5.0.0-alpha.7-phase7",
+  "checks": {
+    "context": true,
+    "date_guard": true,
+    "events": true,
+    "ics": true
+  }
+}

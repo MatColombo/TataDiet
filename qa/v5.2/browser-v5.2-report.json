@@ -1,0 +1,158 @@
+{
+  "status": "ok",
+  "version": "5.2.0",
+  "checks": [
+    {
+      "name": "version_5_2",
+      "ok": true
+    },
+    {
+      "name": "plan_initialized",
+      "ok": true,
+      "detail": {
+        "id": "usr:plan:b8191d5f-b555-4089-bd09-4ac0f20a88c2",
+        "days": 180,
+        "today": "2026-09-02"
+      }
+    },
+    {
+      "name": "desktop_toolbar_reordered",
+      "ok": true,
+      "detail": "Oggi\nCalendario\nRicette\nIngredienti\nSpesa\nPreferenze\nUtilità"
+    },
+    {
+      "name": "mobile_toolbar_reordered",
+      "ok": true,
+      "detail": "\n    Oggi\n    Calendario\n    Alimenti\n    Spesa\n    Ricette\n    Preferenze\n    Utilità\n  "
+    },
+    {
+      "name": "plan_link_calendar_bottom",
+      "ok": true
+    },
+    {
+      "name": "personal_recipe_created",
+      "ok": true,
+      "detail": {
+        "targetDate": "2026-09-02",
+        "eggVersion": "base:recipe-version:french-toast-delicato-con-frutta:933b4db38fc2b812",
+        "personalRecipe": "usr:recipe:63cb6d24-3ab1-4075-93f7-b979fd3b4f02",
+        "personalVersion": "usr:recipe-version:4a79ac21-ee16-4504-99f3-387f2bb2f69e"
+      }
+    },
+    {
+      "name": "mass_rebalance_proposes_changes",
+      "ok": true,
+      "detail": 7
+    },
+    {
+      "name": "mass_rebalance_selective_confirmation",
+      "ok": true,
+      "detail": "1 di 7 modifiche"
+    },
+    {
+      "name": "mass_rebalance_single_operation",
+      "ok": true,
+      "detail": "rebalance-preferences"
+    },
+    {
+      "name": "personal_recipe_scheduler_selected",
+      "ok": true
+    },
+    {
+      "name": "recipe_scheduler_proposals",
+      "ok": true,
+      "detail": 2
+    },
+    {
+      "name": "recipe_scheduler_partial_apply",
+      "ok": true,
+      "detail": {
+        "count": 1,
+        "op": "schedule-recipe"
+      }
+    },
+    {
+      "name": "recipe_scheduler_single_operation",
+      "ok": true,
+      "detail": {
+        "count": 1,
+        "op": "schedule-recipe"
+      }
+    },
+    {
+      "name": "shopping_defaults_today",
+      "ok": true,
+      "detail": [
+        "2026-09-02",
+        "2026-09-02"
+      ]
+    },
+    {
+      "name": "shopping_quick_7_days",
+      "ok": true,
+      "detail": [
+        "2026-09-02",
+        "2026-09-08"
+      ]
+    },
+    {
+      "name": "shopping_results_visible",
+      "ok": true
+    },
+    {
+      "name": "shopping_cycles_bottom_link",
+      "ok": true
+    },
+    {
+      "name": "today_new_order",
+      "ok": true,
+      "detail": {
+        "hero": true,
+        "next": 96,
+        "meals": 210,
+        "nutrition": 695,
+        "calendarActive": false,
+        "prepAfter": 2
+      }
+    },
+    {
+      "name": "today_active_calendar_removed",
+      "ok": true,
+      "detail": {
+        "hero": true,
+        "next": 96,
+        "meals": 210,
+        "nutrition": 695,
+        "calendarActive": false,
+        "prepAfter": 2
+      }
+    },
+    {
+      "name": "today_48h_after_content",
+      "ok": true,
+      "detail": {
+        "hero": true,
+        "next": 96,
+        "meals": 210,
+        "nutrition": 695,
+        "calendarActive": false,
+        "prepAfter": 2
+      }
+    },
+    {
+      "name": "v5_2_core_pages_offline",
+      "ok": true
+    },
+    {
+      "name": "mobile_no_horizontal_overflow",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no_page_errors",
+      "ok": true,
+      "detail": []
+    }
+  ],
+  "errors": []
+}

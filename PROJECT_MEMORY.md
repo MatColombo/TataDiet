@@ -2,7 +2,7 @@
 
 ## Stato corrente
 
-- Versione stabile: **5.1.0**
+- Versione stabile: **5.2.0**
 - Data release: **2 settembre 2026**
 - Distribuzione: sito statico/PWA da `docs/`, compatibile con GitHub Pages project site
 - Persistenza: IndexedDB `tatadiet-v5`
@@ -23,7 +23,7 @@
 130 ingredienti base
 ```
 
-I conteggi HTML/QA della 5.1 sono prodotti da `./v5_1.sh` e salvati in `qa/v5.1/`.
+I conteggi HTML/QA correnti sono prodotti da `./v5_2.sh` e salvati in `qa/v5.2/`.
 
 ## Principio architetturale
 
@@ -214,20 +214,20 @@ Build:
 ./build.sh
 ```
 
-Gate V5.1:
+Gate corrente V5.2:
 
 ```bash
-./v5_1.sh
+./v5_2.sh
 # oppure ./qa.sh
 ```
 
-QA browser:
+QA browser corrente:
 
 ```bash
-python3 scripts/qa_v5_1.py --base-url <root-pubblicata>
+python3 scripts/qa_v5_2.py --base-url <root-pubblicata>
 ```
 
-Controlli specifici V5.1:
+Controlli specifici V5.1 preservati:
 
 - nessun D1-D5 visibile nelle 590 pagine HTML;
 - 7 tipi UI e palette canonica;
@@ -258,8 +258,39 @@ folder /docs
 - preferenze alimentari non equivalgono a allergie/intolleranze cliniche;
 - possibile futuro: preset preferenze, statistiche di frequenza, import turni da calendario, dispensa e batch cooking.
 
-Qualunque V5.2/V6 deve partire da questa memoria e preservare backup/IndexedDB o fornire una migrazione esplicita e testata.
+Qualunque V5.3/V6 deve partire da questa memoria e preservare backup/IndexedDB o fornire una migrazione esplicita e testata.
 
 ## Gate finale V5.1.0
 
 Release validata il 2 settembre 2026: 590 HTML, 41.327 link/risorse/frammenti, 0 errori e 0 warning; 645 risorse offline (16.664.804 byte). Audit accessibilita: 590 pagine, 1.183 immagini, 2.196 pulsanti, 19.497 link, 2.208 controlli form, 0 errori e 0 warning. Stress: 96 operazioni con undo/redo completo. QA Chromium: 20 controlli V5.1 superati, inclusi palette, M/P, cambio tipo con menu adattato, preferenze, backup, offline e mobile.
+
+
+## Estensione V5.2.0
+
+La V5.2 mantiene `DB_VERSION = 1` e `SCHEMA_VERSION = 1`; non aggiunge object store e non riscrive i record personali esistenti.
+
+### Riequilibrio massivo
+
+Percorso: `/preferenze/`. Il modulo `v5-planning-core.js` espone `buildRebalanceProposal()` e `applyProposals()`. Intervalli supportati: prossima giornata, 7 giorni, 30 giorni, resto del piano. Il motore valuta l'intero periodo, preserva i pasti `locked`, applica i limiti delle preferenze su finestre di 7 giorni e cerca sostituzioni nutrizionalmente vicine. L'utente seleziona le proposte da applicare; `planStore.commitState(..., 'rebalance-preferences')` salva l'insieme come una singola operazione undo/redo. Nessuna giornata passata viene modificata.
+
+### Programmazione ricetta
+
+Percorso: `/ricette/programma/`. Disponibile da ricette base e personali. Intervalli: 7 giorni, 30 giorni, resto del piano. `buildRecipeScheduleProposal()` cerca pasti compatibili, usa date distinte, adegua `portionMultiplier` per mantenere vicino il profilo nutrizionale e produce una preview con turno, pasto sostituito e distanza nutrizionale. Applicazione selettiva tramite una singola operation `schedule-recipe`.
+
+### UX navigazione e pagine operative
+
+- toolbar desktop/mobile: Oggi, Calendario, Ricette, Ingredienti/Alimenti, Spesa, Preferenze, Utilità; Piano rimosso dalla toolbar;
+- Piano resta link secondario in fondo a `/calendario/`;
+- `/oggi/`: tipo giornata → prossimo pasto → pasti data civile → nutrienti → 48h; rimossa card Calendario attivo;
+- `/spesa/`: route primaria per date, default oggi, preset Oggi/Domani/48h/5gg/7gg;
+- `/spesa/cicli/`: archivio liste ciclo/variante raggiungibile dal fondo di Spesa.
+
+### Bug V5.2 corretti durante QA
+
+- `v5-planning-core.js` deve essere caricato dopo `v5-composer-core.js`; l'ordine precedente rendeva indisponibile il riequilibrio in browser;
+- radio della selezione periodo scheduler ridotti a 1px per evitare overflow documentale su mobile;
+- `distance` viene conservato nei candidati dello scheduler per evitare `NaN%` nella descrizione dello scostamento nutrizionale.
+
+## Gate finale V5.2.0
+
+Release validata il 2 settembre 2026: 592 HTML, 44.713 link/risorse/frammenti, 0 errori e 0 warning; 650 risorse offline (17.113.344 byte). Audit accessibilita: 592 pagine, 1.187 immagini, 2.220 pulsanti, 21.033 link, 2.217 controlli form, 0 errori e 0 warning. Stress: 96 operazioni con undo/redo completo. QA Chromium: 23/23 controlli superati, inclusi riequilibrio con selezione parziale, programmazione ricetta con selezione parziale, spesa date/preset, ordine Oggi, offline e mobile senza overflow.

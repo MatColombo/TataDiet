@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Piano alimentare di sei mesi, navigabile per calendario, cicli, varianti, giorni, ricette, preparazioni e liste della spesa.">
+  <meta name="theme-color" content="#7E4D70">
+  <meta name="color-scheme" content="light">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Piano turni">
+  <title>Programma ricetta · Piano alimentare</title>
+  <link rel="manifest" href="../../manifest.webmanifest">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script defer src="../../assets/js/calendar-core.js"></script>
+  <script defer src="../../assets/js/site-state.js"></script>
+  <script defer src="../../assets/js/operations-core.js"></script>
+  <script defer src="../../assets/js/v5-day-types.js"></script>
+  <script defer src="../../assets/js/v5-preferences-core.js"></script>
+  <script defer src="../../assets/js/v5-db.js"></script>
+  <script defer src="../../assets/js/v5-backup.js"></script>
+  <script defer src="../../assets/js/v5-ingredients-core.js"></script>
+  <script defer src="../../assets/js/v5-ingredient-store.js"></script>
+  <script defer src="../../assets/js/v5-ingredients.js"></script>
+  <script defer src="../../assets/js/v5-recipes-core.js"></script>
+  <script defer src="../../assets/js/v5-recipe-store.js"></script>
+  <script defer src="../../assets/js/v5-recipes.js"></script>
+  <script defer src="../../assets/js/v5-plan-core.js"></script>
+  <script defer src="../../assets/js/v5-plan-store.js"></script>
+  <script defer src="../../assets/js/v5-plan.js"></script>
+  <script defer src="../../assets/js/v5-plan-calendar.js"></script>
+  <script defer src="../../assets/js/v5-composer-core.js"></script>
+  <script defer src="../../assets/js/v5-planning-core.js"></script>
+  <script defer src="../../assets/js/v5-composer-store.js"></script>
+  <script defer src="../../assets/js/v5-composer.js"></script>
+  <script defer src="../../assets/js/v5-day-manager.js"></script>
+  <script defer src="../../assets/js/v5-preferences.js"></script>
+  <script defer src="../../assets/js/v5-balance.js"></script>
+  <script defer src="../../assets/js/v5-recipe-scheduler.js"></script>
+  <script defer src="../../assets/js/v5-effective-core.js"></script>
+  <script defer src="../../assets/js/v5-effective-store.js"></script>
+  <script defer src="../../assets/js/v5-effective-pages.js"></script>
+  <script defer src="../../assets/js/app.js"></script>
+  <script defer src="../../assets/js/calendar.js"></script>
+  <script defer src="../../assets/js/prep.js"></script>
+  <script defer src="../../assets/js/shopping-range.js"></script>
+  <script defer src="../../assets/js/search.js"></script>
+  <script defer src="../../assets/js/tools.js"></script>
+  <script defer src="../../assets/js/v5-tools.js"></script>
+  <script defer src="../../assets/js/pwa.js"></script>
+</head>
+<body data-page="recipe-scheduler" data-root="../../" data-version="5.2.0">
+  <a class="skip-link" href="#contenuto">Vai al contenuto</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../../index.html" aria-label="Piano alimentare, pagina iniziale">
+        <img class="brand-mark" src="../../assets/brand/brand-mark.svg" width="48" height="48" alt="">
+        <span class="brand-copy">
+          <strong>Piano alimentare</strong>
+          <small>turni, pasti e spesa · V5.2</small>
+        </span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Navigazione principale">
+        <a class="" href="../../oggi/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-today"></use></svg><span>Oggi</span></a>
+        <a class="" href="../../calendario/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-calendar"></use></svg><span>Calendario</span></a>
+        <a class="is-active" href="../../ricette/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-recipes"></use></svg><span>Ricette</span></a>
+        <a class="" href="../../ingredienti/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-leaf"></use></svg><span>Ingredienti</span></a>
+        <a class="" href="../../spesa/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-shopping"></use></svg><span>Spesa</span></a>
+        <a class="" href="../../preferenze/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-heart"></use></svg><span>Preferenze</span></a>
+        <a class="" href="../../strumenti/index.html"><svg class="nav-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-tools"></use></svg><span>Utilità</span></a>
+      </nav>
+
+      <div class="header-utilities">
+        <span class="network-chip" data-network-status aria-live="polite"><svg class="ui-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-wifi"></use></svg><span>Online</span></span>
+        <button class="header-icon-button install-header-button" type="button" data-pwa-install hidden aria-label="Installa il sito come app"><svg class="ui-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-install"></use></svg></button>
+        <a class="header-icon-button" href="../../cerca/index.html" aria-label="Cerca in tutto il piano"><svg class="ui-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-search"></use></svg></a>
+      </div>
+    </div>
+  </header>
+
+  <aside class="offline-banner" data-offline-banner hidden role="status">
+    <svg class="ui-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-wifi-off"></use></svg>
+    <span>Sei offline. Il piano già memorizzato resta disponibile.</span>
+    <a href="../../strumenti/index.html#offline">Gestisci offline</a>
+  </aside>
+
+  <aside class="update-banner" data-update-banner hidden role="status">
+    <div><svg class="ui-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-update"></use></svg><span><strong>Nuova versione pronta.</strong> Aggiorna senza perdere le preferenze locali.</span></div>
+    <div><button class="button primary compact" type="button" data-update-now>Aggiorna</button><button class="button ghost compact" type="button" data-update-dismiss>Più tardi</button></div>
+  </aside>
+
+  <main id="contenuto" class="page-shell">
+    <nav class="breadcrumbs" aria-label="Percorso">
+      <a class="breadcrumb-home" href="../../index.html" aria-label="Home"><svg class="ui-icon" aria-hidden="true"><use href="../../assets/icons.svg#icon-home"></use></svg></a>
+          <span class="crumb-sep" aria-hidden="true">›</span>
+<a href="../../ricette/index.html">Ricette</a>          <span class="crumb-sep" aria-hidden="true">›</span>
+<span aria-current="page">Programma nel calendario</span>    </nav>
+<header class="page-header schedule-recipe-header">
+  <p class="eyebrow">V5.2 · pianificazione ricetta</p>
+  <h1>Inserisci una ricetta nel calendario</h1>
+  <p>Scegli quante volte proporla nel periodo. TataDiet cerca pasti compatibili, distribuisce le occorrenze su date diverse e adegua la porzione per mantenere vicino il profilo nutrizionale del pasto sostituito.</p>
+</header>
+<div class="dynamic-loading" data-recipe-schedule-loading>Caricamento ricette e calendario…</div>
+<section data-recipe-schedule-app hidden>
+  <section class="schedule-config-card">
+    <label class="span-2"><span>Ricetta</span><select data-schedule-recipe></select></label>
+    <label><span>Quante volte</span><input data-schedule-count type="number" min="1" max="30" step="1" value="3"></label>
+    <fieldset class="schedule-range-field"><legend>Periodo</legend><div class="segmented-control"><label><input type="radio" name="schedule-range" value="7" checked><span>7 giorni</span></label><label><input type="radio" name="schedule-range" value="30"><span>30 giorni</span></label><label><input type="radio" name="schedule-range" value="rest"><span>Resto del piano</span></label></div></fieldset>
+    <button class="button primary" type="button" data-schedule-generate>Genera proposta</button>
+  </section>
+  <p class="field-help" data-schedule-status>La proposta non modifica il calendario finché non confermi.</p>
+  <section class="section-block" data-schedule-preview hidden>
+    <div class="section-heading"><div><p class="eyebrow">Anteprima</p><h2 data-schedule-title>Proposta</h2><p data-schedule-subtitle></p></div><button class="button secondary compact" type="button" data-schedule-regenerate>Rigenera casualmente</button></div>
+    <div class="schedule-summary" data-schedule-summary></div>
+    <div class="rebalance-actions-row"><label class="checkbox-filter"><input type="checkbox" data-schedule-select-all checked><span>Seleziona tutte</span></label><strong data-schedule-selected-count></strong></div>
+    <div class="schedule-proposals" data-schedule-proposals></div>
+    <div class="sticky-confirm-bar"><span>Le sostituzioni selezionate saranno salvate come una sola operazione annullabile.</span><button class="button primary" type="button" data-schedule-apply>Inserisci nei giorni selezionati</button></div>
+  </section>
+</section>
+<noscript><section class="notice-card"><h2>JavaScript necessario</h2><p>La pianificazione bilanciata viene calcolata localmente nel browser.</p></section></noscript>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <img src="../../assets/brand/brand-mark.svg" width="42" height="42" alt="">
+      <div><strong>Piano alimentare per turni</strong><span>Documento educativo, non prescrizione medica.</span></div>
+    </div>
+    <div class="footer-note">La tolleranza intestinale e l'andamento clinico vanno rivalutati con un professionista.</div>
+    <div class="footer-links">
+      <a href="../../ricette/index.html">Ricette</a>
+      <a href="../../ingredienti/index.html">Ingredienti</a>
+      <a href="../../preferenze/index.html">Preferenze</a>
+      <a href="../../strumenti/index.html">Utilità</a>
+      <a href="../../download/index.html">PDF e dati</a>
+      <a href="../../progetto/index.html">Progetto</a>
+    </div>
+  </footer>
+
+  <nav class="mobile-nav" aria-label="Navigazione mobile">
+    <a class="" href="../../oggi/index.html"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-today"></use></svg><span>Oggi</span></a>
+    <a class="" href="../../calendario/index.html"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-calendar"></use></svg><span>Calendario</span></a>
+    <a class="" href="../../ingredienti/index.html"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-leaf"></use></svg><span>Alimenti</span></a>
+    <a class="" href="../../spesa/index.html"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-shopping"></use></svg><span>Spesa</span></a>
+    <a class="is-active" href="../../ricette/index.html"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-recipes"></use></svg><span>Ricette</span></a>
+    <a class="" href="../../preferenze/index.html" aria-label="Preferenze alimentari"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-heart"></use></svg><span>Preferenze</span></a>
+    <a class="" href="../../strumenti/index.html"><svg aria-hidden="true"><use href="../../assets/icons.svg#icon-tools"></use></svg><span>Utilità</span></a>
+  </nav>
+</body>
+</html>
