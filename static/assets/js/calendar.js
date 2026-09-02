@@ -434,6 +434,8 @@
       </a>`;
   };
 
+  const todayFullShiftName = (code, fallback) => ({D1:"Turno giorno",D2:"Turno notte",D3:"Smonto",D4:"Primo riposo",D5:"Secondo riposo",M:"Mattino",P:"Pomeriggio",OFF:"Fuori servizio",FREE:"Giornata libera"}[code] || fallback || "Giornata");
+
   const renderToday = (data, start) => {
     const app = document.querySelector("[data-today-app]");
     const setup = document.querySelector("[data-plan-setup]");
@@ -511,27 +513,30 @@
     const nextDate = selectedDate === range.end ? null : core.addDays(selectedDate, 1);
     host.innerHTML = `
       ${selectedDate !== actualToday ? `<div class="preview-date-banner"><span>Stai visualizzando una data diversa da oggi: <strong>${escapeHtml(core.formatLong(selectedDate))}</strong></span><a href="${escapeHtml(stateUrl("oggi/index.html", start).href)}">Torna a oggi</a></div>` : ""}
-      <header class="today-shift-hero ${escapeHtml(day.d_code.toLowerCase())}">
-        <span class="shift-code large">${escapeHtml(day.d_code)}</span>
-        <div>
-          <p class="eyebrow">${escapeHtml(core.formatLong(selectedDate))} · C${day.cycle} · V${day.variant} · giorno ${day.global_day}</p>
-          <h2>${escapeHtml(day.shift_name)}</h2>
-          <p>${escapeHtml(day.shift_hours)}</p>
+      <header class="today-shift-hero ${escapeHtml(dayTypes?dayTypes.css(day.d_code):day.d_code.toLowerCase())}">
+        <span class="shift-code large">${escapeHtml(dayTypes?dayTypes.short(day.d_code):day.d_code)}</span>
+        <div class="today-shift-copy">
+          <p class="today-shift-date">${escapeHtml(core.formatLong(selectedDate))}</p>
+          <h2>${escapeHtml(todayFullShiftName(day.d_code, day.shift_name))}</h2>
+          <p class="today-shift-hours">${escapeHtml(day.shift_hours || "Nessun orario di turno")}</p>
         </div>
         ${day.flexible ? '<span class="flex-badge large">Pasto flessibile</span>' : ""}
       </header>
       ${tails.length ? `<aside class="night-tail-callout"><strong>Prosecuzione della Notte precedente</strong><span>${tails.map((item) => `${escapeHtml(item.time)} · ${escapeHtml(item.title)}`).join("; ")}</span></aside>` : ""}
       ${nextBlock}
-      <div class="nutrition-grid day-summary today-nutrition">
-        <div><strong>${Math.round(day.total.kcal)}</strong><span>kcal del ${escapeHtml(dayTypes?dayTypes.short(day.d_code):day.d_code)}</span></div>
-        <div><strong>${Number(day.total.protein).toFixed(1)}</strong><span>g proteine</span></div>
-        <div><strong>${Number(day.total.carbs).toFixed(1)}</strong><span>g carboidrati</span></div>
-        <div><strong>${Number(day.total.fat).toFixed(1)}</strong><span>g grassi</span></div>
-        <div><strong>${Number(day.total.fiber).toFixed(1)}</strong><span>g fibra</span></div>
-      </div>
       <section class="section-block today-events-section">
         <div class="section-heading"><div><p class="eyebrow">Pasti nella data civile</p><h2>${events.length} appuntamenti alimentari</h2></div><a class="text-link" href="${escapeHtml(dayHref(day, start, selectedDate))}">Apri il giorno completo →</a></div>
         <div class="today-event-list">${eventsHtml}</div>
+      </section>
+      <section class="section-block today-nutrition-section">
+        <div class="section-heading"><div><p class="eyebrow">Valori nutrizionali</p><h2>Riepilogo della giornata</h2></div></div>
+        <div class="nutrition-grid day-summary today-nutrition">
+          <div><strong>${Math.round(day.total.kcal)}</strong><span>kcal del menu</span></div>
+          <div><strong>${Number(day.total.protein).toFixed(1)}</strong><span>g proteine</span></div>
+          <div><strong>${Number(day.total.carbs).toFixed(1)}</strong><span>g carboidrati</span></div>
+          <div><strong>${Number(day.total.fat).toFixed(1)}</strong><span>g grassi</span></div>
+          <div><strong>${Number(day.total.fiber).toFixed(1)}</strong><span>g fibra</span></div>
+        </div>
       </section>
       <nav class="date-pager" aria-label="Date adiacenti">
         ${prevDate ? `<a href="${escapeHtml(stateUrl("oggi/index.html", start, { date: prevDate }).href)}">← ${escapeHtml(core.formatShort(prevDate))}</a>` : "<span></span>"}

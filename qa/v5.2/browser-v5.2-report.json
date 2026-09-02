@@ -1,6 +1,6 @@
 {
   "status": "ok",
-  "version": "5.2.0",
+  "version": "5.2.1",
   "checks": [
     {
       "name": "version_5_2",
@@ -10,7 +10,7 @@
       "name": "plan_initialized",
       "ok": true,
       "detail": {
-        "id": "usr:plan:b8191d5f-b555-4089-bd09-4ac0f20a88c2",
+        "id": "usr:plan:e8d20af8-d73b-4011-b88a-da3bc28d3fab",
         "days": 180,
         "today": "2026-09-02"
       }
@@ -35,8 +35,8 @@
       "detail": {
         "targetDate": "2026-09-02",
         "eggVersion": "base:recipe-version:french-toast-delicato-con-frutta:933b4db38fc2b812",
-        "personalRecipe": "usr:recipe:63cb6d24-3ab1-4075-93f7-b979fd3b4f02",
-        "personalVersion": "usr:recipe-version:4a79ac21-ee16-4504-99f3-387f2bb2f69e"
+        "personalRecipe": "usr:recipe:d40b2fb8-ab06-4fa9-a756-c4764ade2d44",
+        "personalVersion": "usr:recipe-version:bb13255a-6271-4f48-aed9-1a4f6568b0cd"
       }
     },
     {
@@ -108,9 +108,9 @@
       "ok": true,
       "detail": {
         "hero": true,
-        "next": 96,
-        "meals": 210,
-        "nutrition": 695,
+        "next": 79,
+        "meals": 193,
+        "nutrition": 678,
         "calendarActive": false,
         "prepAfter": 2
       }
@@ -120,9 +120,9 @@
       "ok": true,
       "detail": {
         "hero": true,
-        "next": 96,
-        "meals": 210,
-        "nutrition": 695,
+        "next": 79,
+        "meals": 193,
+        "nutrition": 678,
         "calendarActive": false,
         "prepAfter": 2
       }
@@ -132,9 +132,9 @@
       "ok": true,
       "detail": {
         "hero": true,
-        "next": 96,
-        "meals": 210,
-        "nutrition": 695,
+        "next": 79,
+        "meals": 193,
+        "nutrition": 678,
         "calendarActive": false,
         "prepAfter": 2
       }

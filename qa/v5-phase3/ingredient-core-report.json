@@ -19,22 +19,22 @@
   "schemaSample": {
     "ingredient": {
       "recordType": "ingredient",
-      "id": "usr:ingredient:57830b99-9c4c-49c5-bf92-0e58c204eaed",
+      "id": "usr:ingredient:9d7ca1ec-dc66-4268-97e0-a0b17bc94a8e",
       "origin": "personal",
       "name": "Mozzarella test",
       "category": "latticini-e-uova",
       "aliases": [
         "fiordilatte test"
       ],
-      "currentRevisionId": "usr:ingredient-revision:60d4553b-2b7f-44e4-84d2-8c7b70df0bc9",
+      "currentRevisionId": "usr:ingredient-revision:f110f376-ce3c-435f-808c-48764d6380a8",
       "createdAt": "2026-08-26T14:30:00.000Z",
       "updatedAt": "2026-08-26T14:30:00.000Z",
       "archivedAt": null
     },
     "revision": {
       "recordType": "ingredientRevision",
-      "id": "usr:ingredient-revision:60d4553b-2b7f-44e4-84d2-8c7b70df0bc9",
-      "ingredientId": "usr:ingredient:57830b99-9c4c-49c5-bf92-0e58c204eaed",
+      "id": "usr:ingredient-revision:f110f376-ce3c-435f-808c-48764d6380a8",
+      "ingredientId": "usr:ingredient:9d7ca1ec-dc66-4268-97e0-a0b17bc94a8e",
       "revisionNumber": 1,
       "basis": {
         "amount": 100,

@@ -280,3 +280,13 @@ La prova standalone su hardware iOS/Android reale resta manuale post-deploy.
 | V52-016 | mobile 390 px senza overflow | `qa_v5_2.py` |
 | V52-017 | accessibilità tutte le pagine | `test_v5_2_accessibility.py` |
 | V52-018 | regressioni V5 + stress 96 operazioni | `v5_2.sh` |
+
+## 16. Gate patch 5.2.1
+
+- active plan ID mancante ma `planStartDate`/plan instance presenti → recupero automatico;
+- sola data iniziale legacy configurata → materializzazione automatica e riequilibrio disponibile;
+- Oggi Notte → sigla `N`, non `D2`, rettangolo blu intenso;
+- nome completo `Turno notte` e orario `20:00–08:00`;
+- header Oggi senza descrizione introduttiva;
+- nessun overflow mobile;
+- regressione browser V5.2 completa invariata.

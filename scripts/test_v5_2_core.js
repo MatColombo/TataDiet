@@ -41,4 +41,4 @@ assert.ok(sched.proposals.every(p=>!String(p.reason||'').includes('NaN')),'reaso
 assert.ok(sched.proposals.every(p=>Math.abs(p.nutritionAfter.energyKcal-p.nutritionBefore.energyKcal)/p.nutritionBefore.energyKcal<0.08));
 const scheduled=planning.applyProposals(scheduleDays,catalog,sched.proposals);assert.equal(scheduled.flatMap(d=>d.meals).filter(m=>m.recipeVersionId==='v:target').length,3);
 const noFuture=planning.resolveRange(days,'7','2027-01-01');assert.equal(noFuture,null);
-console.log(JSON.stringify({status:'ok',version:'5.2.0',checks:{rebalance_limits:true,locked_preserved:true,nutrition_preserved:true,random_schedule_count:true,random_schedule_distinct_dates:true,random_schedule_reason_numeric:true,no_past_range:true},rebalanceProposals:reb.proposals.length,scheduled:sched.proposals.length},null,2));
+console.log(JSON.stringify({status:'ok',version:'5.2.1',checks:{rebalance_limits:true,locked_preserved:true,nutrition_preserved:true,random_schedule_count:true,random_schedule_distinct_dates:true,random_schedule_reason_numeric:true,no_past_range:true},rebalanceProposals:reb.proposals.length,scheduled:sched.proposals.length},null,2));

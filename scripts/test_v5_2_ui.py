@@ -31,4 +31,4 @@ check('no_visible_legacy_day_codes',not legacy,legacy[:10])
 sw=(ROOT/'static/service-worker.js').read_text(encoding='utf-8');
 for token in ['ricette/programma/index.html','spesa/cicli/index.html','assets/js/v5-planning-core.js','assets/js/v5-balance.js','assets/js/v5-recipe-scheduler.js']:
     check('pwa_'+token,token in sw,token)
-report={'status':'ok' if not errors else 'failed','version':'5.2.0','checks':checks,'errors':errors,'html_files':len(html)};print(json.dumps(report,ensure_ascii=False,indent=2));raise SystemExit(0 if not errors else 1)
+report={'status':'ok' if not errors else 'failed','version':'5.2.1','checks':checks,'errors':errors,'html_files':len(html)};print(json.dumps(report,ensure_ascii=False,indent=2));raise SystemExit(0 if not errors else 1)

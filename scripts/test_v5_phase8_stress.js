@@ -76,7 +76,7 @@ assert.equal(JSON.stringify({ plan, days }), finalState, 'redo completo non rico
 
 console.log(JSON.stringify({
   status: 'ok',
-  version: '5.2.0',
+  version: '5.2.1',
   operations: history.length,
   finalDays: days.length,
   checks: { continuous_dates: true, unique_ids: true, structural_shifts: true, full_undo: true, full_redo: true }

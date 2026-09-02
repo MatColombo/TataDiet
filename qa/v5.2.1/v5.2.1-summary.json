@@ -1,0 +1,42 @@
+{
+  "status": "ok",
+  "version": "5.2.1",
+  "database": "tatadiet-v5",
+  "schema_version": 1,
+  "html_files": 592,
+  "links_checked": 44713,
+  "offline_assets": 650,
+  "offline_bytes": 17120878,
+  "patch_core": {
+    "status": "ok",
+    "version": "5.2.1",
+    "checks": {
+      "active_plan_id_recovery": true,
+      "configured_start_recovery": true,
+      "archived_plan_reactivation": true
+    }
+  },
+  "browser_patch": {
+    "status": "ok",
+    "checks": 9,
+    "errors": []
+  },
+  "browser_v5_2_regression": {
+    "status": "ok",
+    "checks": 23,
+    "errors": []
+  },
+  "stress": {
+    "status": "ok",
+    "version": "5.2.1",
+    "operations": 96,
+    "finalDays": 180,
+    "checks": {
+      "continuous_dates": true,
+      "unique_ids": true,
+      "structural_shifts": true,
+      "full_undo": true,
+      "full_redo": true
+    }
+  }
+}

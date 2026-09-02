@@ -1,9 +1,9 @@
 {
-  "version": "5.2.0",
-  "generated_at": "2026-09-02T13:32:53.873516+00:00",
+  "version": "5.2.1",
+  "generated_at": "2026-09-02T14:28:04.461074+00:00",
   "strategy": "full-static-library",
   "asset_count": 650,
-  "total_bytes": 17113344,
+  "total_bytes": 17120878,
   "assets": [
     "404.html",
     "assets/brand/brand-mark.svg",

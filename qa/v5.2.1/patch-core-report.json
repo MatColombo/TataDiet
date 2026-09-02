@@ -1,0 +1,9 @@
+{
+  "status": "ok",
+  "version": "5.2.1",
+  "checks": {
+    "active_plan_id_recovery": true,
+    "configured_start_recovery": true,
+    "archived_plan_reactivation": true
+  }
+}

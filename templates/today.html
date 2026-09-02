@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-<header class="page-header today-page-header">
-  <p class="eyebrow">V5.2 · piano effettivo</p>
+<header class="page-header today-page-header today-page-header-compact">
+  <p class="eyebrow">Versione V{{ site_version }} · piano alimentare di oggi</p>
   <h1>Oggi</h1>
-  <p>Prima il tipo di giornata e il prossimo pasto, poi tutti gli appuntamenti alimentari della data civile, i valori nutrizionali e la preparazione delle prossime 48 ore.</p>
 </header>
 <div class="dynamic-loading" data-plan-loading>Caricamento del calendario personale…</div>
 <section class="setup-card" data-plan-setup hidden><div><p class="eyebrow">Configurazione iniziale</p><h2>Indica la data della prima Giornata</h2><p>Questa data corrisponderà a <strong>Ciclo 1 · Variante 1 · G, turno 08:00-20:00</strong>. Le altre 179 date saranno calcolate automaticamente.</p></div><form class="start-date-form" data-start-form><label for="today-start-date">Data della prima Giornata</label><div class="date-form-row"><input id="today-start-date" name="start" type="date" min="2020-01-01" max="2100-12-31" required><button class="button primary" type="submit">Genera il calendario</button></div><p class="field-help" data-start-preview></p><p class="form-error" data-start-error role="alert" hidden></p></form></section>

@@ -1174,3 +1174,9 @@ Le proposte applicate vengono salvate in una singola operazione `schedule-recipe
 `/spesa/` è la vista primaria per intervallo civile e usa il resolver del piano effettivo. Alla prima apertura seleziona la data odierna; i preset aggiornano lo stesso date picker senza cambiare route.
 
 `/oggi/` mantiene il resolver effettivo V5.0 ma la presentazione è ordinata: tipo giornata, prossimo pasto, pasti civili, nutrienti, preparazioni 48h.
+
+## 16. Patch compatibile 5.2.1
+
+La patch non modifica DB o schema. `activePlanInstanceId` diventa un riferimento recuperabile, non l'unica prova dell'esistenza del piano personale: `v5-plan-store.activeBundle()` può risolvere il piano tramite `planStartDate`, stato `active` o record più recente e ripristina il setting mancante. Le pagine che richiedono il piano effettivo possono materializzarlo dalla data iniziale già configurata usando il template base.
+
+La UI Oggi usa esclusivamente `TataDietDayTypes.short()` per la sigla visibile e mantiene D1-D5 come soli codici interni. La card turno espone sigla, data civile descrittiva, nome completo del turno e orario.

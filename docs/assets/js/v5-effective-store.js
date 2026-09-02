@@ -1,8 +1,15 @@
-(function(global,factory){const api=factory(global.TataDietDB,global.TataDietPlanStore,global.TataDietEffectiveCore);if(typeof module==='object'&&module.exports)module.exports=api;global.TataDietEffectiveStore=api;})(typeof globalThis!=='undefined'?globalThis:this,function(db,planStore,effective){
+(function(global,factory){const api=factory(global.TataDietDB,global.TataDietPlanStore,global.TataDietEffectiveCore,global.DietSiteState);if(typeof module==='object'&&module.exports)module.exports=api;global.TataDietEffectiveStore=api;})(typeof globalThis!=='undefined'?globalThis:this,function(db,planStore,effective,state){
   'use strict';
   function deps(){if(!db||!planStore||!effective)throw new Error('Moduli piano effettivo non inizializzati');}
   async function data(){deps();await db.initialize();const [recipes,versions,ingredients,revisions]=await Promise.all([db.getAll('recipes'),db.getAll('recipeVersions'),db.getAll('ingredients'),db.getAll('ingredientRevisions')]);return {recipes,versions,ingredients,revisions,maps:effective.maps({recipes,versions,ingredients,revisions})};}
-  async function context(startDate=null){deps();await db.initialize();const bundle=await planStore.activeBundle();if(!bundle||startDate&&bundle.plan.startDate!==startDate)return null;const d=await data();return {...bundle,...d};}
+  async function context(startDate=null){
+    deps();await db.initialize();let bundle=await planStore.activeBundle();
+    if((!bundle||startDate&&bundle.plan.startDate!==startDate)&&startDate&&state?.fetchJson){
+      const template=await state.fetchJson('data/v5/plan-template.base.v1.json');
+      bundle=await planStore.ensureActive(startDate,template,template.dataset_version||template.datasetVersion||'tatadiet-base-v1');
+    }
+    if(!bundle||startDate&&bundle.plan.startDate!==startDate)return null;const d=await data();return {...bundle,...d};
+  }
   async function eventsOnDate(date,startDate=null){const c=await context(startDate);return c?effective.eventsOnDate(c.days,c.maps,date):null;}
   async function prep(date,minute,hours=48,startDate=null){const c=await context(startDate);return c?effective.prepItems(c.days,c.maps,date,minute,hours):null;}
   async function shopping(from,to,rules={},startDate=null){const c=await context(startDate);return c?effective.aggregateShopping(c.days,c.maps,from,to,rules):null;}

@@ -1,0 +1,79 @@
+{
+  "status": "ok",
+  "version": "5.2.1",
+  "checks": [
+    {
+      "name": "configured_calendar_recovered",
+      "ok": true,
+      "detail": {
+        "active": "usr:plan:e100260b-ab98-4b18-b4a9-6ec638396ee8",
+        "plans": 1
+      }
+    },
+    {
+      "name": "rebalance_dialog_opens",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "today_header_compact",
+      "ok": true,
+      "detail": {
+        "headerText": "Versione V5.2.1 · piano alimentare di oggi\n  Oggi",
+        "headerH": 91,
+        "shiftH": 107,
+        "code": "N",
+        "codeBg": "rgb(23, 59, 131)",
+        "title": "Turno notte",
+        "hours": "20:00–08:00 (+1 giorno)",
+        "body": "N\n\nMercoledì 2 Settembre 2026\n\nTurno notte\n\n20:00–08:00 (+1 giorno)\n\nGestisci\n\nPROSSIMO PASTO\n\nPane bianco con prosciutto cotto, primosale e pomodori\n\n18:30 · 510 kcal · 1 porz.\n\nApri ricetta\n\nPASTI NELLA DATA CIVILE\n\n4 appuntamenti alimentari\nModifica i pasti →\n09:00\nColazione\nN · NOTTE\nUova strapazzate, pane bianco e frutta\n\n362 kcal · 1 porz. · 15 min\n\nTrascorso\n13:00\nPranzo\nN · NOTTE\nConiglio con patate e pomodori\n\n440 kcal · 1 porz. · 35 min\n\nTrascorso\n18:30\nPasto preturno\nN · NOTTE\nPane bianco con prosciutto cotto, primosale e pomodori\n\n510 kcal · 1 porz. · 10 min\n\nApri\n23:30\nSpuntino notturno\nN · NOTTE\nFrutta e nocciole\n\n110 kcal · 1 porz. · 2 min\n\nApri\n\nVALORI NUTRIZIONALI\n\nRiepilogo della giornata\n1708\nkcal del menu\n99,8\ng proteine\n201,6\ng carboidrati\n58,7\ng grassi\n25,4\ng fibra\n← 01/09\nGestisci giornata\n03/09 →"
+      }
+    },
+    {
+      "name": "today_shift_compact",
+      "ok": true,
+      "detail": {
+        "headerText": "Versione V5.2.1 · piano alimentare di oggi\n  Oggi",
+        "headerH": 91,
+        "shiftH": 107,
+        "code": "N",
+        "codeBg": "rgb(23, 59, 131)",
+        "title": "Turno notte",
+        "hours": "20:00–08:00 (+1 giorno)",
+        "body": "N\n\nMercoledì 2 Settembre 2026\n\nTurno notte\n\n20:00–08:00 (+1 giorno)\n\nGestisci\n\nPROSSIMO PASTO\n\nPane bianco con prosciutto cotto, primosale e pomodori\n\n18:30 · 510 kcal · 1 porz.\n\nApri ricetta\n\nPASTI NELLA DATA CIVILE\n\n4 appuntamenti alimentari\nModifica i pasti →\n09:00\nColazione\nN · NOTTE\nUova strapazzate, pane bianco e frutta\n\n362 kcal · 1 porz. · 15 min\n\nTrascorso\n13:00\nPranzo\nN · NOTTE\nConiglio con patate e pomodori\n\n440 kcal · 1 porz. · 35 min\n\nTrascorso\n18:30\nPasto preturno\nN · NOTTE\nPane bianco con prosciutto cotto, primosale e pomodori\n\n510 kcal · 1 porz. · 10 min\n\nApri\n23:30\nSpuntino notturno\nN · NOTTE\nFrutta e nocciole\n\n110 kcal · 1 porz. · 2 min\n\nApri\n\nVALORI NUTRIZIONALI\n\nRiepilogo della giornata\n1708\nkcal del menu\n99,8\ng proteine\n201,6\ng carboidrati\n58,7\ng grassi\n25,4\ng fibra\n← 01/09\nGestisci giornata\n03/09 →"
+      }
+    },
+    {
+      "name": "today_ui_code",
+      "ok": true,
+      "detail": "N"
+    },
+    {
+      "name": "today_ui_code_colored",
+      "ok": true,
+      "detail": "rgb(23, 59, 131)"
+    },
+    {
+      "name": "today_shift_details",
+      "ok": true,
+      "detail": {
+        "title": "Turno notte",
+        "hours": "20:00–08:00 (+1 giorno)"
+      }
+    },
+    {
+      "name": "today_mobile_no_overflow",
+      "ok": true,
+      "detail": {
+        "scrollWidth": 390,
+        "clientWidth": 390
+      }
+    },
+    {
+      "name": "no_js_errors",
+      "ok": true,
+      "detail": []
+    }
+  ],
+  "errors": []
+}

@@ -14,6 +14,7 @@ python3 scripts/test_v5_2_accessibility.py | tee "$QA/accessibility-static-repor
 for file in static/service-worker.js static/assets/js/*.js; do node --check "$file" >/dev/null; done
 
 node scripts/test_v5_2_core.js | tee "$QA/v5.2-core-report.json"
+node scripts/test_v5_2_1_patch.js | tee "$QA/v5.2.1-patch-report.json"
 node scripts/test_calendar_logic.js | tee "$QA/calendar-test-report.json"
 node scripts/test_v4_logic.js | tee "$QA/v4-logic-report.json"
 node scripts/test_v5_phase2_backup.js | tee "$QA/phase2-backup-regression.json"
@@ -43,7 +44,7 @@ stress=json.loads((q/'stress-report.json').read_text())
 bp=q/'browser-v5.2-report.json'
 browser=json.loads(bp.read_text()) if bp.exists() else {'status':'not-run','checks':[],'errors':[]}
 summary={
- 'status':'ok', 'version':'5.2.0', 'database':'tatadiet-v5','schema_version':1,
+ 'status':'ok', 'version':'5.2.1', 'database':'tatadiet-v5','schema_version':1,
  'html_files':validation['html_files'],'links_checked':validation['links_checked'],
  'offline_assets':validation['data_counts']['offline_assets'],'offline_bytes':validation['data_counts']['offline_bytes'],
  'base_days':180,'base_meals':864,'base_recipes':306,'recipe_versions':547,'base_ingredients':130,

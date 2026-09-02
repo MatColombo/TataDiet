@@ -7,7 +7,20 @@
   function deps(){if(!dbApi||!core) throw new Error("Moduli piano V5 non inizializzati");}
   function txDone(tx){return new Promise((resolve,reject)=>{tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error||new Error("Transazione non riuscita"));tx.onabort=()=>reject(tx.error||new Error("Transazione annullata"));});}
   async function bundle(planId){deps();const plan=await dbApi.get("planInstances",planId);if(!plan)return null;const days=(await dbApi.getAll("calendarDays")).filter(d=>d.planInstanceId===planId);return {plan,days:core.sortDays(days)};}
-  async function activeBundle(){const id=await dbApi.getSetting("activePlanInstanceId");return id?bundle(id):null;}
+  async function activeBundle(){
+    deps();
+    const id=await dbApi.getSetting("activePlanInstanceId");
+    if(id){const current=await bundle(id);if(current)return current;}
+    const plans=await dbApi.getAll("planInstances");
+    if(!plans.length)return null;
+    const configuredStart=await dbApi.getSetting("planStartDate");
+    const candidates=[...plans].sort((a,b)=>String(b.updatedAt||b.createdAt||'').localeCompare(String(a.updatedAt||a.createdAt||'')));
+    const recovered=(configuredStart&&candidates.find(p=>p.startDate===configuredStart))||candidates.find(p=>p.status==='active')||candidates[0];
+    if(!recovered)return null;
+    if(recovered.status!=='active'){recovered.status='active';recovered.updatedAt=new Date().toISOString();await dbApi.put("planInstances",recovered);}
+    await dbApi.setSetting("activePlanInstanceId",recovered.id,"active-plan-recovery");
+    return bundle(recovered.id);
+  }
   async function writeNew(plan,days){const db=await dbApi.openDatabase();try{const tx=db.transaction(["planInstances","calendarDays","settings"],"readwrite");tx.objectStore("planInstances").put(plan);days.forEach(d=>tx.objectStore("calendarDays").put(d));tx.objectStore("settings").put({key:"activePlanInstanceId",value:plan.id,source:"phase5",updatedAt:new Date().toISOString()});await txDone(tx);}finally{db.close();}}
   async function ensureActive(startDate,template,datasetId="tatadiet-base-v1"){
     deps();let current=await activeBundle();if(current?.plan?.startDate===startDate)return {...current,created:false};

@@ -1,6 +1,6 @@
 {
   "status": "ok",
-  "version": "5.2.0",
+  "version": "5.2.1",
   "counts": {
     "cycles": 6,
     "variants": 36,
@@ -10,6 +10,6 @@
   },
   "recipes": 306,
   "offline_assets": 650,
-  "offline_bytes": 17113344,
-  "output": "/mnt/data/dieta-site-v5.2/docs"
+  "offline_bytes": 17117407,
+  "output": "/mnt/data/dieta-site-v5.2.1/docs"
 }

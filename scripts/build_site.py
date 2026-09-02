@@ -28,7 +28,7 @@ SOURCE_XLSX = ROOT / "source_data" / "Piano_alimentare_revisionato_6_mesi_fibra_
 SOURCE_PDF = ROOT / "source_data" / "Piano_alimentare_revisionato_6_mesi_fibra_moderata.pdf"
 DOWNLOAD_XLSX = DOCS / "downloads" / SOURCE_XLSX.name
 DOWNLOAD_PDF = DOCS / "downloads" / "Piano_alimentare_revisionato_6_mesi_fibra_moderata.pdf"
-VERSION = "5.2.0"
+VERSION = "5.2.1"
 
 MONTH_SHEETS = [
     (1, "M1 Settembre"),
@@ -904,7 +904,7 @@ def main() -> None:
         "Compositore della giornata V5 con ricette base/personali, porzioni, blocchi e suggerimenti locali",
         "Resolver unico del piano effettivo V5 per Home, Oggi, preparazioni, spesa, ricerca ed export ICS",
         "Release 5.1.0: nuova nomenclatura e colori dei turni, Mattino/Pomeriggio, Gestisci giornata e preferenze alimentari locali",
-        "Release 5.2.0: riequilibrio massivo per preferenze, programmazione ricette, navigazione semplificata, Oggi e Spesa ridisegnati",
+        "Release 5.2.1: correzione recupero calendario personale e vista Oggi più compatta",
     ]
     todo = [
         "Verifica manuale dell’installazione e del comportamento standalone su dispositivi Android e iOS reali",

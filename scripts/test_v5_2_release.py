@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / 'docs'
 QA = ROOT / 'qa' / 'v5.1'
 QA.mkdir(parents=True, exist_ok=True)
-VERSION = '5.2.0'
+VERSION = '5.2.1'
 errors=[]
 checks={}
 
@@ -33,8 +33,8 @@ check('no_phase_badges_public_ui', re.search(r'V5\s*(?:·\s*)?Fase\s*[1-8]|Fase\
 # Stable backup and DB markers.
 backup=(ROOT/'static/assets/js/v5-backup.js').read_text(encoding='utf-8')
 db=(ROOT/'static/assets/js/v5-db.js').read_text(encoding='utf-8')
-check('backup_app_version', 'const APP_VERSION = "5.2.0";' in backup)
-check('db_app_version', 'const APP_VERSION = "5.2.0";' in db)
+check('backup_app_version', 'const APP_VERSION = "5.2.1";' in backup)
+check('db_app_version', 'const APP_VERSION = "5.2.1";' in db)
 check('stable_migration_marker', 'STABLE_MIGRATION_VERSION = 5' in db and 'stableReleaseMigrationVersion' in db)
 check('alpha_backup_compatibility_warning', 'schema' in backup and 'è compatibile' in backup)
 

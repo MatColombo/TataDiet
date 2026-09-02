@@ -7,7 +7,7 @@ from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[1]
 QA=ROOT/'qa'/'v5.2'; QA.mkdir(parents=True,exist_ok=True)
 parser=argparse.ArgumentParser(); parser.add_argument('--base-url',required=True); args=parser.parse_args(); base=args.base_url.rstrip('/')
-report={'status':'ok','version':'5.2.0','checks':[],'errors':[]}
+report={'status':'ok','version':'5.2.1','checks':[],'errors':[]}
 def check(name,ok,detail=None):
     row={'name':name,'ok':bool(ok)}
     if detail is not None: row['detail']=detail
@@ -25,8 +25,8 @@ with sync_playwright() as p:
     errors=[]; page.on('pageerror',lambda e: errors.append(str(e)))
 
     page.goto(base+'/index.html',wait_until='domcontentloaded')
-    page.wait_for_function("() => document.body?.dataset.version === '5.2.0'")
-    check('version_5_2',page.locator('body').get_attribute('data-version')=='5.2.0')
+    page.wait_for_function("() => document.body?.dataset.version === '5.2.1'")
+    check('version_5_2',page.locator('body').get_attribute('data-version')=='5.2.1')
     page.evaluate("() => navigator.serviceWorker.ready")
     page.wait_for_timeout(800)
     if not page.evaluate("() => !!navigator.serviceWorker.controller"):

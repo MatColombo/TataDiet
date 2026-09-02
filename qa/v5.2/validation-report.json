@@ -1,5 +1,5 @@
 {
-  "version": "5.2.0",
+  "version": "5.2.1",
   "html_files": 592,
   "links_checked": 44713,
   "data_counts": {
@@ -11,7 +11,7 @@
     "search_entries": 628,
     "shopping_day_records": 2735,
     "offline_assets": 650,
-    "offline_bytes": 17113344
+    "offline_bytes": 17117407
   },
   "errors": [],
   "warnings": []

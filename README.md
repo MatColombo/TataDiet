@@ -1,6 +1,37 @@
-# TataDiet 5.2.0
+# TataDiet 5.2.1
 
-TataDiet è una PWA statica e local-first per gestire un piano alimentare su turni. La release **5.2.0** estende la V5.1 con riequilibrio massivo del piano, programmazione bilanciata di ricette nel calendario e una UX più diretta per Oggi, Spesa e navigazione.
+TataDiet è una PWA statica e local-first per gestire un piano alimentare su turni. La release **5.2.1** è una patch compatibile con V5.2.0. Corregge il recupero del calendario personale nel riequilibrio e rende la pagina Oggi più compatta e coerente con le sigle G/N/SN/R1/R2/M/P.
+
+## Patch 5.2.1
+
+### Riequilibrio: recupero automatico del calendario personale
+
+La pagina Preferenze non dipende più esclusivamente da `activePlanInstanceId`. Se la data iniziale è già configurata, TataDiet:
+
+1. recupera un piano personale esistente anche se il riferimento attivo manca;
+2. riattiva il piano corrispondente alla data iniziale;
+3. se necessario materializza il piano effettivo dalla data già salvata;
+4. apre normalmente il riequilibrio senza chiedere di configurare di nuovo il calendario.
+
+La stessa logica di recupero è usata anche dalle viste del piano effettivo e dalla programmazione ricette.
+
+### Oggi più compatto
+
+La testata di `/oggi/` ora contiene soltanto:
+
+```text
+Versione V5.2.1 · piano alimentare di oggi
+Oggi
+```
+
+La card del turno mostra in ordine:
+
+- sigla UI colorata (`G`, `N`, `SN`, `R1`, `R2`, `M`, `P`);
+- data descrittiva;
+- nome completo del turno (`Turno giorno`, `Turno notte`, `Smonto`, ecc.);
+- orario del turno, quando disponibile.
+
+Il fallback statico usa le stesse sigle e non mostra D1/D2. Sono stati ridotti padding, titoli, distanze tra sezioni e spazio prima delle preparazioni 48h.
 
 ## Novità 5.2
 
@@ -181,7 +212,7 @@ QA browser contro un deploy:
 python3 scripts/qa_v5_2.py --base-url https://MatColombo.github.io/TataDiet
 ```
 
-## Gate finale 5.2.0
+## Gate finale 5.2.1
 
 ```text
 592 pagine HTML
@@ -189,7 +220,7 @@ python3 scripts/qa_v5_2.py --base-url https://MatColombo.github.io/TataDiet
 0 errori
 0 warning
 650 risorse offline
-17.113.344 byte offline
+17.120.878 byte offline
 ```
 
 Accessibilità statica:
@@ -206,7 +237,7 @@ Accessibilità statica:
 
 Stress del calendario: 96 operazioni consecutive con undo e redo completi.
 
-QA Chromium end-to-end: **23/23 controlli superati**, inclusi riequilibrio selettivo, programmazione ricetta, Spesa per date, nuovo ordine Oggi, offline e mobile senza overflow.
+QA Chromium end-to-end: **23/23 controlli V5.2 superati**. La patch aggiunge inoltre un test dedicato al recupero del calendario con `activePlanInstanceId` mancante e alla resa compatta/colorata della card Oggi.
 
 ## Pubblicazione GitHub Pages
 

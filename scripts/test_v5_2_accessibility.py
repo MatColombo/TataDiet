@@ -104,7 +104,7 @@ for path in sorted(DOCS.rglob("*.html")):
 
 report = {
     "status": "ok" if not errors else "failed",
-    "version": "5.2.0",
+    "version": "5.2.1",
     "counts": dict(counts),
     "errors": errors,
     "warnings": warnings,

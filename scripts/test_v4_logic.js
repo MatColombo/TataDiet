@@ -12,9 +12,9 @@ const rangeData = JSON.parse(fs.readFileSync(path.join(root, "docs", "data", "sh
 const shopping = JSON.parse(fs.readFileSync(path.join(root, "docs", "data", "shopping.json"), "utf8"));
 const searchIndex = JSON.parse(fs.readFileSync(path.join(root, "docs", "data", "search-index.json"), "utf8"));
 
-assert.equal(calendar.version, "5.2.0");
-assert.equal(rangeData.version, "5.2.0");
-assert.equal(searchIndex.version, "5.2.0");
+assert.equal(calendar.version, "5.2.1");
+assert.equal(rangeData.version, "5.2.1");
+assert.equal(searchIndex.version, "5.2.1");
 assert.equal(rangeData.days.length, 180);
 assert.equal(searchIndex.entries.length, 628);
 

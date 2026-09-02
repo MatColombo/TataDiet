@@ -1668,3 +1668,39 @@ button, .button, a { -webkit-tap-highlight-color: transparent; }
 .schedule-config-card,.schedule-config-card>*{min-width:0;max-width:100%;box-sizing:border-box}
 .schedule-config-card select,.schedule-config-card input,.schedule-range-field,.segmented-control{min-width:0;max-width:100%;box-sizing:border-box}
 .schedule-config-card select{overflow:hidden;text-overflow:ellipsis}
+
+
+/* V5.2.1 · Oggi compatto */
+.today-page-header-compact{margin-bottom:.55rem;padding-bottom:.15rem}
+.today-page-header-compact .eyebrow{margin-bottom:.12rem}
+.today-page-header-compact h1{margin:.05rem 0;font-size:clamp(2rem,5vw,3.4rem)}
+.today-shift-hero{gap:.8rem;margin:.55rem 0 .75rem;padding:.82rem 1rem;border-left-width:6px;border-radius:18px}
+.today-shift-hero .shift-code.large{display:grid;place-items:center;flex:0 0 auto;min-width:54px;height:44px;padding:.25rem .5rem;border-radius:11px;background:currentColor;color:#fff;font-size:1rem;line-height:1;font-weight:950}
+.today-shift-copy{min-width:0;flex:1}.today-shift-date{margin:0 0 .08rem!important;color:var(--muted)!important;font-size:.76rem;font-weight:800;text-transform:capitalize}.today-shift-copy h2{margin:.02rem 0 .1rem;font-size:clamp(1.25rem,2.5vw,1.7rem)}.today-shift-hours{font-size:.78rem}
+.next-meal-card{margin:.7rem 0;padding:.9rem 1rem;border-radius:18px}.next-meal-card h2{font-size:clamp(1.2rem,2.5vw,1.55rem)}
+.today-events-section,.today-nutrition-section{margin-top:.75rem}.today-event-list{gap:.45rem}.today-event{padding:.65rem .8rem}.today-nutrition{margin-top:.55rem}.today-nutrition-section .section-heading{margin-bottom:.35rem}
+@media(max-width:760px){.today-page-header-compact{margin-bottom:.35rem}.today-shift-hero{display:grid;grid-template-columns:54px minmax(0,1fr);padding:.75rem}.today-shift-hero>div{min-width:0}.today-shift-hero>a,.today-shift-hero>.flex-badge{grid-column:2;margin:0;justify-self:start}.today-event{padding:.6rem .7rem}}
+
+/* V5.2.1 · rifinitura visiva Oggi */
+.today-page-header-compact{margin:.55rem 0 .5rem;padding:.8rem 1rem .72rem;border-radius:20px}
+.today-page-header-compact::after{width:150px;height:150px;right:-55px;top:-72px}
+.today-page-header-compact h1{font-size:clamp(1.9rem,4vw,2.8rem);line-height:1;margin:.02rem 0}
+.today-shift-hero{padding:.68rem .8rem;min-height:0}
+.today-shift-hero .shift-code.large{height:40px;min-width:50px;background:var(--brand);color:#fff}
+.today-shift-hero.d1 .shift-code.large{background:var(--d1)}
+.today-shift-hero.d2 .shift-code.large{background:var(--d2)}
+.today-shift-hero.d3 .shift-code.large{background:var(--d3)}
+.today-shift-hero.d4 .shift-code.large,.today-shift-hero.d5 .shift-code.large{background:var(--d4)}
+.today-shift-hero.m .shift-code.large{background:var(--m);color:#3f3000}
+.today-shift-hero.p .shift-code.large{background:var(--p)}
+.today-shift-hero.custom .shift-code.large{background:#69507c}
+.today-shift-hero.off .shift-code.large{background:#557267}
+.today-shift-hero.free .shift-code.large{background:#8a596f}
+.today-events-section .section-heading,.today-nutrition-section .section-heading{margin-bottom:.45rem}
+.today-events-section .section-heading h2,.today-nutrition-section .section-heading h2{font-size:clamp(1.45rem,2.8vw,2rem);margin:.08rem 0}
+.today-events-section{margin:.8rem 0 .65rem!important}
+.today-nutrition-section{margin:.8rem 0 .65rem!important}
+.today-prep-preview{margin:1.15rem 0 1.3rem!important}
+.today-prep-preview .section-heading h2,.today-prep-preview>div>h2{font-size:clamp(1.45rem,2.8vw,2rem)}
+.date-pager{margin-top:.65rem;padding-top:.65rem}
+@media(max-width:760px){.today-page-header-compact{padding:.72rem .8rem}.today-shift-hero{grid-template-columns:50px minmax(0,1fr);gap:.6rem;padding:.65rem}.today-shift-hero .shift-code.large{min-width:46px;height:38px}.today-events-section .section-heading h2,.today-nutrition-section .section-heading h2{font-size:1.4rem}}

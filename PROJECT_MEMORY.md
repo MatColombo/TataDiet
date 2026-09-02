@@ -2,7 +2,7 @@
 
 ## Stato corrente
 
-- Versione stabile: **5.2.0**
+- Versione stabile: **5.2.1**
 - Data release: **2 settembre 2026**
 - Distribuzione: sito statico/PWA da `docs/`, compatibile con GitHub Pages project site
 - Persistenza: IndexedDB `tatadiet-v5`
@@ -23,7 +23,7 @@
 130 ingredienti base
 ```
 
-I conteggi HTML/QA correnti sono prodotti da `./v5_2.sh` e salvati in `qa/v5.2/`.
+I conteggi HTML/QA correnti sono prodotti da `./v5_2.sh`; la regressione generale è in `qa/v5.2/` e la patch mirata in `qa/v5.2.1/`.
 
 ## Principio architetturale
 
@@ -192,7 +192,7 @@ calendar
 settings
 ```
 
-Nuovi backup: `appVersion = 5.1.0`. Backup V5.0/schema 1 e stesso dataset base restano importabili con warning. Le preferenze sono presenti in `settings`, quindi nei backup `full` e `settings`.
+Nuovi backup: `appVersion = 5.2.1`. Backup V5.0/schema 1 e stesso dataset base restano importabili con warning. Le preferenze sono presenti in `settings`, quindi nei backup `full` e `settings`.
 
 Import conserva checksum SHA-256, anteprima, controllo dataset, conflitti e rollback.
 
@@ -214,7 +214,7 @@ Build:
 ./build.sh
 ```
 
-Gate corrente V5.2:
+Gate corrente V5.2.1:
 
 ```bash
 ./v5_2.sh
@@ -294,3 +294,35 @@ Percorso: `/ricette/programma/`. Disponibile da ricette base e personali. Interv
 ## Gate finale V5.2.0
 
 Release validata il 2 settembre 2026: 592 HTML, 44.713 link/risorse/frammenti, 0 errori e 0 warning; 650 risorse offline (17.113.344 byte). Audit accessibilita: 592 pagine, 1.187 immagini, 2.220 pulsanti, 21.033 link, 2.217 controlli form, 0 errori e 0 warning. Stress: 96 operazioni con undo/redo completo. QA Chromium: 23/23 controlli superati, inclusi riequilibrio con selezione parziale, programmazione ricetta con selezione parziale, spesa date/preset, ordine Oggi, offline e mobile senza overflow.
+
+## Patch V5.2.1
+
+Release del 2 settembre 2026. DB e schema restano invariati (`tatadiet-v5`, DB 1, schema 1).
+
+### Recupero del piano attivo
+
+`v5-plan-store.activeBundle()` non considera più `activePlanInstanceId` come unico riferimento autorevole. Se il setting manca o punta a un record non disponibile:
+
+1. legge `planInstances`;
+2. preferisce il piano con `startDate == planStartDate`;
+3. in alternativa usa il record con `status=active`, poi il più recente;
+4. riattiva il record se necessario;
+5. ripristina `activePlanInstanceId`.
+
+`v5-balance.js` e `v5-effective-store.js` possono inoltre materializzare un piano dalla `planStartDate`/data legacy già configurata caricando `plan-template.base.v1.json`. La programmazione ricette usa lo stesso fallback. Questo corregge il caso reale in cui il calendario era visibile/configurato ma il riequilibrio mostrava “Configura prima il calendario personale”.
+
+### Oggi V5.2.1
+
+La pagina `/oggi/` ha header compatto: `Versione V5.2.1 · piano alimentare di oggi` + `Oggi`, senza testo descrittivo. La card turno usa sempre `dayTypes.short()` e mostra sigla colorata, data, nome completo del turno e orario. Il fallback di `calendar.js` usa anch'esso le sigle UI, quindi D1/D2 non ricompaiono se il piano effettivo tarda a caricarsi. Spazi verticali, titoli sezione e card sono stati ridotti.
+
+### Gate V5.2.1
+
+- 592 HTML;
+- 44.713 link/risorse/frammenti;
+- 0 errori / 0 warning;
+- 650 risorse offline;
+- 17.120.878 byte offline;
+- stress 96 operazioni con undo/redo completo;
+- regressione Chromium V5.2: 23/23;
+- test patch: recupero active plan, materializzazione da data configurata, sigla N colorata, nome `Turno notte`, nessun D2 nel contenuto, nessun overflow mobile.
+

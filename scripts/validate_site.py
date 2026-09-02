@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
-VERSION = "5.2.0"
+VERSION = "5.2.1"
 
 
 def load_json(name: str):
